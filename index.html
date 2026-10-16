@@ -20,7 +20,7 @@
 </script>
 <script>
 /* Kayıtlı tema tercihini sayfa çizilmeden uygula (yanıp sönmeyi önler). */
-(function () { var d = document.documentElement; d.classList.add('js'); try { var t = localStorage.getItem('athene-theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); } catch (e) {} })();
+(function () { var d = document.documentElement; d.classList.add('js'); try { var t = localStorage.getItem('athene-theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); var l = localStorage.getItem('athene-lang'); if (/^(tr|en|de|fr|es|it)$/.test(l)) d.lang = l; } catch (e) {} })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -326,32 +326,84 @@ footer .wrap { display: grid; gap: 22px; }
 .built span { min-width: 0; }
 .built svg { width: 15px; height: 15px; color: var(--accent); flex: none; }
 .built strong { color: var(--ink); font-weight: 500; }
+
+/* Dil seçici */
+.lang { position: relative; }
+.lang-btn { display: flex; align-items: center; gap: 6px; height: 42px; padding: 0 11px; background: none; border: 1px solid var(--line); border-radius: 10px;
+  color: var(--ink); cursor: pointer; font-family: var(--mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em; transition: border-color .2s; }
+.lang-btn:hover, .lang-btn[aria-expanded="true"] { border-color: var(--muted); }
+.lang-btn .globe { width: 17px; height: 17px; flex: none; }
+.lang-btn .chev { width: 14px; height: 14px; flex: none; color: var(--muted); transition: transform .2s; }
+.lang-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.lang-list { position: absolute; top: calc(100% + 8px); right: 0; z-index: 60; min-width: 196px; padding: 6px; display: grid; gap: 2px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 20px 40px -18px rgba(0,0,0,.55); }
+.lang-list[hidden] { display: none; }
+.lang-list button { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; padding: 9px 12px; border: 0; border-radius: 9px;
+  background: none; color: var(--ink); font: inherit; font-size: 0.95rem; text-align: left; cursor: pointer; }
+.lang-list button small { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+.lang-list button:hover, .lang-list button:focus-visible { background: var(--accent-soft); outline: none; }
+.lang-list button[aria-checked="true"] { color: var(--accent); font-weight: 600; }
+.lang-list button[aria-checked="true"] small { color: var(--accent); }
+.lang-list button[aria-checked="true"] small::before { content: "\2713  "; }
+.live-dot { text-transform: uppercase; }
+@media (max-width: 760px) {
+  .lang-btn .globe, .lang-btn .chev { display: none; }
+  .lang-btn { min-width: 42px; justify-content: center; padding: 0 8px; }
+}
+@media (max-width: 420px) {
+  .nav { gap: 10px; }
+  .nav-right { gap: 6px; }
+  .logo { gap: 8px; font-size: 1rem; }
+  .logo .logo-img { width: 32px; height: 32px; }
+  .theme-btn, .burger { width: 40px; height: 40px; }
+  .lang-btn { height: 40px; min-width: 40px; }
+}
+@media (max-width: 360px) { .logo span b { display: none; } }
+@media (max-width: 420px) { h1, h2, h3 { overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; } }
+@media (min-width: 761px) { .menu a { white-space: nowrap; } }
+@media (min-width: 761px) and (max-width: 1000px) { .menu { gap: 16px; } .menu a { font-size: 0.9rem; } .menu a.cta { padding: 9px 13px; } .nav { gap: 12px; } .logo { font-size: 1.05rem; } }
+@media (min-width: 761px) and (max-width: 860px) { .logo span b { display: none; } .menu { gap: 12px; } .nav-right { gap: 8px; } .menu a { font-size: 0.86rem; } }
 </style>
 </head>
 <body>
-<a class="skip" href="#icerik">İçeriğe geç</a>
+<a class="skip" href="#icerik" data-i18n="skip">İçeriğe geç</a>
 
 <header>
   <div class="wrap nav">
-    <a href="#anasayfa" class="logo" aria-label="Athene Softworks ana sayfa">
+    <a href="#anasayfa" class="logo" aria-label="Athene Softworks ana sayfa" data-i18n-aria="a.home">
       <span class="logo-img" role="img" aria-hidden="true"></span>
       <span>Athene <b>Softworks</b></span>
     </a>
     <div class="nav-right">
-    <button class="theme-btn" id="theme" type="button" aria-label="Açık/koyu temayı değiştir">
+    <button class="theme-btn" id="theme" type="button" aria-label="Açık/koyu temayı değiştir" data-i18n-aria="a.theme">
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
     </button>
-    <button class="burger" id="burger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="menu">
+    <div class="lang">
+      <button class="lang-btn" id="lang" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langList" aria-label="Dil seçin" data-i18n-aria="a.lang">
+        <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9M12 3C9.5 5.7 8.2 8.7 8.2 12s1.3 6.3 3.8 9"/></svg>
+        <span id="langCode">TR</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="lang-list" id="langList" role="menu" hidden>
+        <button type="button" role="menuitemradio" aria-checked="true" data-lang="tr" lang="tr">Türkçe<small>TR</small></button>
+        <button type="button" role="menuitemradio" aria-checked="false" data-lang="en" lang="en">English<small>EN</small></button>
+        <button type="button" role="menuitemradio" aria-checked="false" data-lang="de" lang="de">Deutsch<small>DE</small></button>
+        <button type="button" role="menuitemradio" aria-checked="false" data-lang="fr" lang="fr">Français<small>FR</small></button>
+        <button type="button" role="menuitemradio" aria-checked="false" data-lang="es" lang="es">Español<small>ES</small></button>
+        <button type="button" role="menuitemradio" aria-checked="false" data-lang="it" lang="it">Italiano<small>IT</small></button>
+      </div>
+    </div>
+    <button class="burger" id="burger" aria-label="Menüyü aç" data-i18n-aria="a.menu" aria-expanded="false" aria-controls="menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     </div>
     <nav class="menu" id="menu" hidden>
-      <a href="#cozumler">Çözümlerimiz</a>
-      <a href="#projeler">Projeler</a>
-      <a href="#yaklasim">Yaklaşımımız</a>
-      <a href="#kurucular">Kurucular</a>
-      <a href="#iletisim" class="cta">İletişim</a>
+      <a href="#cozumler" data-i18n="nav.solutions">Çözümlerimiz</a>
+      <a href="#projeler" data-i18n="nav.projects">Projeler</a>
+      <a href="#yaklasim" data-i18n="nav.approach">Yaklaşımımız</a>
+      <a href="#kurucular" data-i18n="nav.founders">Kurucular</a>
+      <a href="#iletisim" class="cta" data-i18n="nav.contact">İletişim</a>
     </nav>
   </div>
 </header>
@@ -361,14 +413,14 @@ footer .wrap { display: grid; gap: 22px; }
   <div class="hero-bg">
     <div class="wrap hero">
       <div>
-        <span class="badge live"><i></i>Agamemnon v1.0.1 yayında</span>
-        <h1>Kendi yazılımlarımızı <em>geliştiriyoruz.</em></h1>
-        <p class="lead">Athene Softworks, kendi ürünlerini tasarlayıp geliştiren bir yazılım şirketi. Bilgisayarınızda çalışan sade, güvenli ve kullanması keyifli masaüstü yazılımları üretiyoruz.</p>
+        <span class="badge live"><i></i><span data-i18n="hero.badge">Agamemnon v1.0.1 yayında</span></span>
+        <h1 data-i18n="hero.title">Kendi yazılımlarımızı <em>geliştiriyoruz.</em></h1>
+        <p class="lead" data-i18n="hero.lead">Athene Softworks, kendi ürünlerini tasarlayıp geliştiren bir yazılım şirketi. Bilgisayarınızda çalışan sade, güvenli ve kullanması keyifli masaüstü yazılımları üretiyoruz.</p>
         <div class="actions">
           <a href="#indir" class="btn primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Agamemnon'u indir
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="btn.download">Agamemnon'u indir</span>
           </a>
-          <a href="#projeler" class="btn ghost">Projelerimiz</a>
+          <a href="#projeler" class="btn ghost" data-i18n="hero.projects">Projelerimiz</a>
         </div>
       </div>
       <div class="mark" aria-hidden="true">
@@ -380,38 +432,38 @@ footer .wrap { display: grid; gap: 22px; }
 
   <section class="block alt" id="cozumler">
     <div class="wrap">
-      <p class="eyebrow">Çözümlerimiz</p>
-      <h2>Agamemnon artık bilgisayarınızda çalışıyor</h2>
-      <p class="sub">Çözümlerimizi kendi ekibimizle, kendi standartlarımızla geliştiriyoruz. Agamemnon tarayıcıda değil, doğrudan bilgisayarınızda çalışan bir masaüstü uygulaması ve artık kullanıma açık.</p>
+      <p class="eyebrow" data-i18n="nav.solutions">Çözümlerimiz</p>
+      <h2 data-i18n="sol.title">Agamemnon artık bilgisayarınızda çalışıyor</h2>
+      <p class="sub" data-i18n="sol.sub">Çözümlerimizi kendi ekibimizle, kendi standartlarımızla geliştiriyoruz. Agamemnon tarayıcıda değil, doğrudan bilgisayarınızda çalışan bir masaüstü uygulaması ve artık kullanıma açık.</p>
 
       <article class="flagship reveal">
         <div class="fs-main">
-          <span class="status live"><i></i>Aktif</span>
+          <span class="status live"><i></i><span data-i18n="status.active">Aktif</span></span>
           <h3 class="product-name">Agamemnon</h3>
-          <p>Athene Softworks'ün ilk çözümü artık aktif. Bilgisayarınıza kurulan ve orada çalışan bir masaüstü uygulaması; düzenli güncellemelerle gelişmeye devam ediyor.</p>
-          <ul class="chips" aria-label="Agamemnon özellikleri">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Windows masaüstü uygulaması</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>İndir ve kur</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>Düzenli güncellemeler</li>
+          <p data-i18n="sol.text">Athene Softworks'ün ilk çözümü artık aktif. Bilgisayarınıza kurulan ve orada çalışan bir masaüstü uygulaması; düzenli güncellemelerle gelişmeye devam ediyor.</p>
+          <ul class="chips" aria-label="Agamemnon özellikleri" data-i18n-aria="a.features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span data-i18n="chip.win">Windows masaüstü uygulaması</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="chip.install">İndir ve kur</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg><span data-i18n="chip.updates">Düzenli güncellemeler</span></li>
           </ul>
 
           <div class="download" id="indir">
             <div class="dl-head">
-              <strong>Nasıl indirilir?</strong>
+              <strong data-i18n="dl.title">Nasıl indirilir?</strong>
               <span class="dl-ver">v1.0.1 · Windows</span>
             </div>
             <ol>
-              <li>Aşağıdaki <b>Agamemnon'u indir</b> düğmesiyle sürüm sayfasını açın.</li>
-              <li>Sayfanın altındaki <b>Assets</b> bölümüne inin.</li>
-              <li><code>.exe</code> ya da <code>.msi</code> dosyasını indirip çalıştırın ve kurulumu tamamlayın.</li>
+              <li data-i18n="dl.s1">Aşağıdaki <b>Agamemnon'u indir</b> düğmesiyle sürüm sayfasını açın.</li>
+              <li data-i18n="dl.s2">Sayfanın altındaki <b>Assets</b> bölümüne inin.</li>
+              <li data-i18n="dl.s3"><code>.exe</code> ya da <code>.msi</code> dosyasını indirip çalıştırın ve kurulumu tamamlayın.</li>
             </ol>
           </div>
 
           <div class="fs-actions">
             <a href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/tag/v1.0.1" class="btn primary" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Agamemnon'u indir
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="btn.download">Agamemnon'u indir</span>
             </a>
-            <a href="#projeler" class="btn ghost">Tüm projeler</a>
+            <a href="#projeler" class="btn ghost" data-i18n="sol.all">Tüm projeler</a>
           </div>
         </div>
         <div class="fs-art" aria-hidden="true">
@@ -423,7 +475,7 @@ footer .wrap { display: grid; gap: 22px; }
                   <div class="win-body">
                     <div class="win-side"><div class="sk a"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk" style="width:70%"></div></div>
                     <div class="win-main">
-                      <span class="live-dot">AKTİF</span>
+                      <span class="live-dot" data-i18n="status.active">Aktif</span>
                       <div class="sk" style="width:45%"></div>
                       <div class="sk-row"><div class="sk-card on"></div><div class="sk-card"></div><div class="sk-card on"></div></div>
                       <div class="sk-chart"></div>
@@ -444,32 +496,32 @@ footer .wrap { display: grid; gap: 22px; }
 
   <section class="block" id="projeler">
     <div class="wrap">
-      <p class="eyebrow">Projeler</p>
-      <h2>Üzerinde çalıştığımız projeler</h2>
-      <p class="sub">Yayındaki ürünlerimiz ve sırada olanlar. Her yeni proje bu listeye eklenecek.</p>
+      <p class="eyebrow" data-i18n="nav.projects">Projeler</p>
+      <h2 data-i18n="proj.title">Üzerinde çalıştığımız projeler</h2>
+      <p class="sub" data-i18n="proj.sub">Yayındaki ürünlerimiz ve sırada olanlar. Her yeni proje bu listeye eklenecek.</p>
       <div class="projects reveal">
         <article class="proj featured">
           <div class="proj-top">
             <span class="proj-ic"><span class="logo-img" aria-hidden="true"></span></span>
-            <span class="pill live"><i></i>Aktif</span>
+            <span class="pill live"><i></i><span data-i18n="status.active">Aktif</span></span>
           </div>
           <h3>Agamemnon</h3>
-          <p>İlk çözümümüz. Bilgisayarınıza kurulan ve orada çalışan bir masaüstü uygulaması.</p>
-          <ul class="tags"><li>Windows</li><li>v1.0.1</li><li>Güncelleniyor</li></ul>
+          <p data-i18n="proj.aga">İlk çözümümüz. Bilgisayarınıza kurulan ve orada çalışan bir masaüstü uygulaması.</p>
+          <ul class="tags"><li>Windows</li><li>v1.0.1</li><li data-i18n="tag.updating">Güncelleniyor</li></ul>
           <div class="links">
-            <a href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/tag/v1.0.1" class="more" target="_blank" rel="noopener">İndir ↗</a>
-            <a href="#cozumler" class="more">Ayrıntılar →</a>
+            <a href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/tag/v1.0.1" class="more" target="_blank" rel="noopener" data-i18n="proj.download">İndir ↗</a>
+            <a href="#cozumler" class="more" data-i18n="proj.details">Ayrıntılar →</a>
           </div>
         </article>
         <article class="proj">
           <div class="proj-top">
             <span class="proj-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.6L20 10l-5.6 2.4L12 18l-2.4-5.6L4 10l5.6-2.4z"/></svg></span>
-            <span class="pill dev"><i></i>Planlanıyor</span>
+            <span class="pill dev"><i></i><span data-i18n="pill.planned">Planlanıyor</span></span>
           </div>
-          <h3>Sıradaki proje</h3>
-          <p>Agamemnon'dan öğrendiklerimizle yeni bir çözüm üzerinde fikir aşamasındayız. Ayrıntıları yakında paylaşacağız.</p>
-          <ul class="tags"><li>Yakında</li></ul>
-          <a href="#iletisim" class="more">Haberdar olun →</a>
+          <h3 data-i18n="proj.next">Sıradaki proje</h3>
+          <p data-i18n="proj.nextText">Agamemnon'dan öğrendiklerimizle yeni bir çözüm üzerinde fikir aşamasındayız. Ayrıntıları yakında paylaşacağız.</p>
+          <ul class="tags"><li data-i18n="tag.soon">Yakında</li></ul>
+          <a href="#iletisim" class="more" data-i18n="proj.notify">Haberdar olun →</a>
         </article>
       </div>
     </div>
@@ -477,24 +529,24 @@ footer .wrap { display: grid; gap: 22px; }
 
   <section class="block alt" id="yaklasim">
     <div class="wrap">
-      <p class="eyebrow">Yaklaşımımız</p>
-      <h2>Yazılım geliştirirken neye önem veriyoruz</h2>
-      <p class="sub">Kendi ürünlerimizi yaptığımız için her kararın arkasında duruyoruz.</p>
+      <p class="eyebrow" data-i18n="nav.approach">Yaklaşımımız</p>
+      <h2 data-i18n="app.title">Yazılım geliştirirken neye önem veriyoruz</h2>
+      <p class="sub" data-i18n="app.sub">Kendi ürünlerimizi yaptığımız için her kararın arkasında duruyoruz.</p>
       <div class="principles reveal">
         <article class="pr">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <h3>Güvenlik baştan</h3>
-          <p>Güvenliği sonradan eklenen bir özellik olarak değil, yazılımın temeli olarak ele alıyoruz.</p>
+          <h3 data-i18n="app.sec.t">Güvenlik baştan</h3>
+          <p data-i18n="app.sec.p">Güvenliği sonradan eklenen bir özellik olarak değil, yazılımın temeli olarak ele alıyoruz.</p>
         </article>
         <article class="pr">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M9 12h6"/></svg></div>
-          <h3>Sade ve güçlü</h3>
-          <p>Karmaşık işleri basit arayüzlerin arkasına taşıyoruz. Kurduktan sonra kullanmak için kılavuz okumanız gerekmesin.</p>
+          <h3 data-i18n="app.simple.t">Sade ve güçlü</h3>
+          <p data-i18n="app.simple.p">Karmaşık işleri basit arayüzlerin arkasına taşıyoruz. Kurduktan sonra kullanmak için kılavuz okumanız gerekmesin.</p>
         </article>
         <article class="pr">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 17l5-5 4 4 7-7"/><path d="M15 9h5v5"/></svg></div>
-          <h3>Sürekli gelişim</h3>
-          <p>Ürünlerimizi yayınlayıp bırakmıyoruz; kullanıcı geri bildirimleriyle uygulamalarımıza düzenli güncellemeler getiriyoruz.</p>
+          <h3 data-i18n="app.grow.t">Sürekli gelişim</h3>
+          <p data-i18n="app.grow.p">Ürünlerimizi yayınlayıp bırakmıyoruz; kullanıcı geri bildirimleriyle uygulamalarımıza düzenli güncellemeler getiriyoruz.</p>
         </article>
       </div>
     </div>
@@ -502,21 +554,21 @@ footer .wrap { display: grid; gap: 22px; }
 
   <section class="block" id="kurucular">
     <div class="wrap">
-      <p class="eyebrow">Kurucular</p>
-      <h2>Athene'nin arkasındaki ekip</h2>
-      <p class="sub">Athene Softworks'ü iki eşit kurucu ortak olarak birlikte kurduk. Şirketin yönetiminden yazılımın her satırına kadar tüm sorumlulukları ortaklaşa paylaşıyoruz.</p>
+      <p class="eyebrow" data-i18n="nav.founders">Kurucular</p>
+      <h2 data-i18n="f.title">Athene'nin arkasındaki ekip</h2>
+      <p class="sub" data-i18n="f.sub">Athene Softworks'ü iki eşit kurucu ortak olarak birlikte kurduk. Şirketin yönetiminden yazılımın her satırına kadar tüm sorumlulukları ortaklaşa paylaşıyoruz.</p>
       <div class="founders reveal">
         <article class="person">
           <div class="mono" aria-hidden="true">MY</div>
           <div>
-            <span class="role">Kurucu Ortak</span>
+            <span class="role" data-i18n="f.role">Kurucu Ortak</span>
             <h3>Mert Yeşil</h3>
           </div>
         </article>
         <article class="person">
           <div class="mono" aria-hidden="true">MB</div>
           <div>
-            <span class="role">Kurucu Ortak</span>
+            <span class="role" data-i18n="f.role">Kurucu Ortak</span>
             <h3>Miraz Bakış</h3>
           </div>
         </article>
@@ -527,13 +579,13 @@ footer .wrap { display: grid; gap: 22px; }
 
   <section class="block alt">
     <div class="wrap">
-      <p class="eyebrow">Yol haritası</p>
-      <h2>Buraya kadar ve sırada ne var</h2>
-      <p class="sub">İlk ürünümüz yayında; sırada yenileri var.</p>
+      <p class="eyebrow" data-i18n="r.eyebrow">Yol haritası</p>
+      <h2 data-i18n="r.title">Buraya kadar ve sırada ne var</h2>
+      <p class="sub" data-i18n="r.sub">İlk ürünümüz yayında; sırada yenileri var.</p>
       <ol class="timeline reveal">
-        <li class="done"><span class="dot"></span><span class="when">12 Ekim 2026</span><h3>Athene Softworks kuruldu</h3><p>Mert Yeşil ve Miraz Bakış şirketi 12 Ekim 2026'da hayata geçirdi.</p></li>
-        <li class="done"><span class="dot"></span><span class="when">2026</span><h3>Agamemnon aktif</h3><p>İlk masaüstü uygulamamız kullanıma açıldı; v1.0.1 indirilebilir.</p></li>
-        <li class="now"><span class="dot"></span><span class="when">Sırada</span><h3>Yeni projeler</h3><p>Agamemnon'u güncellemeye devam ederken sıradaki projemizi planlıyoruz.</p></li>
+        <li class="done"><span class="dot"></span><span class="when" data-i18n="r.1.when">12 Ekim 2026</span><h3 data-i18n="r.1.t">Athene Softworks kuruldu</h3><p data-i18n="r.1.p">Mert Yeşil ve Miraz Bakış şirketi 12 Ekim 2026'da hayata geçirdi.</p></li>
+        <li class="done"><span class="dot"></span><span class="when">2026</span><h3 data-i18n="r.2.t">Agamemnon aktif</h3><p data-i18n="r.2.p">İlk masaüstü uygulamamız kullanıma açıldı; v1.0.1 indirilebilir.</p></li>
+        <li class="now"><span class="dot"></span><span class="when" data-i18n="r.3.when">Sırada</span><h3 data-i18n="r.3.t">Yeni projeler</h3><p data-i18n="r.3.p">Agamemnon'u güncellemeye devam ederken sıradaki projemizi planlıyoruz.</p></li>
       </ol>
     </div>
   </section>
@@ -541,18 +593,18 @@ footer .wrap { display: grid; gap: 22px; }
   <section class="block" id="iletisim">
     <div class="wrap contact">
       <div>
-        <p class="eyebrow">İletişim</p>
-        <h2>Bize ulaşın</h2>
-        <p class="sub" style="margin-bottom:0">Agamemnon hakkında sorularınız, yeni projelerden haberdar olmak ya da iş birliği önermek için bize yazın.</p>
+        <p class="eyebrow" data-i18n="nav.contact">İletişim</p>
+        <h2 data-i18n="c.title">Bize ulaşın</h2>
+        <p class="sub" style="margin-bottom:0" data-i18n="c.sub">Agamemnon hakkında sorularınız, yeni projelerden haberdar olmak ya da iş birliği önermek için bize yazın.</p>
       </div>
       <div class="mail reveal">
-        <span class="lbl">E-posta adresimiz</span>
-        <span class="addr" id="addr">athenesoftworks@gmail.com</span>
+        <span class="lbl" data-i18n="c.label">E-posta adresimiz</span>
+        <span class="addr" id="addr"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="40213428252e25332f2634372f322b3300272d21292c6e232f2d">[email&#160;protected]</a></span>
         <div class="row">
-          <button type="button" class="btn primary" id="copy">Adresi kopyala</button>
-          <a href="mailto:athenesoftworks@gmail.com?subject=Athene%20Softworks" class="btn ghost">E-posta yaz</a>
+          <button type="button" class="btn primary" id="copy" data-i18n="c.copy">Adresi kopyala</button>
+          <a href="/cdn-cgi/l/email-protection#0e6f7a666b606b7d61687a79617c657d4e69636f6762206d6163317d7b6c646b6d7a334f7a666b606b2b3c3e5d61687a79617c657d" class="btn ghost" data-i18n="c.write">E-posta yaz</a>
         </div>
-        <span class="small">Genellikle 24 saat içinde yanıtlıyoruz.</span>
+        <span class="small" data-i18n="c.reply">Genellikle 24 saat içinde yanıtlıyoruz.</span>
       </div>
     </div>
   </section>
@@ -562,31 +614,421 @@ footer .wrap { display: grid; gap: 22px; }
   <div class="wrap">
     <div class="foot-top">
       <span class="brand"><span class="logo-img" aria-hidden="true"></span>Athene Softworks</span>
-      <nav class="foot-links" aria-label="Alt menü">
-        <a href="#cozumler">Çözümlerimiz</a>
-        <a href="#projeler">Projeler</a>
-        <a href="#yaklasim">Yaklaşımımız</a>
-        <a href="#kurucular">Kurucular</a>
-        <a href="#iletisim">İletişim</a>
+      <nav class="foot-links" aria-label="Alt menü" data-i18n-aria="a.footer">
+        <a href="#cozumler" data-i18n="nav.solutions">Çözümlerimiz</a>
+        <a href="#projeler" data-i18n="nav.projects">Projeler</a>
+        <a href="#yaklasim" data-i18n="nav.approach">Yaklaşımımız</a>
+        <a href="#kurucular" data-i18n="nav.founders">Kurucular</a>
+        <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
       </nav>
     </div>
     <div class="foot-bottom">
-      <span>&copy; <span id="year">2026</span> Athene Softworks. Tüm hakları saklıdır. · Mert Yeşil &amp; Miraz Bakış</span>
+      <span>&copy; <span id="year">2026</span> Athene Softworks. <span data-i18n="foot.rights">Tüm hakları saklıdır.</span> · Mert Yeşil &amp; Miraz Bakış</span>
       <span class="built">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
-        <span>Sitemizin altyapısı <strong>Athene Softworks</strong> tarafından yapılmıştır.</span>
+        <span data-i18n="foot.built">Sitemizin altyapısı <strong>Athene Softworks</strong> tarafından yapılmıştır.</span>
       </span>
     </div>
   </div>
 </footer>
 
-<button type="button" class="to-top" id="toTop" aria-label="Sayfanın başına dön">
+<button type="button" class="to-top" id="toTop" aria-label="Sayfanın başına dön" data-i18n-aria="a.top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function () {
   var root = document.documentElement;
+
+  /* Dil seçimi: Türkçe metinler sayfadan okunur, diğer diller aşağıdaki sözlükten gelir */
+  var LANGS = ['tr', 'en', 'de', 'fr', 'es', 'it'];
+  var I18N = {
+    "tr": {
+      "c.copied": "Kopyalandı ✓",
+      "c.selected": "Seçildi, kopyalayabilirsiniz"
+    },
+    "en": {
+      "skip": "Skip to content",
+      "a.home": "Athene Softworks home",
+      "a.theme": "Toggle light/dark theme",
+      "a.lang": "Choose language",
+      "a.menu": "Open menu",
+      "a.features": "Agamemnon features",
+      "a.footer": "Footer menu",
+      "a.top": "Back to top",
+      "nav.solutions": "Solutions",
+      "nav.projects": "Projects",
+      "nav.approach": "Our approach",
+      "nav.founders": "Founders",
+      "nav.contact": "Contact",
+      "hero.badge": "Agamemnon v1.0.1 is out",
+      "hero.title": "We build <em>our own software.</em>",
+      "hero.lead": "Athene Softworks is a software company that designs and builds its own products. We make simple, secure desktop software that runs on your computer and is a pleasure to use.",
+      "btn.download": "Download Agamemnon",
+      "hero.projects": "Our projects",
+      "sol.title": "Agamemnon now runs on your computer",
+      "sol.sub": "We build our solutions with our own team, to our own standards. Agamemnon is a desktop app that runs directly on your computer, not in a browser, and it's now available.",
+      "status.active": "Active",
+      "sol.text": "Athene Softworks' first solution is now live. It's a desktop app you install and run on your computer, and it keeps improving with regular updates.",
+      "chip.win": "Windows desktop app",
+      "chip.install": "Download and install",
+      "chip.updates": "Regular updates",
+      "dl.title": "How to download",
+      "dl.s1": "Open the release page with the <b>Download Agamemnon</b> button below.",
+      "dl.s2": "Scroll down to the <b>Assets</b> section at the bottom of the page.",
+      "dl.s3": "Download the <code>.exe</code> or <code>.msi</code> file, run it and complete the installation.",
+      "sol.all": "All projects",
+      "proj.title": "Projects we're working on",
+      "proj.sub": "Our released products and what's coming next. Every new project will be added to this list.",
+      "proj.aga": "Our first solution. A desktop app you install and run on your computer.",
+      "tag.updating": "Actively updated",
+      "proj.download": "Download ↗",
+      "proj.details": "Details →",
+      "pill.planned": "Planned",
+      "proj.next": "Next project",
+      "proj.nextText": "Building on what we learned from Agamemnon, we're exploring ideas for a new solution. We'll share the details soon.",
+      "tag.soon": "Coming soon",
+      "proj.notify": "Stay informed →",
+      "app.title": "What matters to us when we build software",
+      "app.sub": "Because we build our own products, we stand behind every decision.",
+      "app.sec.t": "Security first",
+      "app.sec.p": "We treat security as the foundation of our software, not a feature added later.",
+      "app.simple.t": "Simple and powerful",
+      "app.simple.p": "We put complex work behind simple interfaces. Once it's installed, you shouldn't need a manual to use it.",
+      "app.grow.t": "Continuous improvement",
+      "app.grow.p": "We don't ship and forget. We bring regular updates to our apps based on user feedback.",
+      "f.title": "The team behind Athene",
+      "f.sub": "We founded Athene Softworks together as two equal co-founders. We share every responsibility, from running the company to every line of code.",
+      "f.role": "Co-founder",
+      "r.eyebrow": "Roadmap",
+      "r.title": "How far we've come and what's next",
+      "r.sub": "Our first product is out, and more are on the way.",
+      "r.1.when": "October 12, 2026",
+      "r.1.t": "Athene Softworks founded",
+      "r.1.p": "Mert Yeşil and Miraz Bakış launched the company on October 12, 2026.",
+      "r.2.t": "Agamemnon is live",
+      "r.2.p": "Our first desktop app is now available, and v1.0.1 can be downloaded.",
+      "r.3.when": "Next",
+      "r.3.t": "New projects",
+      "r.3.p": "While we keep updating Agamemnon, we're planning our next project.",
+      "c.title": "Get in touch",
+      "c.sub": "Write to us with questions about Agamemnon, to hear about new projects, or to propose a collaboration.",
+      "c.label": "Our email address",
+      "c.copy": "Copy address",
+      "c.copied": "Copied ✓",
+      "c.selected": "Selected, you can copy it now",
+      "c.write": "Send an email",
+      "c.reply": "We usually reply within 24 hours.",
+      "foot.rights": "All rights reserved.",
+      "foot.built": "This site was built by <strong>Athene Softworks</strong>."
+    },
+    "de": {
+      "skip": "Zum Inhalt springen",
+      "a.home": "Athene Softworks Startseite",
+      "a.theme": "Helles/dunkles Design umschalten",
+      "a.lang": "Sprache wählen",
+      "a.menu": "Menü öffnen",
+      "a.features": "Funktionen von Agamemnon",
+      "a.footer": "Fußzeilenmenü",
+      "a.top": "Nach oben",
+      "nav.solutions": "Lösungen",
+      "nav.projects": "Projekte",
+      "nav.approach": "Unser Ansatz",
+      "nav.founders": "Gründer",
+      "nav.contact": "Kontakt",
+      "hero.badge": "Agamemnon v1.0.1 ist verfügbar",
+      "hero.title": "Wir entwickeln <em>unsere eigene Software.</em>",
+      "hero.lead": "Athene Softworks ist ein Softwareunternehmen, das seine eigenen Produkte entwirft und entwickelt. Wir entwickeln schlanke, sichere Desktop-Software, die auf Ihrem Computer läuft und Freude bei der Nutzung macht.",
+      "btn.download": "Agamemnon herunterladen",
+      "hero.projects": "Unsere Projekte",
+      "sol.title": "Agamemnon läuft jetzt auf Ihrem Computer",
+      "sol.sub": "Wir entwickeln unsere Lösungen mit unserem eigenen Team und nach unseren eigenen Standards. Agamemnon ist eine Desktop-App, die nicht im Browser, sondern direkt auf Ihrem Computer läuft – und sie ist ab sofort verfügbar.",
+      "status.active": "Aktiv",
+      "sol.text": "Die erste Lösung von Athene Softworks ist jetzt aktiv. Eine Desktop-App, die Sie auf Ihrem Computer installieren und dort ausführen – und die mit regelmäßigen Updates stetig besser wird.",
+      "chip.win": "Windows-Desktop-App",
+      "chip.install": "Herunterladen und installieren",
+      "chip.updates": "Regelmäßige Updates",
+      "dl.title": "So laden Sie es herunter",
+      "dl.s1": "Öffnen Sie die Release-Seite über die Schaltfläche <b>Agamemnon herunterladen</b> unten.",
+      "dl.s2": "Scrollen Sie unten auf der Seite zum Abschnitt <b>Assets</b>.",
+      "dl.s3": "Laden Sie die <code>.exe</code>- oder <code>.msi</code>-Datei herunter, führen Sie sie aus und schließen Sie die Installation ab.",
+      "sol.all": "Alle Projekte",
+      "proj.title": "Projekte, an denen wir arbeiten",
+      "proj.sub": "Unsere veröffentlichten Produkte und was als Nächstes kommt. Jedes neue Projekt wird dieser Liste hinzugefügt.",
+      "proj.aga": "Unsere erste Lösung. Eine Desktop-App, die Sie auf Ihrem Computer installieren und ausführen.",
+      "tag.updating": "Wird aktualisiert",
+      "proj.download": "Herunterladen ↗",
+      "proj.details": "Details →",
+      "pill.planned": "In Planung",
+      "proj.next": "Nächstes Projekt",
+      "proj.nextText": "Aufbauend auf unseren Erfahrungen mit Agamemnon arbeiten wir an der Idee für eine neue Lösung. Details folgen in Kürze.",
+      "tag.soon": "Demnächst",
+      "proj.notify": "Auf dem Laufenden bleiben →",
+      "app.title": "Worauf wir bei der Softwareentwicklung Wert legen",
+      "app.sub": "Weil wir unsere eigenen Produkte entwickeln, stehen wir hinter jeder Entscheidung.",
+      "app.sec.t": "Sicherheit von Anfang an",
+      "app.sec.p": "Sicherheit ist für uns kein nachträglich ergänztes Feature, sondern das Fundament unserer Software.",
+      "app.simple.t": "Schlicht und leistungsstark",
+      "app.simple.p": "Wir verbergen komplexe Abläufe hinter einfachen Oberflächen. Nach der Installation sollten Sie kein Handbuch brauchen.",
+      "app.grow.t": "Ständige Weiterentwicklung",
+      "app.grow.p": "Wir veröffentlichen unsere Produkte nicht, um sie dann zu vergessen. Auf Basis von Nutzerfeedback bringen wir regelmäßig Updates.",
+      "f.title": "Das Team hinter Athene",
+      "f.sub": "Wir haben Athene Softworks gemeinsam als zwei gleichberechtigte Mitgründer gegründet. Von der Unternehmensführung bis zu jeder Codezeile teilen wir alle Aufgaben.",
+      "f.role": "Mitgründer",
+      "r.eyebrow": "Roadmap",
+      "r.title": "Was wir erreicht haben und was als Nächstes kommt",
+      "r.sub": "Unser erstes Produkt ist verfügbar, weitere folgen.",
+      "r.1.when": "12. Oktober 2026",
+      "r.1.t": "Athene Softworks gegründet",
+      "r.1.p": "Mert Yeşil und Miraz Bakış haben das Unternehmen am 12. Oktober 2026 gegründet.",
+      "r.2.t": "Agamemnon ist aktiv",
+      "r.2.p": "Unsere erste Desktop-App ist verfügbar; v1.0.1 kann heruntergeladen werden.",
+      "r.3.when": "Als Nächstes",
+      "r.3.t": "Neue Projekte",
+      "r.3.p": "Während wir Agamemnon weiter aktualisieren, planen wir unser nächstes Projekt.",
+      "c.title": "Kontaktieren Sie uns",
+      "c.sub": "Schreiben Sie uns bei Fragen zu Agamemnon, um über neue Projekte informiert zu werden oder um eine Zusammenarbeit vorzuschlagen.",
+      "c.label": "Unsere E-Mail-Adresse",
+      "c.copy": "Adresse kopieren",
+      "c.copied": "Kopiert ✓",
+      "c.selected": "Markiert, Sie können es jetzt kopieren",
+      "c.write": "E-Mail schreiben",
+      "c.reply": "Wir antworten in der Regel innerhalb von 24 Stunden.",
+      "foot.rights": "Alle Rechte vorbehalten.",
+      "foot.built": "Diese Website wurde von <strong>Athene Softworks</strong> entwickelt."
+    },
+    "fr": {
+      "skip": "Aller au contenu",
+      "a.home": "Accueil Athene Softworks",
+      "a.theme": "Basculer le thème clair/sombre",
+      "a.lang": "Choisir la langue",
+      "a.menu": "Ouvrir le menu",
+      "a.features": "Fonctionnalités d'Agamemnon",
+      "a.footer": "Menu de pied de page",
+      "a.top": "Retour en haut",
+      "nav.solutions": "Solutions",
+      "nav.projects": "Projets",
+      "nav.approach": "Notre approche",
+      "nav.founders": "Fondateurs",
+      "nav.contact": "Contact",
+      "hero.badge": "Agamemnon v1.0.1 est disponible",
+      "hero.title": "Nous développons <em>nos propres logiciels.</em>",
+      "hero.lead": "Athene Softworks est une entreprise de logiciels qui conçoit et développe ses propres produits. Nous créons des logiciels de bureau simples, sûrs et agréables à utiliser, qui fonctionnent sur votre ordinateur.",
+      "btn.download": "Télécharger Agamemnon",
+      "hero.projects": "Nos projets",
+      "sol.title": "Agamemnon fonctionne désormais sur votre ordinateur",
+      "sol.sub": "Nous développons nos solutions avec notre propre équipe, selon nos propres standards. Agamemnon est une application de bureau qui fonctionne directement sur votre ordinateur, et non dans un navigateur. Elle est désormais disponible.",
+      "status.active": "Actif",
+      "sol.text": "La première solution d'Athene Softworks est désormais active. Une application de bureau qui s'installe et s'exécute sur votre ordinateur, et qui continue d'évoluer grâce à des mises à jour régulières.",
+      "chip.win": "Application de bureau Windows",
+      "chip.install": "Télécharger et installer",
+      "chip.updates": "Mises à jour régulières",
+      "dl.title": "Comment le télécharger ?",
+      "dl.s1": "Ouvrez la page de version avec le bouton <b>Télécharger Agamemnon</b> ci-dessous.",
+      "dl.s2": "Descendez jusqu'à la section <b>Assets</b> en bas de la page.",
+      "dl.s3": "Téléchargez le fichier <code>.exe</code> ou <code>.msi</code>, lancez-le et terminez l'installation.",
+      "sol.all": "Tous les projets",
+      "proj.title": "Les projets sur lesquels nous travaillons",
+      "proj.sub": "Nos produits disponibles et ceux à venir. Chaque nouveau projet sera ajouté à cette liste.",
+      "proj.aga": "Notre première solution. Une application de bureau qui s'installe et s'exécute sur votre ordinateur.",
+      "tag.updating": "Mises à jour en cours",
+      "proj.download": "Télécharger ↗",
+      "proj.details": "Détails →",
+      "pill.planned": "En préparation",
+      "proj.next": "Prochain projet",
+      "proj.nextText": "Forts de ce que nous avons appris avec Agamemnon, nous en sommes au stade de l'idée pour une nouvelle solution. Nous partagerons les détails bientôt.",
+      "tag.soon": "Bientôt",
+      "proj.notify": "Restez informé →",
+      "app.title": "Ce qui compte pour nous quand nous développons",
+      "app.sub": "Parce que nous créons nos propres produits, nous assumons chacune de nos décisions.",
+      "app.sec.t": "La sécurité d'abord",
+      "app.sec.p": "Nous considérons la sécurité comme le fondement du logiciel, et non comme une fonctionnalité ajoutée après coup.",
+      "app.simple.t": "Simple et puissant",
+      "app.simple.p": "Nous plaçons les tâches complexes derrière des interfaces simples. Une fois l'installation faite, vous ne devriez pas avoir besoin d'un manuel.",
+      "app.grow.t": "Amélioration continue",
+      "app.grow.p": "Nous ne publions pas nos produits pour les abandonner : nous les mettons régulièrement à jour grâce aux retours des utilisateurs.",
+      "f.title": "L'équipe derrière Athene",
+      "f.sub": "Nous avons fondé Athene Softworks ensemble, en tant que deux cofondateurs à parts égales. De la gestion de l'entreprise à chaque ligne de code, nous partageons toutes les responsabilités.",
+      "f.role": "Cofondateur",
+      "r.eyebrow": "Feuille de route",
+      "r.title": "Le chemin parcouru et la suite",
+      "r.sub": "Notre premier produit est disponible, d'autres arrivent.",
+      "r.1.when": "12 octobre 2026",
+      "r.1.t": "Création d'Athene Softworks",
+      "r.1.p": "Mert Yeşil et Miraz Bakış ont lancé l'entreprise le 12 octobre 2026.",
+      "r.2.t": "Agamemnon est actif",
+      "r.2.p": "Notre première application de bureau est disponible ; la v1.0.1 peut être téléchargée.",
+      "r.3.when": "Ensuite",
+      "r.3.t": "Nouveaux projets",
+      "r.3.p": "Tout en continuant à mettre à jour Agamemnon, nous préparons notre prochain projet.",
+      "c.title": "Contactez-nous",
+      "c.sub": "Écrivez-nous pour toute question sur Agamemnon, pour être informé de nos nouveaux projets ou pour proposer une collaboration.",
+      "c.label": "Notre adresse e-mail",
+      "c.copy": "Copier l'adresse",
+      "c.copied": "Copié ✓",
+      "c.selected": "Sélectionné, vous pouvez le copier",
+      "c.write": "Écrire un e-mail",
+      "c.reply": "Nous répondons généralement sous 24 heures.",
+      "foot.rights": "Tous droits réservés.",
+      "foot.built": "Site développé par <strong>Athene Softworks</strong>."
+    },
+    "es": {
+      "skip": "Saltar al contenido",
+      "a.home": "Inicio de Athene Softworks",
+      "a.theme": "Cambiar tema claro/oscuro",
+      "a.lang": "Elegir idioma",
+      "a.menu": "Abrir menú",
+      "a.features": "Características de Agamemnon",
+      "a.footer": "Menú del pie de página",
+      "a.top": "Volver arriba",
+      "nav.solutions": "Soluciones",
+      "nav.projects": "Proyectos",
+      "nav.approach": "Nuestro enfoque",
+      "nav.founders": "Fundadores",
+      "nav.contact": "Contacto",
+      "hero.badge": "Agamemnon v1.0.1 ya disponible",
+      "hero.title": "Desarrollamos <em>nuestro propio software.</em>",
+      "hero.lead": "Athene Softworks es una empresa de software que diseña y desarrolla sus propios productos. Creamos software de escritorio sencillo, seguro y agradable de usar que funciona en tu ordenador.",
+      "btn.download": "Descargar Agamemnon",
+      "hero.projects": "Nuestros proyectos",
+      "sol.title": "Agamemnon ya funciona en tu ordenador",
+      "sol.sub": "Desarrollamos nuestras soluciones con nuestro propio equipo y según nuestros propios estándares. Agamemnon es una aplicación de escritorio que funciona directamente en tu ordenador, no en el navegador, y ya está disponible.",
+      "status.active": "Activo",
+      "sol.text": "La primera solución de Athene Softworks ya está activa. Una aplicación de escritorio que se instala y funciona en tu ordenador, y que sigue mejorando con actualizaciones periódicas.",
+      "chip.win": "Aplicación de escritorio para Windows",
+      "chip.install": "Descargar e instalar",
+      "chip.updates": "Actualizaciones periódicas",
+      "dl.title": "Cómo descargarlo",
+      "dl.s1": "Abre la página de la versión con el botón <b>Descargar Agamemnon</b> de abajo.",
+      "dl.s2": "Baja hasta la sección <b>Assets</b> al final de la página.",
+      "dl.s3": "Descarga el archivo <code>.exe</code> o <code>.msi</code>, ejecútalo y completa la instalación.",
+      "sol.all": "Todos los proyectos",
+      "proj.title": "Proyectos en los que trabajamos",
+      "proj.sub": "Nuestros productos publicados y lo que viene. Cada nuevo proyecto se añadirá a esta lista.",
+      "proj.aga": "Nuestra primera solución. Una aplicación de escritorio que se instala y funciona en tu ordenador.",
+      "tag.updating": "En actualización",
+      "proj.download": "Descargar ↗",
+      "proj.details": "Detalles →",
+      "pill.planned": "En planificación",
+      "proj.next": "Próximo proyecto",
+      "proj.nextText": "Con lo aprendido en Agamemnon, estamos en la fase de ideas de una nueva solución. Compartiremos los detalles pronto.",
+      "tag.soon": "Próximamente",
+      "proj.notify": "Mantente al día →",
+      "app.title": "Lo que nos importa al desarrollar software",
+      "app.sub": "Como desarrollamos nuestros propios productos, respaldamos cada decisión.",
+      "app.sec.t": "Seguridad desde el principio",
+      "app.sec.p": "Tratamos la seguridad como la base del software, no como una función añadida después.",
+      "app.simple.t": "Sencillo y potente",
+      "app.simple.p": "Escondemos las tareas complejas detrás de interfaces sencillas. Una vez instalado, no deberías necesitar un manual para usarlo.",
+      "app.grow.t": "Mejora continua",
+      "app.grow.p": "No publicamos nuestros productos y los olvidamos: los actualizamos con regularidad a partir de los comentarios de los usuarios.",
+      "f.title": "El equipo detrás de Athene",
+      "f.sub": "Fundamos Athene Softworks juntos como dos cofundadores en igualdad. Compartimos todas las responsabilidades, desde la gestión de la empresa hasta cada línea de código.",
+      "f.role": "Cofundador",
+      "r.eyebrow": "Hoja de ruta",
+      "r.title": "Hasta aquí, y lo que viene",
+      "r.sub": "Nuestro primer producto ya está disponible y vienen más.",
+      "r.1.when": "12 de octubre de 2026",
+      "r.1.t": "Se funda Athene Softworks",
+      "r.1.p": "Mert Yeşil y Miraz Bakış pusieron en marcha la empresa el 12 de octubre de 2026.",
+      "r.2.t": "Agamemnon, activo",
+      "r.2.p": "Nuestra primera aplicación de escritorio ya está disponible; puedes descargar la v1.0.1.",
+      "r.3.when": "Lo siguiente",
+      "r.3.t": "Nuevos proyectos",
+      "r.3.p": "Mientras seguimos actualizando Agamemnon, planificamos nuestro próximo proyecto.",
+      "c.title": "Contáctanos",
+      "c.sub": "Escríbenos si tienes preguntas sobre Agamemnon, quieres enterarte de nuevos proyectos o proponer una colaboración.",
+      "c.label": "Nuestro correo electrónico",
+      "c.copy": "Copiar dirección",
+      "c.copied": "Copiado ✓",
+      "c.selected": "Seleccionado, ya puedes copiarlo",
+      "c.write": "Escribir un correo",
+      "c.reply": "Solemos responder en menos de 24 horas.",
+      "foot.rights": "Todos los derechos reservados.",
+      "foot.built": "Sitio desarrollado por <strong>Athene Softworks</strong>."
+    },
+    "it": {
+      "skip": "Vai al contenuto",
+      "a.home": "Home di Athene Softworks",
+      "a.theme": "Cambia tema chiaro/scuro",
+      "a.lang": "Scegli la lingua",
+      "a.menu": "Apri il menu",
+      "a.features": "Funzionalità di Agamemnon",
+      "a.footer": "Menu a piè di pagina",
+      "a.top": "Torna su",
+      "nav.solutions": "Soluzioni",
+      "nav.projects": "Progetti",
+      "nav.approach": "Il nostro approccio",
+      "nav.founders": "Fondatori",
+      "nav.contact": "Contatti",
+      "hero.badge": "Agamemnon v1.0.1 è disponibile",
+      "hero.title": "Sviluppiamo <em>il nostro software.</em>",
+      "hero.lead": "Athene Softworks è un'azienda software che progetta e sviluppa i propri prodotti. Realizziamo software desktop semplici, sicuri e piacevoli da usare, che funzionano sul tuo computer.",
+      "btn.download": "Scarica Agamemnon",
+      "hero.projects": "I nostri progetti",
+      "sol.title": "Agamemnon ora funziona sul tuo computer",
+      "sol.sub": "Sviluppiamo le nostre soluzioni con il nostro team e secondo i nostri standard. Agamemnon è un'app desktop che funziona direttamente sul tuo computer, non nel browser, ed è ora disponibile.",
+      "status.active": "Attivo",
+      "sol.text": "La prima soluzione di Athene Softworks è ora attiva. Un'app desktop che si installa e funziona sul tuo computer, e che continua a migliorare con aggiornamenti regolari.",
+      "chip.win": "App desktop per Windows",
+      "chip.install": "Scarica e installa",
+      "chip.updates": "Aggiornamenti regolari",
+      "dl.title": "Come scaricarlo",
+      "dl.s1": "Apri la pagina della release con il pulsante <b>Scarica Agamemnon</b> qui sotto.",
+      "dl.s2": "Scorri fino alla sezione <b>Assets</b> in fondo alla pagina.",
+      "dl.s3": "Scarica il file <code>.exe</code> o <code>.msi</code>, eseguilo e completa l'installazione.",
+      "sol.all": "Tutti i progetti",
+      "proj.title": "I progetti a cui lavoriamo",
+      "proj.sub": "I nostri prodotti pubblicati e quelli in arrivo. Ogni nuovo progetto verrà aggiunto a questo elenco.",
+      "proj.aga": "La nostra prima soluzione. Un'app desktop che si installa e funziona sul tuo computer.",
+      "tag.updating": "In aggiornamento",
+      "proj.download": "Scarica ↗",
+      "proj.details": "Dettagli →",
+      "pill.planned": "In programma",
+      "proj.next": "Prossimo progetto",
+      "proj.nextText": "Partendo da ciò che abbiamo imparato con Agamemnon, stiamo lavorando all'idea di una nuova soluzione. Condivideremo presto i dettagli.",
+      "tag.soon": "In arrivo",
+      "proj.notify": "Resta aggiornato →",
+      "app.title": "Cosa conta per noi quando sviluppiamo software",
+      "app.sub": "Poiché sviluppiamo i nostri prodotti, siamo responsabili di ogni decisione.",
+      "app.sec.t": "Sicurezza fin dall'inizio",
+      "app.sec.p": "Consideriamo la sicurezza come le fondamenta del software, non come una funzione aggiunta in seguito.",
+      "app.simple.t": "Semplice e potente",
+      "app.simple.p": "Portiamo le operazioni complesse dietro interfacce semplici. Una volta installato, non dovresti aver bisogno di un manuale.",
+      "app.grow.t": "Miglioramento continuo",
+      "app.grow.p": "Non pubblichiamo i nostri prodotti per poi dimenticarli: li aggiorniamo regolarmente grazie al feedback degli utenti.",
+      "f.title": "Il team dietro Athene",
+      "f.sub": "Abbiamo fondato Athene Softworks insieme, come due cofondatori alla pari. Condividiamo ogni responsabilità, dalla gestione dell'azienda a ogni riga di codice.",
+      "f.role": "Cofondatore",
+      "r.eyebrow": "Roadmap",
+      "r.title": "Fin qui, e cosa ci aspetta",
+      "r.sub": "Il nostro primo prodotto è disponibile, altri sono in arrivo.",
+      "r.1.when": "12 ottobre 2026",
+      "r.1.t": "Nasce Athene Softworks",
+      "r.1.p": "Mert Yeşil e Miraz Bakış hanno avviato l'azienda il 12 ottobre 2026.",
+      "r.2.t": "Agamemnon è attivo",
+      "r.2.p": "La nostra prima app desktop è disponibile; la v1.0.1 si può scaricare.",
+      "r.3.when": "Prossimamente",
+      "r.3.t": "Nuovi progetti",
+      "r.3.p": "Mentre continuiamo ad aggiornare Agamemnon, stiamo pianificando il nostro prossimo progetto.",
+      "c.title": "Contattaci",
+      "c.sub": "Scrivici per domande su Agamemnon, per restare aggiornato sui nuovi progetti o per proporre una collaborazione.",
+      "c.label": "Il nostro indirizzo email",
+      "c.copy": "Copia indirizzo",
+      "c.copied": "Copiato ✓",
+      "c.selected": "Selezionato, ora puoi copiarlo",
+      "c.write": "Scrivi un'email",
+      "c.reply": "Di solito rispondiamo entro 24 ore.",
+      "foot.rights": "Tutti i diritti riservati.",
+      "foot.built": "Sito realizzato da <strong>Athene Softworks</strong>."
+    }
+  };
+  var cur = 'tr', orig = {};
+  var textNodes = document.querySelectorAll('[data-i18n]');
+  var ariaNodes = document.querySelectorAll('[data-i18n-aria]');
+  textNodes.forEach(function (n) { if (!(n.dataset.i18n in orig)) orig[n.dataset.i18n] = n.innerHTML; });
+  ariaNodes.forEach(function (n) { orig[n.dataset.i18nAria] = n.getAttribute('aria-label'); });
+  function t(k) { return (I18N[cur] && I18N[cur][k]) || I18N.tr[k] || orig[k] || ''; }
   var burger = document.getElementById('burger');
   var menu = document.getElementById('menu');
 
@@ -594,12 +1036,70 @@ footer .wrap { display: grid; gap: 22px; }
   function closeMenu() { if (window.innerWidth <= 760) { menu.hidden = true; burger.setAttribute('aria-expanded', 'false'); } }
   burger.addEventListener('click', function () {
     var open = menu.hidden;
+    if (typeof closeLang === 'function') closeLang();
     menu.hidden = !open;
     burger.setAttribute('aria-expanded', String(open));
   });
   menu.addEventListener('click', function (e) { if (e.target.tagName === 'A') closeMenu(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { closeMenu(); burger.focus(); } });
   document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target) && !burger.contains(e.target)) closeMenu(); });
+
+  var langBtn = document.getElementById('lang');
+  var langList = document.getElementById('langList');
+  var langCode = document.getElementById('langCode');
+  var langItems = Array.prototype.slice.call(langList.querySelectorAll('[data-lang]'));
+  function setLang(l, save) {
+    if (LANGS.indexOf(l) < 0) l = 'tr';
+    cur = l;
+    root.lang = l;
+    textNodes.forEach(function (n) { n.innerHTML = t(n.dataset.i18n); });
+    ariaNodes.forEach(function (n) { n.setAttribute('aria-label', t(n.dataset.i18nAria)); });
+    langCode.textContent = l.toUpperCase();
+    langItems.forEach(function (b) { b.setAttribute('aria-checked', String(b.dataset.lang === l)); });
+    if (save) { try { localStorage.setItem('athene-lang', l); } catch (e) {} }
+  }
+  function openLang(focusItem) {
+    closeMenu();
+    langList.hidden = false;
+    langBtn.setAttribute('aria-expanded', 'true');
+    if (focusItem) (langList.querySelector('[aria-checked="true"]') || langItems[0]).focus();
+  }
+  function closeLang(refocus) {
+    if (langList.hidden) return;
+    langList.hidden = true;
+    langBtn.setAttribute('aria-expanded', 'false');
+    if (refocus) langBtn.focus();
+  }
+  langBtn.addEventListener('click', function (e) { if (langList.hidden) openLang(e.detail === 0); else closeLang(); });
+  langList.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-lang]');
+    if (!b) return;
+    setLang(b.dataset.lang, true);
+    closeLang(true);
+  });
+  langList.addEventListener('keydown', function (e) {
+    var i = langItems.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); langItems[(i + 1) % langItems.length].focus(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); langItems[(i - 1 + langItems.length) % langItems.length].focus(); }
+    else if (e.key === 'Home') { e.preventDefault(); langItems[0].focus(); }
+    else if (e.key === 'End') { e.preventDefault(); langItems[langItems.length - 1].focus(); }
+    else if (e.key === 'Escape') { e.preventDefault(); closeLang(true); }
+    else if (e.key === 'Tab') { closeLang(); }
+  });
+  document.addEventListener('click', function (e) { if (!langList.hidden && !langBtn.parentNode.contains(e.target)) closeLang(); });
+
+  /* İlk dil: kayıtlı tercih, yoksa tarayıcı dili, desteklenmiyorsa İngilizce */
+  var startLang = null;
+  try { startLang = localStorage.getItem('athene-lang'); } catch (e) {}
+  if (LANGS.indexOf(startLang) < 0) {
+    startLang = 'en';
+    var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'tr'];
+    for (var p = 0; p < prefs.length; p++) {
+      var code = String(prefs[p]).slice(0, 2).toLowerCase();
+      if (LANGS.indexOf(code) > -1) { startLang = code; break; }
+    }
+  }
+  setLang(startLang, false);
 
   /* Açık / koyu tema */
   var themeBtn = document.getElementById('theme');
@@ -629,11 +1129,11 @@ footer .wrap { display: grid; gap: 22px; }
   var addr = document.getElementById('addr');
   btn.addEventListener('click', function () {
     var text = addr.textContent.trim();
-    var done = function () { btn.textContent = 'Kopyalandı ✓'; setTimeout(function () { btn.textContent = 'Adresi kopyala'; }, 1800); };
+    var done = function () { btn.textContent = t('c.copied'); setTimeout(function () { btn.textContent = t('c.copy'); }, 1800); };
     var fallback = function () {
       var r = document.createRange(); r.selectNodeContents(addr);
       var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      btn.textContent = 'Seçildi, kopyalayabilirsiniz';
+      btn.textContent = t('c.selected');
     };
     try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
   });
@@ -679,5 +1179,6 @@ footer .wrap { display: grid; gap: 22px; }
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
 </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"a6b0034e7a934996815c5abf63150303","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
