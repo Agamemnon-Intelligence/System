@@ -494,19 +494,20 @@ footer p { margin: .3rem 0; max-width: 60rem; }
         <div class="dl reveal" data-os="mac">
           <div class="dl-top">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.2 1-4.1 2.5-1.8 3-.5 7.5 1.2 10 .8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.4-.9-2.4-4ZM14 5.2c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4Z"/></svg>
-            <div><h3>macOS</h3><div class="meta" data-i18n="dl.macMeta">Universal · Apple silicon &amp; Intel · macOS 13+</div></div>
+            <div><h3>macOS</h3><div class="meta" data-i18n="dl.macMeta">v2.25 · Universal · Apple silicon &amp; Intel · macOS 13+</div></div>
             <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
           <p class="note" data-i18n="dl.macNote">First launch: open System Settings › Privacy &amp; Security and click Open Anyway.</p>
           <ul class="os-features">
             <li class="head"><h4 data-i18n="mac.h">macOS features</h4></li>
-            <li data-i18n="mac.1"><b>Behaviour protection</b> stops AMOS, Banshee, Poseidon and other stealers the moment they fake a password prompt or reach for your keychain.</li>
-            <li data-i18n="mac.2"><b>43 million+ fingerprints</b> from MalwareBazaar and VirusShare, with ClamAV as a second engine.</li>
-            <li data-i18n="mac.3"><b>Code checks</b> for unsigned, ad-hoc signed and un-notarized apps.</li>
-            <li data-i18n="mac.4"><b>DMG, PKG, ZIP and more</b> opened three levels deep; zip bombs refused.</li>
-            <li data-i18n="mac.5"><b>Adware removal</b> for Shlayer, Bundlore and Adload in one click.</li>
-            <li data-i18n="mac.6"><b>Encrypted DNS</b> through macOS's own network settings, approved once in System Settings.</li>
-            <li data-i18n="mac.7"><b>Admin and startup-item alerts</b> when an app asks for authorization or installs a launch agent.</li>
+            <li data-i18n="mac.1"><b>Behaviour protection</b> stops AMOS, Banshee, Cuckoo, Poseidon, FrigidStealer and SysJoker as they run: fake password prompts, keychain, wallet and browser-data theft, secret screenshots.</li>
+            <li data-i18n="mac.2"><b>Ransomware shield</b> watches Documents, Desktop and Pictures and stops an unsigned program the moment it starts scrambling your files.</li>
+            <li data-i18n="mac.3"><b>43.6 million known malware:</b> MalwareBazaar (1.1M) and VirusShare (42.5M) fingerprints, pattern rules and ClamAV as a second engine.</li>
+            <li data-i18n="mac.4"><b>Browser protection</b> finds adware extensions and search hijacks in Safari, Chrome, Brave, Edge, Firefox, Arc, Opera and Vivaldi, removed in one click.</li>
+            <li data-i18n="mac.5"><b>Download protection</b> checks every download, inside archives and disk images too, and where it came from (URLhaus).</li>
+            <li data-i18n="mac.6"><b>No hiding in archives:</b> ZIP, RAR, 7Z, TAR, ISO, XAR, DMG and PKG, three levels deep; zip bombs refused.</li>
+            <li data-i18n="mac.7"><b>Gatekeeper checks:</b> unsigned and un-notarized apps flagged, revoked developer certificates treated as malware.</li>
+            <li data-i18n="mac.8"><b>Security Checkup</b> for FileVault, firewall, Gatekeeper, SIP, updates and Time Machine, plus encrypted DNS and startup and admin alerts.</li>
           </ul>
           <div class="dl-actions">
             <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-macOS/releases/latest/download/Agamemnon.dmg" data-i18n="dl.dmg">Download .dmg</a>
@@ -523,13 +524,14 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           <p class="note" data-i18n="dl.winNote">The installer sets up the protection service. Approve the one-time UAC prompt.</p>
           <ul class="os-features">
             <li class="head"><h4 data-i18n="win.h">Windows features</h4></li>
-            <li data-i18n="win.1"><span class="new">New in 2.0</span><b>Offline threat database:</b> every file is checked against VirusShare and MalwareBazaar, plus ClamAV and YARA, more than 50 million known threats. No hash leaves your PC.</li>
-            <li data-i18n="win.2"><b>YARA rules for Windows attacks:</b> download cradles, encoded PowerShell, AMSI bypasses, Defender tampering and shadow-copy deletion.</li>
-            <li data-i18n="win.3"><b>Authenticode checks</b> for unsigned programs, self-signed, tampered and revoked certificates.</li>
-            <li data-i18n="win.4"><b>Archives and installers:</b> ZIP, MSIX, 7z, RAR, ISO, CAB and MSI custom actions; disguised names like invoice.pdf.exe are flagged.</li>
-            <li data-i18n="win.5"><b>Download blocking</b> by Mark-of-the-Web: files from URLhaus malware hosts and, optionally, unsigned programs go to the encrypted quarantine.</li>
-            <li data-i18n="win.6"><b>Encrypted DNS</b> with Windows 11's own DoH or a local resolver that fails closed; Wi-Fi rules and a leak test.</li>
-            <li data-i18n="win.7"><b>Admin-rights alerts</b> for UAC elevations, silent auto-elevations and new system services.</li>
+            <li data-i18n="win.1"><span class="new">New in 2.0</span><b>50 million+ known threats:</b> an offline database of VirusShare and MalwareBazaar hashes plus ClamAV and YARA. Lookups take a microsecond and no hash leaves your PC.</li>
+            <li data-i18n="win.2"><b>YARA rules for Windows attacks:</b> download cradles, encoded PowerShell, AMSI bypasses, Defender tampering, shadow-copy deletion, credential stealers and malicious shortcuts.</li>
+            <li data-i18n="win.3"><b>Unsafe-download blocking:</b> every file in Downloads is scanned the moment it finishes; files from URLhaus malware hosts and, optionally, unsigned programs are quarantined.</li>
+            <li data-i18n="win.4"><b>Installers opened up:</b> MSI custom actions, CAB, ZIP, MSIX, 7z, RAR and ISO, three levels deep; disguised names like invoice.pdf.exe are flagged.</li>
+            <li data-i18n="win.5"><b>Authenticode checks</b> catch unsigned programs and self-signed, tampered or revoked certificates.</li>
+            <li data-i18n="win.6"><b>Encrypted DNS that fails closed:</b> Windows 11's own DoH or a local resolver, with Wi-Fi rules and a leak test.</li>
+            <li data-i18n="win.7"><b>Admin-rights alerts</b> for UAC elevations, silent auto-elevations and new system services, with who signed them.</li>
+            <li data-i18n="win.8"><b>Encrypted quarantine:</b> AES-256-GCM, locked to your Windows account; restored files are verified first.</li>
           </ul>
           <div class="dl-actions">
             <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v2.0.0/Agamemnon-2.0.0-Setup.exe" data-i18n="dl.exe">Download .exe</a>
@@ -732,7 +734,7 @@ var TR = {
   'ag.f4p': 'Cloudflare, Quad9, Mullvad, AdGuard ve diğerleriyle DNS-over-HTTPS veya TLS; zararlı siteleri engelleyen sunucular da dahil.',
   'ag.f5t': 'Yönetici ve başlangıç uyarıları',
   'ag.f5p': 'Bir uygulama yönetici hakları istediğinde ya da kendini otomatik başlayacak şekilde kurduğunda sizi uyarır.',
-  'dl.macMeta': 'Universal · Apple silicon ve Intel · macOS 13+',
+  'dl.macMeta': 'v2.25 · Universal · Apple silicon ve Intel · macOS 13+',
   'dl.yours': 'Sizin sisteminiz',
   'dl.macNote': 'İlk açılışta Sistem Ayarları › Gizlilik ve Güvenlik bölümüne gidip “Yine de Aç”a tıklayın.',
   'dl.dmg': '.dmg indir',
@@ -740,21 +742,23 @@ var TR = {
   'dl.source': 'Kaynak kod',
   'dl.winNote': 'Yükleyici koruma hizmetini kurar. Tek seferlik UAC onayını verin.',
   'mac.h': 'macOS özellikleri',
-  'mac.1': '<b>Davranış koruması</b>, AMOS, Banshee, Poseidon ve diğer veri hırsızlarını sahte parola penceresi açtıkları ya da anahtar zincirinize uzandıkları anda durdurur.',
-  'mac.2': "MalwareBazaar ve VirusShare'den <b>43 milyondan fazla parmak izi</b>; ikinci motor olarak ClamAV.",
-  'mac.3': 'İmzasız, ad-hoc imzalı ve noter onaysız uygulamalar için <b>kod denetimi</b>.',
-  'mac.4': "<b>DMG, PKG, ZIP ve daha fazlası</b> üç kat derinliğe kadar açılır; zip bombaları reddedilir.",
-  'mac.5': 'Shlayer, Bundlore ve Adload için tek tıkla <b>reklam yazılımı temizliği</b>.',
-  'mac.6': "macOS'un kendi ağ ayarları üzerinden, Sistem Ayarları'nda bir kez onaylanan <b>şifreli DNS</b>.",
-  'mac.7': 'Bir uygulama yetki istediğinde ya da başlangıç öğesi kurduğunda <b>yönetici ve başlangıç uyarıları</b>.',
+  'mac.1': '<b>Davranış koruması</b>, AMOS, Banshee, Cuckoo, Poseidon, FrigidStealer ve SysJoker\'ı çalışırken durdurur: sahte parola pencereleri, anahtar zinciri, cüzdan ve tarayıcı verisi hırsızlığı, gizli ekran görüntüleri.',
+  'mac.2': '<b>Fidye yazılımı kalkanı</b> Belgeler, Masaüstü ve Resimler klasörlerini izler; dosyalarınızı şifrelemeye başlayan imzasız programı anında durdurur.',
+  'mac.3': "<b>43,6 milyon bilinen zararlı:</b> MalwareBazaar (1,1 milyon) ve VirusShare (42,5 milyon) parmak izleri, desen kuralları ve ikinci motor olarak ClamAV.",
+  'mac.4': '<b>Tarayıcı koruması</b> Safari, Chrome, Brave, Edge, Firefox, Arc, Opera ve Vivaldi\'deki reklam eklentilerini ve arama motoru ele geçirmelerini bulur, tek tıkla kaldırır.',
+  'mac.5': "<b>İndirme koruması</b> her indirmeyi, arşivlerin ve disk görüntülerinin içi dahil, nereden geldiğiyle (URLhaus) birlikte denetler.",
+  'mac.6': '<b>Arşivlerde saklanma yok:</b> ZIP, RAR, 7Z, TAR, ISO, XAR, DMG ve PKG üç kat derinliğe kadar açılır; zip bombaları reddedilir.',
+  'mac.7': '<b>Gatekeeper denetimi:</b> imzasız ve noter onaysız uygulamalar işaretlenir, iptal edilmiş geliştirici sertifikaları zararlı sayılır.',
+  'mac.8': "FileVault, güvenlik duvarı, Gatekeeper, SIP, güncellemeler ve Time Machine için <b>Güvenlik Kontrolü</b>; ayrıca şifreli DNS, başlangıç ve yönetici uyarıları.",
   'win.h': 'Windows özellikleri',
-  'win.1': '<span class="new">2.0 ile yeni</span><b>Çevrimdışı tehdit veritabanı:</b> her dosya VirusShare ve MalwareBazaar ile, ayrıca ClamAV ve YARA ile denetlenir; toplam 50 milyondan fazla bilinen tehdit. Hiçbir hash bilgisayarınızdan çıkmaz.',
-  'win.2': "<b>Windows saldırılarına özel YARA kuralları:</b> indirme zincirleri, kodlanmış PowerShell, AMSI atlatma, Defender'ı devre dışı bırakma ve gölge kopyaları silme.",
-  'win.3': 'İmzasız programlar, kendinden imzalı, kurcalanmış ve iptal edilmiş sertifikalar için <b>Authenticode denetimi</b>.',
-  'win.4': '<b>Arşivler ve yükleyiciler:</b> ZIP, MSIX, 7z, RAR, ISO, CAB ve MSI özel eylemleri; fatura.pdf.exe gibi gizlenmiş adlar işaretlenir.',
-  'win.5': "Mark-of-the-Web ile <b>indirme engelleme</b>: URLhaus'taki zararlı sunuculardan gelen dosyalar ve isteğe bağlı olarak imzasız programlar şifreli karantinaya alınır.",
-  'win.6': "Windows 11'in kendi DoH istemcisiyle ya da sunucuya ulaşamadığında sorguyu düz metin olarak göndermek yerine durduran yerel çözümleyiciyle <b>şifreli DNS</b>; Wi-Fi kuralları ve sızıntı testi.",
-  'win.7': 'UAC yükseltmeleri, sessiz otomatik yükseltmeler ve yeni sistem hizmetleri için <b>yönetici hakkı uyarıları</b>.',
+  'win.1': '<span class="new">2.0 ile yeni</span><b>50 milyondan fazla bilinen tehdit:</b> VirusShare ve MalwareBazaar hash\'lerinden oluşan çevrimdışı veritabanı, ayrıca ClamAV ve YARA. Bir arama bir mikrosaniye sürer, hiçbir hash bilgisayarınızdan çıkmaz.',
+  'win.2': "<b>Windows saldırılarına özel YARA kuralları:</b> indirme zincirleri, kodlanmış PowerShell, AMSI atlatma, Defender'ı devre dışı bırakma, gölge kopya silme, parola hırsızları ve zararlı kısayollar.",
+  'win.3': "<b>Güvensiz indirme engelleme:</b> İndirilenler'e gelen her dosya iner inmez taranır; URLhaus'taki zararlı sunuculardan gelenler ve isteğe bağlı olarak imzasız programlar karantinaya alınır.",
+  'win.4': '<b>Yükleyicilerin içi açılır:</b> MSI özel eylemleri, CAB, ZIP, MSIX, 7z, RAR ve ISO üç kat derinliğe kadar; fatura.pdf.exe gibi gizlenmiş adlar işaretlenir.',
+  'win.5': '<b>Authenticode denetimi</b> imzasız programları ve kendinden imzalı, kurcalanmış ya da iptal edilmiş sertifikaları yakalar.',
+  'win.6': "<b>Sızdırmayan şifreli DNS:</b> Windows 11'in kendi DoH istemcisi ya da sunucuya ulaşamadığında sorguyu düz metin göndermek yerine durduran yerel çözümleyici; Wi-Fi kuralları ve sızıntı testi.",
+  'win.7': '<b>Yönetici hakkı uyarıları:</b> UAC yükseltmeleri, sessiz otomatik yükseltmeler ve yeni sistem hizmetleri, kimin imzaladığıyla birlikte.',
+  'win.8': '<b>Şifreli karantina:</b> AES-256-GCM, Windows hesabınıza kilitli; geri yüklenen dosyalar önce doğrulanır.',
   'p.title': 'Bizden bir de: Platform365.',
   'p.sub': 'Tarayıcıda çalışan, internetsiz kullanılabilen ve hesap istemeyen bir ofis paketi.',
   'p.tag': 'Present + EasyWrite · Açık kaynak, MIT lisansı',
