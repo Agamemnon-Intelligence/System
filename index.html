@@ -190,6 +190,22 @@ section { scroll-margin-top: 4rem; }
 .dl .note { color: var(--muted); font-size: .85rem; margin: 0; }
 .dl .pill { border-color: rgba(255,255,255,.3); }
 
+/* Agamemnon strength */
+.stats { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.stats li { padding: 1.3rem 1.2rem; border-radius: 18px; border: 1px solid var(--line); background: linear-gradient(160deg, rgba(76,116,232,.12), transparent 70%); display: grid; gap: .2rem; }
+.stats b { font: 900 clamp(1.7rem, 3vw, 2.3rem)/1 var(--display); letter-spacing: -.02em; color: #fff; }
+.stats span { color: var(--muted); font-size: .86rem; line-height: 1.4; }
+.threats-head { margin-top: 3.5rem; }
+.threats-head h3 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); font-weight: 800; }
+.threats-head p { color: var(--muted); margin: .5rem 0 0; max-width: 40rem; font-size: .95rem; }
+.threats { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.threats li { padding: 1.2rem 1.25rem 1.3rem; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); display: grid; gap: .35rem; align-content: start; }
+.threats b { font: 700 1.08rem var(--display); }
+.threats li > span:last-child { color: var(--muted); font-size: .88rem; line-height: 1.5; }
+.threats .tag { justify-self: start; font: 700 .68rem var(--display); letter-spacing: .08em; text-transform: uppercase; padding: .22rem .6rem; border-radius: 999px; }
+.threats .tag.stop { color: var(--green); background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); }
+.threats .tag.warn { color: var(--gold); background: rgba(232,176,75,.1); border: 1px solid rgba(232,176,75,.3); }
+
 /* Platform365 (compact) */
 .p365-card {
   margin-top: 1.8rem; border-radius: 20px; border: 1px solid var(--line);
@@ -305,7 +321,8 @@ footer p { margin: .3rem 0; max-width: 60rem; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
-  .services { grid-template-columns: 1fr 1fr; }
+  .services, .stats { grid-template-columns: 1fr 1fr; }
+  .threats { grid-template-columns: 1fr 1fr; }
   .nav ul { display: none; }
 }
 @media (max-width: 860px) {
@@ -319,7 +336,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
   .p365-card > .pill { grid-column: 1 / -1; justify-self: start; }
 }
 @media (max-width: 560px) {
-  .services, .p-apps, form { grid-template-columns: 1fr; }
+  .services, .p-apps, form, .threats { grid-template-columns: 1fr; }
   .hero-actions .pill { flex: 1; }
   .wordmark { font-size: .82rem; letter-spacing: .1em; }
 }
@@ -368,7 +385,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           <path d="M29 58 42 24l13 34M33.5 47h17"/>
         </svg>
         <h1 class="reveal drip" data-i18n="hero.title">Security that stays <span class="accent">on your computer.</span></h1>
-        <p class="reveal" data-i18n="hero.lead">Athene Softworks is a team of security researchers building simple, secure and enjoyable software that runs on your own device. Open source, free, and yours to inspect.</p>
+        <p class="reveal" data-i18n="hero.lead">Athene Softworks is a team of security researchers. Our antivirus, Agamemnon, stops modern Mac stealers in the act, scans 1.1 million known threats and shrugs off zip bombs. Free, open source, and yours to inspect.</p>
       </div>
       <div class="hero-actions reveal">
         <a class="pill" href="#what"><span data-i18n="hero.more">See more</span>
@@ -401,14 +418,14 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="wrap">
       <div class="section-head reveal drip">
         <h2 data-i18n="ag.title">Meet Agamemnon.</h2>
-        <p data-i18n="ag.sub">Our first product. A free, open-source antivirus for macOS and Windows.</p>
+        <p data-i18n="ag.sub">Our flagship antivirus for macOS and Windows. It doesn't just look up files it already knows: it watches what programs do and stops today's Mac stealers in the act. Free and open source.</p>
       </div>
 
       <div class="product-grid">
         <div class="product-card reveal">
           <img src="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png" alt="Agamemnon" width="160" height="160" loading="lazy" decoding="async">
           <h3>Agamemnon</h3>
-          <p class="tagline" data-i18n="ag.tag">Advanced antivirus, built to stay out of your way.</p>
+          <p class="tagline" data-i18n="ag.tag">Serious protection that stays quiet until it matters.</p>
           <div class="badges">
             <span class="badge live" data-i18n="badge.live">Available now</span>
             <span class="badge">macOS 13+</span>
@@ -419,8 +436,12 @@ footer p { margin: .3rem 0; max-width: 60rem; }
 
         <ul class="features">
           <li class="reveal">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <div><strong data-i18n="ag.f0t">Behaviour protection</strong><span data-i18n="ag.f0p">Watches every new program and stops it the moment it fakes a password prompt, raids your keychain or browser data, or uploads your files. Catches brand-new variants that no fingerprint list has seen yet.</span></div>
+          </li>
+          <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
-            <div><strong data-i18n="ag.f1t">Malware scanning</strong><span data-i18n="ag.f1p">Quick, full, custom and scheduled scans, checked against more than a million known-malware hashes from MalwareBazaar, plus optional ClamAV.</span></div>
+            <div><strong data-i18n="ag.f1t">1.1 million known threats</strong><span data-i18n="ag.f1p">Quick, full, custom and scheduled scans against more than 1.1 million confirmed malware fingerprints from MalwareBazaar, refreshed every 12 hours. Add ClamAV for a second engine.</span></div>
           </li>
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span>
@@ -428,7 +449,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           </li>
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg></span>
-            <div><strong data-i18n="ag.f3t">Archive and installer scanning</strong><span data-i18n="ag.f3p">Looks inside ZIP, RAR, 7Z, ISO, DMG, PKG, MSI and more, up to three levels deep, with zip-bomb limits.</span></div>
+            <div><strong data-i18n="ag.f3t">No hiding in archives, no zip bombs</strong><span data-i18n="ag.f3p">Opens ZIP, RAR, 7Z, ISO, DMG, PKG, MSI and more, three levels deep. Zip bombs are refused before a single byte is unpacked.</span></div>
           </li>
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
@@ -440,6 +461,26 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           </li>
         </ul>
       </div>
+
+      <ul class="stats">
+        <li class="reveal"><b>1.1M+</b><span data-i18n="st.1">known malware fingerprints</span></li>
+        <li class="reveal"><b data-i18n="st.2b">12 h</b><span data-i18n="st.2">between database updates</span></li>
+        <li class="reveal"><b>~1 s</b><span data-i18n="st.3">to react to a new program</span></li>
+        <li class="reveal"><b>0</b><span data-i18n="st.4">false alarms across ~750 apps in our tests</span></li>
+      </ul>
+
+      <div class="threats-head reveal">
+        <h3 data-i18n="th.title">Built against the threats Mac users actually face.</h3>
+        <p data-i18n="th.sub">Behaviour rules written for the malware families hitting Macs today, on top of the fingerprint database.</p>
+      </div>
+      <ul class="threats">
+        <li class="reveal"><span class="tag stop" data-i18n="th.stop">Stopped in the act</span><b>Atomic Stealer (AMOS)</b><span data-i18n="th.amos">Fake password prompts, keychain theft, AppleScript data grabs and uploads of your files.</span></li>
+        <li class="reveal"><span class="tag stop" data-i18n="th.stop">Stopped in the act</span><b>FrigidStealer</b><span data-i18n="th.frigid">The fake browser update and the password and data theft that follows.</span></li>
+        <li class="reveal"><span class="tag stop" data-i18n="th.stop">Stopped in the act</span><b data-i18n="th.minerT">Crypto miners</b><span data-i18n="th.miner">Mining-pool connections and known miner programs that eat your CPU.</span></li>
+        <li class="reveal"><span class="tag stop" data-i18n="th.stop">Stopped in the act</span><b>SysJoker</b><span data-i18n="th.sysjoker">The backdoor posing as a macOS update, caught where it installs itself.</span></li>
+        <li class="reveal"><span class="tag stop" data-i18n="th.refused">Refused</span><b data-i18n="th.bombT">Zip bombs</b><span data-i18n="th.bomb">Archives that would unpack past 4 GB or 100,000 files are rejected up front.</span></li>
+        <li class="reveal"><span class="tag warn" data-i18n="th.caught">Detected</span><b>BeaverTail · KeySteal</b><span data-i18n="th.more">Fake job-interview malware payloads and keychain stealers, plus startup-item alerts.</span></li>
+      </ul>
 
       <div class="downloads">
         <div class="dl reveal" data-os="mac">
@@ -616,7 +657,7 @@ var TR = {
   'nav.contact': 'İletişim',
   'nav.home': 'Ana sayfa',
   'hero.title': 'Güvenlik, <span class="accent">bilgisayarınızda kalır.</span>',
-  'hero.lead': 'Athene Softworks, kendi cihazınızda çalışan sade, güvenli ve kullanması keyifli yazılımlar geliştiren bir güvenlik araştırmacıları ekibidir. Açık kaynaklı, ücretsiz ve incelemeniz için ortada.',
+  'hero.lead': 'Athene Softworks bir güvenlik araştırmacıları ekibidir. Antivirüsümüz Agamemnon, günümüzün Mac hırsızlarını iş üstünde durdurur, 1,1 milyon bilinen tehdidi tarar ve zip bombalarına geçit vermez. Ücretsiz, açık kaynaklı ve incelemeniz için ortada.',
   'hero.more': 'Daha fazlası',
   'hero.get': "Agamemnon'u edinin",
   'what.title': 'Neler yapıyoruz.',
@@ -630,15 +671,35 @@ var TR = {
   'what.4t': 'Her zaman açık kaynak',
   'what.4p': 'Yayınladığımız her şey özgür yazılımdır. Kodu okuyun, işimizi kendiniz kontrol edin.',
   'ag.title': "Agamemnon'la tanışın.",
-  'ag.sub': 'İlk ürünümüz. macOS ve Windows için ücretsiz, açık kaynaklı bir antivirüs.',
-  'ag.tag': 'Size engel olmadan çalışan gelişmiş antivirüs.',
+  'ag.sub': 'macOS ve Windows için amiral gemisi antivirüsümüz. Yalnızca tanıdığı dosyalara bakmaz: programların ne yaptığını izler ve günümüzün Mac hırsızlarını iş üstünde durdurur. Ücretsiz ve açık kaynaklı.',
+  'ag.tag': 'Gerektiği ana kadar sessiz kalan ciddi bir koruma.',
   'badge.live': 'Şimdi kullanılabilir',
-  'ag.f1t': 'Zararlı yazılım taraması',
-  'ag.f1p': "Hızlı, tam, özel ve zamanlanmış taramalar. Dosyalar, MalwareBazaar'ın bir milyondan fazla bilinen zararlı yazılım özetiyle ve isteğe bağlı olarak ClamAV ile karşılaştırılır.",
+  'ag.f0t': 'Davranış koruması',
+  'ag.f0p': 'Her yeni programı izler; sahte parola penceresi açtığı, anahtar zincirinize ya da tarayıcı verilerinize uzandığı veya dosyalarınızı yüklemeye kalktığı anda durdurur. Henüz hiçbir listede parmak izi olmayan yeni sürümleri de yakalar.',
+  'ag.f1t': '1,1 milyon bilinen tehdit',
+  'ag.f1p': "MalwareBazaar'ın 1,1 milyondan fazla doğrulanmış zararlı yazılım parmak izine karşı hızlı, tam, özel ve zamanlanmış taramalar; veritabanı 12 saatte bir yenilenir. İkinci motor için ClamAV ekleyebilirsiniz.",
+  'st.1': 'bilinen zararlı yazılım parmak izi',
+  'st.2b': '12 sa',
+  'st.2': 'veritabanı güncellemeleri arası',
+  'st.3': 'yeni bir programa tepki süresi',
+  'st.4': 'testlerimizde ~750 uygulamada yanlış alarm',
+  'th.title': 'Mac kullanıcılarının gerçekten karşılaştığı tehditlere karşı geliştirildi.',
+  'th.sub': 'Parmak izi veritabanının üstüne, bugün Mac\'leri hedef alan zararlı yazılım aileleri için yazılmış davranış kuralları.',
+  'th.stop': 'İş üstünde durdurulur',
+  'th.refused': 'Reddedilir',
+  'th.caught': 'Tespit edilir',
+  'th.amos': 'Sahte parola pencereleri, anahtar zinciri hırsızlığı, AppleScript ile veri toplama ve dosyalarınızın yüklenmesi.',
+  'th.frigid': 'Sahte tarayıcı güncellemesi ve ardından gelen parola ve veri hırsızlığı.',
+  'th.minerT': 'Kripto madencileri',
+  'th.miner': 'İşlemcinizi sömüren madencilik havuzu bağlantıları ve bilinen madenci programları.',
+  'th.sysjoker': 'macOS güncellemesi kılığındaki arka kapı, kendini kurduğu yerde yakalanır.',
+  'th.bombT': 'Zip bombaları',
+  'th.bomb': '4 GB\'ı ya da 100.000 dosyayı aşacak arşivler daha baştan reddedilir.',
+  'th.more': 'Sahte iş görüşmesi zararlılarının yükleri ve anahtar zinciri hırsızları; ayrıca başlangıç öğesi uyarıları.',
   'ag.f2t': 'İndirme koruması',
   'ag.f2p': 'İndirilenler klasörüne gelen yeni dosyalar, indirme biter bitmez taranır. Tehlikeli olanlar doğrudan karantinaya alınır.',
-  'ag.f3t': 'Arşiv ve yükleyici taraması',
-  'ag.f3p': "ZIP, RAR, 7Z, ISO, DMG, PKG, MSI ve daha fazlasının içine üç kat derinliğe kadar bakar; zip bombalarına karşı sınırları vardır.",
+  'ag.f3t': 'Arşivlerde saklanma yok, zip bombası yok',
+  'ag.f3p': 'ZIP, RAR, 7Z, ISO, DMG, PKG, MSI ve daha fazlasını üç kat derinliğe kadar açar. Zip bombaları tek bir bayt açılmadan reddedilir.',
   'ag.f4t': 'Şifreli DNS',
   'ag.f4p': 'Cloudflare, Quad9, Mullvad, AdGuard ve diğerleriyle DNS-over-HTTPS veya TLS; zararlı siteleri engelleyen sunucular da dahil.',
   'ag.f5t': 'Yönetici ve başlangıç uyarıları',
