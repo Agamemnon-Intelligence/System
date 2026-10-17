@@ -189,14 +189,6 @@ section { scroll-margin-top: 4rem; }
 .dl-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: auto; }
 .dl .note { color: var(--muted); font-size: .85rem; margin: 0; }
 .dl .pill { border-color: rgba(255,255,255,.3); }
-.os-features { list-style: none; margin: 0; padding: 1rem 0 0; border-top: 1px solid var(--line); display: grid; gap: .7rem; }
-.os-features h4 { margin: 0 0 .1rem; font: 700 .72rem var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.os-features li { position: relative; padding-left: 1.1rem; font-size: .88rem; line-height: 1.5; color: var(--muted); }
-.os-features li::before { content: ""; position: absolute; left: 0; top: .5rem; width: .45rem; height: .45rem; border-radius: 50%; background: var(--blue-3); }
-.os-features li.head { padding-left: 0; }
-.os-features li.head::before { display: none; }
-.os-features b { color: #fff; font-weight: 600; }
-.os-features .new { display: inline-block; margin-right: .35rem; padding: .05rem .45rem; border-radius: 999px; font: 700 .62rem var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--green); background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); vertical-align: .1em; }
 
 /* Agamemnon strength */
 .stats { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
@@ -393,7 +385,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           <path d="M29 58 42 24l13 34M33.5 47h17"/>
         </svg>
         <h1 class="reveal drip" data-i18n="hero.title">Security that stays <span class="accent">on your computer.</span></h1>
-        <p class="reveal" data-i18n="hero.lead">Athene Softworks is a team of security researchers. Our antivirus, Agamemnon, stops modern stealers in the act, scans more than 50 million known threats and shrugs off zip bombs. Free, open source, and yours to inspect.</p>
+        <p class="reveal" data-i18n="hero.lead">Athene Softworks is a team of security researchers. Our antivirus, Agamemnon, stops modern stealers in the act, checks every file against more than 43 million known malware fingerprints and shrugs off zip bombs. Free, open source, and yours to inspect.</p>
       </div>
       <div class="hero-actions reveal">
         <a class="pill" href="#what"><span data-i18n="hero.more">See more</span>
@@ -449,7 +441,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           </li>
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
-            <div><strong data-i18n="ag.f1t">50 million+ known threats</strong><span data-i18n="ag.f1p">Every file is checked against confirmed malware fingerprints from MalwareBazaar and VirusShare, kept up to date automatically, with ClamAV set up for you as a second engine. On Windows 2.0 that adds up to more than 50 million known threats, all looked up offline.</span></div>
+            <div><strong data-i18n="ag.f1t">43 million+ known threats</strong><span data-i18n="ag.f1p">Every file is checked against confirmed malware fingerprints from MalwareBazaar and VirusShare, kept up to date automatically, with ClamAV set up for you as a second engine. On macOS that's more than 43 million fingerprints, all looked up offline, plus pattern rules written for Mac stealers.</span></div>
           </li>
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span>
@@ -471,7 +463,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
       </div>
 
       <ul class="stats">
-        <li class="reveal"><b>50M+</b><span data-i18n="st.1">known threats on Windows 2.0</span></li>
+        <li class="reveal"><b>43M+</b><span data-i18n="st.1">known malware fingerprints on macOS</span></li>
         <li class="reveal"><b data-i18n="st.2b">12 h</b><span data-i18n="st.2">between database updates</span></li>
         <li class="reveal"><b>~1 s</b><span data-i18n="st.3">to react to a new program</span></li>
         <li class="reveal"><b>0</b><span data-i18n="st.4">false alarms across ~750 apps in our tests</span></li>
@@ -494,21 +486,10 @@ footer p { margin: .3rem 0; max-width: 60rem; }
         <div class="dl reveal" data-os="mac">
           <div class="dl-top">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.2 1-4.1 2.5-1.8 3-.5 7.5 1.2 10 .8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.4-.9-2.4-4ZM14 5.2c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4Z"/></svg>
-            <div><h3>macOS</h3><div class="meta" data-i18n="dl.macMeta">v2.25 · Universal · Apple silicon &amp; Intel · macOS 13+</div></div>
+            <div><h3>macOS</h3><div class="meta" data-i18n="dl.macMeta">v3.0 · Universal · Apple silicon &amp; Intel · macOS 13+</div></div>
             <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
           <p class="note" data-i18n="dl.macNote">First launch: open System Settings › Privacy &amp; Security and click Open Anyway.</p>
-          <ul class="os-features">
-            <li class="head"><h4 data-i18n="mac.h">macOS features</h4></li>
-            <li data-i18n="mac.1"><b>Behaviour protection</b> stops AMOS, Banshee, Cuckoo, Poseidon, FrigidStealer and SysJoker as they run: fake password prompts, keychain, wallet and browser-data theft, secret screenshots.</li>
-            <li data-i18n="mac.2"><b>Ransomware shield</b> watches Documents, Desktop and Pictures and stops an unsigned program the moment it starts scrambling your files.</li>
-            <li data-i18n="mac.3"><b>43.6 million known malware:</b> MalwareBazaar (1.1M) and VirusShare (42.5M) fingerprints, pattern rules and ClamAV as a second engine.</li>
-            <li data-i18n="mac.4"><b>Browser protection</b> finds adware extensions and search hijacks in Safari, Chrome, Brave, Edge, Firefox, Arc, Opera and Vivaldi, removed in one click.</li>
-            <li data-i18n="mac.5"><b>Download protection</b> checks every download, inside archives and disk images too, and where it came from (URLhaus).</li>
-            <li data-i18n="mac.6"><b>No hiding in archives:</b> ZIP, RAR, 7Z, TAR, ISO, XAR, DMG and PKG, three levels deep; zip bombs refused.</li>
-            <li data-i18n="mac.7"><b>Gatekeeper checks:</b> unsigned and un-notarized apps flagged, revoked developer certificates treated as malware.</li>
-            <li data-i18n="mac.8"><b>Security Checkup</b> for FileVault, firewall, Gatekeeper, SIP, updates and Time Machine, plus encrypted DNS and startup and admin alerts.</li>
-          </ul>
           <div class="dl-actions">
             <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-macOS/releases/latest/download/Agamemnon.dmg" data-i18n="dl.dmg">Download .dmg</a>
             <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-macOS" target="_blank" rel="noopener" data-i18n="dl.source">Source</a>
@@ -522,17 +503,6 @@ footer p { margin: .3rem 0; max-width: 60rem; }
             <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
           <p class="note" data-i18n="dl.winNote">The installer sets up the protection service. Approve the one-time UAC prompt.</p>
-          <ul class="os-features">
-            <li class="head"><h4 data-i18n="win.h">Windows features</h4></li>
-            <li data-i18n="win.1"><span class="new">New in 2.0</span><b>50 million+ known threats:</b> an offline database of VirusShare and MalwareBazaar hashes plus ClamAV and YARA. Lookups take a microsecond and no hash leaves your PC.</li>
-            <li data-i18n="win.2"><b>YARA rules for Windows attacks:</b> download cradles, encoded PowerShell, AMSI bypasses, Defender tampering, shadow-copy deletion, credential stealers and malicious shortcuts.</li>
-            <li data-i18n="win.3"><b>Unsafe-download blocking:</b> every file in Downloads is scanned the moment it finishes; files from URLhaus malware hosts and, optionally, unsigned programs are quarantined.</li>
-            <li data-i18n="win.4"><b>Installers opened up:</b> MSI custom actions, CAB, ZIP, MSIX, 7z, RAR and ISO, three levels deep; disguised names like invoice.pdf.exe are flagged.</li>
-            <li data-i18n="win.5"><b>Authenticode checks</b> catch unsigned programs and self-signed, tampered or revoked certificates.</li>
-            <li data-i18n="win.6"><b>Encrypted DNS that fails closed:</b> Windows 11's own DoH or a local resolver, with Wi-Fi rules and a leak test.</li>
-            <li data-i18n="win.7"><b>Admin-rights alerts</b> for UAC elevations, silent auto-elevations and new system services, with who signed them.</li>
-            <li data-i18n="win.8"><b>Encrypted quarantine:</b> AES-256-GCM, locked to your Windows account; restored files are verified first.</li>
-          </ul>
           <div class="dl-actions">
             <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v2.0.0/Agamemnon-2.0.0-Setup.exe" data-i18n="dl.exe">Download .exe</a>
             <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v2.0.0/Agamemnon-2.0.0-x64.msi">.msi</a>
@@ -687,7 +657,7 @@ var TR = {
   'nav.contact': 'İletişim',
   'nav.home': 'Ana sayfa',
   'hero.title': 'Güvenlik, <span class="accent">bilgisayarınızda kalır.</span>',
-  'hero.lead': 'Athene Softworks bir güvenlik araştırmacıları ekibidir. Antivirüsümüz Agamemnon, günümüzün veri hırsızlarını iş üstünde durdurur, 50 milyondan fazla bilinen tehdidi tarar ve zip bombalarına geçit vermez. Ücretsiz, açık kaynaklı ve incelemeniz için ortada.',
+  'hero.lead': 'Athene Softworks bir güvenlik araştırmacıları ekibidir. Antivirüsümüz Agamemnon, günümüzün veri hırsızlarını iş üstünde durdurur, her dosyayı 43 milyondan fazla bilinen zararlı yazılım parmak iziyle karşılaştırır ve zip bombalarına geçit vermez. Ücretsiz, açık kaynaklı ve incelemeniz için ortada.',
   'hero.more': 'Daha fazlası',
   'hero.get': "Agamemnon'u edinin",
   'what.title': 'Neler yapıyoruz.',
@@ -706,9 +676,9 @@ var TR = {
   'badge.live': 'Şimdi kullanılabilir',
   'ag.f0t': 'Davranış koruması',
   'ag.f0p': 'Her yeni programı izler; sahte parola penceresi açtığı, anahtar zincirinize ya da tarayıcı verilerinize uzandığı veya dosyalarınızı yüklemeye kalktığı anda durdurur. Henüz hiçbir listede parmak izi olmayan yeni sürümleri de yakalar.',
-  'ag.f1t': '50 milyondan fazla bilinen tehdit',
-  'ag.f1p': "Her dosya MalwareBazaar ve VirusShare'in doğrulanmış zararlı yazılım parmak izleriyle karşılaştırılır; veritabanı kendiliğinden güncel tutulur, ikinci motor olarak ClamAV sizin için kurulur. Windows 2.0'da bu, tamamı çevrimdışı aranan 50 milyondan fazla bilinen tehdit eder.",
-  'st.1': "Windows 2.0'da bilinen tehdit",
+  'ag.f1t': '43 milyondan fazla bilinen tehdit',
+  'ag.f1p': "Her dosya MalwareBazaar ve VirusShare'in doğrulanmış zararlı yazılım parmak izleriyle karşılaştırılır; veritabanı kendiliğinden güncel tutulur, ikinci motor olarak ClamAV sizin için kurulur. macOS'ta bu, tamamı çevrimdışı aranan 43 milyondan fazla parmak izi eder; üstüne Mac veri hırsızları için yazılmış örüntü kuralları gelir.",
+  'st.1': "macOS'ta bilinen zararlı parmak izi",
   'st.2b': '12 sa',
   'st.2': 'veritabanı güncellemeleri arası',
   'st.3': 'yeni bir programa tepki süresi',
@@ -734,31 +704,13 @@ var TR = {
   'ag.f4p': 'Cloudflare, Quad9, Mullvad, AdGuard ve diğerleriyle DNS-over-HTTPS veya TLS; zararlı siteleri engelleyen sunucular da dahil.',
   'ag.f5t': 'Yönetici ve başlangıç uyarıları',
   'ag.f5p': 'Bir uygulama yönetici hakları istediğinde ya da kendini otomatik başlayacak şekilde kurduğunda sizi uyarır.',
-  'dl.macMeta': 'v2.25 · Universal · Apple silicon ve Intel · macOS 13+',
+  'dl.macMeta': 'v3.0 · Universal · Apple silicon ve Intel · macOS 13+',
   'dl.yours': 'Sizin sisteminiz',
   'dl.macNote': 'İlk açılışta Sistem Ayarları › Gizlilik ve Güvenlik bölümüne gidip “Yine de Aç”a tıklayın.',
   'dl.dmg': '.dmg indir',
   'dl.exe': '.exe indir',
   'dl.source': 'Kaynak kod',
   'dl.winNote': 'Yükleyici koruma hizmetini kurar. Tek seferlik UAC onayını verin.',
-  'mac.h': 'macOS özellikleri',
-  'mac.1': '<b>Davranış koruması</b>, AMOS, Banshee, Cuckoo, Poseidon, FrigidStealer ve SysJoker\'ı çalışırken durdurur: sahte parola pencereleri, anahtar zinciri, cüzdan ve tarayıcı verisi hırsızlığı, gizli ekran görüntüleri.',
-  'mac.2': '<b>Fidye yazılımı kalkanı</b> Belgeler, Masaüstü ve Resimler klasörlerini izler; dosyalarınızı şifrelemeye başlayan imzasız programı anında durdurur.',
-  'mac.3': "<b>43,6 milyon bilinen zararlı:</b> MalwareBazaar (1,1 milyon) ve VirusShare (42,5 milyon) parmak izleri, desen kuralları ve ikinci motor olarak ClamAV.",
-  'mac.4': '<b>Tarayıcı koruması</b> Safari, Chrome, Brave, Edge, Firefox, Arc, Opera ve Vivaldi\'deki reklam eklentilerini ve arama motoru ele geçirmelerini bulur, tek tıkla kaldırır.',
-  'mac.5': "<b>İndirme koruması</b> her indirmeyi, arşivlerin ve disk görüntülerinin içi dahil, nereden geldiğiyle (URLhaus) birlikte denetler.",
-  'mac.6': '<b>Arşivlerde saklanma yok:</b> ZIP, RAR, 7Z, TAR, ISO, XAR, DMG ve PKG üç kat derinliğe kadar açılır; zip bombaları reddedilir.',
-  'mac.7': '<b>Gatekeeper denetimi:</b> imzasız ve noter onaysız uygulamalar işaretlenir, iptal edilmiş geliştirici sertifikaları zararlı sayılır.',
-  'mac.8': "FileVault, güvenlik duvarı, Gatekeeper, SIP, güncellemeler ve Time Machine için <b>Güvenlik Kontrolü</b>; ayrıca şifreli DNS, başlangıç ve yönetici uyarıları.",
-  'win.h': 'Windows özellikleri',
-  'win.1': '<span class="new">2.0 ile yeni</span><b>50 milyondan fazla bilinen tehdit:</b> VirusShare ve MalwareBazaar hash\'lerinden oluşan çevrimdışı veritabanı, ayrıca ClamAV ve YARA. Bir arama bir mikrosaniye sürer, hiçbir hash bilgisayarınızdan çıkmaz.',
-  'win.2': "<b>Windows saldırılarına özel YARA kuralları:</b> indirme zincirleri, kodlanmış PowerShell, AMSI atlatma, Defender'ı devre dışı bırakma, gölge kopya silme, parola hırsızları ve zararlı kısayollar.",
-  'win.3': "<b>Güvensiz indirme engelleme:</b> İndirilenler'e gelen her dosya iner inmez taranır; URLhaus'taki zararlı sunuculardan gelenler ve isteğe bağlı olarak imzasız programlar karantinaya alınır.",
-  'win.4': '<b>Yükleyicilerin içi açılır:</b> MSI özel eylemleri, CAB, ZIP, MSIX, 7z, RAR ve ISO üç kat derinliğe kadar; fatura.pdf.exe gibi gizlenmiş adlar işaretlenir.',
-  'win.5': '<b>Authenticode denetimi</b> imzasız programları ve kendinden imzalı, kurcalanmış ya da iptal edilmiş sertifikaları yakalar.',
-  'win.6': "<b>Sızdırmayan şifreli DNS:</b> Windows 11'in kendi DoH istemcisi ya da sunucuya ulaşamadığında sorguyu düz metin göndermek yerine durduran yerel çözümleyici; Wi-Fi kuralları ve sızıntı testi.",
-  'win.7': '<b>Yönetici hakkı uyarıları:</b> UAC yükseltmeleri, sessiz otomatik yükseltmeler ve yeni sistem hizmetleri, kimin imzaladığıyla birlikte.',
-  'win.8': '<b>Şifreli karantina:</b> AES-256-GCM, Windows hesabınıza kilitli; geri yüklenen dosyalar önce doğrulanır.',
   'p.title': 'Bizden bir de: Platform365.',
   'p.sub': 'Tarayıcıda çalışan, internetsiz kullanılabilen ve hesap istemeyen bir ofis paketi.',
   'p.tag': 'Present + EasyWrite · Açık kaynak, MIT lisansı',
