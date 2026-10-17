@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Athene Softworks</title>
-<meta name="description" content="Athene Softworks builds simple, secure desktop software. Our first product is Agamemnon, a free, open-source antivirus for macOS and Windows.">
+<meta name="description" content="Athene Softworks builds simple, secure desktop software. Our products: Agamemnon, a free, open-source antivirus for macOS and Windows, and Platform365, an offline office suite in your browser.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
 <meta property="og:title" content="Athene Softworks">
-<meta property="og:description" content="Simple, secure desktop software. Meet Agamemnon, free antivirus for macOS and Windows.">
+<meta property="og:description" content="Simple, secure software. Meet Agamemnon, free antivirus for macOS and Windows, and the Platform365 office suite.">
 <link rel="icon" href="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -168,6 +168,34 @@ section { scroll-margin-top: 4rem; }
 .dl .note { color: var(--muted); font-size: .85rem; margin: 0; }
 .dl .pill { border-color: rgba(255,255,255,.3); }
 
+/* Platform365 */
+.p365 { --p-red: #ff5d7c; --p-present: #9a93ff; --p-write: #6f9dff; }
+.p365 .section-head h2 { color: var(--p-red); }
+.p365 .features .ico { background: rgba(255,93,124,.12); color: var(--p-red); }
+.p-logo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 120px; height: 120px; padding: 18px; margin: 0 auto 1.4rem; border-radius: 28px; background: #fff; }
+.p-logo i { border-radius: 9px; background: #5b4cf0; }
+.p-logo i:nth-child(2) { background: #2f6bf2; }
+.p-logo i:nth-child(3) { background: #f97316; }
+.p-logo i:nth-child(4) { background: #c8174a; }
+.p365 .product-card { background: linear-gradient(160deg, #3a1426, var(--panel) 60%); }
+.p-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 3.5rem; }
+.p-col { --c: var(--p-present); border-radius: 22px; padding: 1.8rem; background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--c); }
+.p-col.write { --c: var(--p-write); }
+.p-col small { font: 500 .75rem var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--c); }
+.p-col h3 { font-size: 1.35rem; font-weight: 600; margin: .3rem 0 1.3rem; }
+.p-col dl { margin: 0; display: grid; gap: 1rem; }
+.p-col dt { font-family: var(--display); font-weight: 600; }
+.p-col dd { margin: .15rem 0 0; color: var(--muted); font-size: .95rem; }
+.p365 code { font-size: .85em; background: rgba(255,255,255,.07); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; }
+.p-start {
+  margin-top: 1.2rem; border-radius: 22px; padding: 1.8rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+  background: linear-gradient(120deg, rgba(255,93,124,.16), rgba(111,157,255,.1)); border: 1px solid var(--line);
+}
+.p-start h3 { font-size: 1.3rem; font-weight: 600; }
+.p-start p { margin: .3rem 0 0; color: var(--muted); max-width: 38rem; }
+.p-start .meta { font-size: .85rem; color: var(--muted); margin-top: .6rem; }
+
 /* History */
 .history { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
 .history-art {
@@ -213,7 +241,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
-  .hero, .history, .product-grid, .downloads { grid-template-columns: 1fr; }
+  .hero, .history, .product-grid, .downloads, .p-cols { grid-template-columns: 1fr; }
   .hero { min-height: auto; }
   .hero-panel { min-height: 88svh; }
   .dots { min-height: 46vh; }
@@ -224,7 +252,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
 }
 @media (max-width: 520px) {
   .nav ul { gap: 1rem; }
-  .nav ul li:nth-child(1) { display: none; }
+  .nav ul li:nth-child(-n+2) { display: none; }
   .hero-actions .pill { flex: 1; justify-content: center; }
 }
 </style>
@@ -237,6 +265,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
   <ul>
     <li><a href="#what">What we do</a></li>
     <li><a href="#agamemnon">Agamemnon</a></li>
+    <li><a href="#platform365">Platform365</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -250,7 +279,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           <path d="M29 58 42 24l13 34M33.5 47h17"/>
         </svg>
         <h1>Security that stays <span class="accent">on your computer.</span></h1>
-        <p>Athene Softworks is a team of security researchers building simple, secure and enjoyable desktop software. Open source, free, and yours to inspect.</p>
+        <p>Athene Softworks is a team of security researchers building simple, secure and enjoyable software that runs on your own device. Open source, free, and yours to inspect.</p>
       </div>
       <div class="hero-actions">
         <a class="pill" href="#what">See more
@@ -354,6 +383,84 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     </div>
   </section>
 
+  <section class="section p365" id="platform365">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Meet Platform365.</h2>
+        <p>Present and EasyWrite: an office suite that runs in your browser, works offline and needs no account.</p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card reveal">
+          <div class="p-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <h3>Platform365</h3>
+          <p class="tagline">Slides and documents, under one roof.</p>
+          <div class="badges">
+            <span class="badge live">Available now</span>
+            <span class="badge">Browser</span>
+            <span class="badge">Offline</span>
+            <span class="badge">MIT</span>
+          </div>
+        </div>
+
+        <ul class="features">
+          <li class="reveal">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0M3 3l18 18"/></svg></span>
+            <div><strong>No account, no setup</strong><span>Use it right away in your browser, without signing up.</span></div>
+          </li>
+          <li class="reveal">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.6a10 10 0 0 1 14 0M8.5 16.4a5 5 0 0 1 7 0M12 20h.01M3 3l18 18"/></svg></span>
+            <div><strong>Works offline</strong><span>Install it once and it opens on the train, on a plane or in the classroom.</span></div>
+          </li>
+          <li class="reveal">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+            <div><strong>Your files stay with you</strong><span>Everything is stored on your device and never sent to the cloud.</span></div>
+          </li>
+          <li class="reveal">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M9 14l2 2 4-4"/></svg></span>
+            <div><strong>Works with Word and PowerPoint</strong><span>Opens, edits and saves .docx and .pptx files in the same format.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="p-cols">
+        <div class="p-col reveal">
+          <small>Present · Slides</small>
+          <h3>From idea to stage, in minutes.</h3>
+          <dl>
+            <div><dt>Slides from text</dt><dd>Paste an outline: headings become slides and bullets become points. Crowded slides split on their own.</dd></div>
+            <div><dt>Presentation health check</dt><dd>Scores contrast, text size and crowding out of 100, and shows each problem in one click.</dd></div>
+            <div><dt>Pen, laser and magnifier</dt><dd>Draw on slides, highlight, zoom into an area and jump to any slide from the grid.</dd></div>
+            <div><dt>Live captions and rehearsal</dt><dd>Your speech becomes captions while you present, and rehearsal mode times every slide.</dd></div>
+            <div><dt>Single-file web presentation</dt><dd>Share your deck as one .html file that opens in any browser.</dd></div>
+          </dl>
+        </div>
+        <div class="p-col write reveal">
+          <small>EasyWrite · Documents</small>
+          <h3>You write; it takes care of the formatting.</h3>
+          <dl>
+            <div><dt>“/” commands</dt><dd>Headings, tables, callouts, to-do lists and a table of contents, all one slash away.</dd></div>
+            <div><dt>Write in Markdown</dt><dd><code># heading</code> <code>- item</code> <code>**bold**</code> are formatted as you type.</dd></div>
+            <div><dt>Turkish readability</dt><dd>Ateşman score, with long sentences, filler words and repetitions highlighted.</dd></div>
+            <div><dt>Inline math</dt><dd>Type <code>1250*12%=</code> and the result appears on its own.</dd></div>
+            <div><dt>Focus, dictation and read-aloud</dt><dd>Typewriter mode, writing by voice, listening to your document, plus writing goals and Pomodoro.</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="p-start reveal">
+        <div>
+          <h3>Better together.</h3>
+          <p>Your document's headings become slides in one click, and a presentation turns back into an editable document with its speaker notes. Version history, search across all files and one-click backups are built in.</p>
+          <div class="meta">Open source · MIT license</div>
+        </div>
+        <a class="pill solid" href="https://mertyesil.com.tr/platform365/Present-2.0.0/" target="_blank" rel="noopener">Open Platform365
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="history" id="history">
     <div class="history-art" aria-hidden="true">
       <!-- Owl of Athene, line art -->
@@ -370,7 +477,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="history-panel reveal">
       <h2>Our history.</h2>
       <p><b>October 2026.</b> Athene Softworks was founded by Mert Yeşil and Miraz Bakış, two friends who wanted security software that is honest about what it does. Named after the goddess of wisdom, we name our products after the heroes of Greek myth.</p>
-      <p>Agamemnon started as a research project on macOS and quickly grew into a full antivirus with a Windows version of its own. Today we keep building it in the open, and we're working on what comes next.</p>
+      <p>Agamemnon started as a research project on macOS and quickly grew into a full antivirus with a Windows version of its own. Platform365 followed: an office suite with Present and EasyWrite that works offline and keeps your files on your device. Today we build both in the open, and we're working on what comes next.</p>
     </div>
   </section>
 
@@ -378,10 +485,10 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="wrap">
       <div class="section-head reveal">
         <h2>Get in touch.</h2>
-        <p>Found a bug, a false positive or a threat we missed? Want to work with us? We read every message.</p>
+        <p>Questions about Agamemnon or Platform365? Found a bug or a threat we missed? Want to work with us? We read every message.</p>
       </div>
       <div class="hero-actions reveal">
-        <a class="pill solid" href="mailto:atheneofficial@proton.me">atheneofficial@proton.me</a>
+        <a class="pill solid" href="mailto:athenesoftworks@gmail.com?subject=Athene%20Softworks">athenesoftworks@gmail.com</a>
         <a class="pill" href="https://github.com/Agamemnon-Intelligence" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
@@ -395,11 +502,12 @@ footer p { margin: .3rem 0; max-width: 60rem; }
       <ul>
         <li><a href="#top">Home</a></li>
         <li><a href="#agamemnon">Agamemnon</a></li>
+        <li><a href="#platform365">Platform365</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
     <p>Copyright © <span id="year">2026</span> Athene Softworks. All rights reserved.</p>
-    <p>Agamemnon is free software released under the GNU General Public License v2.0. Malware hashes come from MalwareBazaar by abuse.ch; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
+    <p>Agamemnon is free software released under the GNU General Public License v2.0; Platform365 is released under the MIT license. Malware hashes come from MalwareBazaar by abuse.ch; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
   </div>
 </footer>
 
