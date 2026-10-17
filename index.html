@@ -4,16 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Athene Softworks</title>
-<meta name="description" content="Athene Softworks builds simple, secure desktop software. Our products: Agamemnon, a free, open-source antivirus for macOS and Windows, and Platform365, an offline office suite in your browser.">
+<meta name="description" content="Athene Softworks builds simple, secure software. Our products: Agamemnon, a free, open-source antivirus for macOS and Windows, and Platform365, an offline office suite in your browser.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
 <meta property="og:title" content="Athene Softworks">
 <meta property="og:description" content="Simple, secure software. Meet Agamemnon, free antivirus for macOS and Windows, and the Platform365 office suite.">
 <link rel="icon" href="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png">
+<script>
+/* Apply the saved language before first paint. */
+(function () { var d = document.documentElement; d.classList.add('js'); try { if (localStorage.getItem('athene-lang') === 'tr') d.lang = 'tr'; } catch (e) {} })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Red+Hat+Text:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&family=Red+Hat+Text:wght@300..700&display=swap">
 <style>
 :root {
   --bg: #0b1020;
@@ -26,13 +30,18 @@
   --blue-2: #2545a8;
   --blue-3: #4c74e8;
   --gold: #e8b04b;
+  --gold-2: #f3c97a;
   --green: #22c55e;
+  --red: #ff5d7c;
   --radius: 999px;
   --display: "Red Hat Display", system-ui, sans-serif;
   --body: "Red Hat Text", system-ui, sans-serif;
+  /* Honey: slow start, long, soft settle. */
+  --honey: cubic-bezier(.16, 1, .3, 1);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
 body {
   margin: 0;
   background: var(--bg);
@@ -48,35 +57,49 @@ h1, h2, h3 { font-family: var(--display); line-height: 1.1; margin: 0; letter-sp
 /* ---------- Nav ---------- */
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 20;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem clamp(1rem, 4vw, 2.5rem);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .9rem clamp(1rem, 4vw, 2.5rem);
   background: rgba(11,16,32,.72);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
-  transition: border-color .2s, transform .3s;
+  transition: border-color .3s, transform .6s var(--honey);
 }
 .nav.scrolled { border-color: var(--line); }
 .nav.hidden { transform: translateY(-100%); }
 .wordmark {
   font-family: var(--display); font-weight: 600; font-size: .95rem;
-  letter-spacing: .18em; text-transform: uppercase; text-decoration: none;
+  letter-spacing: .14em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
 }
+.nav-right { display: flex; align-items: center; gap: 1.6rem; }
 .nav ul { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
-.nav ul a { text-decoration: none; color: var(--muted); font-size: .92rem; transition: color .15s; }
+.nav ul a { text-decoration: none; color: var(--muted); font-size: .95rem; transition: color .2s; }
 .nav ul a:hover { color: var(--text); }
+.lang {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .35rem .7rem .35rem .4rem; border-radius: var(--radius);
+  border: 1px solid var(--line); background: rgba(255,255,255,.04); color: var(--text);
+  font: 600 .78rem var(--display); letter-spacing: .06em; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.lang:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
+.lang svg { width: 22px; height: 15px; border-radius: 3px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,.15); }
+.lang .flag-tr { display: none; }
+html[lang="tr"] .lang .flag-tr { display: block; }
+html[lang="tr"] .lang .flag-gb { display: none; }
 
 /* ---------- Pills ---------- */
 .pill {
-  display: inline-flex; align-items: center; gap: .5rem;
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
   padding: .7rem 1.4rem; border-radius: var(--radius);
-  border: 1.5px solid rgba(255,255,255,.55);
-  font: 500 .92rem var(--display); text-decoration: none; color: #fff;
-  transition: background .15s, border-color .15s, transform .15s;
+  border: 1.5px solid rgba(255,255,255,.55); background: transparent; cursor: pointer;
+  font: 600 .92rem var(--display); text-decoration: none; color: #fff;
+  transition: background .25s, border-color .25s, transform .25s var(--honey);
 }
 .pill:hover { background: rgba(255,255,255,.1); border-color: #fff; }
 .pill:active { transform: translateY(1px); }
 .pill.solid { background: #fff; color: var(--bg); border-color: #fff; }
 .pill.solid:hover { background: #dfe6ff; }
+.pill.sm { padding: .5rem 1.05rem; font-size: .85rem; }
 .pill svg { width: 1em; height: 1em; flex: none; }
 
 /* ---------- Hero ---------- */
@@ -103,27 +126,27 @@ h1, h2, h3 { font-family: var(--display); line-height: 1.1; margin: 0; letter-sp
   content: ""; position: absolute; inset: 0;
   background: radial-gradient(50% 50% at 50% 50%, transparent 30%, var(--bg) 85%);
 }
-.hero-icon { position: relative; z-index: 1; width: min(52%, 300px); filter: drop-shadow(0 30px 60px rgba(37,69,168,.55)); animation: float 7s ease-in-out infinite; }
+.hero-icon { position: relative; z-index: 1; width: min(52%, 300px); filter: drop-shadow(0 30px 60px rgba(37,69,168,.55)); animation: float 9s ease-in-out infinite; }
 @keyframes float { 50% { transform: translateY(-14px); } }
 
 /* ---------- Sections ---------- */
 section { scroll-margin-top: 4rem; }
 .wrap { width: min(1120px, 100% - 2rem); margin-inline: auto; }
 .section { padding: clamp(4.5rem, 10vw, 7.5rem) 0; }
-.section-head h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; color: var(--gold); }
+.section.compact { padding: clamp(3rem, 7vw, 5rem) 0; }
+.section-head h2 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); font-weight: 900; letter-spacing: -.02em; color: var(--gold); }
 .section-head p { color: var(--muted); margin: .8rem 0 0; max-width: 36rem; }
+.compact .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.compact .section-head p { font-size: .95rem; margin-top: .5rem; }
 
-/* What we do */
-.services { list-style: none; margin: 3rem 0 0; padding: 0; border-top: 1px solid var(--line); }
-.services li {
-  display: grid; grid-template-columns: 3.5rem 1fr 1.6fr; gap: 1.5rem; align-items: baseline;
-  padding: 1.8rem 0; border-bottom: 1px solid var(--line);
-}
-.services .num { font: 500 .85rem var(--display); color: var(--blue-3); letter-spacing: .08em; }
-.services h3 { font-size: 1.35rem; font-weight: 600; }
-.services p { margin: 0; color: var(--muted); }
+/* What we do (compact) */
+.services { list-style: none; margin: 1.8rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.services li { padding: 1.2rem 1.2rem 1.3rem; border-radius: 16px; border: 1px solid var(--line); background: rgba(255,255,255,.02); }
+.services .num { font: 600 .72rem var(--display); color: var(--blue-3); letter-spacing: .1em; }
+.services h3 { font-size: 1.02rem; font-weight: 700; margin: .45rem 0 .35rem; }
+.services p { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.55; }
 
-/* Product */
+/* Agamemnon */
 .product { background: var(--bg-2); border-block: 1px solid var(--line); }
 .product-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; margin-top: 3rem; }
 .product-card {
@@ -132,11 +155,11 @@ section { scroll-margin-top: 4rem; }
   border: 1px solid var(--line); text-align: center;
 }
 .product-card img { width: 160px; margin: 0 auto 1.4rem; }
-.product-card h3 { font-size: 2rem; font-weight: 600; }
+.product-card h3 { font-size: 2rem; font-weight: 700; }
 .product-card .tagline { color: var(--muted); margin: .5rem 0 1.4rem; }
 .badges { display: flex; justify-content: center; gap: .5rem; flex-wrap: wrap; }
 .badge {
-  font: 500 .75rem var(--display); letter-spacing: .04em;
+  font: 600 .75rem var(--display); letter-spacing: .04em;
   padding: .3rem .75rem; border-radius: var(--radius);
   background: rgba(255,255,255,.06); border: 1px solid var(--line); color: var(--muted);
 }
@@ -148,180 +171,246 @@ section { scroll-margin-top: 4rem; }
   background: rgba(76,116,232,.14); color: var(--blue-3);
 }
 .features .ico svg { width: 1.2rem; height: 1.2rem; }
-.features strong { font-family: var(--display); font-weight: 600; display: block; }
+.features strong { font-family: var(--display); font-weight: 700; display: block; }
 .features span { color: var(--muted); font-size: .95rem; }
 
-/* Downloads */
 .downloads { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 3.5rem; }
 .dl {
   border-radius: 22px; padding: 1.8rem; background: var(--panel); border: 1px solid var(--line);
-  display: flex; flex-direction: column; gap: 1rem; transition: border-color .2s;
+  display: flex; flex-direction: column; gap: 1rem;
 }
 .dl.yours { border-color: rgba(232,176,75,.55); box-shadow: 0 0 0 4px rgba(232,176,75,.08); }
 .dl-top { display: flex; align-items: center; gap: .9rem; }
-.dl-top svg { width: 2rem; height: 2rem; color: #fff; }
-.dl h3 { font-size: 1.3rem; font-weight: 600; }
+.dl-top svg { width: 2rem; height: 2rem; color: #fff; flex: none; }
+.dl h3 { font-size: 1.3rem; font-weight: 700; }
 .dl .meta { color: var(--muted); font-size: .88rem; }
-.dl .yours-tag { margin-left: auto; font: 500 .72rem var(--display); color: var(--gold); letter-spacing: .06em; text-transform: uppercase; display: none; }
+.dl .yours-tag { margin-left: auto; font: 600 .72rem var(--display); color: var(--gold); letter-spacing: .06em; text-transform: uppercase; display: none; white-space: nowrap; }
 .dl.yours .yours-tag { display: inline; }
 .dl-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: auto; }
 .dl .note { color: var(--muted); font-size: .85rem; margin: 0; }
 .dl .pill { border-color: rgba(255,255,255,.3); }
 
-/* Platform365 */
-.p365 { --p-red: #ff5d7c; --p-present: #9a93ff; --p-write: #6f9dff; }
-.p365 .section-head h2 { color: var(--p-red); }
-.p365 .features .ico { background: rgba(255,93,124,.12); color: var(--p-red); }
-.p-logo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 120px; height: 120px; padding: 18px; margin: 0 auto 1.4rem; border-radius: 28px; background: #fff; }
-.p-logo i { border-radius: 9px; background: #5b4cf0; }
+/* Platform365 (compact) */
+.p365-card {
+  margin-top: 1.8rem; border-radius: 20px; border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(255,93,124,.09), rgba(111,157,255,.05) 60%, transparent), var(--panel);
+  padding: 1.5rem; display: grid; grid-template-columns: auto 1fr auto; gap: 1.2rem 1.5rem; align-items: center;
+}
+.p-logo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; width: 60px; height: 60px; padding: 9px; border-radius: 15px; background: #fff; }
+.p-logo i { border-radius: 5px; background: #5b4cf0; }
 .p-logo i:nth-child(2) { background: #2f6bf2; }
 .p-logo i:nth-child(3) { background: #f97316; }
 .p-logo i:nth-child(4) { background: #c8174a; }
-.p365 .product-card { background: linear-gradient(160deg, #3a1426, var(--panel) 60%); }
-.p-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 3.5rem; }
-.p-col { --c: var(--p-present); border-radius: 22px; padding: 1.8rem; background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--c); }
-.p-col.write { --c: var(--p-write); }
-.p-col small { font: 500 .75rem var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--c); }
-.p-col h3 { font-size: 1.35rem; font-weight: 600; margin: .3rem 0 1.3rem; }
-.p-col dl { margin: 0; display: grid; gap: 1rem; }
-.p-col dt { font-family: var(--display); font-weight: 600; }
-.p-col dd { margin: .15rem 0 0; color: var(--muted); font-size: .95rem; }
-.p365 code { font-size: .85em; background: rgba(255,255,255,.07); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; }
-.p-start {
-  margin-top: 1.2rem; border-radius: 22px; padding: 1.8rem;
-  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
-  background: linear-gradient(120deg, rgba(255,93,124,.16), rgba(111,157,255,.1)); border: 1px solid var(--line);
-}
-.p-start h3 { font-size: 1.3rem; font-weight: 600; }
-.p-start p { margin: .3rem 0 0; color: var(--muted); max-width: 38rem; }
-.p-start .meta { font-size: .85rem; color: var(--muted); margin-top: .6rem; }
+.p365-card h3 { font-size: 1.3rem; font-weight: 700; }
+.p365-card .sub { color: var(--muted); font-size: .9rem; margin: .2rem 0 0; }
+.p-chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 0; padding: 0; }
+.p-chips li { font-size: .8rem; padding: .3rem .7rem; border-radius: var(--radius); border: 1px solid var(--line); background: rgba(255,255,255,.03); color: #c6cde0; }
+.p-apps { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+.p-app small { font: 600 .7rem var(--display); letter-spacing: .1em; text-transform: uppercase; color: #9a93ff; }
+.p-app.write small { color: #6f9dff; }
+.p-app p { margin: .25rem 0 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
 
-/* History */
-.history { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
+/* History (compact) */
+.history { display: grid; grid-template-columns: .8fr 1.2fr; }
 .history-art {
   position: relative; overflow: hidden; background: #070b17;
-  display: grid; place-items: center;
+  display: grid; place-items: center; min-height: 300px;
 }
-.history-art svg { width: min(70%, 380px); height: auto; color: rgba(232,176,75,.85); }
+.history-art svg { position: relative; width: min(46%, 200px); height: auto; color: rgba(232,176,75,.85); }
 .history-art::before {
   content: ""; position: absolute; inset: 0;
   background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.2px);
   background-size: 18px 18px;
 }
 .history-panel {
-  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 3.5rem);
   background: linear-gradient(200deg, var(--blue-3) 0%, var(--blue-2) 45%, var(--blue) 100%);
   display: flex; flex-direction: column; justify-content: center;
 }
-.history-panel h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; text-align: right; margin-bottom: 1.8rem; }
-.history-panel p { margin: 0 0 1.2rem; color: #e3e9fb; text-align: justify; hyphens: auto; }
+.history-panel h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 900; letter-spacing: -.02em; text-align: right; margin-bottom: 1.1rem; }
+.history-panel p { margin: 0 0 .9rem; color: #e3e9fb; font-size: .95rem; }
 .history-panel b { color: #fff; }
 
-/* Contact */
-.contact { text-align: center; }
-.contact .section-head p { margin-inline: auto; }
-.contact .hero-actions { justify-content: center; margin-top: 2rem; }
+/* Founders (small) */
+.founders { text-align: center; }
+.founders h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 900; letter-spacing: -.02em; }
+.founders .sub { color: var(--muted); font-size: .92rem; margin: .4rem 0 0; }
+.founder-row { display: flex; justify-content: center; align-items: center; gap: clamp(1.5rem, 6vw, 4.5rem); margin-top: 1.8rem; flex-wrap: wrap; }
+.founder { display: flex; align-items: center; gap: 1rem; text-decoration: none; border-radius: 999px; padding: .4rem; transition: background .4s var(--honey); }
+.founder:hover { background: rgba(255,255,255,.05); }
+.founder.mirror { flex-direction: row-reverse; }
+.founder img { width: 72px; height: 72px; border-radius: 50%; border: 2px solid rgba(232,176,75,.6); background: var(--panel); transition: transform .6s var(--honey); }
+.founder:hover img { transform: scale(1.06) rotate(-2deg); }
+.founder .who { display: grid; text-align: left; line-height: 1.25; }
+.founder.mirror .who { text-align: right; }
+.founder b { font: 700 1.05rem var(--display); }
+.founder span { color: var(--muted); font-size: .85rem; }
+.founder .gh { display: inline-flex; align-items: center; gap: .3rem; color: var(--gold-2); font-size: .8rem; margin-top: .15rem; }
+.founder.mirror .gh { justify-content: flex-end; }
+.founder .gh svg { width: .9em; height: .9em; }
+
+/* Contact form */
+.contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+.contact .section-head p { max-width: 24rem; }
+.contact-alt { margin-top: 1.6rem; color: var(--muted); font-size: .9rem; }
+.contact-alt a { color: var(--gold-2); text-underline-offset: 3px; }
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1rem; }
+.field { display: grid; gap: .45rem; }
+.field.full { grid-column: 1 / -1; }
+.field label { font: 700 .95rem var(--display); color: var(--gold); }
+.field label .req { color: var(--red); margin-left: .1rem; }
+.field input, .field textarea {
+  width: 100%; font: 400 1rem var(--body); color: var(--text);
+  background: transparent; border: 1.5px solid rgba(243,201,122,.55); border-radius: 28px;
+  padding: .85rem 1.3rem; outline: none;
+  transition: border-color .3s, box-shadow .3s, background .3s;
+}
+.field textarea { min-height: 150px; resize: vertical; border-radius: 22px; }
+.field input::placeholder, .field textarea::placeholder { color: rgba(243,201,122,.45); }
+.field input:focus, .field textarea:focus { border-color: var(--gold-2); box-shadow: 0 0 0 4px rgba(232,176,75,.14); background: rgba(232,176,75,.03); }
+.field.invalid input, .field.invalid textarea { border-color: var(--red); }
+.form-foot { grid-column: 1 / -1; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.form-foot .pill.solid { background: var(--gold); border-color: var(--gold); color: #1a1406; min-width: 9rem; }
+.form-foot .pill.solid:hover { background: var(--gold-2); border-color: var(--gold-2); }
+.form-note { color: var(--muted); font-size: .82rem; margin: 0; flex: 1 1 14rem; }
+.form-error { grid-column: 1 / -1; color: var(--red); font-size: .88rem; margin: -.3rem 0 0; min-height: 1.2em; }
 
 /* Footer */
 footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; color: var(--muted); font-size: .85rem; }
 .foot-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
-.foot-top ul { display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0; }
+.foot-top ul { display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
 .foot-top a { text-decoration: none; }
 .foot-top a:hover { color: var(--text); }
 footer p { margin: .3rem 0; max-width: 60rem; }
 
-/* Reveal */
-.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-.js .reveal.in { opacity: 1; transform: none; }
+/* ---------- Honey reveal ---------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(56px) scale(.97);
+  filter: blur(10px);
+  transition:
+    opacity 1.6s var(--honey) var(--d, 0s),
+    transform 2.2s var(--honey) var(--d, 0s),
+    filter 1.6s var(--honey) var(--d, 0s);
+  will-change: opacity, transform, filter;
+}
+.js .reveal.in { opacity: 1; transform: none; filter: none; }
+/* Text that "drips" in from slightly above, like honey settling. */
+.js .reveal.drip { transform: translateY(-28px) scaleY(1.06); transform-origin: top; }
+.js .reveal.drip.in { transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .hero-icon { animation: none; }
-  .js .reveal { opacity: 1; transform: none; transition: none; }
-  html { scroll-behavior: auto; }
+  .js .reveal, .js .reveal.drip { opacity: 1; transform: none; filter: none; transition: none; }
 }
 
 /* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .services { grid-template-columns: 1fr 1fr; }
+  .nav ul { display: none; }
+}
 @media (max-width: 860px) {
-  .hero, .history, .product-grid, .downloads, .p-cols { grid-template-columns: 1fr; }
+  .hero, .history, .product-grid, .downloads, .contact-grid { grid-template-columns: 1fr; }
   .hero { min-height: auto; }
   .hero-panel { min-height: 88svh; }
   .dots { min-height: 46vh; }
-  .history-art { min-height: 40vh; order: 2; }
-  .services li { grid-template-columns: 2.5rem 1fr; }
-  .services p { grid-column: 2; }
+  .history-art { min-height: 220px; order: 2; }
   .history-panel h2 { text-align: left; }
+  .p365-card { grid-template-columns: auto 1fr; }
+  .p365-card > .pill { grid-column: 1 / -1; justify-self: start; }
 }
-@media (max-width: 520px) {
-  .nav ul { gap: 1rem; }
-  .nav ul li:nth-child(-n+2) { display: none; }
-  .hero-actions .pill { flex: 1; justify-content: center; }
+@media (max-width: 560px) {
+  .services, .p-apps, form { grid-template-columns: 1fr; }
+  .hero-actions .pill { flex: 1; }
+  .wordmark { font-size: .82rem; letter-spacing: .1em; }
 }
 </style>
-<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
 <nav class="nav" id="nav" aria-label="Main">
   <a class="wordmark" href="#top">Athene Softworks</a>
-  <ul>
-    <li><a href="#what">What we do</a></li>
-    <li><a href="#agamemnon">Agamemnon</a></li>
-    <li><a href="#platform365">Platform365</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul>
+      <li><a href="#what" data-i18n="nav.what">What we do</a></li>
+      <li><a href="#agamemnon">Agamemnon</a></li>
+      <li><a href="#platform365">Platform365</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <button class="lang" id="lang" type="button" aria-label="Türkçe'ye geç">
+      <svg class="flag-gb" viewBox="0 0 60 40" aria-hidden="true">
+        <clipPath id="gb-c"><rect width="60" height="40"/></clipPath>
+        <clipPath id="gb-t"><path d="M30 20h30v20zv20H0zH0V0zV0h30z"/></clipPath>
+        <g clip-path="url(#gb-c)">
+          <rect width="60" height="40" fill="#012169"/>
+          <path d="M0 0l60 40m0-40L0 40" stroke="#fff" stroke-width="8"/>
+          <path d="M0 0l60 40m0-40L0 40" clip-path="url(#gb-t)" stroke="#C8102E" stroke-width="5"/>
+          <path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="12"/>
+          <path d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="7"/>
+        </g>
+      </svg>
+      <svg class="flag-tr" viewBox="0 0 1200 800" aria-hidden="true">
+        <rect width="1200" height="800" fill="#E30A17"/>
+        <circle cx="300" cy="400" r="200" fill="#fff"/>
+        <circle cx="350" cy="400" r="160" fill="#E30A17"/>
+        <polygon fill="#fff" points="400,400 469.1,377.5 469.1,304.9 511.8,363.7 580.9,341.2 538.2,400 580.9,458.8 511.8,436.3 469.1,495.1 469.1,422.5"/>
+      </svg>
+      <span data-i18n="lang.code">EN</span>
+    </button>
+  </div>
 </nav>
 
 <main id="top">
   <header class="hero">
     <div class="hero-panel">
       <div>
-        <svg class="mark" viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="mark reveal" viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M42 5 72 15v24c0 19-13 33-30 40C25 72 12 58 12 39V15Z"/>
           <path d="M29 58 42 24l13 34M33.5 47h17"/>
         </svg>
-        <h1>Security that stays <span class="accent">on your computer.</span></h1>
-        <p>Athene Softworks is a team of security researchers building simple, secure and enjoyable software that runs on your own device. Open source, free, and yours to inspect.</p>
+        <h1 class="reveal drip" data-i18n="hero.title">Security that stays <span class="accent">on your computer.</span></h1>
+        <p class="reveal" data-i18n="hero.lead">Athene Softworks is a team of security researchers building simple, secure and enjoyable software that runs on your own device. Open source, free, and yours to inspect.</p>
       </div>
-      <div class="hero-actions">
-        <a class="pill" href="#what">See more
+      <div class="hero-actions reveal">
+        <a class="pill" href="#what"><span data-i18n="hero.more">See more</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
         </a>
-        <a class="pill" href="#agamemnon">Get Agamemnon</a>
+        <a class="pill" href="#agamemnon" data-i18n="hero.get">Get Agamemnon</a>
       </div>
     </div>
     <div class="dots" aria-hidden="true">
-      <img class="hero-icon" src="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png" alt="" width="300" height="300" decoding="async">
+      <img class="hero-icon reveal" src="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png" alt="" width="300" height="300" decoding="async">
     </div>
   </header>
 
-  <section class="section" id="what">
+  <section class="section compact" id="what">
     <div class="wrap">
-      <div class="section-head reveal">
-        <h2>What we do.</h2>
-        <p>We are a small team that works across many areas of security. These are the things we care about most.</p>
+      <div class="section-head reveal drip">
+        <h2 data-i18n="what.title">What we do.</h2>
+        <p data-i18n="what.sub">A small team working across many areas of security. These are the things we care about most.</p>
       </div>
       <ul class="services">
-        <li class="reveal"><span class="num">01</span><h3>Desktop protection.</h3><p>Antivirus that runs on your own machine, checks downloads as they land and keeps threats in an encrypted quarantine you control.</p></li>
-        <li class="reveal"><span class="num">02</span><h3>Private networking.</h3><p>Encrypted DNS with trusted resolvers, built to fail closed so your lookups never quietly leak in plain text.</p></li>
-        <li class="reveal"><span class="num">03</span><h3>Threat research.</h3><p>We study real malware families on macOS and Windows and turn what we learn into detection rules anyone can read.</p></li>
-        <li class="reveal"><span class="num">04</span><h3>Open source, always.</h3><p>Every product we ship is free software under the GPL. You can read the code, build it yourself and check our work.</p></li>
+        <li class="reveal"><span class="num">01</span><h3 data-i18n="what.1t">Desktop protection</h3><p data-i18n="what.1p">Antivirus that runs on your own machine and keeps threats in a quarantine you control.</p></li>
+        <li class="reveal"><span class="num">02</span><h3 data-i18n="what.2t">Private networking</h3><p data-i18n="what.2p">Encrypted DNS that fails closed, so lookups never leak in plain text.</p></li>
+        <li class="reveal"><span class="num">03</span><h3 data-i18n="what.3t">Threat research</h3><p data-i18n="what.3p">We study real malware on macOS and Windows and turn it into readable rules.</p></li>
+        <li class="reveal"><span class="num">04</span><h3 data-i18n="what.4t">Open source, always</h3><p data-i18n="what.4p">Everything we ship is free software. Read the code and check our work.</p></li>
       </ul>
     </div>
   </section>
 
   <section class="section product" id="agamemnon">
     <div class="wrap">
-      <div class="section-head reveal">
-        <h2>Meet Agamemnon.</h2>
-        <p>Our first product. A free, open-source antivirus for macOS and Windows.</p>
+      <div class="section-head reveal drip">
+        <h2 data-i18n="ag.title">Meet Agamemnon.</h2>
+        <p data-i18n="ag.sub">Our first product. A free, open-source antivirus for macOS and Windows.</p>
       </div>
 
       <div class="product-grid">
         <div class="product-card reveal">
-          <img src="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png" alt="Agamemnon icon" width="160" height="160" loading="lazy" decoding="async">
+          <img src="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png" alt="Agamemnon" width="160" height="160" loading="lazy" decoding="async">
           <h3>Agamemnon</h3>
-          <p class="tagline">Advanced antivirus, built to stay out of your way.</p>
+          <p class="tagline" data-i18n="ag.tag">Advanced antivirus, built to stay out of your way.</p>
           <div class="badges">
-            <span class="badge live">Available now</span>
+            <span class="badge live" data-i18n="badge.live">Available now</span>
             <span class="badge">macOS 13+</span>
             <span class="badge">Windows 10 &amp; 11</span>
             <span class="badge">GPL-2.0</span>
@@ -331,23 +420,23 @@ footer p { margin: .3rem 0; max-width: 60rem; }
         <ul class="features">
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
-            <div><strong>Malware scanning</strong><span>Quick, full, custom and scheduled scans, checked against more than a million known-malware hashes from MalwareBazaar, plus optional ClamAV.</span></div>
+            <div><strong data-i18n="ag.f1t">Malware scanning</strong><span data-i18n="ag.f1p">Quick, full, custom and scheduled scans, checked against more than a million known-malware hashes from MalwareBazaar, plus optional ClamAV.</span></div>
           </li>
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span>
-            <div><strong>Download protection</strong><span>New files in Downloads are scanned as soon as they finish. Dangerous ones go straight to quarantine.</span></div>
+            <div><strong data-i18n="ag.f2t">Download protection</strong><span data-i18n="ag.f2p">New files in Downloads are scanned as soon as they finish. Dangerous ones go straight to quarantine.</span></div>
           </li>
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg></span>
-            <div><strong>Archive and installer scanning</strong><span>Looks inside ZIP, RAR, 7Z, ISO, DMG, PKG, MSI and more, up to three levels deep, with zip-bomb limits.</span></div>
+            <div><strong data-i18n="ag.f3t">Archive and installer scanning</strong><span data-i18n="ag.f3p">Looks inside ZIP, RAR, 7Z, ISO, DMG, PKG, MSI and more, up to three levels deep, with zip-bomb limits.</span></div>
           </li>
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-            <div><strong>Encrypted DNS</strong><span>DNS-over-HTTPS or TLS with Cloudflare, Quad9, Mullvad, AdGuard and others, including malware-blocking resolvers.</span></div>
+            <div><strong data-i18n="ag.f4t">Encrypted DNS</strong><span data-i18n="ag.f4p">DNS-over-HTTPS or TLS with Cloudflare, Quad9, Mullvad, AdGuard and others, including malware-blocking resolvers.</span></div>
           </li>
           <li class="reveal">
             <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
-            <div><strong>Admin and startup alerts</strong><span>Warns you when an app asks for administrator rights or sets itself up to start automatically.</span></div>
+            <div><strong data-i18n="ag.f5t">Admin and startup alerts</strong><span data-i18n="ag.f5p">Warns you when an app asks for administrator rights or sets itself up to start automatically.</span></div>
           </li>
         </ul>
       </div>
@@ -356,115 +445,71 @@ footer p { margin: .3rem 0; max-width: 60rem; }
         <div class="dl reveal" data-os="mac">
           <div class="dl-top">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.2 1-4.1 2.5-1.8 3-.5 7.5 1.2 10 .8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.4-.9-2.4-4ZM14 5.2c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4Z"/></svg>
-            <div><h3>macOS</h3><div class="meta">Universal · Apple silicon &amp; Intel · macOS 13+</div></div>
-            <span class="yours-tag">Your system</span>
+            <div><h3>macOS</h3><div class="meta" data-i18n="dl.macMeta">Universal · Apple silicon &amp; Intel · macOS 13+</div></div>
+            <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
-          <p class="note">First launch: open System Settings › Privacy &amp; Security and click Open Anyway.</p>
+          <p class="note" data-i18n="dl.macNote">First launch: open System Settings › Privacy &amp; Security and click Open Anyway.</p>
           <div class="dl-actions">
-            <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-macOS/releases/download/nightly/Agamemnon.dmg">Download .dmg</a>
-            <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-macOS" target="_blank" rel="noopener">Source</a>
+            <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-macOS/releases/download/nightly/Agamemnon.dmg" data-i18n="dl.dmg">Download .dmg</a>
+            <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-macOS" target="_blank" rel="noopener" data-i18n="dl.source">Source</a>
           </div>
         </div>
 
-        <div class="dl reveal" data-os="win">
+        <div class="dl reveal" data-os="win" style="--d:.15s">
           <div class="dl-top">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.4 4.5v7H3zM11.3 4.4 21 3v8.5h-9.7zM3 12.4h7.4v7.1L3 18.5zM11.3 12.4H21V21l-9.7-1.4z"/></svg>
             <div><h3>Windows</h3><div class="meta">v1.0.1 · x64 · Windows 10 &amp; 11</div></div>
-            <span class="yours-tag">Your system</span>
+            <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
-          <p class="note">Installer sets up the protection service. Approve the one-time UAC prompt.</p>
+          <p class="note" data-i18n="dl.winNote">The installer sets up the protection service. Approve the one-time UAC prompt.</p>
           <div class="dl-actions">
-            <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v1.0.1/Agamemnon-1.0.1-Setup.exe">Download .exe</a>
+            <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v1.0.1/Agamemnon-1.0.1-Setup.exe" data-i18n="dl.exe">Download .exe</a>
             <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v1.0.1/Agamemnon-1.0.1-x64.msi">.msi</a>
-            <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows" target="_blank" rel="noopener">Source</a>
+            <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows" target="_blank" rel="noopener" data-i18n="dl.source">Source</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section p365" id="platform365">
+  <section class="section compact" id="platform365">
     <div class="wrap">
-      <div class="section-head reveal">
-        <h2>Meet Platform365.</h2>
-        <p>Present and EasyWrite: an office suite that runs in your browser, works offline and needs no account.</p>
+      <div class="section-head reveal drip">
+        <h2 data-i18n="p.title">Also from us: Platform365.</h2>
+        <p data-i18n="p.sub">An office suite that runs in your browser, works offline and needs no account.</p>
       </div>
-
-      <div class="product-grid">
-        <div class="product-card reveal">
-          <div class="p-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-          <h3>Platform365</h3>
-          <p class="tagline">Slides and documents, under one roof.</p>
-          <div class="badges">
-            <span class="badge live">Available now</span>
-            <span class="badge">Browser</span>
-            <span class="badge">Offline</span>
-            <span class="badge">MIT</span>
-          </div>
-        </div>
-
-        <ul class="features">
-          <li class="reveal">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0M3 3l18 18"/></svg></span>
-            <div><strong>No account, no setup</strong><span>Use it right away in your browser, without signing up.</span></div>
-          </li>
-          <li class="reveal">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.6a10 10 0 0 1 14 0M8.5 16.4a5 5 0 0 1 7 0M12 20h.01M3 3l18 18"/></svg></span>
-            <div><strong>Works offline</strong><span>Install it once and it opens on the train, on a plane or in the classroom.</span></div>
-          </li>
-          <li class="reveal">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
-            <div><strong>Your files stay with you</strong><span>Everything is stored on your device and never sent to the cloud.</span></div>
-          </li>
-          <li class="reveal">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M9 14l2 2 4-4"/></svg></span>
-            <div><strong>Works with Word and PowerPoint</strong><span>Opens, edits and saves .docx and .pptx files in the same format.</span></div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="p-cols">
-        <div class="p-col reveal">
-          <small>Present · Slides</small>
-          <h3>From idea to stage, in minutes.</h3>
-          <dl>
-            <div><dt>Slides from text</dt><dd>Paste an outline: headings become slides and bullets become points. Crowded slides split on their own.</dd></div>
-            <div><dt>Presentation health check</dt><dd>Scores contrast, text size and crowding out of 100, and shows each problem in one click.</dd></div>
-            <div><dt>Pen, laser and magnifier</dt><dd>Draw on slides, highlight, zoom into an area and jump to any slide from the grid.</dd></div>
-            <div><dt>Live captions and rehearsal</dt><dd>Your speech becomes captions while you present, and rehearsal mode times every slide.</dd></div>
-            <div><dt>Single-file web presentation</dt><dd>Share your deck as one .html file that opens in any browser.</dd></div>
-          </dl>
-        </div>
-        <div class="p-col write reveal">
-          <small>EasyWrite · Documents</small>
-          <h3>You write; it takes care of the formatting.</h3>
-          <dl>
-            <div><dt>“/” commands</dt><dd>Headings, tables, callouts, to-do lists and a table of contents, all one slash away.</dd></div>
-            <div><dt>Write in Markdown</dt><dd><code># heading</code> <code>- item</code> <code>**bold**</code> are formatted as you type.</dd></div>
-            <div><dt>Turkish readability</dt><dd>Ateşman score, with long sentences, filler words and repetitions highlighted.</dd></div>
-            <div><dt>Inline math</dt><dd>Type <code>1250*12%=</code> and the result appears on its own.</dd></div>
-            <div><dt>Focus, dictation and read-aloud</dt><dd>Typewriter mode, writing by voice, listening to your document, plus writing goals and Pomodoro.</dd></div>
-          </dl>
-        </div>
-      </div>
-
-      <div class="p-start reveal">
+      <div class="p365-card reveal">
+        <div class="p-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <div>
-          <h3>Better together.</h3>
-          <p>Your document's headings become slides in one click, and a presentation turns back into an editable document with its speaker notes. Version history, search across all files and one-click backups are built in.</p>
-          <div class="meta">Open source · MIT license</div>
+          <h3>Platform365</h3>
+          <p class="sub" data-i18n="p.tag">Present + EasyWrite · Open source, MIT license</p>
         </div>
-        <a class="pill solid" href="https://mertyesil.com.tr/platform365/Present-2.0.0/" target="_blank" rel="noopener">Open Platform365
+        <a class="pill sm solid" href="https://mertyesil.com.tr/platform365/Present-2.0.0/" target="_blank" rel="noopener"><span data-i18n="p.open">Open Platform365</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
         </a>
+        <ul class="p-chips">
+          <li data-i18n="p.c1">No account</li>
+          <li data-i18n="p.c2">Works offline</li>
+          <li data-i18n="p.c3">Files stay on your device</li>
+          <li data-i18n="p.c4">.docx and .pptx</li>
+        </ul>
+        <div class="p-apps">
+          <div class="p-app">
+            <small data-i18n="p.prTag">Present · Slides</small>
+            <p data-i18n="p.prText">Slides from an outline, a presentation health check, pen and laser on stage, live captions and rehearsal timing.</p>
+          </div>
+          <div class="p-app write">
+            <small data-i18n="p.ewTag">EasyWrite · Documents</small>
+            <p data-i18n="p.ewText">Slash commands, Markdown as you type, Turkish readability scores, inline math, focus mode and dictation.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="history" id="history">
     <div class="history-art" aria-hidden="true">
-      <!-- Owl of Athene, line art -->
-      <svg viewBox="0 0 200 220" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="reveal" viewBox="0 0 200 220" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
         <path d="M50 40 70 62M150 40l-20 22"/>
         <path d="M70 62c-22 14-30 40-28 70 3 44 28 70 58 70s55-26 58-70c2-30-6-56-28-70-18-10-42-10-60 0Z"/>
         <circle cx="78" cy="98" r="20"/><circle cx="122" cy="98" r="20"/>
@@ -474,23 +519,75 @@ footer p { margin: .3rem 0; max-width: 60rem; }
         <path d="M66 202h-14M148 202h-14"/>
       </svg>
     </div>
-    <div class="history-panel reveal">
-      <h2>Our history.</h2>
-      <p><b>October 2026.</b> Athene Softworks was founded by Mert Yeşil and Miraz Bakış, two friends who wanted security software that is honest about what it does. Named after the goddess of wisdom, we name our products after the heroes of Greek myth.</p>
-      <p>Agamemnon started as a research project on macOS and quickly grew into a full antivirus with a Windows version of its own. Platform365 followed: an office suite with Present and EasyWrite that works offline and keeps your files on your device. Today we build both in the open, and we're working on what comes next.</p>
+    <div class="history-panel">
+      <h2 class="reveal drip" data-i18n="h.title">Our history.</h2>
+      <p class="reveal" data-i18n="h.p1"><b>October 2026.</b> Athene Softworks was founded by Mert Yeşil and Miraz Bakış, two friends who wanted security software that is honest about what it does. We are named after the goddess of wisdom, and our products after the heroes of Greek myth.</p>
+      <p class="reveal" data-i18n="h.p2">Agamemnon began as a research project on macOS and grew into a full antivirus for Mac and Windows. Platform365 followed. Today we build both in the open, and we're working on what comes next.</p>
+    </div>
+  </section>
+
+  <section class="section compact founders" id="founders">
+    <div class="wrap">
+      <div class="reveal drip">
+        <h2><span data-i18n="fo.title">Founded by</span> <span class="accent">Miraz &amp; Mert</span></h2>
+        <p class="sub" data-i18n="fo.sub">Two friends, building in the open. Follow along on GitHub.</p>
+      </div>
+      <div class="founder-row">
+        <a class="founder reveal" href="https://github.com/mirazbakis" target="_blank" rel="noopener">
+          <img src="https://github.com/mirazbakis.png?size=144" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <span class="who">
+            <b>Miraz Bakış</b>
+            <span data-i18n="fo.role">Co-founder</span>
+            <span class="gh"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.5 15.6c.4 0 .5-.2.5-.4v-1.5c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.6 3.9.3.3.5.8.5 1.5v2.2c0 .2.1.5.6.4A8 8 0 0 0 8 0Z"/></svg>@mirazbakis</span>
+          </span>
+        </a>
+        <a class="founder mirror reveal" href="https://github.com/mertyesileducation" target="_blank" rel="noopener">
+          <img src="https://github.com/mertyesileducation.png?size=144" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <span class="who">
+            <b>Mert Yeşil</b>
+            <span data-i18n="fo.role">Co-founder</span>
+            <span class="gh"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.5 15.6c.4 0 .5-.2.5-.4v-1.5c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.6 3.9.3.3.5.8.5 1.5v2.2c0 .2.1.5.6.4A8 8 0 0 0 8 0Z"/></svg>@mertyesileducation</span>
+          </span>
+        </a>
+      </div>
     </div>
   </section>
 
   <section class="section contact" id="contact">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <h2>Get in touch.</h2>
-        <p>Questions about Agamemnon or Platform365? Found a bug or a threat we missed? Want to work with us? We read every message.</p>
+    <div class="wrap contact-grid">
+      <div class="section-head reveal drip">
+        <h2 data-i18n="c.title">Contact us.</h2>
+        <p data-i18n="c.sub">Questions about Agamemnon or Platform365, a bug, a threat we missed, or an idea to work together? Let us know. We usually reply within 24 to 48 hours.</p>
+        <p class="contact-alt"><span data-i18n="c.alt">Or write to us directly at</span> <a href="mailto:athenesoftworks@gmail.com">athenesoftworks@gmail.com</a></p>
       </div>
-      <div class="hero-actions reveal">
-        <a class="pill solid" href="mailto:athenesoftworks@gmail.com?subject=Athene%20Softworks">athenesoftworks@gmail.com</a>
-        <a class="pill" href="https://github.com/Agamemnon-Intelligence" target="_blank" rel="noopener">GitHub</a>
-      </div>
+
+      <form id="contact-form" class="reveal" novalidate>
+        <div class="field">
+          <label for="f-name"><span data-i18n="f.name">Name</span><span class="req">*</span></label>
+          <input id="f-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email"><span data-i18n="f.email">Email</span><span class="req">*</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-org" data-i18n="f.org">Organization</label>
+          <input id="f-org" name="org" autocomplete="organization" data-i18n-ph="f.optional" placeholder="(optional)">
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="f.phone">Phone number</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" data-i18n-ph="f.optional" placeholder="(optional)">
+        </div>
+        <div class="field full">
+          <label for="f-msg"><span data-i18n="f.msg">Message</span><span class="req">*</span></label>
+          <textarea id="f-msg" name="message" required></textarea>
+        </div>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <div class="form-foot">
+          <button class="pill solid" type="submit" data-i18n="f.send">Send</button>
+          <p class="form-note" data-i18n="f.note">Opens Gmail with your message filled in, ready to send.</p>
+        </div>
+      </form>
     </div>
   </section>
 </main>
@@ -500,30 +597,162 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="foot-top">
       <span class="wordmark">Athene Softworks</span>
       <ul>
-        <li><a href="#top">Home</a></li>
+        <li><a href="#top" data-i18n="nav.home">Home</a></li>
         <li><a href="#agamemnon">Agamemnon</a></li>
         <li><a href="#platform365">Platform365</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </div>
-    <p>Copyright © <span id="year">2026</span> Athene Softworks. All rights reserved.</p>
-    <p>Agamemnon is free software released under the GNU General Public License v2.0; Platform365 is released under the MIT license. Malware hashes come from MalwareBazaar by abuse.ch; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
+    <p data-i18n="foot.copy">Copyright © 2026 Athene Softworks. All rights reserved.</p>
+    <p data-i18n="foot.legal">Agamemnon is free software released under the GNU General Public License v2.0; Platform365 is released under the MIT license. Malware hashes come from MalwareBazaar by abuse.ch; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script>
+var TR = {
+  'lang.code': 'TR',
+  'nav.what': 'Neler yapıyoruz',
+  'nav.contact': 'İletişim',
+  'nav.home': 'Ana sayfa',
+  'hero.title': 'Güvenlik, <span class="accent">bilgisayarınızda kalır.</span>',
+  'hero.lead': 'Athene Softworks, kendi cihazınızda çalışan sade, güvenli ve kullanması keyifli yazılımlar geliştiren bir güvenlik araştırmacıları ekibidir. Açık kaynaklı, ücretsiz ve incelemeniz için ortada.',
+  'hero.more': 'Daha fazlası',
+  'hero.get': "Agamemnon'u edinin",
+  'what.title': 'Neler yapıyoruz.',
+  'what.sub': 'Güvenliğin birçok alanında çalışan küçük bir ekibiz. En çok önem verdiklerimiz bunlar.',
+  'what.1t': 'Masaüstü koruması',
+  'what.1p': 'Kendi bilgisayarınızda çalışan ve tehditleri sizin yönettiğiniz bir karantinada tutan antivirüs.',
+  'what.2t': 'Gizli ağ trafiği',
+  'what.2p': 'Bağlantı koptuğunda kapanan şifreli DNS; sorgularınız asla açık metin olarak sızmaz.',
+  'what.3t': 'Tehdit araştırması',
+  'what.3p': "macOS ve Windows'taki gerçek zararlı yazılımları inceliyor, okunabilir kurallara dönüştürüyoruz.",
+  'what.4t': 'Her zaman açık kaynak',
+  'what.4p': 'Yayınladığımız her şey özgür yazılımdır. Kodu okuyun, işimizi kendiniz kontrol edin.',
+  'ag.title': "Agamemnon'la tanışın.",
+  'ag.sub': 'İlk ürünümüz. macOS ve Windows için ücretsiz, açık kaynaklı bir antivirüs.',
+  'ag.tag': 'Size engel olmadan çalışan gelişmiş antivirüs.',
+  'badge.live': 'Şimdi kullanılabilir',
+  'ag.f1t': 'Zararlı yazılım taraması',
+  'ag.f1p': "Hızlı, tam, özel ve zamanlanmış taramalar. Dosyalar, MalwareBazaar'ın bir milyondan fazla bilinen zararlı yazılım özetiyle ve isteğe bağlı olarak ClamAV ile karşılaştırılır.",
+  'ag.f2t': 'İndirme koruması',
+  'ag.f2p': 'İndirilenler klasörüne gelen yeni dosyalar, indirme biter bitmez taranır. Tehlikeli olanlar doğrudan karantinaya alınır.',
+  'ag.f3t': 'Arşiv ve yükleyici taraması',
+  'ag.f3p': "ZIP, RAR, 7Z, ISO, DMG, PKG, MSI ve daha fazlasının içine üç kat derinliğe kadar bakar; zip bombalarına karşı sınırları vardır.",
+  'ag.f4t': 'Şifreli DNS',
+  'ag.f4p': 'Cloudflare, Quad9, Mullvad, AdGuard ve diğerleriyle DNS-over-HTTPS veya TLS; zararlı siteleri engelleyen sunucular da dahil.',
+  'ag.f5t': 'Yönetici ve başlangıç uyarıları',
+  'ag.f5p': 'Bir uygulama yönetici hakları istediğinde ya da kendini otomatik başlayacak şekilde kurduğunda sizi uyarır.',
+  'dl.macMeta': 'Universal · Apple silicon ve Intel · macOS 13+',
+  'dl.yours': 'Sizin sisteminiz',
+  'dl.macNote': 'İlk açılışta Sistem Ayarları › Gizlilik ve Güvenlik bölümüne gidip “Yine de Aç”a tıklayın.',
+  'dl.dmg': '.dmg indir',
+  'dl.exe': '.exe indir',
+  'dl.source': 'Kaynak kod',
+  'dl.winNote': 'Yükleyici koruma hizmetini kurar. Tek seferlik UAC onayını verin.',
+  'p.title': 'Bizden bir de: Platform365.',
+  'p.sub': 'Tarayıcıda çalışan, internetsiz kullanılabilen ve hesap istemeyen bir ofis paketi.',
+  'p.tag': 'Present + EasyWrite · Açık kaynak, MIT lisansı',
+  'p.open': "Platform365'i aç",
+  'p.c1': 'Hesap gerekmez',
+  'p.c2': 'İnternetsiz çalışır',
+  'p.c3': 'Dosyalar cihazınızda kalır',
+  'p.c4': '.docx ve .pptx',
+  'p.prTag': 'Present · Sunum',
+  'p.prText': 'Ana hattan slayt oluşturma, sunum sağlık kontrolü, sahnede kalem ve lazer, canlı altyazı ve prova süresi ölçümü.',
+  'p.ewTag': 'EasyWrite · Belge',
+  'p.ewText': 'Eğik çizgi komutları, yazarken Markdown, Türkçe okunabilirlik puanı, satır içi hesaplama, odak modu ve sesle yazma.',
+  'h.title': 'Hikâyemiz.',
+  'h.p1': '<b>Ekim 2026.</b> Athene Softworks, ne yaptığı konusunda dürüst olan güvenlik yazılımları isteyen iki arkadaş, Mert Yeşil ve Miraz Bakış tarafından kuruldu. Adımızı bilgelik tanrıçasından, ürünlerimizin adlarını da Yunan mitolojisinin kahramanlarından alıyoruz.',
+  'h.p2': "Agamemnon, macOS'ta bir araştırma projesi olarak başladı ve Mac ile Windows için eksiksiz bir antivirüse dönüştü. Ardından Platform365 geldi. Bugün ikisini de açık olarak geliştiriyor, sıradaki projemiz üzerinde çalışıyoruz.",
+  'fo.title': 'Kurucular:',
+  'fo.sub': "İki arkadaş, her şeyi açıkta geliştiriyor. GitHub'da bizi takip edin.",
+  'fo.role': 'Kurucu ortak',
+  'c.title': 'Bize ulaşın.',
+  'c.sub': 'Agamemnon ya da Platform365 hakkında bir sorunuz, bir hata, gözümüzden kaçan bir tehdit ya da birlikte çalışma fikriniz mi var? Bize yazın. Genellikle 24 ila 48 saat içinde yanıt veriyoruz.',
+  'c.alt': 'Ya da doğrudan şu adrese yazın:',
+  'f.name': 'Ad soyad',
+  'f.email': 'E-posta',
+  'f.org': 'Kurum',
+  'f.phone': 'Telefon numarası',
+  'f.msg': 'Mesaj',
+  'f.optional': '(isteğe bağlı)',
+  'f.send': 'Gönder',
+  'f.note': 'Mesajınız doldurulmuş olarak Gmail açılır, göndermeye hazır.',
+  'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
+  'foot.legal': "Agamemnon, GNU Genel Kamu Lisansı v2.0 ile yayınlanan özgür bir yazılımdır; Platform365 MIT lisansıyla yayınlanır. Zararlı yazılım özetleri abuse.ch'in MalwareBazaar projesinden gelir; isteğe bağlı ikinci motor Cisco Talos'un ClamAV'idir. Hiçbir antivirüs her şeyi yakalayamaz. Sisteminizi güncel tutun ve yalnızca güvendiğiniz yazılımları kurun."
+};
+
+var MSG = {
+  en: { required: 'Please fill in your name, a valid email and a message.', subject: 'Message from {name} via athenesoftworks.com', name: 'Name', email: 'Email', org: 'Organization', phone: 'Phone', toLang: 'Türkçe\'ye geç' },
+  tr: { required: 'Lütfen adınızı, geçerli bir e-posta adresini ve mesajınızı yazın.', subject: '{name} adlı kişiden athenesoftworks.com üzerinden mesaj', name: 'Ad soyad', email: 'E-posta', org: 'Kurum', phone: 'Telefon', toLang: 'Switch to English' }
+};
+
 (function () {
-  // Highlight the download that matches the visitor's OS.
+  var root = document.documentElement;
+  var lang = root.lang === 'tr' ? 'tr' : 'en';
+
+  // ---------- Language ----------
+  var nodes = document.querySelectorAll('[data-i18n]');
+  nodes.forEach(function (el) { el.dataset.en = el.innerHTML; });
+  var phs = document.querySelectorAll('[data-i18n-ph]');
+  phs.forEach(function (el) { el.dataset.enPh = el.placeholder; });
+  var btn = document.getElementById('lang');
+
+  function apply(l) {
+    lang = l; root.lang = l;
+    nodes.forEach(function (el) {
+      var k = el.dataset.i18n;
+      el.innerHTML = l === 'tr' && TR[k] != null ? TR[k] : el.dataset.en;
+    });
+    phs.forEach(function (el) {
+      var k = el.dataset.i18nPh;
+      el.placeholder = l === 'tr' && TR[k] != null ? TR[k] : el.dataset.enPh;
+    });
+    btn.setAttribute('aria-label', MSG[l].toLang);
+    document.getElementById('form-error').textContent = '';
+  }
+  btn.addEventListener('click', function () {
+    var next = lang === 'tr' ? 'en' : 'tr';
+    apply(next);
+    try { localStorage.setItem('athene-lang', next); } catch (e) {}
+  });
+  if (lang === 'tr') apply('tr');
+
+  // ---------- OS-matched download ----------
   var ua = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent;
   var os = /mac/i.test(ua) ? 'mac' : /win/i.test(ua) ? 'win' : null;
-  if (os) {
-    var card = document.querySelector('.dl[data-os="' + os + '"]');
-    if (card) card.classList.add('yours');
-  }
+  if (os) { var card = document.querySelector('.dl[data-os="' + os + '"]'); if (card) card.classList.add('yours'); }
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // ---------- Contact form → Gmail compose ----------
+  var form = document.getElementById('contact-form');
+  var err = document.getElementById('form-error');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = form.elements, m = MSG[lang], ok = true;
+    ['name', 'email', 'message'].forEach(function (n) {
+      var el = f[n], bad = !el.value.trim() || (n === 'email' && !el.checkValidity());
+      el.parentElement.classList.toggle('invalid', bad);
+      if (bad) ok = false;
+    });
+    if (!ok) { err.textContent = m.required; return; }
+    err.textContent = '';
+    var name = f.name.value.trim();
+    var lines = [f.message.value.trim(), '', '—', m.name + ': ' + name, m.email + ': ' + f.email.value.trim()];
+    if (f.org.value.trim()) lines.push(m.org + ': ' + f.org.value.trim());
+    if (f.phone.value.trim()) lines.push(m.phone + ': ' + f.phone.value.trim());
+    var to = 'athenesoftworks@gmail.com';
+    var su = m.subject.replace('{name}', name);
+    var body = lines.join('\n');
+    var gmail = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) +
+      '&su=' + encodeURIComponent(su) + '&body=' + encodeURIComponent(body);
+    var win = window.open(gmail, '_blank', 'noopener');
+    // Popup blocked: fall back to the default mail app.
+    if (!win) location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(su) + '&body=' + encodeURIComponent(body);
+  });
+  form.addEventListener('input', function (e) { e.target.parentElement.classList.remove('invalid'); });
 
-  // Nav border on scroll; hide when scrolling down.
+  // ---------- Nav ----------
   var nav = document.getElementById('nav'), last = 0;
   addEventListener('scroll', function () {
     var y = scrollY;
@@ -532,13 +761,41 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     last = y;
   }, { passive: true });
 
-  // Fade sections in.
-  var els = document.querySelectorAll('.reveal');
-  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { rootMargin: '0px 0px -8% 0px' });
-  els.forEach(function (e) { io.observe(e); });
+  // ---------- Honey reveal: stagger siblings, ease in slowly ----------
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = [].slice.call(document.querySelectorAll('.reveal'));
+  var groups = new Map();
+  els.forEach(function (el) {
+    if (el.style.getPropertyValue('--d')) return;
+    var p = el.parentElement, i = groups.get(p) || 0;
+    el.style.setProperty('--d', (i * 0.14).toFixed(2) + 's');
+    groups.set(p, i + 1);
+  });
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  // ---------- Honey scroll: slow, smooth inertia (desktop only) ----------
+  addEventListener('load', function () {
+    if (reduce || !window.Lenis || !matchMedia('(pointer: fine)').matches) return;
+    var lenis = new Lenis({ duration: 1.8, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, wheelMultiplier: 0.85 });
+    function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href');
+        var target = id === '#top' ? 0 : document.querySelector(id);
+        if (target === null) return;
+        e.preventDefault();
+        lenis.scrollTo(target, { offset: -64, duration: 2.2 });
+      });
+    });
+  });
 })();
 </script>
 </body>
