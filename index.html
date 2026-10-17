@@ -13,6 +13,9 @@
 <meta property="og:title" content="Athene Softworks">
 <meta property="og:description" content="Bilgisayarınızda çalışan sade ve güvenli masaüstü yazılımları. İlk ürünümüz Agamemnon v1.0.1 yayında.">
 <meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://athenesoftworks.com/">
+<link rel="canonical" href="https://athenesoftworks.com/">
 <meta name="twitter:card" content="summary">
 <link rel="icon" id="favicon" href="data:,">
 <script type="application/ld+json">
@@ -130,6 +133,24 @@ h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), va
 .mark .orbit::after { content: ""; position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 820px) { .mark .logo-img { width: min(220px, 60%); } .mark .orbit { width: min(300px, 90%); } }
+
+/* Hero: kısa bilgiler ve logonun çevresindeki kartlar */
+.facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 36px 0 0; padding: 22px 0 0; border-top: 1px solid var(--line); }
+.facts div { display: grid; gap: 2px; min-width: 0; }
+.facts dt { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; font-family: var(--display); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; }
+.facts dd.ok { color: var(--live); }
+.float { position: absolute; z-index: 1; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid var(--line); box-shadow: 0 18px 40px -20px rgba(0,0,0,.55);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-size: 0.86rem; line-height: 1.25; animation: bob 6s ease-in-out infinite; }
+.float b { display: block; font-family: var(--display); font-size: 0.95rem; }
+.float small { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.04em; }
+.float .logo-img { width: 30px; height: 30px; border-radius: 8px; }
+.float .dot-live { width: 9px; height: 9px; border-radius: 50%; background: var(--live); box-shadow: 0 0 10px var(--live); flex: none; }
+.float.f1 { top: 12%; left: 0; }
+.float.f2 { bottom: 10%; right: 0; animation-delay: -3s; }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+@media (max-width: 820px) { .float { display: none; } .facts { margin-top: 28px; } }
 
 /* Sections */
 section.block { scroll-margin-top: 70px; padding-block: 92px; border-top: 1px solid var(--line); }
@@ -418,10 +439,18 @@ footer .wrap { display: grid; gap: 22px; }
           </a>
           <a href="#projeler" class="btn ghost" data-i18n="hero.projects">Projelerimiz</a>
         </div>
+        <dl class="facts">
+          <div><dt data-i18n="fact.ver">Güncel sürüm</dt><dd>v1.0.1</dd></div>
+          <div><dt data-i18n="fact.platform">Platform</dt><dd>Windows</dd></div>
+          <div><dt data-i18n="fact.status">Durum</dt><dd class="ok" data-i18n="status.active">Aktif</dd></div>
+          <div><dt data-i18n="fact.founded">Kuruluş</dt><dd data-i18n="fact.foundedVal">Ekim 2026</dd></div>
+        </dl>
       </div>
       <div class="mark" aria-hidden="true">
         <div class="orbit"></div>
         <span class="logo-img"></span>
+        <div class="float f1"><span class="logo-img"></span><span><b>Agamemnon</b><small>v1.0.1 · Windows</small></span></div>
+        <div class="float f2"><span class="dot-live"></span><span><b data-i18n="float.live">Kullanıma açık</b><small data-i18n="float.updates">Düzenli güncellemeler</small></span></div>
       </div>
     </div>
   </div>
@@ -573,7 +602,7 @@ footer .wrap { display: grid; gap: 22px; }
   </section>
 
 
-  <section class="block alt">
+  <section class="block alt" id="yol-haritasi">
     <div class="wrap">
       <p class="eyebrow" data-i18n="r.eyebrow">Yol haritası</p>
       <h2 data-i18n="r.title">Buraya kadar ve sırada ne var</h2>
@@ -595,10 +624,10 @@ footer .wrap { display: grid; gap: 22px; }
       </div>
       <div class="mail reveal">
         <span class="lbl" data-i18n="c.label">E-posta adresimiz</span>
-        <span class="addr" id="addr"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="40213428252e25332f2634372f322b3300272d21292c6e232f2d">[email&#160;protected]</a></span>
+        <span class="addr" id="addr">athenesoftworks@gmail.com</span>
         <div class="row">
           <button type="button" class="btn primary" id="copy" data-i18n="c.copy">Adresi kopyala</button>
-          <a href="/cdn-cgi/l/email-protection#0e6f7a666b606b7d61687a79617c657d4e69636f6762206d6163317d7b6c646b6d7a334f7a666b606b2b3c3e5d61687a79617c657d" class="btn ghost" data-i18n="c.write">E-posta yaz</a>
+          <a href="mailto:athenesoftworks@gmail.com?subject=Athene%20Softworks" class="btn ghost" data-i18n="c.write">E-posta yaz</a>
         </div>
         <span class="small" data-i18n="c.reply">Genellikle 24 saat içinde yanıtlıyoruz.</span>
       </div>
@@ -615,6 +644,7 @@ footer .wrap { display: grid; gap: 22px; }
         <a href="#projeler" data-i18n="nav.projects">Projeler</a>
         <a href="#yaklasim" data-i18n="nav.approach">Yaklaşımımız</a>
         <a href="#kurucular" data-i18n="nav.founders">Kurucular</a>
+        <a href="#yol-haritasi" data-i18n="r.eyebrow">Yol haritası</a>
         <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
       </nav>
     </div>
@@ -632,7 +662,7 @@ footer .wrap { display: grid; gap: 22px; }
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function () {
   var root = document.documentElement;
 
@@ -661,6 +691,13 @@ footer .wrap { display: grid; gap: 22px; }
       "hero.title": "We build <em>our own software.</em>",
       "hero.lead": "Athene Softworks is a software company that designs and builds its own products. We make simple, secure desktop software that runs on your computer and is a pleasure to use.",
       "btn.download": "Download Agamemnon",
+      "fact.ver": "Current version",
+      "fact.platform": "Platform",
+      "fact.status": "Status",
+      "fact.founded": "Founded",
+      "fact.foundedVal": "October 2026",
+      "float.live": "Now available",
+      "float.updates": "Regular updates",
       "hero.projects": "Our projects",
       "sol.title": "Agamemnon now runs on your computer",
       "sol.sub": "We build our solutions with our own team, to our own standards. Agamemnon is a desktop app that runs directly on your computer, not in a browser, and it's now available.",
