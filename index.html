@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Athene Softworks</title>
-<meta name="description" content="Athene Softworks, bilgisayarınızda çalışan sade ve güvenli masaüstü yazılımları geliştiren bir yazılım şirketi. İlk ürünümüz Agamemnon artık aktif.">
+<meta name="description" content="Athene Softworks, bilgisayarınızda çalışan sade ve güvenli masaüstü yazılımları geliştiren bir yazılım şirketi. Ürünlerimiz: Agamemnon antivirüs ve Platform365 ofis paketi.">
 <meta name="author" content="Athene Softworks">
 <meta name="generator" content="Athene Softworks">
 <meta name="theme-color" content="#0b1120">
@@ -274,7 +274,7 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 4vw
 .sk-card.on { background: linear-gradient(160deg, var(--accent-soft), var(--live-soft)); }
 
 /* Projeler */
-.projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .proj { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: grid; gap: 14px; align-content: start; transition: border-color .2s, transform .2s; }
 .proj:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); transform: translateY(-2px); }
 .proj > * { min-width: 0; }
@@ -295,7 +295,7 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 4vw
 .proj .more { margin-top: 4px; font-weight: 600; font-size: 0.95rem; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
 .proj .more:hover { text-decoration: underline; text-underline-offset: 3px; }
 .proj.featured { border-color: color-mix(in srgb, var(--live) 40%, var(--line)); background: linear-gradient(170deg, var(--live-soft), var(--surface) 55%); }
-@media (max-width: 640px) { .projects { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .projects { grid-template-columns: 1fr; } }
 
 footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--muted); font-size: 0.9rem; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
@@ -384,6 +384,101 @@ footer .wrap { display: grid; gap: 22px; }
 @media (min-width: 761px) { .menu a { white-space: nowrap; } }
 @media (min-width: 761px) and (max-width: 1000px) { .menu { gap: 16px; } .menu a { font-size: 0.9rem; } .menu a.cta { padding: 9px 13px; } .nav { gap: 12px; } .logo { font-size: 1.05rem; } }
 @media (min-width: 761px) and (max-width: 860px) { .logo span b { display: none; } .menu { gap: 12px; } .nav-right { gap: 8px; } .menu a { font-size: 0.86rem; } }
+/* Agamemnon: altyapı satırı ve pencere içindeki koruma şeridi */
+.fs-main p.built-with { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.02em; line-height: 1.6; }
+.fs-main p.built-with span:first-child { color: var(--ink); }
+.sk-shield { display: flex; align-items: center; gap: 7px; font-family: var(--display); font-weight: 700; font-size: 0.78rem; color: var(--ink); }
+.sk-shield svg { width: 18px; height: 18px; padding: 3px; border-radius: 50%; color: var(--live); background: var(--live-soft); flex: none; }
+
+/* Platform365: broşürdeki renkler (kırmızı marka, mor Present, mavi EasyWrite) */
+.p365 { --p-red: #ff5d7c; --p-red-soft: rgba(255,93,124,.12); --p-present: #9a93ff; --p-present-soft: rgba(154,147,255,.13); --p-write: #6f9dff; --p-write-soft: rgba(111,157,255,.13); }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .p365 { --p-red: #d4153f; --p-red-soft: rgba(225,29,72,.08); --p-present: #4f46e5; --p-present-soft: rgba(79,70,229,.08); --p-write: #1d4ed8; --p-write-soft: rgba(29,78,216,.08); }
+}
+:root[data-theme="light"] .p365 { --p-red: #d4153f; --p-red-soft: rgba(225,29,72,.08); --p-present: #4f46e5; --p-present-soft: rgba(79,70,229,.08); --p-write: #1d4ed8; --p-write-soft: rgba(29,78,216,.08); }
+.p365 .eyebrow, .p365 .p-kicker { color: var(--p-red); }
+.p365 h2 em { font-style: normal; color: var(--p-red); }
+.p365 .btn.primary { background: var(--p-red); color: #fff; }
+.p365 .btn.primary:hover { background: color-mix(in srgb, var(--p-red) 85%, #fff); }
+.p-logo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; width: 26px; height: 26px; }
+.p-logo i { border-radius: 4px; background: #5b4cf0; }
+.p-logo i:nth-child(2) { background: #2f6bf2; }
+.p-logo i:nth-child(3) { background: #f97316; }
+.p-logo i:nth-child(4) { background: #c8174a; }
+.p-hero { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); }
+.p-hero::before { content: ""; position: absolute; top: -120px; right: -120px; width: 320px; height: 320px; border-radius: 50%; background: var(--p-red-soft); pointer-events: none; }
+.p-hero-main { position: relative; padding: 44px; display: grid; gap: 28px; }
+.p-brand { display: flex; align-items: center; gap: 16px; }
+.p-brand .p-logo { width: 54px; height: 54px; gap: 5px; padding: 8px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
+.p-brand .p-logo i { border-radius: 5px; }
+.p-apps { display: flex; flex-wrap: wrap; gap: 10px; }
+.p-app { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.95rem; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-2); }
+.p-app svg { width: 17px; height: 17px; flex: none; }
+.p-app.present svg { color: var(--p-present); }
+.p-app.write svg { color: var(--p-write); }
+.p-label { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; margin: 0 0 18px; font-family: var(--display); font-weight: 700; font-size: 1.35rem; letter-spacing: -0.015em; }
+.p-label small, .p-label-sm { font-family: var(--mono); font-weight: 500; font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--p-red); }
+.p-label-sm { color: var(--muted); }
+.p-feats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 32px; }
+.p-feats li { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+.p-feats li > div { display: grid; gap: 2px; min-width: 0; }
+.p-feats b { font-weight: 600; }
+.p-feats span:not(.p-ic) { color: var(--muted); font-size: 0.96rem; }
+.p-ic { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: var(--p-red-soft); color: var(--p-red); }
+.p-ic svg { width: 21px; height: 21px; }
+.p-formats { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding-top: 22px; border-top: 1px solid var(--line); }
+.p-formats .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.p-formats .tags li { font-family: var(--mono); font-size: 0.78rem; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-2); }
+.p-kicker { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 72px 0 10px; }
+.p-h3 { font-family: var(--display); font-weight: 700; font-size: clamp(1.6rem, 3.4vw, 2.2rem); line-height: 1.12; letter-spacing: -0.025em; margin: 0 0 32px; text-wrap: balance; }
+.p-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.p-col { --c: var(--p-present); --c-soft: var(--p-present-soft); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px; min-width: 0; }
+.p-col.write { --c: var(--p-write); --c-soft: var(--p-write-soft); }
+.p-col-head { display: flex; align-items: flex-start; gap: 14px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 3px solid var(--c); }
+.p-col-ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--c); color: #fff; flex: none; }
+.p-col-ic svg { width: 22px; height: 22px; }
+.p-col small { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c); }
+.p-col h4 { font-family: var(--display); font-weight: 700; font-size: 1.35rem; line-height: 1.15; letter-spacing: -0.015em; margin: 4px 0 0; }
+.p-col dl { margin: 0; display: grid; gap: 18px; }
+.p-col dt { font-weight: 600; }
+.p-col dd { margin: 2px 0 0; color: var(--muted); font-size: 0.96rem; }
+.p365 code, .p365 kbd { font-family: var(--mono); font-size: 0.82em; color: var(--ink); background: var(--bg-2); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; }
+.p-templates { margin-top: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; padding: 18px 24px; border-radius: 14px; background: var(--bg-2); border: 1px solid var(--line); }
+.p-templates p { margin: 0; color: var(--muted); flex: 1 1 20em; }
+.p-bridge { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px; }
+.p-bridge > div { display: grid; justify-items: center; gap: 2px; padding: 18px; border-radius: 14px; color: #fff; }
+.p-bridge > div.write { background: #1d4ed8; }
+.p-bridge > div.present { background: #4f46e5; }
+.p-bridge b { font-family: var(--display); font-size: 1.2rem; }
+.p-bridge small { opacity: .85; font-size: 0.85rem; }
+.p-bridge svg { width: 48px; height: 24px; color: var(--muted); }
+.p-bridge-text { color: var(--muted); margin: 18px 0 32px; max-width: 46em; }
+.p-extras { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 32px; }
+.p-extras > div { display: grid; gap: 2px; min-width: 0; }
+.p-extras b { font-weight: 600; }
+.p-extras span { color: var(--muted); font-size: 0.96rem; }
+.p-extras b span { color: inherit; font-size: inherit; }
+.p-start { margin-top: 56px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center; padding: 36px 40px; border-radius: 20px; background: #16171f; color: #f2f3f7; }
+.p-start > * { min-width: 0; }
+.p-start h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 3.6vw, 2.3rem); letter-spacing: -0.03em; margin: 0 0 18px; }
+.p-start ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 12px; }
+.p-start li { counter-increment: s; position: relative; padding-left: 40px; color: #c9ccd6; }
+.p-start li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: #e11d48; color: #fff; font-family: var(--mono); font-size: 0.8rem; font-weight: 500; }
+.p-start li b { color: #fff; }
+.p-start-cta { display: grid; gap: 12px; justify-items: start; padding: 24px; border-radius: 16px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
+.p-start .btn.primary { background: #e11d48; color: #fff; }
+.p-start .btn.primary:hover { background: #f0365f; }
+.p-url { font-family: var(--mono); font-size: 0.8rem; color: #fff; overflow-wrap: anywhere; }
+.p-license { font-size: 0.85rem; color: #a3a7b5; }
+@media (max-width: 860px) {
+  .p-hero-main { padding: 30px 24px; }
+  .p-feats, .p-cols, .p-extras, .p-start { grid-template-columns: 1fr; }
+  .p-col { padding: 24px 22px; }
+  .p-start { padding: 28px 22px; }
+  .p-kicker { margin-top: 56px; }
+}
+@media (max-width: 480px) { .p-bridge { gap: 10px; } .p-bridge > div { padding: 14px 8px; } .p-bridge svg { width: 32px; } }
+.proj-ic .p-logo { width: 24px; height: 24px; }
 </style>
 </head>
 <body>
@@ -465,12 +560,16 @@ footer .wrap { display: grid; gap: 22px; }
         <div class="fs-main">
           <span class="status live"><i></i><span data-i18n="status.active">Aktif</span></span>
           <h3 class="product-name">Agamemnon</h3>
-          <p data-i18n="sol.text">Athene Softworks'ün ilk çözümü artık aktif. Bilgisayarınıza kurulan ve orada çalışan bir masaüstü uygulaması; düzenli güncellemelerle gelişmeye devam ediyor.</p>
+          <p data-i18n="sol.text">Windows ve Mac için açık kaynaklı antivirüs: şifreli DNS, kötü amaçlı yazılım taraması, arşiv ve yükleyici taraması, güvenli olmayan indirmeleri engelleme ve yönetici hakları uyarıları.</p>
           <ul class="chips" aria-label="Agamemnon özellikleri" data-i18n-aria="a.features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span data-i18n="chip.win">Windows masaüstü uygulaması</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="chip.install">İndir ve kur</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg><span data-i18n="chip.updates">Düzenli güncellemeler</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span data-i18n="chip.dns">Şifreli DNS</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span data-i18n="chip.scan">Kötü amaçlı yazılım taraması</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg><span data-i18n="chip.archive">Arşiv ve yükleyici taraması</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="chip.block">Güvenli olmayan indirme engeli</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M12 8v5M12 16h.01"/></svg><span data-i18n="chip.admin">Yönetici hakları uyarıları</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="chip.quar">Şifreli karantina</span></li>
           </ul>
+          <p class="built-with"><span data-i18n="sol.built">Altyapı:</span> ClamAV · YARA · MalwareBazaar &amp; URLhaus (abuse.ch) · VirusTotal · <span data-i18n="sol.license">GNU GPL v2 lisanslı özgür yazılım</span></p>
 
           <div class="download" id="indir">
             <div class="dl-head">
@@ -501,7 +600,7 @@ footer .wrap { display: grid; gap: 22px; }
                     <div class="win-side"><div class="sk a"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk" style="width:70%"></div></div>
                     <div class="win-main">
                       <span class="live-dot" data-i18n="status.active">Aktif</span>
-                      <div class="sk" style="width:45%"></div>
+                      <div class="sk-shield"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/></svg><span data-i18n="mock.protected">Korunuyorsunuz</span></div>
                       <div class="sk-row"><div class="sk-card on"></div><div class="sk-card"></div><div class="sk-card on"></div></div>
                       <div class="sk-chart"></div>
                       <div class="sk" style="width:80%"></div>
@@ -519,7 +618,111 @@ footer .wrap { display: grid; gap: 22px; }
     </div>
   </section>
 
-  <section class="block" id="projeler">
+  <section class="block p365" id="platform365">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="p.eyebrow">Platform365 · Present + EasyWrite</p>
+      <h2 data-i18n="p.title">Sunum ve belge, <em>tek çatı altında.</em></h2>
+      <p class="sub" data-i18n="p.sub">Present ve EasyWrite: tarayıcıda çalışan, internetsiz kullanılabilen, hesap istemeyen ofis paketi.</p>
+
+      <article class="p-hero reveal">
+        <div class="p-hero-main">
+          <div class="p-brand">
+            <span class="p-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <h3 class="product-name">Platform365</h3>
+          </div>
+          <div class="p-apps">
+            <span class="p-app present"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span data-i18n="p.app.present">Present · Sunum</span></span>
+            <span class="p-app write"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span data-i18n="p.app.write">EasyWrite · Belge</span></span>
+          </div>
+          <div class="p-why">
+            <p class="p-label"><span data-i18n="p.why">Neden Platform365?</span><small data-i18n="p.whyTag">Ofisiniz, cihazınızda</small></p>
+            <ul class="p-feats">
+              <li><span class="p-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0M3 3l18 18"/></svg></span><div><b data-i18n="p.w1.t">Hesap yok, kurulum yok</b><span data-i18n="p.w1.p">Kayıt olmadan, tarayıcıda hemen kullanın.</span></div></li>
+              <li><span class="p-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.6a10 10 0 0 1 14 0M8.5 16.3a5 5 0 0 1 7 0M12 20h.01M3 3l18 18"/></svg></span><div><b data-i18n="p.w2.t">İnternetsiz çalışır</b><span data-i18n="p.w2.p">Bir kez yükleyin; trende, uçakta, sınıfta açılır.</span></div></li>
+              <li><span class="p-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b data-i18n="p.w3.t">Dosyalarınız sizde kalır</b><span data-i18n="p.w3.p">Her şey cihazınızda saklanır, buluta gönderilmez.</span></div></li>
+              <li><span class="p-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 15l2 2 4-4"/></svg></span><div><b data-i18n="p.w4.t">Word ve PowerPoint ile uyumlu</b><span data-i18n="p.w4.p">.docx ve .pptx dosyalarını açar, düzenler, aynı biçimde kaydeder.</span></div></li>
+            </ul>
+          </div>
+          <div class="p-formats">
+            <span class="p-label-sm" data-i18n="p.formats">Açar ve kaydeder</span>
+            <ul class="tags"><li>.pptx</li><li>.docx</li><li>.present</li><li>.easywrite</li><li>.md</li><li>.html</li><li>.txt</li><li>PDF</li></ul>
+          </div>
+        </div>
+      </article>
+
+      <p class="p-kicker" data-i18n="p.two">İki uygulama, tek paket</p>
+      <h3 class="p-h3" data-i18n="p.twoTitle">Klasik ofis programlarının bir adım ötesinde.</h3>
+      <div class="p-cols reveal">
+        <article class="p-col present">
+          <div class="p-col-head">
+            <span class="p-col-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+            <div><small data-i18n="p.pr.tag">Present · Sunum</small><h4 data-i18n="p.pr.title">Fikirden sahneye, dakikalar içinde.</h4></div>
+          </div>
+          <dl>
+            <div><dt data-i18n="p.pr.1t">Metinden sunum</dt><dd data-i18n="p.pr.1p">Ana hattı yapıştırın; başlıklar slayta, maddeler slayt maddesine dönüşür. Kalabalık slaytlar kendiliğinden bölünür.</dd></div>
+            <div><dt data-i18n="p.pr.2t">Sunum sağlık kontrolü</dt><dd data-i18n="p.pr.2p">Düşük kontrastı, küçük yazıyı, kalabalık ve taşan slaytları 100 üzerinden puanlar; tek tıkla sorunu gösterir.</dd></div>
+            <div><dt data-i18n="p.pr.3t">Sahnede kalem, lazer, büyüteç</dt><dd data-i18n="p.pr.3p">Slayt üstüne çizin, vurgulayın, bir bölgeyi büyütün, ızgaradan istediğiniz slayta atlayın.</dd></div>
+            <div><dt data-i18n="p.pr.4t">Canlı altyazı</dt><dd data-i18n="p.pr.4p">Sunum sırasında konuşmanız ekranın altında Türkçe altyazıya dönüşür.</dd></div>
+            <div><dt data-i18n="p.pr.5t">Prova modu</dt><dd data-i18n="p.pr.5p">Her slaytta geçen süreyi ölçer, uzun kalanları işaretler, süreleri notlara yazar.</dd></div>
+            <div><dt data-i18n="p.pr.6t">Tek dosyalık web sunumu</dt><dd data-i18n="p.pr.6p">Sunumunuzu her tarayıcıda açılan tek bir .html dosyası olarak paylaşın.</dd></div>
+          </dl>
+        </article>
+        <article class="p-col write">
+          <div class="p-col-head">
+            <span class="p-col-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span>
+            <div><small data-i18n="p.ew.tag">EasyWrite · Belge</small><h4 data-i18n="p.ew.title">Siz yazın, biçimi o düşünsün.</h4></div>
+          </div>
+          <dl>
+            <div><dt data-i18n="p.ew.1t">“/” komutları</dt><dd data-i18n="p.ew.1p">Başlık, tablo, bilgi kutusu, yapılacaklar listesi, içindekiler: hepsi bir eğik çizgi uzağında.</dd></div>
+            <div><dt data-i18n="p.ew.2t">Markdown ile yazma</dt><dd data-i18n="p.ew.2p"><code># başlık</code> <code>- madde</code> <code>**kalın**</code> yazarken biçimlenir.</dd></div>
+            <div><dt data-i18n="p.ew.3t">Türkçe okunabilirlik</dt><dd data-i18n="p.ew.3p">Ateşman puanı; uzun cümleler, dolgu kelimeler ve sık tekrarlar metinde vurgulanır.</dd></div>
+            <div><dt data-i18n="p.ew.4t">Satır içi hesap</dt><dd data-i18n="p.ew.4p"><code>1250*12%=</code> yazın, sonuç kendiliğinden gelsin.</dd></div>
+            <div><dt data-i18n="p.ew.5t">Odak ve daktilo modu</dt><dd data-i18n="p.ew.5p">Yalnızca yazdığınız paragraf parlak kalır; imleç hep ekranın ortasında durur.</dd></div>
+            <div><dt data-i18n="p.ew.6t">Dikte ve sesli okuma</dt><dd data-i18n="p.ew.6p">Konuşarak yazın, belgenizi Türkçe dinleyin. Yazma hedefi ve Pomodoro da hazır.</dd></div>
+          </dl>
+        </article>
+      </div>
+      <div class="p-templates reveal">
+        <span class="p-label-sm" data-i18n="p.tpl">Şablonlar</span>
+        <p data-i18n="p.tplText">Mektup · Özgeçmiş · Toplantı notu · Rapor · Makale · Proje planı · Günlük — boş sayfayla uğraşmadan başlayın.</p>
+      </div>
+
+      <p class="p-kicker" data-i18n="p.together">Platform365 · Birlikte</p>
+      <h3 class="p-h3" data-i18n="p.togetherTitle">İkisi bir arada, daha güçlü.</h3>
+      <div class="p-bridge reveal" aria-hidden="true">
+        <div class="write"><b data-i18n="p.doc">Belge</b><small>EasyWrite</small></div>
+        <svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h38M36 2l6 5-6 5M44 17H6M12 12l-6 5 6 5"/></svg>
+        <div class="present"><b data-i18n="p.pres">Sunum</b><small>Present</small></div>
+      </div>
+      <p class="p-bridge-text" data-i18n="p.bridge">Belgenizin başlıkları tek tıkla slayt olur; sunumunuz da konuşmacı notlarıyla birlikte düzenlenebilir belgeye dönüşür.</p>
+      <div class="p-extras reveal">
+        <div><b><span data-i18n="p.x1t">Komut paleti</span> <kbd>Ctrl+K</kbd></b><span data-i18n="p.x1p">Menülerde aramayın; her komuta yazarak ulaşın.</span></div>
+        <div><b data-i18n="p.x2t">Sürüm geçmişi ve karşılaştırma</b><span data-i18n="p.x2p">Otomatik sürümler; eklenen ve silinen kelimeleri görün, istediğiniz ana dönün.</span></div>
+        <div><b data-i18n="p.x3t">Tüm dosyalarda arama</b><span data-i18n="p.x3p">Ana ekrandan sunum ve belgelerin içeriğinde arayın.</span></div>
+        <div><b data-i18n="p.x4t">Tek tıkla tam yedek</b><span data-i18n="p.x4p">Bütün sunum, belge ve sürümler tek dosyada; yeni cihaza taşıyın.</span></div>
+      </div>
+
+      <div class="p-start reveal">
+        <div>
+          <h3 data-i18n="p.start">Hemen başlayın</h3>
+          <ol>
+            <li data-i18n="p.s1"><b>Adresi açın:</b> bağlantıya tıklayın ya da adresi tarayıcınıza yazın.</li>
+            <li data-i18n="p.s2"><b>“Yükle”</b> ile bilgisayarınıza ya da telefonunuza ekleyin.</li>
+            <li data-i18n="p.s3"><b>Oluşturun:</b> yeni sunum, belge ya da hazır bir şablon.</li>
+          </ol>
+        </div>
+        <div class="p-start-cta">
+          <a href="https://mertyesil.com.tr/platform365/Present-2.0.0/" class="btn primary" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg><span data-i18n="p.open">Platform365'i aç</span>
+          </a>
+          <span class="p-url">mertyesil.com.tr/platform365/Present-2.0.0/</span>
+          <span class="p-license" data-i18n="p.license">Açık kaynak · MIT lisansı</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="projeler">
     <div class="wrap">
       <p class="eyebrow" data-i18n="nav.projects">Projeler</p>
       <h2 data-i18n="proj.title">Üzerinde çalıştığımız projeler</h2>
@@ -540,6 +743,19 @@ footer .wrap { display: grid; gap: 22px; }
         </article>
         <article class="proj">
           <div class="proj-top">
+            <span class="proj-ic"><span class="p-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
+            <span class="pill live"><i></i><span data-i18n="status.active">Aktif</span></span>
+          </div>
+          <h3>Platform365</h3>
+          <p data-i18n="proj.p365">Present ve EasyWrite: tarayıcıda çalışan, internetsiz kullanılabilen, hesap istemeyen ofis paketi.</p>
+          <ul class="tags"><li data-i18n="tag.web">Tarayıcı</li><li data-i18n="tag.offline">İnternetsiz</li><li>MIT</li></ul>
+          <div class="links">
+            <a href="https://mertyesil.com.tr/platform365/Present-2.0.0/" class="more" target="_blank" rel="noopener" data-i18n="proj.open">Aç ↗</a>
+            <a href="#platform365" class="more" data-i18n="proj.details">Ayrıntılar →</a>
+          </div>
+        </article>
+        <article class="proj">
+          <div class="proj-top">
             <span class="proj-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.6L20 10l-5.6 2.4L12 18l-2.4-5.6L4 10l5.6-2.4z"/></svg></span>
             <span class="pill dev"><i></i><span data-i18n="pill.planned">Planlanıyor</span></span>
           </div>
@@ -552,7 +768,7 @@ footer .wrap { display: grid; gap: 22px; }
     </div>
   </section>
 
-  <section class="block alt" id="yaklasim">
+  <section class="block" id="yaklasim">
     <div class="wrap">
       <p class="eyebrow" data-i18n="nav.approach">Yaklaşımımız</p>
       <h2 data-i18n="app.title">Yazılım geliştirirken neye önem veriyoruz</h2>
@@ -577,7 +793,7 @@ footer .wrap { display: grid; gap: 22px; }
     </div>
   </section>
 
-  <section class="block" id="kurucular">
+  <section class="block alt" id="kurucular">
     <div class="wrap">
       <p class="eyebrow" data-i18n="nav.founders">Kurucular</p>
       <h2 data-i18n="f.title">Athene'nin arkasındaki ekip</h2>
@@ -602,25 +818,25 @@ footer .wrap { display: grid; gap: 22px; }
   </section>
 
 
-  <section class="block alt" id="yol-haritasi">
+  <section class="block" id="yol-haritasi">
     <div class="wrap">
       <p class="eyebrow" data-i18n="r.eyebrow">Yol haritası</p>
       <h2 data-i18n="r.title">Buraya kadar ve sırada ne var</h2>
-      <p class="sub" data-i18n="r.sub">İlk ürünümüz yayında; sırada yenileri var.</p>
+      <p class="sub" data-i18n="r.sub">İlk ürünlerimiz yayında; sırada yenileri var.</p>
       <ol class="timeline reveal">
         <li class="done"><span class="dot"></span><span class="when" data-i18n="r.1.when">12 Ekim 2026</span><h3 data-i18n="r.1.t">Athene Softworks kuruldu</h3><p data-i18n="r.1.p">Mert Yeşil ve Miraz Bakış şirketi 12 Ekim 2026'da hayata geçirdi.</p></li>
-        <li class="done"><span class="dot"></span><span class="when">2026</span><h3 data-i18n="r.2.t">Agamemnon aktif</h3><p data-i18n="r.2.p">İlk masaüstü uygulamamız kullanıma açıldı; v1.0.1 indirilebilir.</p></li>
+        <li class="done"><span class="dot"></span><span class="when">2026</span><h3 data-i18n="r.2.t">Agamemnon ve Platform365 aktif</h3><p data-i18n="r.2.p">Agamemnon v1.0.1 indirilebilir; Platform365 tarayıcıda kullanıma açık.</p></li>
         <li class="now"><span class="dot"></span><span class="when" data-i18n="r.3.when">Sırada</span><h3 data-i18n="r.3.t">Yeni projeler</h3><p data-i18n="r.3.p">Agamemnon'u güncellemeye devam ederken sıradaki projemizi planlıyoruz.</p></li>
       </ol>
     </div>
   </section>
 
-  <section class="block" id="iletisim">
+  <section class="block alt" id="iletisim">
     <div class="wrap contact">
       <div>
         <p class="eyebrow" data-i18n="nav.contact">İletişim</p>
         <h2 data-i18n="c.title">Bize ulaşın</h2>
-        <p class="sub" style="margin-bottom:0" data-i18n="c.sub">Agamemnon hakkında sorularınız, yeni projelerden haberdar olmak ya da iş birliği önermek için bize yazın.</p>
+        <p class="sub" style="margin-bottom:0" data-i18n="c.sub">Agamemnon ve Platform365 hakkında sorularınız, yeni projelerden haberdar olmak ya da iş birliği önermek için bize yazın.</p>
       </div>
       <div class="mail reveal">
         <span class="lbl" data-i18n="c.label">E-posta adresimiz</span>
@@ -641,6 +857,7 @@ footer .wrap { display: grid; gap: 22px; }
       <span class="brand"><span class="logo-img" aria-hidden="true"></span>Athene Softworks</span>
       <nav class="foot-links" aria-label="Alt menü" data-i18n-aria="a.footer">
         <a href="#cozumler" data-i18n="nav.solutions">Çözümlerimiz</a>
+        <a href="#platform365">Platform365</a>
         <a href="#projeler" data-i18n="nav.projects">Projeler</a>
         <a href="#yaklasim" data-i18n="nav.approach">Yaklaşımımız</a>
         <a href="#kurucular" data-i18n="nav.founders">Kurucular</a>
@@ -702,15 +919,92 @@ footer .wrap { display: grid; gap: 22px; }
       "sol.title": "Agamemnon now runs on your computer",
       "sol.sub": "We build our solutions with our own team, to our own standards. Agamemnon is a desktop app that runs directly on your computer, not in a browser, and it's now available.",
       "status.active": "Active",
-      "sol.text": "Athene Softworks' first solution is now live. It's a desktop app you install and run on your computer, and it keeps improving with regular updates.",
-      "chip.win": "Windows desktop app",
-      "chip.install": "Download and install",
-      "chip.updates": "Regular updates",
+      "sol.text": "Open-source antivirus for Windows and Mac: encrypted DNS, malware scanning, archive and installer scanning, unsafe-download blocking and administrator-rights alerts.",
       "dl.title": "How to download",
       "dl.s1": "Open the release page with the <b>Download Agamemnon</b> button below.",
       "dl.s2": "Scroll down to the <b>Assets</b> section at the bottom of the page.",
       "dl.s3": "Download the <code>.exe</code> or <code>.msi</code> file, run it and complete the installation.",
       "sol.all": "All projects",
+      "chip.dns": "Encrypted DNS",
+      "chip.scan": "Malware scanning",
+      "chip.archive": "Archive and installer scanning",
+      "chip.block": "Unsafe download blocking",
+      "chip.admin": "Administrator-rights alerts",
+      "chip.quar": "Encrypted quarantine",
+      "sol.built": "Built with:",
+      "sol.license": "free software under the GNU GPL v2",
+      "mock.protected": "You're protected",
+      "p.eyebrow": "Platform365 · Present + EasyWrite",
+      "p.title": "Slides and documents, <em>under one roof.</em>",
+      "p.sub": "Present and EasyWrite: an office suite that runs in your browser, works offline and needs no account.",
+      "p.app.present": "Present · Slides",
+      "p.app.write": "EasyWrite · Documents",
+      "p.why": "Why Platform365?",
+      "p.whyTag": "Your office, on your device",
+      "p.w1.t": "No account, no setup",
+      "p.w1.p": "Use it right away in your browser, without signing up.",
+      "p.w2.t": "Works offline",
+      "p.w2.p": "Install it once; it opens on the train, on a plane, in the classroom.",
+      "p.w3.t": "Your files stay with you",
+      "p.w3.p": "Everything is stored on your device and never sent to the cloud.",
+      "p.w4.t": "Works with Word and PowerPoint",
+      "p.w4.p": "Opens, edits and saves .docx and .pptx files in the same format.",
+      "p.formats": "Opens and saves",
+      "p.two": "Two apps, one suite",
+      "p.twoTitle": "One step beyond classic office software.",
+      "p.pr.tag": "Present · Slides",
+      "p.pr.title": "From idea to stage, in minutes.",
+      "p.pr.1t": "Slides from text",
+      "p.pr.1p": "Paste an outline; headings become slides and bullets become slide points. Crowded slides split on their own.",
+      "p.pr.2t": "Presentation health check",
+      "p.pr.2p": "Scores low contrast, small text, crowded and overflowing slides out of 100, and shows each problem in one click.",
+      "p.pr.3t": "Pen, laser and magnifier on stage",
+      "p.pr.3p": "Draw on slides, highlight, zoom into an area, and jump to any slide from the grid.",
+      "p.pr.4t": "Live captions",
+      "p.pr.4p": "While you present, your speech turns into Turkish captions at the bottom of the screen.",
+      "p.pr.5t": "Rehearsal mode",
+      "p.pr.5p": "Times every slide, flags the ones that run long, and writes the timings into your notes.",
+      "p.pr.6t": "Single-file web presentation",
+      "p.pr.6p": "Share your presentation as a single .html file that opens in any browser.",
+      "p.ew.tag": "EasyWrite · Documents",
+      "p.ew.title": "You write; it takes care of the formatting.",
+      "p.ew.1t": "“/” commands",
+      "p.ew.1p": "Headings, tables, callouts, to-do lists, a table of contents: all one slash away.",
+      "p.ew.2t": "Write in Markdown",
+      "p.ew.2p": "<code># heading</code> <code>- item</code> <code>**bold**</code> are formatted as you type.",
+      "p.ew.3t": "Turkish readability",
+      "p.ew.3p": "Ateşman score; long sentences, filler words and frequent repetitions are highlighted in the text.",
+      "p.ew.4t": "Inline math",
+      "p.ew.4p": "Type <code>1250*12%=</code> and the result appears on its own.",
+      "p.ew.5t": "Focus and typewriter mode",
+      "p.ew.5p": "Only the paragraph you're writing stays bright; the cursor always stays in the middle of the screen.",
+      "p.ew.6t": "Dictation and read-aloud",
+      "p.ew.6p": "Write by speaking and listen to your document in Turkish. Writing goals and Pomodoro are built in.",
+      "p.tpl": "Templates",
+      "p.tplText": "Letter · Résumé · Meeting notes · Report · Article · Project plan · Journal — start without facing a blank page.",
+      "p.together": "Platform365 · Together",
+      "p.togetherTitle": "Better together.",
+      "p.doc": "Document",
+      "p.pres": "Presentation",
+      "p.bridge": "Your document's headings become slides in one click, and your presentation turns into an editable document along with its speaker notes.",
+      "p.x1t": "Command palette",
+      "p.x1p": "Don't hunt through menus; reach any command by typing.",
+      "p.x2t": "Version history and compare",
+      "p.x2p": "Automatic versions; see added and removed words, and go back to any moment.",
+      "p.x3t": "Search all files",
+      "p.x3p": "Search inside your presentations and documents from the home screen.",
+      "p.x4t": "Full backup in one click",
+      "p.x4p": "All presentations, documents and versions in a single file; move them to a new device.",
+      "p.start": "Get started",
+      "p.s1": "<b>Open the address:</b> click the link or type the address into your browser.",
+      "p.s2": "Add it to your computer or phone with <b>“Install”</b>.",
+      "p.s3": "<b>Create:</b> a new presentation, document or a ready-made template.",
+      "p.open": "Open Platform365",
+      "p.license": "Open source · MIT license",
+      "proj.p365": "Present and EasyWrite: an office suite that runs in your browser, works offline and needs no account.",
+      "tag.web": "Browser",
+      "tag.offline": "Offline",
+      "proj.open": "Open ↗",
       "proj.title": "Projects we're working on",
       "proj.sub": "Our released products and what's coming next. Every new project will be added to this list.",
       "proj.aga": "Our first solution. A desktop app you install and run on your computer.",
@@ -735,17 +1029,17 @@ footer .wrap { display: grid; gap: 22px; }
       "f.role": "Co-founder",
       "r.eyebrow": "Roadmap",
       "r.title": "How far we've come and what's next",
-      "r.sub": "Our first product is out, and more are on the way.",
+      "r.sub": "Our first products are out, and more are on the way.",
       "r.1.when": "October 12, 2026",
       "r.1.t": "Athene Softworks founded",
       "r.1.p": "Mert Yeşil and Miraz Bakış launched the company on October 12, 2026.",
-      "r.2.t": "Agamemnon is live",
-      "r.2.p": "Our first desktop app is now available, and v1.0.1 can be downloaded.",
+      "r.2.t": "Agamemnon and Platform365 are live",
+      "r.2.p": "Agamemnon v1.0.1 can be downloaded, and Platform365 is available in your browser.",
       "r.3.when": "Next",
       "r.3.t": "New projects",
       "r.3.p": "While we keep updating Agamemnon, we're planning our next project.",
       "c.title": "Get in touch",
-      "c.sub": "Write to us with questions about Agamemnon, to hear about new projects, or to propose a collaboration.",
+      "c.sub": "Write to us with questions about Agamemnon or Platform365, to hear about new projects, or to propose a collaboration.",
       "c.label": "Our email address",
       "c.copy": "Copy address",
       "c.copied": "Copied ✓",
