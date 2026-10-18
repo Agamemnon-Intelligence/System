@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Athene Softworks</title>
-<meta name="description" content="Athene Softworks builds simple, secure software. Our products: Agamemnon, a free, open-source antivirus for macOS and Windows, and Platform365, an offline office suite in your browser.">
+<meta name="description" content="Athene Softworks builds simple, secure software. Our products: Agamemnon, a free, open-source antivirus for macOS and Windows, Platform365, an offline office suite in your browser, and SearchEasy, a private search engine that runs in your browser.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
 <meta property="og:title" content="Athene Softworks">
-<meta property="og:description" content="Simple, secure software. Meet Agamemnon, free antivirus for macOS and Windows, and the Platform365 office suite.">
+<meta property="og:description" content="Simple, secure software. Meet Agamemnon, free antivirus for macOS and Windows, the Platform365 office suite and SearchEasy search.">
 <link rel="icon" href="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png">
 <script>
 /* Apply the saved language before first paint. */
@@ -231,6 +231,12 @@ section { scroll-margin-top: 4rem; }
 .p-app.write small { color: #6f9dff; }
 .p-app p { margin: .25rem 0 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
 
+/* SearchEasy (compact) */
+.se-card { background: linear-gradient(135deg, rgba(124,92,255,.11), rgba(0,194,255,.05) 60%, transparent), var(--panel); }
+.se-logo { width: 60px; height: 60px; border-radius: 15px; display: block; }
+.p-app.se small { color: #9a93ff; }
+.p-app.se.ans small { color: #4fd3ff; }
+
 /* History (compact) */
 .history { display: grid; grid-template-columns: .8fr 1.2fr; }
 .history-art {
@@ -356,6 +362,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
       <li><a href="#what" data-i18n="nav.what">What we do</a></li>
       <li><a href="#agamemnon">Agamemnon</a></li>
       <li><a href="#platform365">Platform365</a></li>
+      <li><a href="#searcheasy">SearchEasy</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <button class="lang" id="lang" type="button" aria-label="Türkçe'ye geç">
@@ -553,6 +560,46 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     </div>
   </section>
 
+  <section class="section compact" id="searcheasy">
+    <div class="wrap">
+      <div class="section-head reveal drip">
+        <h2 data-i18n="se.title">And now: SearchEasy.</h2>
+        <p data-i18n="se.sub">A search engine that runs entirely in your browser. No server, no cookies, no tracking.</p>
+      </div>
+      <div class="p365-card se-card reveal">
+        <svg class="se-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="se-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#00c2ff"/><stop offset="1" stop-color="#ff4fd8"/></linearGradient></defs>
+          <rect width="64" height="64" rx="19" fill="url(#se-g)"/>
+          <circle cx="29" cy="29" r="13" fill="none" stroke="#fff" stroke-width="6"/>
+          <path d="M39 39l11 11" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h3>SearchEasy v1.0 beta</h3>
+          <p class="sub" data-i18n="se.tag">Search · Beta · Free, no account</p>
+        </div>
+        <a class="pill sm solid" href="https://athenesoftworks.com/SearchEasy/" target="_blank" rel="noopener"><span data-i18n="se.open">Open SearchEasy</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
+        </a>
+        <ul class="p-chips">
+          <li data-i18n="se.c1">No tracking</li>
+          <li data-i18n="se.c2">Turkish-aware</li>
+          <li data-i18n="se.c3">Typo tolerant</li>
+          <li data-i18n="se.c4">Works offline (PWA)</li>
+        </ul>
+        <div class="p-apps">
+          <div class="p-app se">
+            <small data-i18n="se.sTag">Search · Results</small>
+            <p data-i18n="se.sText">Instant ranked results, autocomplete, search operators, quick-access cards and bang commands like !g, !gpt and !eba.</p>
+          </div>
+          <div class="p-app se ans">
+            <small data-i18n="se.aTag">Answers · Tools</small>
+            <p data-i18n="se.aText">Calculator, unit converter, countdowns, password and UUID generator, voice search and one-click "ask AI".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="history" id="history">
     <div class="history-art" aria-hidden="true">
       <svg class="reveal" viewBox="0 0 200 220" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
@@ -603,7 +650,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="wrap contact-grid">
       <div class="section-head reveal drip">
         <h2 data-i18n="c.title">Contact us.</h2>
-        <p data-i18n="c.sub">Questions about Agamemnon or Platform365, a bug, a threat we missed, or an idea to work together? Let us know. We usually reply within 24 to 48 hours.</p>
+        <p data-i18n="c.sub">Questions about Agamemnon, Platform365 or SearchEasy, a bug, a threat we missed, or an idea to work together? Let us know. We usually reply within 24 to 48 hours.</p>
         <p class="contact-alt"><span data-i18n="c.alt">Or write to us directly at</span> <a href="mailto:athenesoftworks@gmail.com">athenesoftworks@gmail.com</a></p>
       </div>
 
@@ -646,11 +693,12 @@ footer p { margin: .3rem 0; max-width: 60rem; }
         <li><a href="#top" data-i18n="nav.home">Home</a></li>
         <li><a href="#agamemnon">Agamemnon</a></li>
         <li><a href="#platform365">Platform365</a></li>
+        <li><a href="#searcheasy">SearchEasy</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </div>
     <p data-i18n="foot.copy">Copyright © 2026 Athene Softworks. All rights reserved.</p>
-    <p data-i18n="foot.legal">Agamemnon is free software released under the GNU General Public License v2.0; Platform365 is released under the MIT license. Malware hashes come from MalwareBazaar by abuse.ch and VirusShare.com; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
+    <p data-i18n="foot.legal">Agamemnon is free software released under the GNU General Public License v2.0; Platform365 is released under the MIT license; SearchEasy is in beta. Malware hashes come from MalwareBazaar by abuse.ch and VirusShare.com; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
   </div>
 </footer>
 
@@ -727,6 +775,18 @@ var TR = {
   'p.prTag': 'Present · Sunum',
   'p.prText': 'Ana hattan slayt oluşturma, sunum sağlık kontrolü, sahnede kalem ve lazer, canlı altyazı ve prova süresi ölçümü.',
   'p.ewTag': 'EasyWrite · Belge',
+  'se.title': 'Ve şimdi: SearchEasy.',
+  'se.sub': 'Tamamen tarayıcınızda çalışan bir arama motoru. Sunucu yok, çerez yok, takip yok.',
+  'se.tag': 'Arama · Beta · Ücretsiz, hesap gerekmez',
+  'se.open': "SearchEasy'i aç",
+  'se.c1': 'Takip yok',
+  'se.c2': 'Türkçe duyarlı',
+  'se.c3': 'Yazım hatasına toleranslı',
+  'se.c4': 'İnternetsiz çalışır (PWA)',
+  'se.sTag': 'Arama · Sonuçlar',
+  'se.sText': 'Anında sıralanan sonuçlar, otomatik tamamlama, arama operatörleri, hızlı erişim kartları ve !g, !gpt, !eba gibi bang komutları.',
+  'se.aTag': 'Yanıtlar · Araçlar',
+  'se.aText': 'Hesap makinesi, birim çevirici, geri sayımlar, şifre ve UUID üretici, sesli arama ve tek tıkla "yapay zekâya sor".',
   'p.ewText': 'Eğik çizgi komutları, yazarken Markdown, Türkçe okunabilirlik puanı, satır içi hesaplama, odak modu ve sesle yazma.',
   'h.title': 'Hikâyemiz.',
   'h.p1': '<b>Ekim 2026.</b> Athene Softworks, ne yaptığı konusunda dürüst olan güvenlik yazılımları isteyen iki arkadaş, Mert Yeşil ve Miraz Bakış tarafından kuruldu.',
@@ -735,7 +795,7 @@ var TR = {
   'fo.sub': "İki arkadaş, her şeyi açıkta geliştiriyor. GitHub'da bizi takip edin.",
   'fo.role': 'Kurucu ortak',
   'c.title': 'Bize ulaşın.',
-  'c.sub': 'Agamemnon ya da Platform365 hakkında bir sorunuz, bir hata, gözümüzden kaçan bir tehdit ya da birlikte çalışma fikriniz mi var? Bize yazın. Genellikle 24 ila 48 saat içinde yanıt veriyoruz.',
+  'c.sub': 'Agamemnon, Platform365 ya da SearchEasy hakkında bir sorunuz, bir hata, gözümüzden kaçan bir tehdit ya da birlikte çalışma fikriniz mi var? Bize yazın. Genellikle 24 ila 48 saat içinde yanıt veriyoruz.',
   'c.alt': 'Ya da doğrudan şu adrese yazın:',
   'f.name': 'Ad soyad',
   'f.email': 'E-posta',
@@ -746,7 +806,7 @@ var TR = {
   'f.send': 'Gönder',
   'f.note': 'Mesajınız doldurulmuş olarak Gmail açılır, göndermeye hazır.',
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
-  'foot.legal': "Agamemnon, GNU Genel Kamu Lisansı v2.0 ile yayınlanan özgür bir yazılımdır; Platform365 MIT lisansıyla yayınlanır. Zararlı yazılım özetleri abuse.ch'in MalwareBazaar projesinden ve VirusShare.com'dan gelir; isteğe bağlı ikinci motor Cisco Talos'un ClamAV'idir. Hiçbir antivirüs her şeyi yakalayamaz. Sisteminizi güncel tutun ve yalnızca güvendiğiniz yazılımları kurun."
+  'foot.legal': "Agamemnon, GNU Genel Kamu Lisansı v2.0 ile yayınlanan özgür bir yazılımdır; Platform365 MIT lisansıyla yayınlanır; SearchEasy beta aşamasındadır. Zararlı yazılım özetleri abuse.ch'in MalwareBazaar projesinden ve VirusShare.com'dan gelir; isteğe bağlı ikinci motor Cisco Talos'un ClamAV'idir. Hiçbir antivirüs her şeyi yakalayamaz. Sisteminizi güncel tutun ve yalnızca güvendiğiniz yazılımları kurun."
 };
 
 var MSG = {
