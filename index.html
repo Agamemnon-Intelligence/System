@@ -194,18 +194,6 @@ section { scroll-margin-top: 4rem; }
 .dl[data-os="mac"] { --os-accent: linear-gradient(90deg, #d7dde8, var(--gold-2)); --os-glow: rgba(243,201,122,.10); }
 .dl[data-os="win"] { --os-accent: linear-gradient(90deg, #4c74e8, #38bdf8); --os-glow: rgba(56,189,248,.10); }
 .dl { background: radial-gradient(120% 60% at 100% 0%, var(--os-glow), transparent 60%), var(--panel); }
-.os-feats { border-top: 1px solid var(--line); padding-top: 1.1rem; }
-.os-feats h4 { margin: 0 0 .8rem; font: 700 .72rem var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.os-feats ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
-.os-feats li { display: grid; grid-template-columns: 2.1rem 1fr; gap: .8rem; align-items: start; padding: .6rem .65rem; border-radius: 14px; border: 1px solid transparent; transition: background .2s, border-color .2s; }
-.os-feats li:hover { background: rgba(255,255,255,.03); border-color: var(--line); }
-.os-feats li.hl { background: linear-gradient(135deg, rgba(34,197,94,.10), rgba(34,197,94,.02)); border-color: rgba(34,197,94,.28); }
-.os-feats .fi { width: 2.1rem; height: 2.1rem; border-radius: 10px; display: grid; place-items: center; background: rgba(76,116,232,.14); color: var(--blue-3); }
-.os-feats li.hl .fi { background: rgba(34,197,94,.14); color: var(--green); }
-.os-feats .fi svg { width: 1.05rem; height: 1.05rem; }
-.os-feats b { display: block; color: #fff; font: 700 .95rem/1.3 var(--display); }
-.os-feats li div > span:not(.new) { display: block; margin-top: .2rem; color: var(--muted); font-size: .86rem; line-height: 1.5; }
-.os-feats .new { display: inline-block; margin-bottom: .3rem; padding: .1rem .5rem; border-radius: 999px; font: 700 .62rem var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--green); background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.32); }
 
 /* Agamemnon strength */
 .stats { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
@@ -507,19 +495,6 @@ footer p { margin: .3rem 0; max-width: 60rem; }
             <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
           <p class="note" data-i18n="dl.macNote">First launch: open System Settings › Privacy &amp; Security and click Open Anyway.</p>
-          <div class="os-feats">
-            <h4 data-i18n="mac.h">macOS features</h4>
-            <ul>
-              <li class="hl"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8Z"/><path d="M19 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></svg></span><div data-i18n="mac.1"><span class="new">New in 3.0</span><b>Faster, sharper, new look</b><span>Quicker scans, stronger malware detection, a log of every scan and a fresh theme.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg></span><div data-i18n="mac.2"><b>Behaviour protection</b><span>Stops AMOS, Banshee, Cuckoo, Poseidon, FrigidStealer and SysJoker as they run: fake password prompts, keychain, wallet and browser-data theft.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div data-i18n="mac.3"><b>Ransomware shield</b><span>Watches Documents, Desktop and Pictures and stops an unsigned program the moment it starts scrambling your files.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span><div data-i18n="mac.4"><b>47 million+ known threats</b><span>42.5M VirusShare and 1.2M MalwareBazaar fingerprints plus 3.6M ClamAV signatures, all checked on your Mac.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><div data-i18n="mac.5"><b>Browser protection</b><span>Removes adware extensions and search hijacks from Safari, Chrome, Brave, Edge, Firefox, Arc, Opera and Vivaldi in one click.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg></span><div data-i18n="mac.6"><b>Downloads and archives</b><span>Every download is checked, inside ZIP, RAR, 7Z, ISO, DMG and PKG files too, three levels deep. Zip bombs are refused.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.3 1.7 2.9-.2.9 2.7 2.4 1.7-1 2.6 1 2.6-2.4 1.7-.9 2.7-2.9-.2L12 21.5l-2.3-1.7-2.9.2-.9-2.7-2.4-1.7 1-2.6-1-2.6 2.4-1.7.9-2.7 2.9.2Z"/><path d="m9 12 2 2 4-4"/></svg></span><div data-i18n="mac.7"><b>Gatekeeper checks</b><span>Unsigned and un-notarized apps are flagged; revoked developer certificates count as malware.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10"/><path d="m3 6 1.2 1.2L6.5 5M3 12l1.2 1.2L6.5 11M3 18l1.2 1.2L6.5 17"/></svg></span><div data-i18n="mac.8"><b>Security Checkup and encrypted DNS</b><span>FileVault, firewall, SIP, updates and Time Machine at a glance, plus DNS-over-HTTPS for the whole Mac.</span></div></li>
-            </ul>
-          </div>
           <div class="dl-actions">
             <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-macOS/releases/latest/download/Agamemnon.dmg" data-i18n="dl.dmg">Download .dmg</a>
             <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-macOS" target="_blank" rel="noopener" data-i18n="dl.source">Source</a>
@@ -533,19 +508,6 @@ footer p { margin: .3rem 0; max-width: 60rem; }
             <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
           <p class="note" data-i18n="dl.winNote">The installer sets up the protection service. Approve the one-time UAC prompt.</p>
-          <div class="os-feats">
-            <h4 data-i18n="win.h">Windows features</h4>
-            <ul>
-              <li class="hl"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8Z"/><path d="M19 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></svg></span><div data-i18n="win.1"><span class="new">New in 2.0</span><b>50 million+ known threats</b><span>An offline database of VirusShare and MalwareBazaar hashes plus ClamAV and YARA. Each lookup takes a microsecond; no hash leaves your PC.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg></span><div data-i18n="win.2"><b>YARA rules for Windows attacks</b><span>Download cradles, encoded PowerShell, AMSI bypasses, Defender tampering, shadow-copy deletion and credential stealers.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span><div data-i18n="win.3"><b>Unsafe-download blocking</b><span>Files are scanned the moment they finish downloading; anything from URLhaus malware hosts goes straight to quarantine.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg></span><div data-i18n="win.4"><b>Installers opened up</b><span>MSI custom actions, CAB, ZIP, MSIX, 7z, RAR and ISO, three levels deep. Disguised names like invoice.pdf.exe are flagged.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.3 1.7 2.9-.2.9 2.7 2.4 1.7-1 2.6 1 2.6-2.4 1.7-.9 2.7-2.9-.2L12 21.5l-2.3-1.7-2.9.2-.9-2.7-2.4-1.7 1-2.6-1-2.6 2.4-1.7.9-2.7 2.9.2Z"/><path d="m9 12 2 2 4-4"/></svg></span><div data-i18n="win.5"><b>Authenticode checks</b><span>Catches unsigned programs and self-signed, tampered or revoked certificates.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a15 15 0 0 1 20 0"/><path d="M12 19.5h.01"/></svg></span><div data-i18n="win.6"><b>Encrypted DNS that never leaks</b><span>Windows 11's own DoH or a local resolver that fails closed, with Wi-Fi rules and a leak test.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span><div data-i18n="win.7"><b>Admin-rights alerts</b><span>UAC elevations, silent auto-elevations and new system services, with who signed them.</span></div></li>
-              <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M12 9V7M12 17v-2M7 20v1M17 20v1"/></svg></span><div data-i18n="win.8"><b>Encrypted quarantine</b><span>AES-256-GCM, locked to your Windows account. Restored files are verified first.</span></div></li>
-            </ul>
-          </div>
           <div class="dl-actions">
             <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v2.0.0/Agamemnon-2.0.0-Setup.exe" data-i18n="dl.exe">Download .exe</a>
             <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v2.0.0/Agamemnon-2.0.0-x64.msi">.msi</a>
@@ -754,24 +716,6 @@ var TR = {
   'dl.exe': '.exe indir',
   'dl.source': 'Kaynak kod',
   'dl.winNote': 'Yükleyici koruma hizmetini kurar. Tek seferlik UAC onayını verin.',
-  'mac.h': 'macOS özellikleri',
-  'mac.1': '<span class="new">3.0 ile yeni</span><b>Daha hızlı, daha keskin, yeni görünüm</b><span>Daha hızlı taramalar, daha güçlü zararlı yazılım tespiti, her taramanın kaydı ve yepyeni bir tema.</span>',
-  'mac.2': "<b>Davranış koruması</b><span>AMOS, Banshee, Cuckoo, Poseidon, FrigidStealer ve SysJoker'ı çalışırken durdurur: sahte parola pencereleri, anahtar zinciri, cüzdan ve tarayıcı verisi hırsızlığı.</span>",
-  'mac.3': '<b>Fidye yazılımı kalkanı</b><span>Belgeler, Masaüstü ve Resimler klasörlerini izler; dosyalarınızı şifrelemeye başlayan imzasız programı anında durdurur.</span>',
-  'mac.4': "<b>47 milyondan fazla bilinen tehdit</b><span>42,5 milyon VirusShare ve 1,2 milyon MalwareBazaar parmak izi ile 3,6 milyon ClamAV imzası; hepsi Mac'inizde denetlenir.</span>",
-  'mac.5': "<b>Tarayıcı koruması</b><span>Safari, Chrome, Brave, Edge, Firefox, Arc, Opera ve Vivaldi'deki reklam eklentilerini ve arama ele geçirmelerini tek tıkla kaldırır.</span>",
-  'mac.6': '<b>İndirmeler ve arşivler</b><span>Her indirme denetlenir; ZIP, RAR, 7Z, ISO, DMG ve PKG dosyalarının içi de üç kat derinliğe kadar. Zip bombaları reddedilir.</span>',
-  'mac.7': '<b>Gatekeeper denetimi</b><span>İmzasız ve noter onaysız uygulamalar işaretlenir; iptal edilmiş geliştirici sertifikaları zararlı sayılır.</span>',
-  'mac.8': '<b>Güvenlik Kontrolü ve şifreli DNS</b><span>FileVault, güvenlik duvarı, SIP, güncellemeler ve Time Machine tek bakışta; ayrıca tüm Mac için DNS-over-HTTPS.</span>',
-  'win.h': 'Windows özellikleri',
-  'win.1': "<span class=\"new\">2.0 ile yeni</span><b>50 milyondan fazla bilinen tehdit</b><span>VirusShare ve MalwareBazaar hash'lerinden oluşan çevrimdışı veritabanı, ayrıca ClamAV ve YARA. Her arama bir mikrosaniye sürer; hiçbir hash bilgisayarınızdan çıkmaz.</span>",
-  'win.2': "<b>Windows saldırılarına özel YARA kuralları</b><span>İndirme zincirleri, kodlanmış PowerShell, AMSI atlatma, Defender'ı devre dışı bırakma, gölge kopya silme ve parola hırsızları.</span>",
-  'win.3': "<b>Güvensiz indirme engelleme</b><span>Dosyalar iner inmez taranır; URLhaus'taki zararlı sunuculardan gelen her şey doğrudan karantinaya gider.</span>",
-  'win.4': '<b>Yükleyicilerin içi açılır</b><span>MSI özel eylemleri, CAB, ZIP, MSIX, 7z, RAR ve ISO, üç kat derinliğe kadar. fatura.pdf.exe gibi gizlenmiş adlar işaretlenir.</span>',
-  'win.5': '<b>Authenticode denetimi</b><span>İmzasız programları ve kendinden imzalı, kurcalanmış ya da iptal edilmiş sertifikaları yakalar.</span>',
-  'win.6': "<b>Sızdırmayan şifreli DNS</b><span>Windows 11'in kendi DoH istemcisi ya da ulaşamadığında düz metne düşmeyen yerel çözümleyici; Wi-Fi kuralları ve sızıntı testi.</span>",
-  'win.7': '<b>Yönetici hakkı uyarıları</b><span>UAC yükseltmeleri, sessiz otomatik yükseltmeler ve yeni sistem hizmetleri, kimin imzaladığıyla birlikte.</span>',
-  'win.8': '<b>Şifreli karantina</b><span>AES-256-GCM ile Windows hesabınıza kilitli. Geri yüklenen dosyalar önce doğrulanır.</span>',
   'p.title': 'Bizden bir de: Platform365.',
   'p.sub': 'Tarayıcıda çalışan, internetsiz kullanılabilen ve hesap istemeyen bir ofis paketi.',
   'p.tag': 'Present + EasyWrite · Açık kaynak, MIT lisansı',
