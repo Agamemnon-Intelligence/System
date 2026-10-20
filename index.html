@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Athene Softworks</title>
-<meta name="description" content="Athene Softworks builds simple, secure software. Our products: Agamemnon, a free, open-source antivirus for macOS and Windows, Platform365, an offline office suite in your browser, and SearchEasy, a search engine built for accurate results.">
+<meta name="description" content="Athene Softworks builds simple, secure software. Our products: Agamemnon, a free, open-source antivirus for macOS and Windows, Platform365, an offline office suite in your browser, and Artemis AI, an assistant you can talk to right in your browser.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
 <meta property="og:title" content="Athene Softworks">
-<meta property="og:description" content="Simple, secure software. Meet Agamemnon, free antivirus for macOS and Windows, the Platform365 office suite and SearchEasy search.">
+<meta property="og:description" content="Simple, secure software. Meet Agamemnon, free antivirus for macOS and Windows, the Platform365 office suite and the Artemis AI assistant.">
 <link rel="icon" href="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png">
 <script>
 /* Apply the saved language before first paint. */
@@ -233,9 +233,14 @@ section { scroll-margin-top: 4rem; }
 .p-app.write small { color: #6f9dff; }
 .p-app p { margin: .25rem 0 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
 
-/* SearchEasy (compact) */
-.se-card { background: linear-gradient(135deg, rgba(124,92,255,.11), rgba(0,194,255,.05) 60%, transparent), var(--panel); }
-.se-logo { width: 60px; height: 60px; border-radius: 15px; display: block; }
+/* Artemis AI */
+.ai-card { background: linear-gradient(135deg, rgba(124,92,255,.11), rgba(0,194,255,.05) 60%, transparent), var(--panel); }
+.ai-logo { width: 60px; height: 60px; border-radius: 15px; display: block; }
+.ai-frame {
+  grid-column: 1 / -1; position: relative; border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--line); background: #070b17; height: min(72vh, 680px); min-height: 420px;
+}
+.ai-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #fff; }
 
 /* History (compact) */
 .history { display: grid; grid-template-columns: .8fr 1.2fr; }
@@ -362,7 +367,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
       <li><a href="#what" data-i18n="nav.what">What we do</a></li>
       <li><a href="#agamemnon">Agamemnon</a></li>
       <li><a href="#platform365">Platform365</a></li>
-      <li><a href="#searcheasy">SearchEasy</a></li>
+      <li><a href="#artemis">Artemis AI</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <button class="lang" id="lang" type="button" aria-label="Türkçe'ye geç">
@@ -567,26 +572,30 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     </div>
   </section>
 
-  <section class="section compact" id="searcheasy">
+  <section class="section compact" id="artemis">
     <div class="wrap">
       <div class="section-head reveal drip">
-        <h2 data-i18n="se.title">And now: SearchEasy.</h2>
-        <p data-i18n="se.sub">A search engine built for one thing: giving you the right results.</p>
+        <h2 data-i18n="ai.title">Meet Artemis AI.</h2>
+        <p data-i18n="ai.sub">Our AI assistant. Ask a question, get help with writing or code, or think an idea through. Try it right here, no sign-up needed.</p>
       </div>
-      <div class="p365-card se-card reveal">
-        <svg class="se-logo" viewBox="0 0 64 64" aria-hidden="true">
-          <defs><linearGradient id="se-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#00c2ff"/><stop offset="1" stop-color="#ff4fd8"/></linearGradient></defs>
-          <rect width="64" height="64" rx="19" fill="url(#se-g)"/>
-          <circle cx="29" cy="29" r="13" fill="none" stroke="#fff" stroke-width="6"/>
-          <path d="M39 39l11 11" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+      <div class="p365-card ai-card reveal">
+        <svg class="ai-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="ai-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#00c2ff"/><stop offset="1" stop-color="#ff4fd8"/></linearGradient></defs>
+          <rect width="64" height="64" rx="19" fill="url(#ai-g)"/>
+          <path d="M18 46c6-17 12-28 14-28s8 11 14 28" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24 37h16" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+          <path d="M47 14l1.6 3.4L52 19l-3.4 1.6L47 24l-1.6-3.4L42 19l3.4-1.6z" fill="#fff"/>
         </svg>
         <div>
-          <h3>SearchEasy v1.0 beta</h3>
-          <p class="sub" data-i18n="se.tag">Accurate search results · Beta</p>
+          <h3>Artemis AI</h3>
+          <p class="sub" data-i18n="ai.tag">Chat · Writing · Code · In your browser</p>
         </div>
-        <a class="pill sm solid" href="https://agamemnon-intelligence.github.io/SearchEasy/" target="_blank" rel="noopener"><span data-i18n="se.open">Open SearchEasy</span>
+        <a class="pill sm" href="https://mertyesil.com.tr/ai/" target="_blank" rel="noopener"><span data-i18n="ai.open">Open full screen</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
         </a>
+        <div class="ai-frame">
+          <iframe src="https://mertyesil.com.tr/ai/" title="Artemis AI" loading="lazy" allow="clipboard-write; microphone" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
       </div>
     </div>
   </section>
@@ -641,7 +650,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="wrap contact-grid">
       <div class="section-head reveal drip">
         <h2 data-i18n="c.title">Contact us.</h2>
-        <p data-i18n="c.sub">Questions about Agamemnon, Platform365 or SearchEasy, a bug, a threat we missed, or an idea to work together? Let us know. We usually reply within 24 to 48 hours.</p>
+        <p data-i18n="c.sub">Questions about Agamemnon, Platform365 or Artemis AI, a bug, a threat we missed, or an idea to work together? Let us know. We usually reply within 24 to 48 hours.</p>
         <p class="contact-alt"><span data-i18n="c.alt">Or write to us directly at</span> <a href="mailto:athenesoftworks@gmail.com">athenesoftworks@gmail.com</a></p>
       </div>
 
@@ -684,12 +693,12 @@ footer p { margin: .3rem 0; max-width: 60rem; }
         <li><a href="#top" data-i18n="nav.home">Home</a></li>
         <li><a href="#agamemnon">Agamemnon</a></li>
         <li><a href="#platform365">Platform365</a></li>
-        <li><a href="#searcheasy">SearchEasy</a></li>
+        <li><a href="#artemis">Artemis AI</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </div>
     <p data-i18n="foot.copy">Copyright © 2026 Athene Softworks. All rights reserved.</p>
-    <p data-i18n="foot.legal">Agamemnon is free software released under the GNU General Public License v2.0; Platform365 is released under the MIT license; SearchEasy is in beta. Malware hashes come from MalwareBazaar by abuse.ch and VirusShare.com; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
+    <p data-i18n="foot.legal">Agamemnon is free software released under the GNU General Public License v2.0; Platform365 is released under the MIT license. Artemis AI can make mistakes, so check important answers. Malware hashes come from MalwareBazaar by abuse.ch and VirusShare.com; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
   </div>
 </footer>
 
@@ -769,10 +778,10 @@ var TR = {
   'p.prTag': 'Present · Sunum',
   'p.prText': 'Ana hattan slayt oluşturma, sunum sağlık kontrolü, sahnede kalem ve lazer, canlı altyazı ve prova süresi ölçümü.',
   'p.ewTag': 'EasyWrite · Belge',
-  'se.title': 'Ve şimdi: SearchEasy.',
-  'se.sub': 'Tek bir amaç için yapılmış bir arama motoru: size doğru sonuçları vermek.',
-  'se.tag': 'Doğru arama sonuçları · Beta',
-  'se.open': "SearchEasy'i aç",
+  'ai.title': 'Karşınızda: Artemis AI.',
+  'ai.sub': 'Yapay zekâ asistanımız. Soru sorun, yazı ya da kod için yardım alın veya bir fikri birlikte düşünün. Hemen burada deneyin, kayıt gerekmez.',
+  'ai.tag': 'Sohbet · Yazı · Kod · Tarayıcınızda',
+  'ai.open': 'Tam ekran aç',
   'p.ewText': 'Eğik çizgi komutları, yazarken Markdown, Türkçe okunabilirlik puanı, satır içi hesaplama, odak modu ve sesle yazma.',
   'h.title': 'Hikâyemiz.',
   'h.p1': '<b>Ekim 2026.</b> Athene Softworks, ne yaptığı konusunda dürüst olan güvenlik yazılımları isteyen iki arkadaş, Mert Yeşil ve Miraz Bakış tarafından kuruldu.',
@@ -781,7 +790,7 @@ var TR = {
   'fo.sub': "İki arkadaş, her şeyi açıkta geliştiriyor. GitHub'da bizi takip edin.",
   'fo.role': 'Kurucu ortak',
   'c.title': 'Bize ulaşın.',
-  'c.sub': 'Agamemnon, Platform365 ya da SearchEasy hakkında bir sorunuz, bir hata, gözümüzden kaçan bir tehdit ya da birlikte çalışma fikriniz mi var? Bize yazın. Genellikle 24 ila 48 saat içinde yanıt veriyoruz.',
+  'c.sub': 'Agamemnon, Platform365 ya da Artemis AI hakkında bir sorunuz, bir hata, gözümüzden kaçan bir tehdit ya da birlikte çalışma fikriniz mi var? Bize yazın. Genellikle 24 ila 48 saat içinde yanıt veriyoruz.',
   'c.alt': 'Ya da doğrudan şu adrese yazın:',
   'f.name': 'Ad soyad',
   'f.email': 'E-posta',
@@ -792,7 +801,7 @@ var TR = {
   'f.send': 'Gönder',
   'f.note': 'Mesajınız doldurulmuş olarak Gmail açılır, göndermeye hazır.',
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
-  'foot.legal': "Agamemnon, GNU Genel Kamu Lisansı v2.0 ile yayınlanan özgür bir yazılımdır; Platform365 MIT lisansıyla yayınlanır; SearchEasy beta aşamasındadır. Zararlı yazılım özetleri abuse.ch'in MalwareBazaar projesinden ve VirusShare.com'dan gelir; isteğe bağlı ikinci motor Cisco Talos'un ClamAV'idir. Hiçbir antivirüs her şeyi yakalayamaz. Sisteminizi güncel tutun ve yalnızca güvendiğiniz yazılımları kurun."
+  'foot.legal': "Agamemnon, GNU Genel Kamu Lisansı v2.0 ile yayınlanan özgür bir yazılımdır; Platform365 MIT lisansıyla yayınlanır. Artemis AI hata yapabilir; önemli yanıtları kontrol edin. Zararlı yazılım özetleri abuse.ch'in MalwareBazaar projesinden ve VirusShare.com'dan gelir; isteğe bağlı ikinci motor Cisco Talos'un ClamAV'idir. Hiçbir antivirüs her şeyi yakalayamaz. Sisteminizi güncel tutun ve yalnızca güvendiğiniz yazılımları kurun."
 };
 
 var MSG = {
