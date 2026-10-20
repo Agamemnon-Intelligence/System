@@ -223,6 +223,8 @@ section { scroll-margin-top: 4rem; }
 .p-logo i:nth-child(3) { background: #f97316; }
 .p-logo i:nth-child(4) { background: #c8174a; }
 .p365-card h3 { font-size: 1.3rem; font-weight: 700; }
+.p-actions { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
+.ag-more { margin-top: 1.4rem; }
 .p365-card .sub { color: var(--muted); font-size: .9rem; margin: .2rem 0 0; }
 .p-chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 0; padding: 0; }
 .p-chips li { font-size: .8rem; padding: .3rem .7rem; border-radius: var(--radius); border: 1px solid var(--line); background: rgba(255,255,255,.03); color: #c6cde0; }
@@ -342,7 +344,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
   .history-art { min-height: 220px; order: 2; }
   .history-panel h2 { text-align: left; }
   .p365-card { grid-template-columns: auto 1fr; }
-  .p365-card > .pill { grid-column: 1 / -1; justify-self: start; }
+  .p365-card > .pill, .p365-card > .p-actions { grid-column: 1 / -1; justify-self: start; justify-content: flex-start; }
 }
 @media (max-width: 560px) {
   .services, .p-apps, form, .threats { grid-template-columns: 1fr; }
@@ -442,6 +444,9 @@ footer p { margin: .3rem 0; max-width: 60rem; }
             <span class="badge">Windows 10 &amp; 11</span>
             <span class="badge">GPL-2.0</span>
           </div>
+          <a class="pill sm ag-more" href="agamemnon.html"><span data-i18n="ag.more">Full details</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
 
         <ul class="features">
@@ -527,17 +532,21 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="wrap">
       <div class="section-head reveal drip">
         <h2 data-i18n="p.title">Also from us: Platform365.</h2>
-        <p data-i18n="p.sub">An office suite that runs in your browser, works offline and needs no account.</p>
+        <p data-i18n="p.sub">An office suite for Windows and macOS that works offline and needs no account. Now in English and Turkish.</p>
       </div>
       <div class="p365-card reveal">
         <div class="p-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <div>
-          <h3>Platform365 v2.1.0</h3>
-          <p class="sub" data-i18n="p.tag">Present + EasyWrite · Open source, MIT license</p>
+          <h3>Platform365 v3.0.0</h3>
+          <p class="sub" data-i18n="p.tag">Present + EasyWrite · Windows &amp; macOS · Open source, MIT license</p>
         </div>
-        <a class="pill sm solid" href="https://github.com/Agamemnon-Intelligence/Platform365/releases/tag/v2.1.0" target="_blank" rel="noopener"><span data-i18n="p.open">Open Platform365</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
-        </a>
+        <div class="p-actions">
+          <a class="pill sm solid" href="https://github.com/Agamemnon-Intelligence/Platform365/releases/download/v3.0.0/Platform365-Setup.exe" data-os-dl="win" data-i18n="p.exe">Download .exe</a>
+          <a class="pill sm" href="https://github.com/Agamemnon-Intelligence/Platform365/releases/download/v3.0.0/Platform365-macOS.dmg" data-os-dl="mac" data-i18n="p.dmg">Download .dmg</a>
+          <a class="pill sm" href="platform365.html"><span data-i18n="p.more">Details</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
         <ul class="p-chips">
           <li data-i18n="p.c1">No account</li>
           <li data-i18n="p.c2">Works offline</li>
@@ -709,6 +718,7 @@ var TR = {
   'ag.sub': 'macOS ve Windows için amiral gemisi antivirüsümüz. Yalnızca tanıdığı dosyalara bakmaz: programların ne yaptığını izler ve günümüzün veri hırsızlarını iş üstünde durdurur. Ücretsiz ve açık kaynaklı.',
   'ag.tag': 'Gerektiği ana kadar sessiz kalan ciddi bir koruma.',
   'badge.live': 'Şimdi kullanılabilir',
+  'ag.more': 'Tüm ayrıntılar',
   'ag.f0t': 'Davranış koruması',
   'ag.f0p': 'Yeni zararlıları yaptıklarından tanıyıp durdurur.',
   'ag.f1t': "macOS'ta 47 milyondan fazla bilinen tehdit",
@@ -747,9 +757,11 @@ var TR = {
   'dl.source': 'Kaynak kod',
   'dl.winNote': 'Yükleyici koruma hizmetini kurar. Tek seferlik UAC onayını verin.',
   'p.title': 'Bizden bir de: Platform365.',
-  'p.sub': 'Tarayıcıda çalışan, internetsiz kullanılabilen ve hesap istemeyen bir ofis paketi.',
-  'p.tag': 'Present + EasyWrite · Açık kaynak, MIT lisansı',
-  'p.open': "Platform365'i aç",
+  'p.sub': 'Windows ve macOS için internetsiz çalışan, hesap istemeyen bir ofis paketi. Artık Türkçe ve İngilizce.',
+  'p.tag': 'Present + EasyWrite · Windows ve macOS · Açık kaynak, MIT lisansı',
+  'p.exe': '.exe indir',
+  'p.dmg': '.dmg indir',
+  'p.more': 'Ayrıntılar',
   'p.c1': 'Hesap gerekmez',
   'p.c2': 'İnternetsiz çalışır',
   'p.c3': 'Dosyalar cihazınızda kalır',
@@ -822,7 +834,11 @@ var MSG = {
   // ---------- OS-matched download ----------
   var ua = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent;
   var os = /mac/i.test(ua) ? 'mac' : /win/i.test(ua) ? 'win' : null;
-  if (os) { var card = document.querySelector('.dl[data-os="' + os + '"]'); if (card) card.classList.add('yours'); }
+  if (os) {
+    var card = document.querySelector('.dl[data-os="' + os + '"]'); if (card) card.classList.add('yours');
+    // Platform365: make the button for this system the solid one.
+    document.querySelectorAll('[data-os-dl]').forEach(function (a) { a.classList.toggle('solid', a.dataset.osDl === os); });
+  }
 
   // ---------- Contact form → Gmail compose ----------
   var form = document.getElementById('contact-form');
