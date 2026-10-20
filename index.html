@@ -236,11 +236,6 @@ section { scroll-margin-top: 4rem; }
 /* Artemis AI */
 .ai-card { background: linear-gradient(135deg, rgba(124,92,255,.11), rgba(0,194,255,.05) 60%, transparent), var(--panel); }
 .ai-logo { width: 60px; height: 60px; border-radius: 15px; display: block; }
-.ai-frame {
-  grid-column: 1 / -1; position: relative; border-radius: 16px; overflow: hidden;
-  border: 1px solid var(--line); background: #070b17; height: min(72vh, 680px); min-height: 420px;
-}
-.ai-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #fff; }
 
 /* History (compact) */
 .history { display: grid; grid-template-columns: .8fr 1.2fr; }
@@ -576,7 +571,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="wrap">
       <div class="section-head reveal drip">
         <h2 data-i18n="ai.title">Meet Artemis AI.</h2>
-        <p data-i18n="ai.sub">Our AI assistant. Ask a question, get help with writing or code, or think an idea through. Try it right here, no sign-up needed.</p>
+        <p data-i18n="ai.sub">Our AI assistant. Ask a question, get help with writing or code, or think an idea through. Free, with no sign-up.</p>
       </div>
       <div class="p365-card ai-card reveal">
         <svg class="ai-logo" viewBox="0 0 64 64" aria-hidden="true">
@@ -590,11 +585,24 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           <h3>Artemis AI</h3>
           <p class="sub" data-i18n="ai.tag">Chat · Writing · Code · In your browser</p>
         </div>
-        <a class="pill sm" href="https://mertyesil.com.tr/ai/" target="_blank" rel="noopener"><span data-i18n="ai.open">Open full screen</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
+        <a class="pill sm solid" href="artemis.html"><span data-i18n="ai.open">Try Artemis AI</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <div class="ai-frame">
-          <iframe src="https://mertyesil.com.tr/ai/" title="Artemis AI" loading="lazy" allow="clipboard-write; microphone" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <ul class="p-chips">
+          <li data-i18n="ai.c1">No sign-up</li>
+          <li data-i18n="ai.c2">Free to use</li>
+          <li data-i18n="ai.c3">English and Turkish</li>
+          <li data-i18n="ai.c4">Works on any device</li>
+        </ul>
+        <div class="p-apps">
+          <div class="p-app">
+            <small data-i18n="ai.wrTag">Writing · Ideas</small>
+            <p data-i18n="ai.wrText">Drafts, summaries, translations and rewrites. Talk an idea through and get a clear plan back.</p>
+          </div>
+          <div class="p-app write">
+            <small data-i18n="ai.cdTag">Code · Answers</small>
+            <p data-i18n="ai.cdText">Explains code, helps you track down bugs and answers questions in plain language.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -779,9 +787,17 @@ var TR = {
   'p.prText': 'Ana hattan slayt oluşturma, sunum sağlık kontrolü, sahnede kalem ve lazer, canlı altyazı ve prova süresi ölçümü.',
   'p.ewTag': 'EasyWrite · Belge',
   'ai.title': 'Karşınızda: Artemis AI.',
-  'ai.sub': 'Yapay zekâ asistanımız. Soru sorun, yazı ya da kod için yardım alın veya bir fikri birlikte düşünün. Hemen burada deneyin, kayıt gerekmez.',
+  'ai.sub': 'Yapay zekâ asistanımız. Soru sorun, yazı ya da kod için yardım alın veya bir fikri birlikte düşünün. Ücretsiz, kayıt gerekmez.',
   'ai.tag': 'Sohbet · Yazı · Kod · Tarayıcınızda',
-  'ai.open': 'Tam ekran aç',
+  'ai.open': "Artemis AI'ı deneyin",
+  'ai.c1': 'Kayıt gerekmez',
+  'ai.c2': 'Ücretsiz',
+  'ai.c3': 'Türkçe ve İngilizce',
+  'ai.c4': 'Her cihazda çalışır',
+  'ai.wrTag': 'Yazı · Fikir',
+  'ai.wrText': 'Taslaklar, özetler, çeviriler ve yeniden yazımlar. Bir fikri anlatın, net bir plan olarak geri alın.',
+  'ai.cdTag': 'Kod · Yanıtlar',
+  'ai.cdText': 'Kodu açıklar, hataları bulmanıza yardım eder ve sorularınızı sade bir dille yanıtlar.',
   'p.ewText': 'Eğik çizgi komutları, yazarken Markdown, Türkçe okunabilirlik puanı, satır içi hesaplama, odak modu ve sesle yazma.',
   'h.title': 'Hikâyemiz.',
   'h.p1': '<b>Ekim 2026.</b> Athene Softworks, ne yaptığı konusunda dürüst olan güvenlik yazılımları isteyen iki arkadaş, Mert Yeşil ve Miraz Bakış tarafından kuruldu.',

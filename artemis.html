@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Artemis AI · Athene Softworks</title>
+<meta name="description" content="Artemis AI is the Athene Softworks assistant. Ask questions, get help with writing and code, and think ideas through, right in your browser.">
+<meta name="theme-color" content="#0b1020">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Athene Softworks">
+<meta property="og:title" content="Artemis AI · Athene Softworks">
+<meta property="og:description" content="An AI assistant in your browser. Free, with no sign-up.">
+<link rel="icon" href="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png">
+<script>
+(function () { var d = document.documentElement; d.classList.add('js'); try { if (localStorage.getItem('athene-lang') === 'tr') d.lang = 'tr'; } catch (e) {} })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&family=Red+Hat+Text:wght@300..700&display=swap">
+<link rel="stylesheet" href="product.css">
+<style>
+:root { --accent: #00c2ff; --accent-soft: rgba(0,194,255,.14); }
+.ai-head {
+  padding: 5.6rem 0 1.2rem;
+  background:
+    radial-gradient(70% 120% at 100% 0%, rgba(255,79,216,.14), transparent 60%),
+    radial-gradient(60% 120% at 0% 0%, rgba(124,92,255,.28), transparent 60%),
+    linear-gradient(160deg, #10163a 0%, #131a3f 100%);
+  border-bottom: 1px solid var(--line);
+}
+.ai-head .wrap { display: grid; grid-template-columns: auto 1fr auto; gap: .6rem 1.1rem; align-items: center; }
+.ai-head .crumb { grid-column: 1 / -1; margin: 0 0 .4rem; }
+.ai-logo { width: 52px; height: 52px; display: block; }
+.ai-head h1 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; letter-spacing: -.02em; margin: 0; }
+.ai-head p { margin: .1rem 0 0; color: var(--muted); font-size: .92rem; }
+.viewer { padding: 1.2rem 0 2.5rem; }
+.viewer-frame {
+  position: relative; border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--line); background: var(--panel);
+  height: calc(100vh - 12rem); height: calc(100dvh - 12rem); min-height: 480px;
+}
+.viewer-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+.viewer-note { margin: .8rem 0 0; color: var(--muted); font-size: .82rem; }
+.viewer-note a { color: var(--text); }
+@media (max-width: 560px) {
+  .ai-head .wrap { grid-template-columns: auto 1fr; }
+  .ai-head .pill { grid-column: 1 / -1; justify-self: start; }
+  .viewer-frame { height: calc(100dvh - 9rem); border-radius: 14px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <a class="wordmark" href="index.html">Athene Softworks</a>
+  <div class="nav-right">
+    <ul>
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="agamemnon.html">Agamemnon</a></li>
+      <li><a href="platform365.html">Platform365</a></li>
+      <li><a href="artemis.html" aria-current="page">Artemis AI</a></li>
+      <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <button class="lang" id="lang" type="button" aria-label="Türkçe'ye geç">
+      <svg class="flag-gb" viewBox="0 0 60 40" aria-hidden="true">
+        <clipPath id="gb-c"><rect width="60" height="40"/></clipPath>
+        <clipPath id="gb-t"><path d="M30 20h30v20zv20H0zH0V0zV0h30z"/></clipPath>
+        <g clip-path="url(#gb-c)">
+          <rect width="60" height="40" fill="#012169"/>
+          <path d="M0 0l60 40m0-40L0 40" stroke="#fff" stroke-width="8"/>
+          <path d="M0 0l60 40m0-40L0 40" clip-path="url(#gb-t)" stroke="#C8102E" stroke-width="5"/>
+          <path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="12"/>
+          <path d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="7"/>
+        </g>
+      </svg>
+      <svg class="flag-tr" viewBox="0 0 1200 800" aria-hidden="true">
+        <rect width="1200" height="800" fill="#E30A17"/>
+        <circle cx="300" cy="400" r="200" fill="#fff"/>
+        <circle cx="350" cy="400" r="160" fill="#E30A17"/>
+        <polygon fill="#fff" points="400,400 469.1,377.5 469.1,304.9 511.8,363.7 580.9,341.2 538.2,400 580.9,458.8 511.8,436.3 469.1,495.1 469.1,422.5"/>
+      </svg>
+      <span data-i18n="lang.code">EN</span>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <header class="ai-head">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html" data-i18n="nav.home">Home</a> › Artemis AI</p>
+      <svg class="ai-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="ai-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#00c2ff"/><stop offset="1" stop-color="#ff4fd8"/></linearGradient></defs>
+          <rect width="64" height="64" rx="19" fill="url(#ai-g)"/>
+          <path d="M18 46c6-17 12-28 14-28s8 11 14 28" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24 37h16" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+          <path d="M47 14l1.6 3.4L52 19l-3.4 1.6L47 24l-1.6-3.4L42 19l3.4-1.6z" fill="#fff"/>
+        </svg>
+      <div>
+        <h1>Artemis AI</h1>
+        <p data-i18n="hero.lead">Ask a question, get help with writing or code, or think an idea through.</p>
+      </div>
+      <a class="pill sm" href="https://mertyesil.com.tr/ai/" target="_blank" rel="noopener"><span data-i18n="ai.open">Open in new tab</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <section class="viewer">
+    <div class="wrap">
+      <div class="viewer-frame">
+        <iframe src="https://mertyesil.com.tr/ai/" title="Artemis AI" allow="clipboard-read; clipboard-write; microphone" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <p class="viewer-note" data-i18n="ai.note">Chat not loading? <a href="https://mertyesil.com.tr/ai/" target="_blank" rel="noopener">Open Artemis AI in a new tab</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="wordmark" href="index.html">Athene Softworks</a>
+      <ul>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="agamemnon.html">Agamemnon</a></li>
+        <li><a href="platform365.html">Platform365</a></li>
+        <li><a href="artemis.html">Artemis AI</a></li>
+      <li><a href="artemis.html">Artemis AI</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+    <p data-i18n="foot.copy">Copyright © 2026 Athene Softworks. All rights reserved.</p>
+    <p data-i18n="foot.legal">Artemis AI can make mistakes, so check important answers. Don't share passwords or other sensitive personal information in the chat.</p>
+  </div>
+</footer>
+
+<script>
+var TR = {
+  'doc.title': 'Artemis AI · Athene Softworks',
+  'lang.code': 'TR',
+  'nav.home': 'Ana sayfa',
+  'nav.contact': 'İletişim',
+  'hero.lead': 'Soru sorun, yazı ya da kod için yardım alın veya bir fikri birlikte düşünün.',
+  'ai.open': 'Yeni sekmede aç',
+  'ai.note': 'Sohbet yüklenmiyor mu? <a href="https://mertyesil.com.tr/ai/" target="_blank" rel="noopener">Artemis AI\'ı yeni sekmede açın</a>.',
+  'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
+  'foot.legal': 'Artemis AI hata yapabilir; önemli yanıtları kontrol edin. Sohbette parola ya da başka hassas kişisel bilgiler paylaşmayın.'
+};
+</script>
+<script src="product.js"></script>
+</body>
+</html>
