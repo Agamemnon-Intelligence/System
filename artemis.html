@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Artemis AI · Athene Softworks</title>
-<meta name="description" content="Artemis AI is the Athene Softworks assistant. Ask questions, get help with writing and code, and think ideas through, right in your browser.">
+<meta name="description" content="Artemis 1.0 is the Athene Softworks general knowledge assistant, trained from scratch and running entirely in your browser.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
@@ -33,19 +33,52 @@
 .ai-logo { width: 52px; height: 52px; display: block; }
 .ai-head h1 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; letter-spacing: -.02em; margin: 0; }
 .ai-head p { margin: .1rem 0 0; color: var(--muted); font-size: .92rem; }
-.viewer { padding: 1.2rem 0 2.5rem; }
-.viewer-frame {
-  position: relative; border-radius: 18px; overflow: hidden;
-  border: 1px solid var(--line); background: var(--panel);
-  height: calc(100vh - 12rem); height: calc(100dvh - 12rem); min-height: 480px;
+.chat-sec { padding: 1.2rem 0 2.5rem; }
+.models { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 .9rem; }
+.model {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .95rem; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.03); color: var(--text);
+  font: 600 .88rem var(--display); cursor: pointer;
 }
-.viewer-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
-.viewer-note { margin: .8rem 0 0; color: var(--muted); font-size: .82rem; }
-.viewer-note a { color: var(--text); }
+.model[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.model:disabled { cursor: not-allowed; color: var(--muted); }
+.model .soon { font: 700 .66rem var(--body); text-transform: uppercase; letter-spacing: .06em; padding: .14rem .45rem; border-radius: 999px; background: rgba(232,176,75,.16); color: var(--gold-2); }
+.model .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.model.ready .dot { background: var(--green); }
+.chat {
+  display: flex; flex-direction: column; border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--line); background: var(--panel);
+  height: calc(100vh - 19rem); height: calc(100dvh - 19rem); min-height: 420px;
+}
+.log { flex: 1; overflow-y: auto; padding: 1.2rem; display: flex; flex-direction: column; gap: .8rem; }
+.msg { max-width: min(42rem, 88%); padding: .7rem 1rem; border-radius: 16px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.55; }
+.msg.user { align-self: flex-end; background: var(--accent); color: #04111a; border-bottom-right-radius: 5px; }
+.msg.bot { align-self: flex-start; background: rgba(255,255,255,.05); border: 1px solid var(--line); border-bottom-left-radius: 5px; }
+.msg.bot.typing::after { content: "▍"; animation: blink 1s steps(2) infinite; color: var(--accent); }
+@keyframes blink { 50% { opacity: 0; } }
+.empty { margin: auto; text-align: center; color: var(--muted); max-width: 30rem; }
+.empty h2 { color: var(--text); font-size: 1.3rem; margin-bottom: .4rem; }
+.ideas { display: flex; flex-wrap: wrap; gap: .45rem; justify-content: center; margin-top: 1rem; }
+.ideas button { border: 1px solid var(--line); background: rgba(255,255,255,.03); color: var(--text); border-radius: 999px; padding: .4rem .85rem; font: 500 .84rem var(--body); cursor: pointer; }
+.ideas button:hover { border-color: var(--accent); }
+.status { padding: 0 1.2rem .6rem; color: var(--muted); font-size: .82rem; min-height: 1.4rem; }
+.bar { height: 3px; background: rgba(255,255,255,.06); }
+.bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #7c5cff, #00c2ff, #ff4fd8); transition: width .2s; }
+.composer { display: flex; gap: .5rem; padding: .8rem; border-top: 1px solid var(--line); }
+.composer textarea {
+  flex: 1; resize: none; min-height: 2.8rem; max-height: 9rem; padding: .7rem .95rem; border-radius: 14px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--text); font: 400 1rem/1.4 var(--body);
+}
+.composer textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.composer button { flex: none; border: 0; border-radius: 14px; padding: 0 1.1rem; font: 700 .9rem var(--display); cursor: pointer; background: #fff; color: var(--bg); }
+.composer button:disabled { opacity: .45; cursor: not-allowed; }
+.chat-note { margin: .8rem 0 0; color: var(--muted); font-size: .82rem; }
 @media (max-width: 560px) {
   .ai-head .wrap { grid-template-columns: auto 1fr; }
   .ai-head .pill { grid-column: 1 / -1; justify-self: start; }
-  .viewer-frame { height: calc(100dvh - 9rem); border-radius: 14px; }
+  .chat { height: calc(100dvh - 11rem); border-radius: 14px; }
+  .log { padding: .9rem; }
+  .msg { max-width: 94%; }
 }
 </style>
 </head>
@@ -97,20 +130,40 @@
         </svg>
       <div>
         <h1>Artemis AI</h1>
-        <p data-i18n="hero.lead">Ask a question, get help with writing or code, or think an idea through.</p>
+        <p data-i18n="hero.lead">Ask a general knowledge question. The model runs entirely in your browser.</p>
       </div>
-      <a class="pill sm" href="https://mertyesil.com.tr/ai/" target="_blank" rel="noopener"><span data-i18n="ai.open">Open in new tab</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
-      </a>
+      <span class="pill sm" id="ver">Artemis 1.0</span>
     </div>
   </header>
 
-  <section class="viewer">
+  <section class="chat-sec">
     <div class="wrap">
-      <div class="viewer-frame">
-        <iframe src="https://mertyesil.com.tr/ai/" title="Artemis AI" allow="clipboard-read; clipboard-write; microphone" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="models" role="group" aria-label="Model">
+        <button class="model" type="button" id="m-artemis" aria-pressed="true"><span class="dot"></span>Artemis 1.0</button>
+        <button class="model" type="button" disabled>Artemis 1.1 Pro <span class="soon" data-i18n="soon">Coming soon</span></button>
+        <button class="model" type="button" disabled>Plasma 2.0 <span class="soon" data-i18n="soon">Coming soon</span></button>
       </div>
-      <p class="viewer-note" data-i18n="ai.note">Chat not loading? <a href="https://mertyesil.com.tr/ai/" target="_blank" rel="noopener">Open Artemis AI in a new tab</a>.</p>
+      <div class="chat">
+        <div class="bar"><i id="bar"></i></div>
+        <div class="log" id="log" aria-live="polite">
+          <div class="empty" id="empty">
+            <h2 data-i18n="e.title">Hi, I'm Artemis 1.0.</h2>
+            <p data-i18n="e.sub">A small general knowledge model trained from scratch by Athene Softworks. It runs entirely on your device; nothing you type leaves your browser.</p>
+            <div class="ideas" id="ideas">
+              <button type="button">Atatürk kimdir?</button>
+              <button type="button">İstanbul hakkında bilgi ver.</button>
+              <button type="button">Fotosentez nedir?</button>
+              <button type="button">What is the capital of France?</button>
+            </div>
+          </div>
+        </div>
+        <p class="status" id="status"></p>
+        <form class="composer" id="form">
+          <textarea id="input" rows="1" data-i18n-ph="ph" placeholder="Ask Artemis something…" aria-label="Message"></textarea>
+          <button type="submit" id="send" disabled data-i18n="send">Send</button>
+        </form>
+      </div>
+      <p class="chat-note" data-i18n="ai.note">Artemis 1.0 is a small first model (8.5M parameters). It often makes mistakes, so don't rely on its answers.</p>
     </div>
   </section>
 </main>
@@ -124,7 +177,6 @@
         <li><a href="agamemnon.html">Agamemnon</a></li>
         <li><a href="platform365.html">Platform365</a></li>
         <li><a href="artemis.html">Artemis AI</a></li>
-      <li><a href="artemis.html">Artemis AI</a></li>
         <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </div>
@@ -139,13 +191,18 @@ var TR = {
   'lang.code': 'TR',
   'nav.home': 'Ana sayfa',
   'nav.contact': 'İletişim',
-  'hero.lead': 'Soru sorun, yazı ya da kod için yardım alın veya bir fikri birlikte düşünün.',
-  'ai.open': 'Yeni sekmede aç',
-  'ai.note': 'Sohbet yüklenmiyor mu? <a href="https://mertyesil.com.tr/ai/" target="_blank" rel="noopener">Artemis AI\'ı yeni sekmede açın</a>.',
+  'hero.lead': 'Bir genel kültür sorusu sorun. Model tamamen tarayıcınızda çalışır.',
+  'soon': 'Yakında',
+  'e.title': 'Merhaba, ben Artemis 1.0.',
+  'e.sub': 'Athene Softworks tarafından sıfırdan eğitilmiş küçük bir genel kültür modeliyim. Tamamen cihazınızda çalışırım; yazdıklarınız tarayıcınızdan çıkmaz.',
+  'ph': "Artemis'e bir şey sorun…",
+  'send': 'Gönder',
+  'ai.note': "Artemis 1.0 küçük bir ilk modeldir (8,5 milyon parametre). Sık sık hata yapar; yanıtlarına güvenmeyin.",
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
   'foot.legal': 'Artemis AI hata yapabilir; önemli yanıtları kontrol edin. Sohbette parola ya da başka hassas kişisel bilgiler paylaşmayın.'
 };
 </script>
 <script src="product.js"></script>
+<script src="artemis/artemis-chat.js"></script>
 </body>
 </html>
