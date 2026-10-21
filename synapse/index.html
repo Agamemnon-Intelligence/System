@@ -10,6 +10,7 @@
 <meta property="og:image" content="assets/icon-512.png">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/icon-256.png">
+<script>document.documentElement.classList.add('js');</script>
 <style>
   :root {
     --bg: #08090b;
@@ -21,12 +22,13 @@
     --text: #ececef;
     --muted: #9a9ca3;
     --faint: #63656c;
-    --accent: #3b82f6;
-    --accent-2: #60a5fa;
+    --accent: #0ea5e9;
+    --accent-2: #38bdf8;
     --green: #34d399;
     --amber: #fbbf24;
     --red: #f87171;
     --radius: 16px;
+    --honey: cubic-bezier(.16, 1, .3, 1);
     --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
     --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
   }
@@ -46,7 +48,7 @@
   /* ambient light */
   .glow { position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background:
-      radial-gradient(900px 500px at 15% -10%, rgba(59,130,246,.13), transparent 60%),
+      radial-gradient(900px 500px at 15% -10%, rgba(14,165,233,.13), transparent 60%),
       radial-gradient(700px 500px at 100% 30%, rgba(255,255,255,.035), transparent 60%);
   }
   main, header, footer { position: relative; z-index: 1; }
@@ -82,10 +84,7 @@
 
   /* hero */
   .hero { padding-top: 96px; padding-bottom: 40px; text-align: center; }
-  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; font-size: 13px; color: var(--muted); }
-  .pill b { color: var(--text); font-weight: 600; }
-  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
-  h1 { font-size: clamp(42px, 7vw, 76px); line-height: 1.02; letter-spacing: -.035em; font-weight: 700; margin: 26px auto 20px; max-width: 860px; }
+  h1 { font-size: clamp(42px, 7vw, 76px); line-height: 1.02; letter-spacing: -.035em; font-weight: 700; margin: 0 auto 20px; max-width: 860px; }
   h1 .soft { color: var(--muted); }
   .lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 640px; margin: 0 auto; }
   .cta { display: flex; gap: 12px; justify-content: center; margin-top: 34px; flex-wrap: wrap; }
@@ -105,13 +104,13 @@
   .side .row.sel { background: rgba(255,255,255,.08); color: var(--text); }
   .side .foot { margin-top: auto; border-top: 1px solid var(--border); padding-top: 8px; }
   .main { position: relative; display: flex; flex-direction: column;
-    background: radial-gradient(600px 300px at 0% 0%, rgba(59,130,246,.10), transparent 70%), #0a0b0d; }
+    background: radial-gradient(600px 300px at 0% 0%, rgba(14,165,233,.10), transparent 70%), #0a0b0d; }
   .titlebar { height: 46px; display: flex; align-items: center; padding: 0 18px; font-size: 13px; font-weight: 600; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,.04); }
   .titlebar .tb-r { margin-left: auto; display: flex; gap: 6px; }
   .titlebar .tb-r span { width: 28px; height: 22px; border-radius: 999px; background: rgba(255,255,255,.06); display: block; }
   .msgs { flex: 1; padding: 26px 350px 26px 44px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; }
   .u { align-self: flex-end; padding: 9px 14px; border-radius: 16px; max-width: 70%;
-    background: linear-gradient(180deg, rgba(59,130,246,.28), rgba(59,130,246,.16)); border: 1px solid rgba(96,165,250,.25); }
+    background: linear-gradient(180deg, rgba(14,165,233,.28), rgba(14,165,233,.16)); border: 1px solid rgba(56,189,248,.25); }
   .step { color: var(--muted); font-size: 13px; display: flex; gap: 8px; align-items: center; }
   .think { color: var(--faint); font-size: 12px; }
   .a p { margin-bottom: 10px; color: #dcdde2; }
@@ -122,20 +121,18 @@
   .composer .ph { color: var(--faint); font-size: 14px; padding: 0 4px 12px; }
   .composer .bar { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); }
   .chip { height: 28px; padding: 0 10px; border-radius: 999px; background: rgba(255,255,255,.05); display: inline-flex; align-items: center; gap: 6px; }
-  .chip.on { color: var(--accent-2); background: rgba(59,130,246,.12); width: 28px; padding: 0; justify-content: center; }
+  .chip.on { color: var(--accent-2); background: rgba(14,165,233,.12); width: 28px; padding: 0; justify-content: center; }
   .send { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; margin-left: 6px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 4px 14px rgba(59,130,246,.4); }
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 4px 14px rgba(14,165,233,.4); }
   .browser { position: absolute; right: 16px; top: 62px; width: 300px; border-radius: 14px; overflow: hidden; }
   .browser .bbar { display: flex; gap: 6px; align-items: center; padding: 8px; font-size: 11px; color: var(--muted); }
   .browser .url { flex: 1; font-family: var(--mono); background: rgba(255,255,255,.06); border-radius: 999px; padding: 4px 10px; }
   .browser .page { background: #f4f5f7; height: 150px; position: relative; padding: 14px; }
   .browser .page i { display: block; height: 8px; border-radius: 4px; background: #d9dbe0; margin-bottom: 8px; }
   .browser .cursor { position: absolute; left: 62%; top: 62%; width: 14px; height: 14px; border-radius: 50%; background: var(--accent);
-    box-shadow: 0 0 0 5px rgba(59,130,246,.25); animation: hop 3.4s ease-in-out infinite; }
+    box-shadow: 0 0 0 5px rgba(14,165,233,.25); animation: hop 3.4s ease-in-out infinite; }
   .browser .status { display: flex; gap: 8px; align-items: center; font-size: 11px; color: var(--muted); padding: 8px 10px; }
-  .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.4s ease-in-out infinite; }
   @keyframes hop { 0%,100% { left: 62%; top: 62%; } 40% { left: 24%; top: 30%; } 70% { left: 70%; top: 22%; } }
-  @keyframes pulse { 50% { opacity: .3; } }
 
   /* sections */
   section { padding: 110px 0; }
@@ -168,7 +165,7 @@
   .m .sz { color: var(--muted); font-family: var(--mono); font-size: 12px; }
   .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); min-width: 92px; }
   .badge i { width: 7px; height: 7px; border-radius: 50%; display: block; }
-  .m.best { background: rgba(59,130,246,.09); }
+  .m.best { background: rgba(14,165,233,.09); }
   .m.no { opacity: .4; }
 
   /* capabilities */
@@ -212,8 +209,13 @@
   footer .links { margin-left: auto; display: flex; gap: 20px; }
   footer a:hover { color: var(--text); }
 
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.in { opacity: 1; transform: none; }
+  /* Honey: slow start, long, soft settle. */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .js .reveal { opacity: 0; transform: translateY(56px) scale(.97); filter: blur(10px);
+    transition: opacity 1.6s var(--honey) var(--d, 0s), transform 2.2s var(--honey) var(--d, 0s), filter 1.6s var(--honey) var(--d, 0s);
+    will-change: opacity, transform, filter; }
+  .js .reveal.in { opacity: 1; transform: none; filter: none; }
 
   @media (max-width: 900px) {
     .nav-links { display: none; }
@@ -232,7 +234,7 @@
     .m { grid-template-columns: 1fr auto; }
     .m .sz { display: none; }
   }
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } .reveal { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } .js .reveal { opacity: 1; transform: none; filter: none; } }
 </style>
 </head>
 <body>
@@ -257,7 +259,6 @@
 
 <main>
   <div class="wrap hero">
-    <span class="pill glass"><span class="dot"></span><b>Synapse 1.0</b> for macOS is here</span>
     <h1>AI that runs on your Mac.<br><span class="soft">Or anywhere you want.</span></h1>
     <p class="lead">Download open models from Hugging Face and run them privately, or connect free cloud models from Google and Groq. One native app, with web search, images, a browser and your files built in.</p>
     <div class="cta">
@@ -314,8 +315,8 @@
         </div>
         <div class="browser glass">
           <div class="bbar">‹ › ↻ <span class="url">visitlisboa.com/plan</span></div>
-          <div class="page"><i style="width:60%"></i><i style="width:85%"></i><i style="width:72%"></i><i style="width:40%;background:#3b82f6;opacity:.6"></i><i style="width:78%"></i><span class="cursor"></span></div>
-          <div class="status"><span class="pulse"></span>Synapse is using the browser</div>
+          <div class="page"><i style="width:60%"></i><i style="width:85%"></i><i style="width:72%"></i><i style="width:40%;background:#0ea5e9;opacity:.6"></i><i style="width:78%"></i><span class="cursor"></span></div>
+          <div class="status">Synapse is using the browser</div>
         </div>
       </div>
     </div>
@@ -469,6 +470,7 @@ the same quiet sea.</span>
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script>
   // Set this to the GitHub repository that hosts Synapse.
   const REPO = "https://github.com/Agamemnon-Intelligence/Synapse-macOS";
@@ -514,9 +516,37 @@ the same quiet sea.</span>
   }));
   render(8);
 
-  // Fade sections in as they scroll into view.
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
-  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  // Honey reveal: stagger siblings and ease them in slowly.
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els = [...document.querySelectorAll(".reveal")];
+  const groups = new Map();
+  els.forEach(el => {
+    const p = el.parentElement, i = groups.get(p) || 0;
+    el.style.setProperty("--d", (i * 0.14).toFixed(2) + "s");
+    groups.set(p, i + 1);
+  });
+  if (reduce || !("IntersectionObserver" in window)) {
+    els.forEach(el => el.classList.add("in"));
+  } else {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+    els.forEach(el => io.observe(el));
+  }
+
+  // Honey scroll: slow, smooth inertia (desktop only).
+  addEventListener("load", () => {
+    if (reduce || !window.Lenis || !matchMedia("(pointer: fine)").matches) return;
+    const lenis = new Lenis({ duration: 1.8, easing: t => 1 - Math.pow(1 - t, 4), wheelMultiplier: 0.85 });
+    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+      const id = a.getAttribute("href");
+      const target = id === "#" ? 0 : document.querySelector(id);
+      if (target === null) return;
+      e.preventDefault();
+      lenis.scrollTo(target, { offset: -64, duration: 2.2 });
+    }));
+  });
 </script>
 </body>
 </html>

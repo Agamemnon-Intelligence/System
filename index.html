@@ -211,22 +211,46 @@ section { scroll-margin-top: 4rem; }
 .threats .tag.stop { color: var(--green); background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); }
 .threats .tag.warn { color: var(--gold); background: rgba(232,176,75,.1); border: 1px solid rgba(232,176,75,.3); }
 
-/* Synapse (compact) */
-.p365-card {
-  margin-top: 1.8rem; border-radius: 20px; border: 1px solid var(--line);
-  padding: 1.5rem; display: grid; grid-template-columns: auto 1fr auto; gap: 1.2rem 1.5rem; align-items: center;
+/* Synapse */
+.syn { position: relative; overflow: hidden; }
+.syn::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(700px 420px at 85% 35%, rgba(14,165,233,.12), transparent 65%);
 }
-.syn-card { background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(255,255,255,.02) 60%, transparent), var(--panel); }
-.syn-logo { width: 60px; height: 60px; display: block; filter: drop-shadow(0 6px 16px rgba(0,0,0,.45)); }
-.p365-card h3 { font-size: 1.3rem; font-weight: 700; }
-.p-actions { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
+.syn-grid { position: relative; display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.syn-brand { display: flex; align-items: center; gap: .8rem; font: 800 1.15rem var(--display); color: #fff; }
+.syn-brand img { width: 52px; height: 52px; filter: drop-shadow(0 8px 20px rgba(0,0,0,.5)); }
+.syn h2 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 900; letter-spacing: -.025em; line-height: 1.04; color: var(--gold); margin: 1.2rem 0 0; }
+.syn-lead { color: var(--muted); font-size: 1.08rem; margin: 1.1rem 0 0; max-width: 32rem; }
+.syn-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1.8rem; }
+.syn-meta { color: var(--muted); font-size: .85rem; margin: 1rem 0 0; opacity: .8; }
+
+.syn-shot { border-radius: 18px; overflow: hidden; background: #0b0c0f; border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 40px 100px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06); }
+.syn-bar { display: flex; align-items: center; gap: .45rem; padding: .8rem 1rem; background: #15161a; border-bottom: 1px solid rgba(255,255,255,.06); }
+.syn-bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a3b40; }
+.syn-bar span { margin-left: .6rem; font-size: .8rem; color: #8b8d94; font-weight: 600; }
+.syn-chat { padding: 1.4rem 1.4rem .6rem; display: grid; gap: .85rem; font-size: .9rem; min-height: 250px; }
+.syn-u { justify-self: end; max-width: 80%; padding: .6rem .9rem; border-radius: 16px; color: #eef2f7;
+  background: linear-gradient(180deg, rgba(14,165,233,.26), rgba(14,165,233,.14)); border: 1px solid rgba(56,189,248,.25); }
+.syn-step { color: #8b8d94; font-size: .8rem; }
+.syn-a { color: #dcdde2; line-height: 1.6; }
+.syn-a b { color: #fff; }
+.syn-input { margin: .4rem 1rem 1rem; border-radius: 18px; padding: .8rem .9rem; display: flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09); color: #6b6d74; font-size: .85rem; }
+.syn-input em { font-style: normal; margin-left: auto; color: #b4b6bd; font-size: .78rem; padding: .25rem .6rem; border-radius: 999px; background: rgba(255,255,255,.06); }
+.syn-input b { width: 26px; height: 26px; border-radius: 50%; background: #0ea5e9; display: grid; place-items: center; color: #fff; font-size: .8rem; }
+
+.syn-feats { position: relative; list-style: none; margin: clamp(2.5rem, 5vw, 3.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.syn-feats li { padding: 1.3rem 1.25rem; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); display: grid; gap: .35rem; align-content: start; }
+.syn-feats b { font: 700 1.05rem var(--display); color: #fff; }
+.syn-feats span { color: var(--muted); font-size: .88rem; line-height: 1.5; }
 .ag-more { margin-top: 1.4rem; }
-.p365-card .sub { color: var(--muted); font-size: .9rem; margin: .2rem 0 0; }
-.p-chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 0; padding: 0; }
-.p-chips li { font-size: .8rem; padding: .3rem .7rem; border-radius: var(--radius); border: 1px solid var(--line); background: rgba(255,255,255,.03); color: #c6cde0; }
-.p-apps { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
-.p-app small { font: 600 .7rem var(--display); letter-spacing: .1em; text-transform: uppercase; color: #7fb0ff; }
-.p-app p { margin: .25rem 0 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
+@media (max-width: 900px) {
+  .syn-grid { grid-template-columns: 1fr; }
+  .syn-feats { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) { .syn-feats { grid-template-columns: 1fr; } }
 
 /* History (compact) */
 .history { display: grid; grid-template-columns: .8fr 1.2fr; }
@@ -334,11 +358,9 @@ footer p { margin: .3rem 0; max-width: 60rem; }
   .dots { min-height: 46vh; }
   .history-art { min-height: 220px; order: 2; }
   .history-panel h2 { text-align: left; }
-  .p365-card { grid-template-columns: auto 1fr; }
-  .p365-card > .pill, .p365-card > .p-actions { grid-column: 1 / -1; justify-self: start; justify-content: flex-start; }
 }
 @media (max-width: 560px) {
-  .services, .p-apps, form, .threats { grid-template-columns: 1fr; }
+  .services, form, .threats { grid-template-columns: 1fr; }
   .hero-actions .pill { flex: 1; }
   .wordmark { font-size: .82rem; letter-spacing: .1em; }
 }
@@ -518,41 +540,37 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     </div>
   </section>
 
-  <section class="section compact" id="synapse">
+  <section class="section syn" id="synapse">
     <div class="wrap">
-      <div class="section-head reveal drip">
-        <h2 data-i18n="syn.title">New from us: Synapse.</h2>
-        <p data-i18n="syn.sub">Run AI models on your Mac, or use free cloud models from Google and Groq, in one native app. Free and open source.</p>
-      </div>
-      <div class="p365-card syn-card reveal">
-        <img class="syn-logo" src="synapse/assets/icon-256.png" alt="" width="60" height="60">
+      <div class="syn-grid">
         <div>
-          <h3>Synapse 1.0</h3>
-          <p class="sub" data-i18n="syn.tag">macOS · Apple silicon · Open source, MIT license</p>
-        </div>
-        <div class="p-actions">
-          <a class="pill sm solid" href="https://github.com/Agamemnon-Intelligence/Synapse-macOS/releases/latest" data-i18n="syn.dl">Download for Mac</a>
-          <a class="pill sm" href="synapse/"><span data-i18n="syn.more">Details</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-        <ul class="p-chips">
-          <li data-i18n="syn.c1">Runs on your Mac</li>
-          <li data-i18n="syn.c2">Free cloud models</li>
-          <li data-i18n="syn.c3">Picks models that fit your Mac</li>
-          <li data-i18n="syn.c4">Web search, images and a browser</li>
-        </ul>
-        <div class="p-apps">
-          <div class="p-app">
-            <small data-i18n="syn.lTag">Local models</small>
-            <p data-i18n="syn.lText">Download open models from Hugging Face and run them privately with llama.cpp or MLX. Nothing leaves your Mac.</p>
+          <div class="syn-brand reveal"><img src="synapse/assets/icon-256.png" alt="" width="52" height="52">Synapse</div>
+          <h2 class="reveal drip" data-i18n="syn.title">AI that runs on your Mac.</h2>
+          <p class="syn-lead reveal" data-i18n="syn.sub">Download open models and run them privately, or use free cloud models from Google and Groq. One native app with web search, image generation, a browser the AI can use, and your files built in.</p>
+          <div class="syn-actions reveal">
+            <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Synapse-macOS/releases/latest" data-i18n="syn.dl">Download for Mac</a>
+            <a class="pill" href="synapse/"><span data-i18n="syn.more">Learn more</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
           </div>
-          <div class="p-app">
-            <small data-i18n="syn.cTag">Capabilities</small>
-            <p data-i18n="syn.cText">Turn on web search, image generation, computer access, a browser the model can use, and websites hosted on your Mac.</p>
+          <p class="syn-meta reveal" data-i18n="syn.tag">Synapse 1.0 · macOS 14+ · Apple silicon · Free and open source</p>
+        </div>
+        <div class="syn-shot reveal" aria-hidden="true">
+          <div class="syn-bar"><i></i><i></i><i></i><span>Synapse</span></div>
+          <div class="syn-chat">
+            <div class="syn-u">Which model should I run on my 8 GB Mac?</div>
+            <div class="syn-step">Thought for 3s · Checked your Mac</div>
+            <div class="syn-a"><b>Qwen3.5 4B</b> runs best on your Mac: it fits with room to spare, reasons step by step and understands images. For harder questions, switch to a free cloud model in one click.</div>
           </div>
+          <div class="syn-input">Ask Synapse anything<em>Qwen3.5 4B</em><b>↑</b></div>
         </div>
       </div>
+      <ul class="syn-feats">
+        <li class="reveal"><b data-i18n="syn.f1t">Private, on your Mac</b><span data-i18n="syn.f1p">Run open models from Hugging Face with llama.cpp or MLX. Nothing leaves your computer.</span></li>
+        <li class="reveal"><b data-i18n="syn.f2t">Free cloud models</b><span data-i18n="syn.f2p">Connect Google AI Studio or Groq with a free key and see how much of your limit is left.</span></li>
+        <li class="reveal"><b data-i18n="syn.f3t">Picked for your Mac</b><span data-i18n="syn.f3p">Synapse checks your memory and recommends models that will actually run well.</span></li>
+        <li class="reveal"><b data-i18n="syn.f4t">More than chat</b><span data-i18n="syn.f4p">Web search, images, computer use, a built-in browser, projects and websites on localhost.</span></li>
+      </ul>
     </div>
   </section>
 
@@ -720,19 +738,19 @@ var TR = {
   'dl.exe': '.exe indir',
   'dl.source': 'Kaynak kod',
   'dl.winNote': 'Yükleyici koruma hizmetini kurar. Tek seferlik UAC onayını verin.',
-  'syn.title': 'Bizden yeni: Synapse.',
-  'syn.sub': "Yapay zekâ modellerini Mac'inizde çalıştırın ya da Google ve Groq'un ücretsiz bulut modellerini kullanın; hepsi tek bir uygulamada. Ücretsiz ve açık kaynaklı.",
-  'syn.tag': 'macOS · Apple silicon · Açık kaynak, MIT lisansı',
-  'syn.dl': "Mac için indir",
-  'syn.more': 'Ayrıntılar',
-  'syn.c1': "Mac'inizde çalışır",
-  'syn.c2': 'Ücretsiz bulut modelleri',
-  'syn.c3': "Mac'inize uyan modelleri seçer",
-  'syn.c4': 'Web araması, görseller ve tarayıcı',
-  'syn.lTag': 'Yerel modeller',
-  'syn.lText': "Hugging Face'ten açık modeller indirin ve llama.cpp ya da MLX ile gizlice çalıştırın. Hiçbir şey Mac'inizden çıkmaz.",
-  'syn.cTag': 'Yetenekler',
-  'syn.cText': "Web araması, görsel üretimi, bilgisayar erişimi, modelin kullanabildiği bir tarayıcı ve Mac'inizde barındırılan web siteleri.",
+  'syn.title': "Mac'inizde çalışan yapay zekâ.",
+  'syn.sub': "Açık modelleri indirip gizlice çalıştırın ya da Google ve Groq'un ücretsiz bulut modellerini kullanın. Web araması, görsel üretimi, yapay zekânın kullanabildiği bir tarayıcı ve dosyalarınız tek bir uygulamada.",
+  'syn.dl': 'Mac için indir',
+  'syn.more': 'Daha fazlası',
+  'syn.tag': 'Synapse 1.0 · macOS 14+ · Apple silicon · Ücretsiz ve açık kaynaklı',
+  'syn.f1t': "Gizli, Mac'inizde",
+  'syn.f1p': "Hugging Face'teki açık modelleri llama.cpp ya da MLX ile çalıştırın. Hiçbir şey bilgisayarınızdan çıkmaz.",
+  'syn.f2t': 'Ücretsiz bulut modelleri',
+  'syn.f2p': 'Google AI Studio ya da Groq\'u ücretsiz bir anahtarla bağlayın, kalan kullanım hakkınızı görün.',
+  'syn.f3t': "Mac'inize göre seçilir",
+  'syn.f3p': 'Synapse belleğinizi kontrol eder ve gerçekten iyi çalışacak modelleri önerir.',
+  'syn.f4t': 'Sohbetten fazlası',
+  'syn.f4p': 'Web araması, görseller, bilgisayar kullanımı, dahili tarayıcı, projeler ve localhost üzerinde web siteleri.',
   'h.title': 'Hikâyemiz.',
   'h.p1': '<b>Ekim 2026.</b> Athene Softworks, ne yaptığı konusunda dürüst olan güvenlik yazılımları isteyen iki arkadaş, Mert Yeşil ve Miraz Bakış tarafından kuruldu.',
   'h.p2': "Agamemnon, macOS'ta bir araştırma projesi olarak başladı ve Mac ile Windows için eksiksiz bir antivirüse dönüştü. Ardından Synapse geldi. Bugün ikisini de açık olarak geliştiriyor, sıradaki projemiz üzerinde çalışıyoruz.",
