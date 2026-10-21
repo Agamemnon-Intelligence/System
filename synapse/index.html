@@ -443,6 +443,7 @@ the same quiet sea.</span>
         <details class="glass reveal"><summary>Which Macs are supported?</summary><p>Macs with Apple Silicon running macOS 14 or later. 8 GB of memory runs small models well; 16 GB or more opens up larger, smarter ones.</p></details>
         <details class="glass reveal"><summary>Does my data leave my Mac?</summary><p>With local models, no: everything runs on your Mac. With cloud models, your messages go to the provider you chose. Chats, projects and files are always stored locally.</p></details>
         <details class="glass reveal"><summary>Can the AI control my computer?</summary><p>Only if you turn on Computer Access or Browser for a chat. Commands, AppleScript and form submissions ask for your approval, and the browser never types passwords.</p></details>
+        <details class="glass reveal"><summary>macOS says it can't open Synapse. What do I do?</summary><p>Unzip Synapse and move it to Applications. On first launch, if macOS blocks it, open System Settings › Privacy &amp; Security and click Open Anyway. You only need to do this once.</p></details>
         <details class="glass reveal"><summary>Where do the models come from?</summary><p>Local models download straight from Hugging Face. You can also search the whole Hugging Face catalog for any GGUF or MLX model.</p></details>
       </div>
     </div>
@@ -476,7 +477,7 @@ the same quiet sea.</span>
   const REPO = "https://github.com/Agamemnon-Intelligence/Synapse-macOS";
   document.querySelectorAll("[data-repo]").forEach(a => a.href = REPO);
   document.querySelectorAll("[data-releases]").forEach(a => a.href = REPO + "/releases");
-  document.querySelectorAll("[data-download]").forEach(a => a.href = REPO + "/releases/latest");
+  document.querySelectorAll("[data-download]").forEach(a => a.href = REPO + "/releases/latest/download/Synapse-macOS.zip");
 
   // Same fit rule the app uses: weights + ~10% + ~0.9 GB for context, compared with memory.
   const MODELS = [
