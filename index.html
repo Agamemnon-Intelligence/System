@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Athene Softworks</title>
-<meta name="description" content="Athene Softworks builds simple, secure software. Our products: Agamemnon, a free, open-source antivirus for macOS and Windows, Platform365, an offline office suite in your browser, and Artemis AI, an assistant you can talk to right in your browser.">
+<meta name="description" content="Athene Softworks builds simple, secure software. Our products: Agamemnon, a free, open-source antivirus for macOS and Windows, and Synapse, an app for running AI models on your Mac.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
 <meta property="og:title" content="Athene Softworks">
-<meta property="og:description" content="Simple, secure software. Meet Agamemnon, free antivirus for macOS and Windows, the Platform365 office suite and the Artemis AI assistant.">
+<meta property="og:description" content="Simple, secure software. Meet Agamemnon, free antivirus for macOS and Windows, and Synapse, AI on your Mac.">
 <link rel="icon" href="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png">
 <script>
 /* Apply the saved language before first paint. */
@@ -211,17 +211,13 @@ section { scroll-margin-top: 4rem; }
 .threats .tag.stop { color: var(--green); background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); }
 .threats .tag.warn { color: var(--gold); background: rgba(232,176,75,.1); border: 1px solid rgba(232,176,75,.3); }
 
-/* Platform365 (compact) */
+/* Synapse (compact) */
 .p365-card {
   margin-top: 1.8rem; border-radius: 20px; border: 1px solid var(--line);
-  background: linear-gradient(135deg, rgba(255,93,124,.09), rgba(111,157,255,.05) 60%, transparent), var(--panel);
   padding: 1.5rem; display: grid; grid-template-columns: auto 1fr auto; gap: 1.2rem 1.5rem; align-items: center;
 }
-.p-logo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; width: 60px; height: 60px; padding: 9px; border-radius: 15px; background: #fff; }
-.p-logo i { border-radius: 5px; background: #5b4cf0; }
-.p-logo i:nth-child(2) { background: #2f6bf2; }
-.p-logo i:nth-child(3) { background: #f97316; }
-.p-logo i:nth-child(4) { background: #c8174a; }
+.syn-card { background: linear-gradient(135deg, rgba(59,130,246,.10), rgba(255,255,255,.02) 60%, transparent), var(--panel); }
+.syn-logo { width: 60px; height: 60px; display: block; filter: drop-shadow(0 6px 16px rgba(0,0,0,.45)); }
 .p365-card h3 { font-size: 1.3rem; font-weight: 700; }
 .p-actions { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
 .ag-more { margin-top: 1.4rem; }
@@ -229,18 +225,8 @@ section { scroll-margin-top: 4rem; }
 .p-chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 0; padding: 0; }
 .p-chips li { font-size: .8rem; padding: .3rem .7rem; border-radius: var(--radius); border: 1px solid var(--line); background: rgba(255,255,255,.03); color: #c6cde0; }
 .p-apps { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
-.p-app small { font: 600 .7rem var(--display); letter-spacing: .1em; text-transform: uppercase; color: #9a93ff; }
-.p-app.write small { color: #6f9dff; }
+.p-app small { font: 600 .7rem var(--display); letter-spacing: .1em; text-transform: uppercase; color: #7fb0ff; }
 .p-app p { margin: .25rem 0 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
-
-/* Artemis AI */
-.ai-card { background: linear-gradient(135deg, rgba(124,92,255,.11), rgba(0,194,255,.05) 60%, transparent), var(--panel); }
-.ai-logo { width: 60px; height: 60px; border-radius: 15px; display: block; }
-.ai-card .p-apps { grid-template-columns: repeat(3, 1fr); }
-.ai-card .p-app.pro small { color: #ff8ae6; }
-.ai-card .p-app.plasma small { color: #5fd8ff; }
-.ai-card .p-app h4 { margin: .2rem 0 0; font: 800 1rem var(--display); }
-@media (max-width: 720px) { .ai-card .p-apps { grid-template-columns: 1fr; } }
 
 /* History (compact) */
 .history { display: grid; grid-template-columns: .8fr 1.2fr; }
@@ -366,8 +352,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <ul>
       <li><a href="#what" data-i18n="nav.what">What we do</a></li>
       <li><a href="#agamemnon">Agamemnon</a></li>
-      <li><a href="#platform365">Platform365</a></li>
-      <li><a href="#artemis">Artemis AI</a></li>
+      <li><a href="#synapse">Synapse</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <button class="lang" id="lang" type="button" aria-label="Türkçe'ye geç">
@@ -533,87 +518,38 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     </div>
   </section>
 
-  <section class="section compact" id="platform365">
+  <section class="section compact" id="synapse">
     <div class="wrap">
       <div class="section-head reveal drip">
-        <h2 data-i18n="p.title">Also from us: Platform365.</h2>
-        <p data-i18n="p.sub">An office suite for Windows and macOS that works offline and needs no account. Now in English and Turkish.</p>
+        <h2 data-i18n="syn.title">New from us: Synapse.</h2>
+        <p data-i18n="syn.sub">Run AI models on your Mac, or use free cloud models from Google and Groq, in one native app. Free and open source.</p>
       </div>
-      <div class="p365-card reveal">
-        <div class="p-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="p365-card syn-card reveal">
+        <img class="syn-logo" src="synapse/assets/icon-256.png" alt="" width="60" height="60">
         <div>
-          <h3>Platform365 v3.0.0</h3>
-          <p class="sub" data-i18n="p.tag">Present + EasyWrite · Windows &amp; macOS · Open source, MIT license</p>
+          <h3>Synapse 1.0</h3>
+          <p class="sub" data-i18n="syn.tag">macOS · Apple silicon · Open source, MIT license</p>
         </div>
         <div class="p-actions">
-          <a class="pill sm solid" href="https://github.com/Agamemnon-Intelligence/Platform365/releases/download/v3.0.0/Platform365-Setup.exe" data-os-dl="win" data-i18n="p.exe">Download .exe</a>
-          <a class="pill sm" href="https://github.com/Agamemnon-Intelligence/Platform365/releases/download/v3.0.0/Platform365-macOS.dmg" data-os-dl="mac" data-i18n="p.dmg">Download .dmg</a>
-          <a class="pill sm" href="platform365.html"><span data-i18n="p.more">Details</span>
+          <a class="pill sm solid" href="https://github.com/Agamemnon-Intelligence/Synapse-macOS/releases/latest" data-i18n="syn.dl">Download for Mac</a>
+          <a class="pill sm" href="synapse/"><span data-i18n="syn.more">Details</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
         <ul class="p-chips">
-          <li data-i18n="p.c1">No account</li>
-          <li data-i18n="p.c2">Works offline</li>
-          <li data-i18n="p.c3">Files stay on your device</li>
-          <li data-i18n="p.c4">.docx and .pptx</li>
+          <li data-i18n="syn.c1">Runs on your Mac</li>
+          <li data-i18n="syn.c2">Free cloud models</li>
+          <li data-i18n="syn.c3">Picks models that fit your Mac</li>
+          <li data-i18n="syn.c4">Web search, images and a browser</li>
         </ul>
         <div class="p-apps">
           <div class="p-app">
-            <small data-i18n="p.prTag">Present · Slides</small>
-            <p data-i18n="p.prText">Slides from an outline, a presentation health check, pen and laser on stage, live captions and rehearsal timing.</p>
+            <small data-i18n="syn.lTag">Local models</small>
+            <p data-i18n="syn.lText">Download open models from Hugging Face and run them privately with llama.cpp or MLX. Nothing leaves your Mac.</p>
           </div>
-          <div class="p-app write">
-            <small data-i18n="p.ewTag">EasyWrite · Documents</small>
-            <p data-i18n="p.ewText">Slash commands, Markdown as you type, Turkish readability scores, inline math, focus mode and dictation.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section compact" id="artemis">
-    <div class="wrap">
-      <div class="section-head reveal drip">
-        <h2 data-i18n="ai.title">Meet Artemis AI.</h2>
-        <p data-i18n="ai.sub">Our own AI model, trained from scratch on general knowledge. It runs entirely in your browser. Free, with no sign-up.</p>
-      </div>
-      <div class="p365-card ai-card reveal">
-        <svg class="ai-logo" viewBox="0 0 64 64" aria-hidden="true">
-          <defs><linearGradient id="ai-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#00c2ff"/><stop offset="1" stop-color="#ff4fd8"/></linearGradient></defs>
-          <rect width="64" height="64" rx="19" fill="url(#ai-g)"/>
-          <path d="M18 46c6-17 12-28 14-28s8 11 14 28" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M24 37h16" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
-          <path d="M47 14l1.6 3.4L52 19l-3.4 1.6L47 24l-1.6-3.4L42 19l3.4-1.6z" fill="#fff"/>
-        </svg>
-        <div>
-          <h3>Artemis 1.0</h3>
-          <p class="sub" data-i18n="ai.tag">General knowledge · Turkish and English · In your browser</p>
-        </div>
-        <a class="pill sm solid" href="artemis.html"><span data-i18n="ai.open">Try Artemis AI</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <ul class="p-chips">
-          <li data-i18n="ai.c1">No sign-up</li>
-          <li data-i18n="ai.c2">Free to use</li>
-          <li data-i18n="ai.c3">Trained from scratch</li>
-          <li data-i18n="ai.c4">Runs on your device</li>
-        </ul>
-        <div class="p-apps">
           <div class="p-app">
-            <small data-i18n="ai.m1Tag">Available now</small>
-            <h4>Artemis 1.0</h4>
-            <p data-i18n="ai.m1Text">Our first model: 8.5 million parameters, trained for 6 hours on Turkish and English Wikipedia and question-answer data.</p>
-          </div>
-          <div class="p-app pro">
-            <small data-i18n="ai.m2Tag">Coming soon</small>
-            <h4>Artemis 1.1 Pro</h4>
-            <p data-i18n="ai.m2Text">A larger, more capable Artemis with better answers and longer conversations.</p>
-          </div>
-          <div class="p-app plasma">
-            <small data-i18n="ai.m3Tag">Coming soon</small>
-            <h4>Plasma 2.0</h4>
-            <p data-i18n="ai.m3Text">Our next-generation model family.</p>
+            <small data-i18n="syn.cTag">Capabilities</small>
+            <p data-i18n="syn.cText">Turn on web search, image generation, computer access, a browser the model can use, and websites hosted on your Mac.</p>
           </div>
         </div>
       </div>
@@ -635,7 +571,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="history-panel">
       <h2 class="reveal drip" data-i18n="h.title">Our history.</h2>
       <p class="reveal" data-i18n="h.p1"><b>October 2026.</b> Athene Softworks was founded by Mert Yeşil and Miraz Bakış, two friends who wanted security software that is honest about what it does.</p>
-      <p class="reveal" data-i18n="h.p2">Agamemnon began as a research project on macOS and grew into a full antivirus for Mac and Windows. Platform365 followed. Today we build both in the open, and we're working on what comes next.</p>
+      <p class="reveal" data-i18n="h.p2">Agamemnon began as a research project on macOS and grew into a full antivirus for Mac and Windows. Synapse followed. Today we build both in the open, and we're working on what comes next.</p>
     </div>
   </section>
 
@@ -670,7 +606,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="wrap contact-grid">
       <div class="section-head reveal drip">
         <h2 data-i18n="c.title">Contact us.</h2>
-        <p data-i18n="c.sub">Questions about Agamemnon, Platform365 or Artemis AI, a bug, a threat we missed, or an idea to work together? Let us know. We usually reply within 24 to 48 hours.</p>
+        <p data-i18n="c.sub">Questions about Agamemnon or Synapse, a bug, a threat we missed, or an idea to work together? Let us know. We usually reply within 24 to 48 hours.</p>
         <p class="contact-alt"><span data-i18n="c.alt">Or write to us directly at</span> <a href="mailto:athenesoftworks@gmail.com">athenesoftworks@gmail.com</a></p>
       </div>
 
@@ -712,13 +648,12 @@ footer p { margin: .3rem 0; max-width: 60rem; }
       <ul>
         <li><a href="#top" data-i18n="nav.home">Home</a></li>
         <li><a href="#agamemnon">Agamemnon</a></li>
-        <li><a href="#platform365">Platform365</a></li>
-        <li><a href="#artemis">Artemis AI</a></li>
+        <li><a href="#synapse">Synapse</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </div>
     <p data-i18n="foot.copy">Copyright © 2026 Athene Softworks. All rights reserved.</p>
-    <p data-i18n="foot.legal">Agamemnon is free software released under the GNU General Public License v2.0; Platform365 is released under the MIT license. Artemis AI can make mistakes, so check important answers. Malware hashes come from MalwareBazaar by abuse.ch and VirusShare.com; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
+    <p data-i18n="foot.legal">Agamemnon is free software released under the GNU General Public License v2.0; Synapse is released under the MIT license. AI models can make mistakes, so check important answers. Malware hashes come from MalwareBazaar by abuse.ch and VirusShare.com; the optional second engine is ClamAV by Cisco Talos. No antivirus catches everything. Keep your system updated and only install software you trust.</p>
   </div>
 </footer>
 
@@ -785,42 +720,27 @@ var TR = {
   'dl.exe': '.exe indir',
   'dl.source': 'Kaynak kod',
   'dl.winNote': 'Yükleyici koruma hizmetini kurar. Tek seferlik UAC onayını verin.',
-  'p.title': 'Bizden bir de: Platform365.',
-  'p.sub': 'Windows ve macOS için internetsiz çalışan, hesap istemeyen bir ofis paketi. Artık Türkçe ve İngilizce.',
-  'p.tag': 'Present + EasyWrite · Windows ve macOS · Açık kaynak, MIT lisansı',
-  'p.exe': '.exe indir',
-  'p.dmg': '.dmg indir',
-  'p.more': 'Ayrıntılar',
-  'p.c1': 'Hesap gerekmez',
-  'p.c2': 'İnternetsiz çalışır',
-  'p.c3': 'Dosyalar cihazınızda kalır',
-  'p.c4': '.docx ve .pptx',
-  'p.prTag': 'Present · Sunum',
-  'p.prText': 'Ana hattan slayt oluşturma, sunum sağlık kontrolü, sahnede kalem ve lazer, canlı altyazı ve prova süresi ölçümü.',
-  'p.ewTag': 'EasyWrite · Belge',
-  'ai.title': 'Karşınızda: Artemis AI.',
-  'ai.sub': 'Genel kültür üzerine sıfırdan eğittiğimiz kendi yapay zekâ modelimiz. Tamamen tarayıcınızda çalışır. Ücretsiz, kayıt gerekmez.',
-  'ai.tag': 'Genel kültür · Türkçe ve İngilizce · Tarayıcınızda',
-  'ai.open': "Artemis AI'ı deneyin",
-  'ai.c1': 'Kayıt gerekmez',
-  'ai.c2': 'Ücretsiz',
-  'ai.c3': 'Sıfırdan eğitildi',
-  'ai.c4': 'Cihazınızda çalışır',
-  'ai.m1Tag': 'Şimdi kullanılabilir',
-  'ai.m1Text': 'İlk modelimiz: 8,5 milyon parametre; Türkçe ve İngilizce Vikipedi ile soru-cevap verileri üzerinde 6 saat eğitildi.',
-  'ai.m2Tag': 'Yakında',
-  'ai.m2Text': 'Daha iyi yanıtlar ve daha uzun sohbetler sunan, daha büyük ve daha yetenekli Artemis.',
-  'ai.m3Tag': 'Yakında',
-  'ai.m3Text': 'Yeni nesil model ailemiz.',
-  'p.ewText': 'Eğik çizgi komutları, yazarken Markdown, Türkçe okunabilirlik puanı, satır içi hesaplama, odak modu ve sesle yazma.',
+  'syn.title': 'Bizden yeni: Synapse.',
+  'syn.sub': "Yapay zekâ modellerini Mac'inizde çalıştırın ya da Google ve Groq'un ücretsiz bulut modellerini kullanın; hepsi tek bir uygulamada. Ücretsiz ve açık kaynaklı.",
+  'syn.tag': 'macOS · Apple silicon · Açık kaynak, MIT lisansı',
+  'syn.dl': "Mac için indir",
+  'syn.more': 'Ayrıntılar',
+  'syn.c1': "Mac'inizde çalışır",
+  'syn.c2': 'Ücretsiz bulut modelleri',
+  'syn.c3': "Mac'inize uyan modelleri seçer",
+  'syn.c4': 'Web araması, görseller ve tarayıcı',
+  'syn.lTag': 'Yerel modeller',
+  'syn.lText': "Hugging Face'ten açık modeller indirin ve llama.cpp ya da MLX ile gizlice çalıştırın. Hiçbir şey Mac'inizden çıkmaz.",
+  'syn.cTag': 'Yetenekler',
+  'syn.cText': "Web araması, görsel üretimi, bilgisayar erişimi, modelin kullanabildiği bir tarayıcı ve Mac'inizde barındırılan web siteleri.",
   'h.title': 'Hikâyemiz.',
   'h.p1': '<b>Ekim 2026.</b> Athene Softworks, ne yaptığı konusunda dürüst olan güvenlik yazılımları isteyen iki arkadaş, Mert Yeşil ve Miraz Bakış tarafından kuruldu.',
-  'h.p2': "Agamemnon, macOS'ta bir araştırma projesi olarak başladı ve Mac ile Windows için eksiksiz bir antivirüse dönüştü. Ardından Platform365 geldi. Bugün ikisini de açık olarak geliştiriyor, sıradaki projemiz üzerinde çalışıyoruz.",
+  'h.p2': "Agamemnon, macOS'ta bir araştırma projesi olarak başladı ve Mac ile Windows için eksiksiz bir antivirüse dönüştü. Ardından Synapse geldi. Bugün ikisini de açık olarak geliştiriyor, sıradaki projemiz üzerinde çalışıyoruz.",
   'fo.title': 'Kurucular:',
   'fo.sub': "İki arkadaş, her şeyi açıkta geliştiriyor. GitHub'da bizi takip edin.",
   'fo.role': 'Kurucu ortak',
   'c.title': 'Bize ulaşın.',
-  'c.sub': 'Agamemnon, Platform365 ya da Artemis AI hakkında bir sorunuz, bir hata, gözümüzden kaçan bir tehdit ya da birlikte çalışma fikriniz mi var? Bize yazın. Genellikle 24 ila 48 saat içinde yanıt veriyoruz.',
+  'c.sub': 'Agamemnon ya da Synapse hakkında bir sorunuz, bir hata, gözümüzden kaçan bir tehdit ya da birlikte çalışma fikriniz mi var? Bize yazın. Genellikle 24 ila 48 saat içinde yanıt veriyoruz.',
   'c.alt': 'Ya da doğrudan şu adrese yazın:',
   'f.name': 'Ad soyad',
   'f.email': 'E-posta',
@@ -831,7 +751,7 @@ var TR = {
   'f.send': 'Gönder',
   'f.note': 'Mesajınız doldurulmuş olarak Gmail açılır, göndermeye hazır.',
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
-  'foot.legal': "Agamemnon, GNU Genel Kamu Lisansı v2.0 ile yayınlanan özgür bir yazılımdır; Platform365 MIT lisansıyla yayınlanır. Artemis AI hata yapabilir; önemli yanıtları kontrol edin. Zararlı yazılım özetleri abuse.ch'in MalwareBazaar projesinden ve VirusShare.com'dan gelir; isteğe bağlı ikinci motor Cisco Talos'un ClamAV'idir. Hiçbir antivirüs her şeyi yakalayamaz. Sisteminizi güncel tutun ve yalnızca güvendiğiniz yazılımları kurun."
+  'foot.legal': "Agamemnon, GNU Genel Kamu Lisansı v2.0 ile yayınlanan özgür bir yazılımdır; Synapse MIT lisansıyla yayınlanır. Yapay zekâ modelleri hata yapabilir; önemli yanıtları kontrol edin. Zararlı yazılım özetleri abuse.ch'in MalwareBazaar projesinden ve VirusShare.com'dan gelir; isteğe bağlı ikinci motor Cisco Talos'un ClamAV'idir. Hiçbir antivirüs her şeyi yakalayamaz. Sisteminizi güncel tutun ve yalnızca güvendiğiniz yazılımları kurun."
 };
 
 var MSG = {
@@ -875,8 +795,6 @@ var MSG = {
   var os = /mac/i.test(ua) ? 'mac' : /win/i.test(ua) ? 'win' : null;
   if (os) {
     var card = document.querySelector('.dl[data-os="' + os + '"]'); if (card) card.classList.add('yours');
-    // Platform365: make the button for this system the solid one.
-    document.querySelectorAll('[data-os-dl]').forEach(function (a) { a.classList.toggle('solid', a.dataset.osDl === os); });
   }
 
   // ---------- Contact form → Gmail compose ----------
