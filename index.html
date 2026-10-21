@@ -236,6 +236,11 @@ section { scroll-margin-top: 4rem; }
 /* Artemis AI */
 .ai-card { background: linear-gradient(135deg, rgba(124,92,255,.11), rgba(0,194,255,.05) 60%, transparent), var(--panel); }
 .ai-logo { width: 60px; height: 60px; border-radius: 15px; display: block; }
+.ai-card .p-apps { grid-template-columns: repeat(3, 1fr); }
+.ai-card .p-app.pro small { color: #ff8ae6; }
+.ai-card .p-app.plasma small { color: #5fd8ff; }
+.ai-card .p-app h4 { margin: .2rem 0 0; font: 800 1rem var(--display); }
+@media (max-width: 720px) { .ai-card .p-apps { grid-template-columns: 1fr; } }
 
 /* History (compact) */
 .history { display: grid; grid-template-columns: .8fr 1.2fr; }
@@ -571,7 +576,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
     <div class="wrap">
       <div class="section-head reveal drip">
         <h2 data-i18n="ai.title">Meet Artemis AI.</h2>
-        <p data-i18n="ai.sub">Our AI assistant. Ask a question, get help with writing or code, or think an idea through. Free, with no sign-up.</p>
+        <p data-i18n="ai.sub">Our own AI model, trained from scratch on general knowledge. It runs entirely in your browser. Free, with no sign-up.</p>
       </div>
       <div class="p365-card ai-card reveal">
         <svg class="ai-logo" viewBox="0 0 64 64" aria-hidden="true">
@@ -582,8 +587,8 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           <path d="M47 14l1.6 3.4L52 19l-3.4 1.6L47 24l-1.6-3.4L42 19l3.4-1.6z" fill="#fff"/>
         </svg>
         <div>
-          <h3>Artemis AI</h3>
-          <p class="sub" data-i18n="ai.tag">Chat · Writing · Code · In your browser</p>
+          <h3>Artemis 1.0</h3>
+          <p class="sub" data-i18n="ai.tag">General knowledge · Turkish and English · In your browser</p>
         </div>
         <a class="pill sm solid" href="artemis.html"><span data-i18n="ai.open">Try Artemis AI</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -591,17 +596,24 @@ footer p { margin: .3rem 0; max-width: 60rem; }
         <ul class="p-chips">
           <li data-i18n="ai.c1">No sign-up</li>
           <li data-i18n="ai.c2">Free to use</li>
-          <li data-i18n="ai.c3">English and Turkish</li>
-          <li data-i18n="ai.c4">Works on any device</li>
+          <li data-i18n="ai.c3">Trained from scratch</li>
+          <li data-i18n="ai.c4">Runs on your device</li>
         </ul>
         <div class="p-apps">
           <div class="p-app">
-            <small data-i18n="ai.wrTag">Writing · Ideas</small>
-            <p data-i18n="ai.wrText">Drafts, summaries, translations and rewrites. Talk an idea through and get a clear plan back.</p>
+            <small data-i18n="ai.m1Tag">Available now</small>
+            <h4>Artemis 1.0</h4>
+            <p data-i18n="ai.m1Text">Our first model: 8.5 million parameters, trained for 6 hours on Turkish and English Wikipedia and question-answer data.</p>
           </div>
-          <div class="p-app write">
-            <small data-i18n="ai.cdTag">Code · Answers</small>
-            <p data-i18n="ai.cdText">Explains code, helps you track down bugs and answers questions in plain language.</p>
+          <div class="p-app pro">
+            <small data-i18n="ai.m2Tag">Coming soon</small>
+            <h4>Artemis 1.1 Pro</h4>
+            <p data-i18n="ai.m2Text">A larger, more capable Artemis with better answers and longer conversations.</p>
+          </div>
+          <div class="p-app plasma">
+            <small data-i18n="ai.m3Tag">Coming soon</small>
+            <h4>Plasma 2.0</h4>
+            <p data-i18n="ai.m3Text">Our next-generation model family.</p>
           </div>
         </div>
       </div>
@@ -787,17 +799,19 @@ var TR = {
   'p.prText': 'Ana hattan slayt oluşturma, sunum sağlık kontrolü, sahnede kalem ve lazer, canlı altyazı ve prova süresi ölçümü.',
   'p.ewTag': 'EasyWrite · Belge',
   'ai.title': 'Karşınızda: Artemis AI.',
-  'ai.sub': 'Yapay zekâ asistanımız. Soru sorun, yazı ya da kod için yardım alın veya bir fikri birlikte düşünün. Ücretsiz, kayıt gerekmez.',
-  'ai.tag': 'Sohbet · Yazı · Kod · Tarayıcınızda',
+  'ai.sub': 'Genel kültür üzerine sıfırdan eğittiğimiz kendi yapay zekâ modelimiz. Tamamen tarayıcınızda çalışır. Ücretsiz, kayıt gerekmez.',
+  'ai.tag': 'Genel kültür · Türkçe ve İngilizce · Tarayıcınızda',
   'ai.open': "Artemis AI'ı deneyin",
   'ai.c1': 'Kayıt gerekmez',
   'ai.c2': 'Ücretsiz',
-  'ai.c3': 'Türkçe ve İngilizce',
-  'ai.c4': 'Her cihazda çalışır',
-  'ai.wrTag': 'Yazı · Fikir',
-  'ai.wrText': 'Taslaklar, özetler, çeviriler ve yeniden yazımlar. Bir fikri anlatın, net bir plan olarak geri alın.',
-  'ai.cdTag': 'Kod · Yanıtlar',
-  'ai.cdText': 'Kodu açıklar, hataları bulmanıza yardım eder ve sorularınızı sade bir dille yanıtlar.',
+  'ai.c3': 'Sıfırdan eğitildi',
+  'ai.c4': 'Cihazınızda çalışır',
+  'ai.m1Tag': 'Şimdi kullanılabilir',
+  'ai.m1Text': 'İlk modelimiz: 8,5 milyon parametre; Türkçe ve İngilizce Vikipedi ile soru-cevap verileri üzerinde 6 saat eğitildi.',
+  'ai.m2Tag': 'Yakında',
+  'ai.m2Text': 'Daha iyi yanıtlar ve daha uzun sohbetler sunan, daha büyük ve daha yetenekli Artemis.',
+  'ai.m3Tag': 'Yakında',
+  'ai.m3Text': 'Yeni nesil model ailemiz.',
   'p.ewText': 'Eğik çizgi komutları, yazarken Markdown, Türkçe okunabilirlik puanı, satır içi hesaplama, odak modu ve sesle yazma.',
   'h.title': 'Hikâyemiz.',
   'h.p1': '<b>Ekim 2026.</b> Athene Softworks, ne yaptığı konusunda dürüst olan güvenlik yazılımları isteyen iki arkadaş, Mert Yeşil ve Miraz Bakış tarafından kuruldu.',
