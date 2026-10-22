@@ -7,7 +7,7 @@
     tr: { ph: "Artemis'e bir şey sorun…", loading: '{m} indiriliyor… ', preparing: 'Model hazırlanıyor…', ready: '{m} hazır. Cihazınızda çalışıyor.', thinking: 'Artemis yazıyor…', stop: 'Durdur', send: 'Gönder', fail: 'Model yüklenemedi: ', retry: 'Tekrar denemek için sayfayı yenileyin.' }
   };
   var MODELS = {
-    '1.1': { name: 'Artemis 1.1', base: 'artemis/artemis-1.0.bin', adapter: 'artemis/artemis-1.1.bin' },
+    '1.1': { name: 'Artemis 1.1', base: 'artemis/artemis-1.0.bin', adapter: 'artemis/artemis-1.1.bin?v=1.1' },
     '1.0': { name: 'Artemis 1.0', base: 'artemis/artemis-1.0.bin', adapter: null }
   };
   var sel = '1.1';
@@ -27,7 +27,7 @@
   }
   new MutationObserver(relabel).observe(root, { attributes: true, attributeFilter: ['lang'] });
 
-  var worker = new Worker('artemis/artemis-worker.js');
+  var worker = new Worker('artemis/artemis-worker.js?v=1.1'); // ?v: önbellekte eski worker/motor kalmasın
   worker.onmessage = function (e) {
     var m = e.data;
     if (m.type === 'progress') {
