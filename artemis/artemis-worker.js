@@ -7,7 +7,8 @@ var model = null, run = 0, loads = 0, files = {};
 // İndirilen dosyalar saklanır; 1.0 ile 1.1 arasında geçişte taban yeniden indirilmez
 async function fetchAll(urls) {
   var todo = urls.filter(function (u) { return !files[u]; }), total = 0, got = 0;
-  var res = await Promise.all(todo.map(function (u) { return fetch(u); }));
+  // no-cache: önbellekteki kopya sunucuyla doğrulanır (değişmediyse yeniden indirilmez)
+  var res = await Promise.all(todo.map(function (u) { return fetch(u, { cache: 'no-cache' }); }));
   res.forEach(function (r, i) {
     if (!r.ok) throw new Error('HTTP ' + r.status + ' (' + todo[i].split('/').pop() + ')');
     total += Number(r.headers.get('content-length')) || 0;

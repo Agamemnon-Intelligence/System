@@ -85,6 +85,8 @@
     if (adapter) {
       var a = readFile(adapter), ac = a.header.cfg;
       if (a.header.base !== this.name) throw new Error(a.header.model + ' için ' + a.header.base + ' gerekir');
+      // Eklemeler tabanın son katmanına kadar uzanmalı; eski (daha az katmanlı) bir 1.0 dosyası saçma çıktı verir
+      if (!a.W['h' + (this.cfg.layers - 1) + '.qkv.la'] || a.W['h' + this.cfg.layers + '.qkv.la']) throw new Error(a.header.model + ' ile uyumsuz ' + this.name + ' dosyası (önbelleği temizleyin)');
       // W += scale · B·A   (B: [out, r], A: [r, in])
       for (l = ac.loraFrom; l < this.cfg.layers; l++) ['qkv', 'proj', 'fc', 'out'].forEach(function (m) {
         var A = a.W['h' + l + '.' + m + '.la'], Bm = a.W['h' + l + '.' + m + '.lb'], w = W['h' + l + '.' + m + '.w'];
