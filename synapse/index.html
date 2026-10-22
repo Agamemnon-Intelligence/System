@@ -328,7 +328,7 @@
 
   <div class="wrap strip reveal">
     <p>Runs today's best open models, plus free cloud models</p>
-    <div class="marks"><span>Qwen</span><span>Gemma</span><span>Llama</span><span>gpt-oss</span><span>Phi</span><span>Gemini</span><span>Groq</span><span>llama.cpp</span><span>MLX</span><span>CUDA</span><span>Vulkan</span></div>
+    <div class="marks"><span>Qwen</span><span>Gemma</span><span>Llama</span><span>gpt-oss</span><span>Phi</span><span>Gemini</span><span>Groq</span><span>Claude</span><span>DeepSeek</span><span>llama.cpp</span><span>MLX</span><span>CUDA</span><span>Vulkan</span></div>
   </div>
 
   <!-- Features -->
@@ -447,7 +447,7 @@ the same quiet sea.</span>
         <details class="glass reveal"><summary>Which computers are supported?</summary><p>Macs with Apple Silicon running macOS 14 or later, and PCs running Windows 10 (1809) or later, on x64 or ARM64. On Windows, Synapse uses your NVIDIA (CUDA) or AMD and Intel (Vulkan) graphics card when it has one, and the CPU otherwise. 8 GB of memory runs small models well; 16 GB or more opens up larger, smarter ones.</p></details>
         <details class="glass reveal"><summary>Does my data leave my computer?</summary><p>With local models, no: everything runs on your computer. With cloud models, your messages go to the provider you chose. Chats, projects and files are always stored locally.</p></details>
         <details class="glass reveal"><summary>Can the AI control my computer?</summary><p>Only if you turn on Computer Access or Browser for a chat. Commands, AppleScript, PowerShell and form submissions ask for your approval, and the browser never types passwords.</p></details>
-        <details class="glass reveal"><summary>macOS says it can't open Synapse. What do I do?</summary><p>Unzip Synapse and move it to Applications. On first launch, if macOS blocks it, open System Settings › Privacy &amp; Security and click Open Anyway. You only need to do this once.</p></details>
+        <details class="glass reveal"><summary>macOS says it can't open Synapse. What do I do?</summary><p>Open Synapse.dmg and drag Synapse into Applications. On first launch, if macOS blocks it, open System Settings › Privacy &amp; Security and click Open Anyway. You only need to do this once.</p></details>
         <details class="glass reveal"><summary>Windows SmartScreen warns about Synapse. What do I do?</summary><p>Synapse isn't code-signed yet, so SmartScreen may show a warning. Click More info › Run anyway. The installer needs no admin rights. If the WebView2 Runtime is missing (it's built into Windows 11), Synapse offers to download it. Prefer no installer? Unzip the portable zip from Releases and run Synapse.exe.</p></details>
         <details class="glass reveal"><summary>Where do the models come from?</summary><p>Local models download straight from Hugging Face. You can also search the whole Hugging Face catalog for any GGUF model, or MLX model on a Mac.</p></details>
       </div>
@@ -483,7 +483,7 @@ the same quiet sea.</span>
   const REPO = "https://github.com/Agamemnon-Intelligence/Synapse-macOS";
   document.querySelectorAll("[data-repo]").forEach(a => a.href = REPO);
   document.querySelectorAll("[data-releases]").forEach(a => a.href = REPO + "/releases");
-  document.querySelectorAll("[data-download]").forEach(a => a.href = REPO + "/releases/latest/download/Synapse-macOS.zip");
+  document.querySelectorAll("[data-download]").forEach(a => a.href = REPO + "/releases/latest/download/Synapse.dmg");
   // Windows release assets carry the version in their names, so they're pinned to a release.
   const WIN_REPO = "https://github.com/Agamemnon-Intelligence/Synapse-windows", WIN_VERSION = "2.0.0";
   const winAsset = arch => `${WIN_REPO}/releases/download/v${WIN_VERSION}/Synapse-${WIN_VERSION}-win-${arch}-setup.exe`;
