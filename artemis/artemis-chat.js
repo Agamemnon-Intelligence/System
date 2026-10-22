@@ -7,8 +7,8 @@
     tr: { ph: "Artemis'e bir şey sorun…", loading: '{m} indiriliyor… ', preparing: 'Model hazırlanıyor…', ready: '{m} hazır. Cihazınızda çalışıyor.', thinking: 'Artemis yazıyor…', stop: 'Durdur', send: 'Gönder', fail: 'Model yüklenemedi: ', retry: 'Tekrar denemek için sayfayı yenileyin.' }
   };
   var MODELS = {
-    '1.1': { name: 'Artemis 1.1', base: 'artemis/artemis-1.0.bin', adapter: 'artemis/artemis-1.1.bin?v=1.1' },
-    '1.0': { name: 'Artemis 1.0', base: 'artemis/artemis-1.0.bin', adapter: null }
+    '1.1': { name: 'Artemis 1.1', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: 'artemis/artemis-1.1.bin?v=1.1' },
+    '1.0': { name: 'Artemis 1.0', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: null }
   };
   var sel = '1.1';
   function t(k) { return (T[root.lang === 'tr' ? 'tr' : 'en'])[k].replace('{m}', MODELS[sel].name); }
