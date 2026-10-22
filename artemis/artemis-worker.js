@@ -1,22 +1,36 @@
-/* Artemis 1.0 — modeli arayüzü dondurmadan arka planda çalıştırır. */
+/* Artemis — modeli arayüzü dondurmadan arka planda çalıştırır.
+   Artemis 1.1 tek başına çalışmaz: önce 1.0 tabanı, sonra 1.1 dosyası yüklenip birleştirilir. */
 importScripts('artemis-engine.js');
 
-var model = null, run = 0;
+var model = null, run = 0, loads = 0, files = {};
 
-async function load(url) {
-  var res = await fetch(url);
-  if (!res.ok) throw new Error('HTTP ' + res.status);
-  var total = Number(res.headers.get('content-length')) || 0, got = 0, parts = [];
-  var reader = res.body.getReader();
-  for (;;) {
-    var r = await reader.read();
-    if (r.done) break;
-    parts.push(r.value); got += r.value.length;
-    postMessage({ type: 'progress', loaded: got, total: total });
-  }
-  var buf = new Uint8Array(got), o = 0;
-  parts.forEach(function (p) { buf.set(p, o); o += p.length; });
-  model = new Artemis.Model(buf.buffer);
+// İndirilen dosyalar saklanır; 1.0 ile 1.1 arasında geçişte taban yeniden indirilmez
+async function fetchAll(urls) {
+  var todo = urls.filter(function (u) { return !files[u]; }), total = 0, got = 0;
+  var res = await Promise.all(todo.map(function (u) { return fetch(u); }));
+  res.forEach(function (r, i) {
+    if (!r.ok) throw new Error('HTTP ' + r.status + ' (' + todo[i].split('/').pop() + ')');
+    total += Number(r.headers.get('content-length')) || 0;
+  });
+  await Promise.all(res.map(async function (r, i) {
+    var reader = r.body.getReader(), parts = [], n = 0;
+    for (;;) {
+      var c = await reader.read();
+      if (c.done) break;
+      parts.push(c.value); n += c.value.length; got += c.value.length;
+      postMessage({ type: 'progress', loaded: got, total: total });
+    }
+    var buf = new Uint8Array(n), o = 0;
+    parts.forEach(function (p) { buf.set(p, o); o += p.length; });
+    files[todo[i]] = buf.buffer;
+  }));
+}
+
+async function load(base, adapter) {
+  var id = ++loads; run++; model = null;
+  await fetchAll(adapter ? [base, adapter] : [base]);
+  if (id !== loads) return; // bu sırada başka bir model seçildi
+  model = new Artemis.Model(files[base], adapter ? files[adapter] : null);
   postMessage({ type: 'ready', name: model.name });
 }
 
@@ -36,7 +50,7 @@ async function generate(history, options) {
 
 onmessage = function (e) {
   var m = e.data;
-  if (m.type === 'load') load(m.url).catch(function (err) { postMessage({ type: 'error', message: String(err.message || err) }); });
+  if (m.type === 'load') load(m.base, m.adapter).catch(function (err) { postMessage({ type: 'error', message: String(err.message || err) }); });
   else if (m.type === 'stop') run++;
   else if (m.type === 'generate') generate(m.history, m.options).catch(function (err) { postMessage({ type: 'error', message: String(err.message || err) }); });
 };

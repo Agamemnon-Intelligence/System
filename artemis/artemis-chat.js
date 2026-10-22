@@ -1,15 +1,22 @@
-/* Artemis sohbet arayüzü: modeli Web Worker'da yükler ve yanıtları akış hâlinde gösterir. */
+/* Artemis sohbet arayüzü: seçilen modeli Web Worker'da yükler ve yanıtları akış hâlinde gösterir.
+   Artemis 1.1 = Artemis 1.0 tabanı + 1.1 dosyası (iki dosya birlikte yüklenir). */
 (function () {
   var root = document.documentElement;
   var T = {
-    en: { ph: 'Ask Artemis something…', loading: 'Downloading Artemis 1.0… ', preparing: 'Preparing the model…', ready: 'Artemis 1.0 is ready. It runs on your device.', thinking: 'Artemis is writing…', stop: 'Stop', send: 'Send', fail: 'The model could not be loaded: ', retry: 'Reload the page to try again.' },
-    tr: { ph: "Artemis'e bir şey sorun…", loading: 'Artemis 1.0 indiriliyor… ', preparing: 'Model hazırlanıyor…', ready: 'Artemis 1.0 hazır. Cihazınızda çalışıyor.', thinking: 'Artemis yazıyor…', stop: 'Durdur', send: 'Gönder', fail: 'Model yüklenemedi: ', retry: 'Tekrar denemek için sayfayı yenileyin.' }
+    en: { ph: 'Ask Artemis something…', loading: 'Downloading {m}… ', preparing: 'Preparing the model…', ready: '{m} is ready. It runs on your device.', thinking: 'Artemis is writing…', stop: 'Stop', send: 'Send', fail: 'The model could not be loaded: ', retry: 'Reload the page to try again.' },
+    tr: { ph: "Artemis'e bir şey sorun…", loading: '{m} indiriliyor… ', preparing: 'Model hazırlanıyor…', ready: '{m} hazır. Cihazınızda çalışıyor.', thinking: 'Artemis yazıyor…', stop: 'Durdur', send: 'Gönder', fail: 'Model yüklenemedi: ', retry: 'Tekrar denemek için sayfayı yenileyin.' }
   };
-  function t(k) { return (T[root.lang === 'tr' ? 'tr' : 'en'])[k]; }
+  var MODELS = {
+    '1.1': { name: 'Artemis 1.1', base: 'artemis/artemis-1.0.bin', adapter: 'artemis/artemis-1.1.bin' },
+    '1.0': { name: 'Artemis 1.0', base: 'artemis/artemis-1.0.bin', adapter: null }
+  };
+  var sel = '1.1';
+  function t(k) { return (T[root.lang === 'tr' ? 'tr' : 'en'])[k].replace('{m}', MODELS[sel].name); }
 
   var log = document.getElementById('log'), empty = document.getElementById('empty');
   var form = document.getElementById('form'), input = document.getElementById('input'), send = document.getElementById('send');
-  var status = document.getElementById('status'), bar = document.getElementById('bar'), chip = document.getElementById('m-artemis');
+  var status = document.getElementById('status'), bar = document.getElementById('bar'), ver = document.getElementById('ver');
+  var chips = document.querySelectorAll('.model[data-model]');
   var history = [], ready = false, busy = false, current = null, statusKey = 'loading', statusExtra = '';
 
   function setStatus(k, extra) { statusKey = k; statusExtra = extra || ''; status.textContent = (k ? t(k) : '') + statusExtra; }
@@ -32,18 +39,30 @@
     } else if (m.type === 'ready') {
       ready = true; bar.style.width = '100%';
       setTimeout(function () { bar.parentNode.style.visibility = 'hidden'; }, 400);
-      chip.classList.add('ready');
+      chipOf(sel).classList.add('ready');
       setStatus('ready'); update();
     } else if (m.type === 'token') {
       if (current) { current.text += m.text; current.el.textContent = current.text.replace(/^\s+/, ''); scroll(); }
     } else if (m.type === 'done') {
+      if (!ready) return; // model değişirken durdurulan yanıt
       finish();
     } else if (m.type === 'error') {
       if (current) finish();
       setStatus('fail', m.message + '. ' + t('retry'));
     }
   };
-  worker.postMessage({ type: 'load', url: new URL('artemis/artemis-1.0.bin', location.href).href });
+  function chipOf(k) { return document.querySelector('.model[data-model="' + k + '"]'); }
+  function load(k) {
+    if (busy) { worker.postMessage({ type: 'stop' }); finish(); }
+    sel = k; ready = false; update();
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.model === k)); c.classList.remove('ready'); });
+    ver.textContent = MODELS[k].name;
+    bar.style.width = '0'; bar.parentNode.style.visibility = 'visible'; setStatus('loading');
+    var abs = function (u) { return u && new URL(u, location.href).href; };
+    worker.postMessage({ type: 'load', base: abs(MODELS[k].base), adapter: abs(MODELS[k].adapter) });
+  }
+  chips.forEach(function (c) { c.addEventListener('click', function () { if (c.dataset.model !== sel || !ready) load(c.dataset.model); }); });
+  load(sel);
 
   function scroll() { log.scrollTop = log.scrollHeight; }
   function bubble(role, text) {
