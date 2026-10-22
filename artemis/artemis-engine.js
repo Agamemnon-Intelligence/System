@@ -1,5 +1,6 @@
-/* Artemis 1.0 çıkarım motoru — saf JavaScript, sunucu gerektirmez.
-   Tarayıcıda (Web Worker) ve Node'da çalışır. Model dosyası: artemis-1.0.bin */
+/* Artemis çıkarım motoru — saf JavaScript, sunucu gerektirmez.
+   Tarayıcıda (Web Worker) ve Node'da çalışır. Model dosyaları: artemis-1.0.bin (taban)
+   ve artemis-1.1.bin (1.0'ın üzerine eklenen LoRA farkları + ek katmanlar). */
 (function (root) {
   'use strict';
 
@@ -46,23 +47,20 @@
   };
   Tokenizer.prototype.decode = function (ids) { return this.dec.decode(this.bytesOf(ids)); };
 
-  function Model(buffer) {
+  // Model dosyasını okur: { header, W } (int8 → float32, satır ölçekleriyle)
+  function readFile(buffer) {
     var dv = new DataView(buffer);
     var magic = String.fromCharCode(dv.getUint8(0), dv.getUint8(1), dv.getUint8(2), dv.getUint8(3));
     if (magic !== 'ART1') throw new Error('Geçersiz model dosyası');
     var hlen = dv.getUint32(4, true);
     var header = JSON.parse(new TextDecoder().decode(new Uint8Array(buffer, 8, hlen)));
     var base = 8 + hlen + ((4 - ((8 + hlen) % 4)) % 4);
-    this.name = header.model;
-    this.cfg = header.cfg;
-    this.tok = new Tokenizer(header.merges);
     var raw = {}, W = {};
     header.tensors.forEach(function (t) {
       var n = t.shape.reduce(function (a, b) { return a * b; }, 1);
       raw[t.name] = t.kind === 'q8' ? new Int8Array(buffer, base + t.offset, n) : new Float32Array(buffer, base + t.offset, n);
       raw[t.name].shape = t.shape;
     });
-    // int8 → float32 (satır ölçekleriyle)
     Object.keys(raw).forEach(function (name) {
       if (/\.s$/.test(name)) return;
       var a = raw[name];
@@ -72,6 +70,37 @@
         f.shape = a.shape; W[name] = f;
       } else W[name] = a;
     });
+    return { header: header, W: W };
+  }
+
+  // buffer: Artemis 1.0 (taban). adapter (isteğe bağlı): Artemis 1.1 dosyası — tabanın
+  // katmanlarına LoRA farklarını ekler, üstüne kendi katmanlarını koyar, son normu değiştirir.
+  function Model(buffer, adapter) {
+    var b = readFile(buffer), W = b.W;
+    this.name = b.header.model;
+    this.cfg = b.header.cfg;
+    this.tok = new Tokenizer(b.header.merges);
+    this.blocks = [];
+    for (var l = 0; l < this.cfg.layers; l++) this.blocks.push('h' + l + '.');
+    if (adapter) {
+      var a = readFile(adapter), ac = a.header.cfg;
+      if (a.header.base !== this.name) throw new Error(a.header.model + ' için ' + a.header.base + ' gerekir');
+      // W += scale · B·A   (B: [out, r], A: [r, in])
+      for (l = ac.loraFrom; l < this.cfg.layers; l++) ['qkv', 'proj', 'fc', 'out'].forEach(function (m) {
+        var A = a.W['h' + l + '.' + m + '.la'], Bm = a.W['h' + l + '.' + m + '.lb'], w = W['h' + l + '.' + m + '.w'];
+        var rows = w.shape[0], cols = w.shape[1], r = ac.rank, sc = ac.scale;
+        for (var i = 0; i < rows; i++) for (var k = 0; k < r; k++) {
+          var bk = Bm[i * r + k] * sc, ao = k * cols, wo = i * cols;
+          if (bk) for (var j = 0; j < cols; j++) w[wo + j] += bk * A[ao + j];
+        }
+      });
+      for (var e = 0; e < ac.extra; e++) {
+        ['ln1.g', 'ln1.b', 'qkv.w', 'qkv.b', 'proj.w', 'proj.b', 'ln2.g', 'ln2.b', 'fc.w', 'fc.b', 'out.w', 'out.b'].forEach(function (p) { W['x' + e + '.' + p] = a.W['x' + e + '.' + p]; });
+        this.blocks.push('x' + e + '.');
+      }
+      W['lnf.g'] = a.W['lnf.g']; W['lnf.b'] = a.W['lnf.b'];
+      this.name = a.header.model;
+    }
     this.W = W;
     var c = this.cfg;
     this.x = new Float32Array(c.d); this.h = new Float32Array(c.d);
@@ -80,7 +109,7 @@
     this.scores = new Float32Array(c.ctx);
     this.logits = new Float32Array(c.vocab);
     this.K = []; this.V = [];
-    for (var l = 0; l < c.layers; l++) { this.K.push(new Float32Array(c.ctx * c.d)); this.V.push(new Float32Array(c.ctx * c.d)); }
+    for (l = 0; l < this.blocks.length; l++) { this.K.push(new Float32Array(c.ctx * c.d)); this.V.push(new Float32Array(c.ctx * c.d)); }
     this.pos = 0;
   }
 
@@ -110,8 +139,8 @@
     var te = token * d, pe = p * d;
     for (i = 0; i < d; i++) x[i] = W.wte[te + i] + W.wpe[pe + i];
     var scale = 1 / Math.sqrt(hd);
-    for (var l = 0; l < c.layers; l++) {
-      var pre = 'h' + l + '.';
+    for (var l = 0; l < this.blocks.length; l++) {
+      var pre = this.blocks[l];
       layerNorm(h, x, W[pre + 'ln1.g'], W[pre + 'ln1.b']);
       matvec(this.qkv, W[pre + 'qkv.w'], h, W[pre + 'qkv.b'], 3 * d, d);
       var K = this.K[l], V = this.V[l];

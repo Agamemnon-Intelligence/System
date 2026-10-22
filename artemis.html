@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Artemis AI · Athene Softworks</title>
-<meta name="description" content="Artemis 1.0 is the Athene Softworks general knowledge assistant, trained from scratch and running entirely in your browser.">
+<meta name="description" content="Artemis is the Athene Softworks general knowledge assistant. Artemis 1.1 builds on Artemis 1.0 and runs entirely in your browser.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
@@ -132,23 +132,23 @@
         <h1>Artemis AI</h1>
         <p data-i18n="hero.lead">Ask a general knowledge question. The model runs entirely in your browser.</p>
       </div>
-      <span class="pill sm" id="ver">Artemis 1.0</span>
+      <span class="pill sm" id="ver">Artemis 1.1</span>
     </div>
   </header>
 
   <section class="chat-sec">
     <div class="wrap">
       <div class="models" role="group" aria-label="Model">
-        <button class="model" type="button" id="m-artemis" aria-pressed="true"><span class="dot"></span>Artemis 1.0</button>
-        <button class="model" type="button" disabled>Artemis 1.1 Pro <span class="soon" data-i18n="soon">Coming soon</span></button>
+        <button class="model" type="button" data-model="1.1" aria-pressed="true"><span class="dot"></span>Artemis 1.1</button>
+        <button class="model" type="button" data-model="1.0" aria-pressed="false"><span class="dot"></span>Artemis 1.0</button>
         <button class="model" type="button" disabled>Plasma 2.0 <span class="soon" data-i18n="soon">Coming soon</span></button>
       </div>
       <div class="chat">
         <div class="bar"><i id="bar"></i></div>
         <div class="log" id="log" aria-live="polite">
           <div class="empty" id="empty">
-            <h2 data-i18n="e.title">Hi, I'm Artemis 1.0.</h2>
-            <p data-i18n="e.sub">A small general knowledge model trained from scratch by Athene Softworks. It runs entirely on your device; nothing you type leaves your browser.</p>
+            <h2 data-i18n="e.title">Hi, I'm Artemis.</h2>
+            <p data-i18n="e.sub">A small general knowledge model made by Athene Softworks. It runs entirely on your device; nothing you type leaves your browser.</p>
             <div class="ideas" id="ideas">
               <button type="button">Atatürk kimdir?</button>
               <button type="button">İstanbul hakkında bilgi ver.</button>
@@ -163,7 +163,7 @@
           <button type="submit" id="send" disabled data-i18n="send">Send</button>
         </form>
       </div>
-      <p class="chat-note" data-i18n="ai.note">Artemis 1.0 is a small first model (20M parameters). It often makes mistakes, so don't rely on its answers.</p>
+      <p class="chat-note" data-i18n="ai.note">Artemis 1.1 loads Artemis 1.0 (20M parameters) and adds its own 4.6M trained parameters on top, so the two model files run together. Both are small models that often make mistakes, so don't rely on their answers.</p>
     </div>
   </section>
 </main>
@@ -193,11 +193,11 @@ var TR = {
   'nav.contact': 'İletişim',
   'hero.lead': 'Bir genel kültür sorusu sorun. Model tamamen tarayıcınızda çalışır.',
   'soon': 'Yakında',
-  'e.title': 'Merhaba, ben Artemis 1.0.',
-  'e.sub': 'Athene Softworks tarafından sıfırdan eğitilmiş küçük bir genel kültür modeliyim. Tamamen cihazınızda çalışırım; yazdıklarınız tarayıcınızdan çıkmaz.',
+  'e.title': 'Merhaba, ben Artemis.',
+  'e.sub': 'Athene Softworks tarafından geliştirilmiş küçük bir genel kültür modeliyim. Tamamen cihazınızda çalışırım; yazdıklarınız tarayıcınızdan çıkmaz.',
   'ph': "Artemis'e bir şey sorun…",
   'send': 'Gönder',
-  'ai.note': "Artemis 1.0 küçük bir ilk modeldir (20 milyon parametre). Sık sık hata yapar; yanıtlarına güvenmeyin.",
+  'ai.note': "Artemis 1.1, Artemis 1.0'ı (20 milyon parametre) yükler ve üzerine kendi eğitilmiş 4,6 milyon parametresini ekler; iki model dosyası birlikte çalışır. İkisi de sık sık hata yapan küçük modellerdir; yanıtlarına güvenmeyin.",
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
   'foot.legal': 'Artemis AI hata yapabilir; önemli yanıtları kontrol edin. Sohbette parola ya da başka hassas kişisel bilgiler paylaşmayın.'
 };
