@@ -1,6 +1,6 @@
 /* Artemis — modeli arayüzü dondurmadan arka planda çalıştırır.
    Artemis 1.1 tek başına çalışmaz: önce 1.0 tabanı, sonra 1.1 dosyası yüklenip birleştirilir. */
-importScripts('artemis-engine.js');
+importScripts('artemis-engine.js?v=1.1');
 
 var model = null, run = 0, loads = 0, files = {};
 
