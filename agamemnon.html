@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Agamemnon · Athene Softworks</title>
-<meta name="description" content="Agamemnon is a free, open-source antivirus for macOS and Windows: behaviour protection, a ransomware shield, download protection, encrypted DNS and tens of millions of known-malware fingerprints, checked on your device.">
+<meta name="description" content="Agamemnon is a free, open-source antivirus for macOS and Windows: real-time file monitoring, stealer protection, self-protection, USB and BadUSB defence, Apple's XProtect engine, a ransomware shield and tens of millions of known-malware fingerprints, checked on your device.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
@@ -27,6 +27,17 @@
 .threat-tag { justify-self: start; font: 700 .68rem var(--display); letter-spacing: .08em; text-transform: uppercase; padding: .22rem .6rem; border-radius: 999px; }
 .threat-tag.stop { color: var(--green); background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); }
 .threat-tag.warn { color: var(--gold); background: rgba(232,176,75,.1); border: 1px solid rgba(232,176,75,.3); }
+.eyebrow { font: 700 .74rem var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--gold-2); margin: 0 0 .5rem !important; }
+.new31 { position: relative; overflow: hidden; }
+.new31::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(700px 420px at 90% 0%, rgba(232,176,75,.10), transparent 65%),
+              radial-gradient(600px 400px at 0% 100%, rgba(76,116,232,.12), transparent 65%);
+}
+.new31 .wrap { position: relative; }
+.new31 .cards .ico { background: rgba(232,176,75,.12); color: var(--gold-2); }
+.new31 .cards li { transition: border-color .4s var(--honey), transform .5s var(--honey); }
+.new31 .cards li:hover { border-color: rgba(232,176,75,.35); transform: translateY(-2px); }
 </style>
 </head>
 <body>
@@ -68,10 +79,11 @@
     <div class="wrap">
       <div>
         <p class="crumb"><a href="index.html" data-i18n="nav.home">Home</a> › Agamemnon</p>
-        <h1 class="reveal">Agamemnon<span class="ver">v3.0</span></h1>
-        <p class="lead reveal" data-i18n="hero.lead">A free, open-source antivirus for macOS and Windows. It checks every file against tens of millions of known threats on your own device, watches what new programs do, and stops today's stealers, ransomware and miners in the act.</p>
+        <h1 class="reveal">Agamemnon<span class="ver">3.1</span></h1>
+        <p class="lead reveal" data-i18n="hero.lead">A free, open-source antivirus for macOS and Windows. It sees every program the moment it starts, checks every file as it's saved against tens of millions of known threats, and stops today's stealers, ransomware and miners in the act, all on your own device.</p>
         <div class="hero-actions reveal">
           <a class="pill solid" href="#download" data-i18n="hero.get">Download Agamemnon</a>
+          <a class="pill" href="#new" data-i18n="hero.new">What's new in 3.1</a>
           <a class="pill" href="#detection" data-i18n="hero.how">How it works</a>
         </div>
         <div class="badges reveal">
@@ -88,7 +100,70 @@
     </div>
   </header>
 
-  <section class="section">
+  <section class="section new31" id="new">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="nm.eyebrow">Agamemnon 3.1 for Mac</p>
+        <h2 data-i18n="nm.title">Now it watches everything, as it happens.</h2>
+        <p data-i18n="nm.sub">The biggest update yet. Agamemnon now protects your Mac the way commercial antivirus does, and it's still free, open source and private.</p>
+      </div>
+      <ul class="cards">
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
+          <b data-i18n="nm.1t">Real-time file monitoring</b>
+          <span data-i18n="nm.1p">A protection helper uses Apple's Endpoint Security to see every new program the instant it starts, and checks every program, script, installer and archive as it's saved anywhere on your Mac.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></svg></span>
+          <b data-i18n="nm.2t">Stealers stopped at the door</b>
+          <span data-i18n="nm.2p">Programs that open your saved passwords, browser cookies, crypto wallets, notes or SSH keys are stopped within about a second, even when they hide behind built-in tools like cp or osascript.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="M12 8v4M12 16h.01"/></svg></span>
+          <b data-i18n="nm.3t">Self-protection</b>
+          <span data-i18n="nm.3p">If malware kills Agamemnon, it's back within seconds. Settings changed behind its back are put back, and a tampered app or malware list is reported. The helper installs without a password and updates itself.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v14M8 6l4-4 4 4M7 11v3a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-3M10 20a2 2 0 1 0 4 0 2 2 0 0 0-4 0"/></svg></span>
+          <b data-i18n="nm.4t">USB and BadUSB defence</b>
+          <span data-i18n="nm.4p">Drives are checked the moment you plug them in and ejected if they carry malware. Apps disguised as documents are flagged, and sticks that pretend to be a keyboard and type commands are caught.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.2 1-4.1 2.5-1.8 3-.5 7.5 1.2 10 .8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4"/></svg></span>
+          <b data-i18n="nm.5t">Apple's XProtect engine</b>
+          <span data-i18n="nm.5p">Apple's own malware rules, about 580 of them, now run on every file a scan finds, inside archives and on USB drives too, not only when a file is opened.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 14l2 2 4-4"/></svg></span>
+          <b data-i18n="nm.6t">Paste-command guard</b>
+          <span data-i18n="nm.6p">Fake “verify you're human” and “fix this error” pages trick people into pasting a malware installer into Terminal. Agamemnon warns you the moment you copy one.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></span>
+          <b data-i18n="nm.7t">Sees through disguises</b>
+          <span data-i18n="nm.7p">Hidden scripts are decoded (base64, hex, split-up text) before they're checked, and unsigned programs are judged by what they're built to do, so brand-new stealers are caught too.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l5-3v10l-5-3M3 7h12v10H3z"/></svg></span>
+          <b data-i18n="nm.8t">Camera, microphone and Wi-Fi</b>
+          <span data-i18n="nm.8p">Know whenever your camera or microphone switches on and which app was in front, and get warned about open or weakly protected Wi-Fi networks.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/></svg></span>
+          <b data-i18n="nm.9t">Updates, kept honest</b>
+          <span data-i18n="nm.9p">Finds outdated apps, Homebrew packages and macOS updates, and keeps Agamemnon itself up to date, checking every update's signature before installing it.</span>
+        </li>
+      </ul>
+      <ul class="stats">
+        <li class="reveal"><b>~1 s</b><span data-i18n="nm.s1">to stop a program stealing your passwords</span></li>
+        <li class="reveal"><b>~2 s</b><span data-i18n="nm.s2">to quarantine malware after it's saved</span></li>
+        <li class="reveal"><b>7</b><span data-i18n="nm.s3">detection engines working together</span></li>
+        <li class="reveal"><b>0</b><span data-i18n="nm.s4">false alarms across 50,000 programs and scripts</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt">
     <div class="wrap">
       <div class="section-head reveal">
         <h2 data-i18n="rt.title">Real-time protection.</h2>
@@ -136,7 +211,7 @@
     </div>
   </section>
 
-  <section class="section alt">
+  <section class="section">
     <div class="wrap">
       <div class="section-head reveal">
         <h2 data-i18n="sc.title">Scanning and quarantine.</h2>
@@ -146,7 +221,7 @@
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
           <b data-i18n="sc.1t">Quick, full, custom and scheduled</b>
-          <span data-i18n="sc.1p">Drag files or folders onto the window or start a scan from the menu. A quick scan can run by itself every week or every day, and only tells you when it finds something.</span>
+          <span data-i18n="sc.1p">Drag files onto the window or the Dock icon, right-click in Finder and choose Scan with Agamemnon, or start a scan from the menu. A quick scan can run by itself every week or every day.</span>
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg></span>
@@ -162,7 +237,7 @@
     </div>
   </section>
 
-  <section class="section" id="detection">
+  <section class="section alt" id="detection">
     <div class="wrap">
       <div class="section-head reveal">
         <h2 data-i18n="de.title">How detection works.</h2>
@@ -172,11 +247,15 @@
         <table>
           <thead><tr><th data-i18n="de.h1">Engine</th><th data-i18n="de.h2">What it checks</th><th data-i18n="de.h3">Platform</th></tr></thead>
           <tbody>
-            <tr><td>MalwareBazaar</td><td data-i18n="de.mb">SHA-256 of every file against more than 1.1 million confirmed malware samples from abuse.ch, updated twice a day.</td><td>macOS · Windows</td></tr>
+            <tr><td>MalwareBazaar</td><td data-i18n="de.mb">SHA-256 of every file against more than 1.1 million confirmed malware samples from abuse.ch, plus a list of fresh samples refreshed every hour. No account needed.</td><td>macOS · Windows</td></tr>
             <tr><td>VirusShare</td><td data-i18n="de.vs">MD5 against VirusShare's ~42.5 million malware hashes, worked out in the same pass so files are only read once.</td><td>macOS · Windows</td></tr>
             <tr><td data-i18n="de.prT">Pattern rules</td><td data-i18n="de.pr">Tell-tale code and strings of malware families. On Windows these are YARA rules for download cradles, encoded PowerShell, AMSI bypasses, Defender tampering, credential stealers and more. You can add your own.</td><td>macOS · Windows</td></tr>
-            <tr><td data-i18n="de.brT">Behaviour rules</td><td data-i18n="de.br">What a program does once it runs: about two dozen narrow rules for stealers, spyware, backdoors and miners.</td><td>macOS</td></tr>
-            <tr><td>URLhaus</td><td data-i18n="de.uh">Where a download came from, against abuse.ch's live list of malware links.</td><td>macOS · Windows</td></tr>
+            <tr><td data-i18n="de.brT">Behaviour rules</td><td data-i18n="de.br">What a program does once it runs, and which files it opens: narrow rules for stealers, spyware, backdoors and miners, fed live by Apple's Endpoint Security.</td><td>macOS</td></tr>
+            <tr><td>Apple XProtect</td><td data-i18n="de.xp">Apple's own malware rules (about 580 YARA rules), run over everything a scan finds, including inside archives and on USB drives.</td><td>macOS</td></tr>
+            <tr><td data-i18n="de.anT">Program analysis</td><td data-i18n="de.an">What an unsigned program is built to do: record keys, take screenshots, read passwords, hide, phone home. Only combinations that add up to malware are reported.</td><td>macOS</td></tr>
+            <tr><td data-i18n="de.dcT">Script decoding</td><td data-i18n="de.dc">Base64, hex, escapes, character codes and split-up strings are decoded, up to three layers deep, before the rules look again.</td><td>macOS</td></tr>
+            <tr><td data-i18n="de.clT">Cloud check</td><td data-i18n="de.cl">Optional: unsigned programs are looked up in MalwareBazaar's live database by fingerprint only, never the file.</td><td>macOS</td></tr>
+            <tr><td>URLhaus</td><td data-i18n="de.uh">Where a download came from, against abuse.ch's live list of about 36,000 malware links.</td><td>macOS · Windows</td></tr>
             <tr><td>ClamAV</td><td data-i18n="de.ca">Cisco's free engine as a second opinion. Agamemnon installs it and keeps its signatures up to date.</td><td>macOS · Windows</td></tr>
             <tr><td data-i18n="de.sgT">Code signatures</td><td data-i18n="de.sg">Gatekeeper and notarization on Mac, Authenticode and Windows security catalogs on PC. Unsigned, tampered and revoked programs are flagged.</td><td>macOS · Windows</td></tr>
           </tbody>
@@ -194,15 +273,18 @@
         <li class="reveal"><span class="threat-tag stop" data-i18n="th.stop">Stopped in the act</span><b data-i18n="th.sysT">SysJoker · crypto miners</b><span data-i18n="th.sysjoker">The fake macOS update backdoor and miners that eat your CPU.</span></li>
         <li class="reveal"><span class="threat-tag warn" data-i18n="th.flagged">Flagged for removal</span><b>Shlayer · Bundlore · Adload</b><span data-i18n="th.adware">Adware extensions and search hijacks, removed in one click.</span></li>
         <li class="reveal"><span class="threat-tag warn" data-i18n="th.caught">Detected</span><b>BeaverTail · KeySteal</b><span data-i18n="th.more">Fake job-interview malware payloads and keychain stealers, plus startup-item alerts.</span></li>
+        <li class="reveal"><span class="threat-tag warn" data-i18n="th.warned">Warned before it starts</span><b data-i18n="th.cfT">ClickFix · fake CAPTCHAs</b><span data-i18n="th.cf">Pages that tell you to paste a command into Terminal. You're warned as soon as you copy it.</span></li>
+        <li class="reveal"><span class="threat-tag stop" data-i18n="th.stop">Stopped in the act</span><b data-i18n="th.usbT">Infected USB drives · BadUSB</b><span data-i18n="th.usb">Malware on drives is quarantined and the drive ejected; fake keyboards typing commands are caught.</span></li>
+        <li class="reveal"><span class="threat-tag warn" data-i18n="th.caught">Detected</span><b data-i18n="th.hidT">Hidden droppers</b><span data-i18n="th.hid">Scripts that hide their download-and-run commands in base64, hex or split-up text.</span></li>
       </ul>
     </div>
   </section>
 
-  <section class="section alt">
+  <section class="section">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2 data-i18n="nw.title">New in 3.0.</h2>
-        <p data-i18n="nw.sub">Version 3.0 makes Agamemnon easy for anyone to use, with no computer knowledge needed.</p>
+        <h2 data-i18n="nw.title">New in 3.0 for Windows.</h2>
+        <p data-i18n="nw.sub">Version 3.0 for Windows makes Agamemnon easy for anyone to use, with no computer knowledge needed.</p>
       </div>
       <ul class="cards">
         <li class="reveal"><b data-i18n="nw.1t">Türkçe and English</b><span data-i18n="nw.1p">The whole app, notifications and tray menu included, in both languages. Switch at any time without restarting.</span></li>
@@ -215,7 +297,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section alt">
     <div class="wrap cols">
       <div>
         <div class="section-head reveal">
@@ -224,7 +306,7 @@
         </div>
         <ul class="list reveal">
           <li data-i18n="pv.1"><b>No account, no telemetry, no uploads.</b> Only fingerprints are compared, against lists stored on your device.</li>
-          <li data-i18n="pv.2"><b>Limited network use:</b> downloading the malware lists, ClamAV and its signatures. Optional online lookups send only a file's SHA-256, never the file.</li>
+          <li data-i18n="pv.2"><b>Limited network use:</b> downloading the malware lists, ClamAV and its signatures, and checking for updates. The optional cloud check sends only a file's SHA-256, never the file. No account needed.</li>
           <li data-i18n="pv.3"><b>Open source.</b> Every rule and every line of code is public under the GPL-2.0, so you can check what it does.</li>
         </ul>
       </div>
@@ -238,6 +320,7 @@
           <li data-i18n="sm.2"><b>Safe archives.</b> Members are extracted under random names, and size limits are enforced while copying, not taken from headers.</li>
           <li data-i18n="sm.3"><b>Tamper-proof quarantine.</b> Encrypted in chunks bound to their position, with the key protected by your Windows account.</li>
           <li data-i18n="sm.4"><b>No false alarms by design.</b> It never stops anything that is part of the system or signed by a known developer on its own.</li>
+          <li data-i18n="sm.5"><b>A helper that can't be turned against you.</b> The Mac protection helper only watches and reports, and it only replaces itself with a copy signed by our own developer team.</li>
         </ul>
       </div>
     </div>
@@ -253,13 +336,13 @@
         <div class="dl reveal" data-os="mac">
           <div class="dl-top">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.2 1-4.1 2.5-1.8 3-.5 7.5 1.2 10 .8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.4-.9-2.4-4ZM14 5.2c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4Z"/></svg>
-            <div><h3>macOS</h3><div class="meta" data-i18n="dl.macMeta">v3.0 · Universal · Apple silicon &amp; Intel · macOS 13+</div></div>
+            <div><h3>macOS</h3><div class="meta" data-i18n="dl.macMeta">v3.1 · Universal · Apple silicon &amp; Intel · macOS 13+</div></div>
             <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
           <ol class="steps">
             <li data-i18n="dl.m1">Download Agamemnon.dmg, open it and drag Agamemnon to Applications.</li>
             <li data-i18n="dl.m2">First launch: open System Settings › Privacy &amp; Security and click Open Anyway.</li>
-            <li data-i18n="dl.m3">For full scans, give Agamemnon Full Disk Access in the same settings page.</li>
+            <li data-i18n="dl.m3">Allow Agamemnon under Login Items if macOS asks, then give it and its helper Full Disk Access for full scans and real-time file monitoring.</li>
           </ol>
           <p class="note" data-i18n="dl.macNote">On first launch it downloads its malware lists in the background (about 1.5 GB) and installs ClamAV. Altogether it uses about 1 GB of disk.</p>
           <div class="dl-actions">
@@ -297,7 +380,7 @@
         <p data-i18n="li.sub">No antivirus catches everything. Here is what Agamemnon can't do.</p>
       </div>
       <ul class="list reveal">
-        <li data-i18n="li.1"><b>It reacts just after things start, not before.</b> Behaviour, download and ransomware protection act within a second or two. Keep a backup.</li>
+        <li data-i18n="li.1"><b>It reacts within a second or two; it doesn't block in advance.</b> Even with real-time monitoring on Mac, a program gets that moment before it's stopped. Blocking beforehand needs a special permission from Apple. Keep a backup.</li>
         <li data-i18n="li.2"><b>Known-malware lists only know what has been reported.</b> Rules and ClamAV catch many new builds, but brand-new or heavily disguised malware can still get past.</li>
         <li data-i18n="li.3"><b>On Windows it works alongside Microsoft Defender</b> and does not replace it. Keep Defender on.</li>
         <li data-i18n="li.4"><b>The first database download takes a while.</b> ClamAV and MalwareBazaar protect you from the start; the full count climbs over the first hours.</li>
@@ -330,7 +413,7 @@
       </ul>
     </div>
     <p data-i18n="foot.copy">Copyright © 2026 Athene Softworks. All rights reserved.</p>
-    <p data-i18n="foot.legal">Agamemnon is free software released under the GNU General Public License v2.0. Malware hashes come from MalwareBazaar by abuse.ch and VirusShare.com, malware links from URLhaus by abuse.ch; the second engine is ClamAV by Cisco Talos.</p>
+    <p data-i18n="foot.legal">Agamemnon is free software released under the GNU General Public License v2.0. Malware hashes come from MalwareBazaar by abuse.ch, VirusShare.com and public lists built on them, malware links from URLhaus by abuse.ch; other engines are ClamAV by Cisco Talos and Apple's XProtect rules.</p>
   </div>
 </footer>
 
@@ -340,9 +423,50 @@ var TR = {
   'lang.code': 'TR',
   'nav.home': 'Ana sayfa',
   'nav.contact': 'İletişim',
-  'hero.lead': 'macOS ve Windows için ücretsiz, açık kaynaklı bir antivirüs. Her dosyayı kendi cihazınızda on milyonlarca bilinen tehditle karşılaştırır, yeni programların ne yaptığını izler ve günümüzün veri hırsızlarını, fidye yazılımlarını ve madencilerini iş üstünde durdurur.',
+  'hero.lead': 'macOS ve Windows için ücretsiz, açık kaynaklı bir antivirüs. Her programı başladığı anda görür, her dosyayı kaydedilirken on milyonlarca bilinen tehditle karşılaştırır ve günümüzün veri hırsızlarını, fidye yazılımlarını ve madencilerini iş üstünde durdurur; hepsi kendi cihazınızda.',
   'hero.get': "Agamemnon'u indirin",
   'hero.how': 'Nasıl çalışır',
+  'hero.new': "3.1'deki yenilikler",
+  'nm.eyebrow': 'Mac için Agamemnon 3.1',
+  'nm.title': 'Artık her şeyi, olduğu anda izliyor.',
+  'nm.sub': "Bugüne kadarki en büyük güncelleme. Agamemnon artık Mac'inizi ticari antivirüsler gibi koruyor; üstelik hâlâ ücretsiz, açık kaynaklı ve gizliliğinize saygılı.",
+  'nm.1t': 'Gerçek zamanlı dosya izleme',
+  'nm.1p': "Bir koruma yardımcısı, Apple'ın Endpoint Security altyapısıyla her yeni programı başladığı anda görür; Mac'inizin herhangi bir yerine kaydedilen her programı, betiği, yükleyiciyi ve arşivi denetler.",
+  'nm.2t': 'Veri hırsızları kapıda durdurulur',
+  'nm.2p': 'Kayıtlı parolalarınızı, tarayıcı çerezlerinizi, kripto cüzdanlarınızı, notlarınızı ya da SSH anahtarlarınızı açan programlar yaklaşık bir saniye içinde durdurulur; cp ya da osascript gibi yerleşik araçların arkasına saklansalar bile.',
+  'nm.3t': 'Kendini koruma',
+  'nm.3p': "Bir zararlı Agamemnon'u kapatırsa saniyeler içinde geri gelir. Arkasından değiştirilen ayarlar geri alınır; değiştirilmiş bir uygulama ya da zararlı listesi bildirilir. Yardımcı parola istemeden kurulur ve kendini günceller.",
+  'nm.4t': 'USB ve BadUSB savunması',
+  'nm.4p': 'Sürücüler takıldığı anda denetlenir, zararlı taşıyorsa çıkarılır. Belge kılığına girmiş uygulamalar işaretlenir; klavye taklidi yapıp komut yazan çubuklar yakalanır.',
+  'nm.5t': "Apple'ın XProtect motoru",
+  'nm.5p': "Apple'ın kendi zararlı yazılım kuralları (yaklaşık 580 kural) artık yalnızca bir dosya açıldığında değil, taramanın bulduğu her dosyada, arşivlerin içinde ve USB sürücülerde de çalışır.",
+  'nm.6t': 'Komut yapıştırma koruması',
+  'nm.6p': "Sahte “insan olduğunuzu doğrulayın” ve “bu hatayı düzeltin” sayfaları, insanları Terminal'e zararlı bir yükleyici yapıştırmaya kandırır. Agamemnon böyle bir komutu kopyaladığınız anda sizi uyarır.",
+  'nm.7t': 'Kılık değiştirmeyi görür',
+  'nm.7p': 'Gizlenmiş betikler (base64, hex, parçalanmış metin) denetlenmeden önce çözülür; imzasız programlar ne yapmak üzere yapıldıklarına göre değerlendirilir. Böylece yepyeni veri hırsızları da yakalanır.',
+  'nm.8t': 'Kamera, mikrofon ve Wi-Fi',
+  'nm.8p': 'Kameranız ya da mikrofonunuz her açıldığında ve o sırada hangi uygulamanın önde olduğunu öğrenin; açık ya da zayıf korunan Wi-Fi ağları için uyarı alın.',
+  'nm.9t': 'Dürüst güncellemeler',
+  'nm.9p': "Eski kalmış uygulamaları, Homebrew paketlerini ve macOS güncellemelerini bulur; Agamemnon'un kendisini de güncel tutar ve her güncellemenin imzasını kurmadan önce denetler.",
+  'nm.s1': 'parolalarınızı çalan bir programı durdurma süresi',
+  'nm.s2': 'kaydedilen bir zararlıyı karantinaya alma süresi',
+  'nm.s3': 'birlikte çalışan tespit motoru',
+  'nm.s4': '50.000 program ve betikte yanlış alarm',
+  'de.xp': "Apple'ın kendi zararlı yazılım kuralları (yaklaşık 580 YARA kuralı); taramanın bulduğu her şeyde, arşivlerin içinde ve USB sürücülerde de çalıştırılır.",
+  'de.anT': 'Program analizi',
+  'de.an': 'İmzasız bir programın ne yapmak üzere yapıldığı: tuşları kaydetmek, ekran görüntüsü almak, parola okumak, saklanmak, dışarıya bağlanmak. Yalnızca zararlıya işaret eden birleşimler bildirilir.',
+  'de.dcT': 'Betik çözme',
+  'de.dc': 'Base64, hex, kaçış dizileri, karakter kodları ve parçalanmış metinler üç katmana kadar çözülür, ardından kurallar yeniden bakar.',
+  'de.clT': 'Bulut denetimi',
+  'de.cl': "İsteğe bağlı: imzasız programlar MalwareBazaar'ın canlı veritabanında yalnızca parmak iziyle aranır, dosyanın kendisi asla gönderilmez.",
+  'th.warned': 'Başlamadan uyarılır',
+  'th.cfT': 'ClickFix · sahte CAPTCHA',
+  'th.cf': "Terminal'e bir komut yapıştırmanızı isteyen sayfalar. Komutu kopyaladığınız anda uyarılırsınız.",
+  'th.usbT': 'Zararlı USB sürücüler · BadUSB',
+  'th.usb': 'Sürücülerdeki zararlılar karantinaya alınır ve sürücü çıkarılır; komut yazan sahte klavyeler yakalanır.',
+  'th.hidT': 'Gizli indiriciler',
+  'th.hid': 'İndir-ve-çalıştır komutlarını base64, hex ya da parçalanmış metin içinde saklayan betikler.',
+  'sm.5': '<b>Size karşı kullanılamayan bir yardımcı.</b> Mac koruma yardımcısı yalnızca izler ve bildirir; kendini yalnızca kendi geliştirici ekibimizin imzaladığı bir kopyayla değiştirir.',
   'badge.live': 'Şimdi kullanılabilir',
   'badge.lang': 'Türkçe · English',
   'rt.title': 'Gerçek zamanlı koruma.',
@@ -366,7 +490,7 @@ var TR = {
   'sc.title': 'Tarama ve karantina.',
   'sc.sub': "Bir şeyi kendiniz denetlemek ya da Agamemnon'un düzenli olarak denetlemesini istediğinizde.",
   'sc.1t': 'Hızlı, tam, özel ve zamanlanmış',
-  'sc.1p': 'Dosya veya klasörleri pencereye sürükleyin ya da menüden tarama başlatın. Hızlı tarama her hafta veya her gün kendiliğinden çalışabilir ve yalnızca bir şey bulduğunda haber verir.',
+  'sc.1p': "Dosyaları pencereye ya da Dock simgesine sürükleyin, Finder'da sağ tıklayıp Agamemnon ile Tara'yı seçin ya da menüden tarama başlatın. Hızlı tarama her hafta veya her gün kendiliğinden çalışabilir.",
   'sc.2t': 'Arşivlerde saklanma yok',
   'sc.2p': "ZIP, RAR, 7Z, TAR, ISO, DMG, PKG, MSI, CAB ve fazlasının içine 3 seviye derinliğe kadar bakar. Zip bombaları hiçbir şey açılmadan reddedilir, fatura.pdf.exe gibi gizlenmiş adlar işaretlenir.",
   'sc.3t': 'Karantina kasası',
@@ -376,13 +500,13 @@ var TR = {
   'de.h1': 'Motor',
   'de.h2': 'Neyi denetler',
   'de.h3': 'Platform',
-  'de.mb': "Her dosyanın SHA-256 özetini abuse.ch'in 1,1 milyondan fazla doğrulanmış zararlı örneğiyle karşılaştırır; günde iki kez güncellenir.",
+  'de.mb': "Her dosyanın SHA-256 özetini abuse.ch'in 1,1 milyondan fazla doğrulanmış zararlı örneğiyle ve her saat yenilenen taze örnek listesiyle karşılaştırır. Hesap gerekmez.",
   'de.vs': "MD5 özetini VirusShare'in yaklaşık 42,5 milyon zararlı özetiyle karşılaştırır; aynı geçişte hesaplanır, dosyalar yalnızca bir kez okunur.",
   'de.prT': 'Desen kuralları',
   'de.pr': "Zararlı yazılım ailelerinin ele veren kodları ve metinleri. Windows'ta bunlar indirme zincirleri, kodlanmış PowerShell, AMSI atlatma, Defender'a müdahale, kimlik bilgisi hırsızları ve daha fazlası için YARA kurallarıdır. Kendi kurallarınızı ekleyebilirsiniz.",
   'de.brT': 'Davranış kuralları',
-  'de.br': 'Bir program çalıştıktan sonra ne yapıyor: veri hırsızları, casus yazılımlar, arka kapılar ve madenciler için yaklaşık yirmi dört dar kapsamlı kural.',
-  'de.uh': "İndirmenin nereden geldiğini abuse.ch'in canlı zararlı bağlantı listesiyle karşılaştırır.",
+  'de.br': "Bir program çalıştıktan sonra ne yapıyor ve hangi dosyaları açıyor: Apple'ın Endpoint Security altyapısından canlı beslenen; veri hırsızları, casus yazılımlar, arka kapılar ve madenciler için dar kapsamlı kurallar.",
+  'de.uh': "İndirmenin nereden geldiğini abuse.ch'in yaklaşık 36.000 bağlantılık canlı zararlı listesiyle karşılaştırır.",
   'de.ca': "Cisco'nun ücretsiz motoru ikinci görüş olarak. Agamemnon onu kurar ve imzalarını güncel tutar.",
   'de.sgT': 'Kod imzaları',
   'de.sg': "Mac'te Gatekeeper ve noter onayı, PC'de Authenticode ve Windows güvenlik katalogları. İmzasız, değiştirilmiş ve iptal edilmiş programlar işaretlenir.",
@@ -399,8 +523,8 @@ var TR = {
   'th.sysjoker': 'Sahte macOS güncellemesi arka kapısı ve işlemcinizi sömüren madenciler.',
   'th.adware': 'Reklam uzantıları ve arama motoru ele geçirmeleri; tek tıkla kaldırılır.',
   'th.more': 'Sahte iş görüşmesi zararlılarının yükleri ve anahtar zinciri hırsızları; ayrıca başlangıç öğesi uyarıları.',
-  'nw.title': "3.0'daki yenilikler.",
-  'nw.sub': "3.0 sürümü Agamemnon'u bilgisayar bilgisi gerektirmeden herkesin kolayca kullanabileceği hâle getiriyor.",
+  'nw.title': "Windows için 3.0'daki yenilikler.",
+  'nw.sub': "Windows için 3.0 sürümü Agamemnon'u bilgisayar bilgisi gerektirmeden herkesin kolayca kullanabileceği hâle getiriyor.",
   'nw.1t': 'Türkçe ve English',
   'nw.1p': 'Bildirimler ve tepsi menüsü dahil tüm uygulama iki dilde. Yeniden başlatmadan istediğiniz zaman değiştirin.',
   'nw.2t': 'Karşılama rehberi',
@@ -416,7 +540,7 @@ var TR = {
   'pv.title': 'Gizlilik.',
   'pv.sub': 'Dosyalarınız bilgisayarınızdan hiç çıkmaz.',
   'pv.1': '<b>Hesap yok, telemetri yok, yükleme yok.</b> Yalnızca parmak izleri, cihazınızda saklanan listelerle karşılaştırılır.',
-  'pv.2': '<b>Sınırlı ağ kullanımı:</b> zararlı listelerinin, ClamAV’in ve imzalarının indirilmesi. İsteğe bağlı çevrim içi sorgular dosyanın yalnızca SHA-256 özetini gönderir, dosyanın kendisini asla.',
+  'pv.2': '<b>Sınırlı ağ kullanımı:</b> zararlı listelerinin, ClamAV’in ve imzalarının indirilmesi ve güncelleme denetimi. İsteğe bağlı bulut denetimi dosyanın yalnızca SHA-256 özetini gönderir, dosyanın kendisini asla. Hesap gerekmez.',
   'pv.3': '<b>Açık kaynak.</b> Her kural ve her kod satırı GPL-2.0 ile herkese açıktır; ne yaptığını kendiniz denetleyebilirsiniz.',
   'sm.title': 'Özenle geliştirildi.',
   'sm.sub': 'Bir antivirüsün derin erişime ihtiyacı vardır, bu yüzden bu erişimi dikkatle kullanmalıdır.',
@@ -426,11 +550,11 @@ var TR = {
   'sm.4': '<b>Tasarım gereği yanlış alarm yok.</b> Sistemin parçası olan ya da bilinen bir geliştirici tarafından imzalanan hiçbir şeyi kendi başına durdurmaz.',
   'dl.title': 'İndirin ve kurun.',
   'dl.sub': 'Ücretsiz, hesap gerekmez. Sisteminizi seçin.',
-  'dl.macMeta': 'v3.0 · Universal · Apple silicon ve Intel · macOS 13+',
+  'dl.macMeta': 'v3.1 · Universal · Apple silicon ve Intel · macOS 13+',
   'dl.yours': 'Sizin sisteminiz',
   'dl.m1': "Agamemnon.dmg dosyasını indirin, açın ve Agamemnon'u Uygulamalar klasörüne sürükleyin.",
   'dl.m2': 'İlk açılışta Sistem Ayarları › Gizlilik ve Güvenlik bölümüne gidip “Yine de Aç”a tıklayın.',
-  'dl.m3': "Tam taramalar için aynı sayfada Agamemnon'a Tam Disk Erişimi verin.",
+  'dl.m3': "macOS sorarsa Giriş Öğeleri'nde Agamemnon'a izin verin; ardından tam taramalar ve gerçek zamanlı dosya izleme için Agamemnon'a ve yardımcısına Tam Disk Erişimi verin.",
   'dl.macNote': "İlk açılışta zararlı listelerini arka planda indirir (yaklaşık 1,5 GB) ve ClamAV'i kurar. Toplamda yaklaşık 1 GB disk alanı kullanır.",
   'dl.dmg': '.dmg indir',
   'dl.exe': '.exe indir',
@@ -441,7 +565,7 @@ var TR = {
   'dl.winNote': "2.0'dan mı yükseltiyorsunuz? 3.0'ı üzerine kurun; ayarlar, karantina ve tehdit veritabanı korunur.",
   'li.title': 'Sınırları konusunda dürüst.',
   'li.sub': "Hiçbir antivirüs her şeyi yakalayamaz. Agamemnon'un yapamadıkları şunlar.",
-  'li.1': '<b>Olaylara başlamadan önce değil, başladıktan hemen sonra tepki verir.</b> Davranış, indirme ve fidye yazılımı koruması bir iki saniye içinde devreye girer. Yedek alın.',
+  'li.1': "<b>Bir iki saniye içinde tepki verir; önceden engellemez.</b> Mac'teki gerçek zamanlı izlemeyle bile bir program durdurulmadan önce o kısa anı bulur. Önceden engellemek Apple'dan özel bir izin gerektirir. Yedek alın.",
   'li.2': '<b>Bilinen zararlı listeleri yalnızca bildirilmiş olanları bilir.</b> Kurallar ve ClamAV birçok yeni sürümü yakalar, ama yepyeni ya da iyice gizlenmiş zararlılar yine de geçebilir.',
   'li.3': "<b>Windows'ta Microsoft Defender ile birlikte çalışır</b>, onun yerini almaz. Defender'ı açık tutun.",
   'li.4': '<b>İlk veritabanı indirmesi biraz sürer.</b> ClamAV ve MalwareBazaar sizi baştan korur; toplam sayı ilk saatlerde yükselir.',
@@ -449,7 +573,7 @@ var TR = {
   'cta.title': 'Gerektiği ana kadar sessiz kalan bir koruma.',
   'cta.sub': 'Bir sorunuz, gözümüzden kaçan bir tehdit ya da yanlış bir alarm mı var? Bize yazın.',
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
-  'foot.legal': "Agamemnon, GNU Genel Kamu Lisansı v2.0 ile yayınlanan özgür bir yazılımdır. Zararlı yazılım özetleri abuse.ch'in MalwareBazaar projesinden ve VirusShare.com'dan, zararlı bağlantılar abuse.ch'in URLhaus projesinden gelir; ikinci motor Cisco Talos'un ClamAV'idir."
+  'foot.legal': "Agamemnon, GNU Genel Kamu Lisansı v2.0 ile yayınlanan özgür bir yazılımdır. Zararlı yazılım özetleri abuse.ch'in MalwareBazaar projesinden, VirusShare.com'dan ve bunlara dayanan açık listelerden, zararlı bağlantılar abuse.ch'in URLhaus projesinden gelir; diğer motorlar Cisco Talos'un ClamAV'i ve Apple'ın XProtect kurallarıdır."
 };
 </script>
 <script src="product.js"></script>
