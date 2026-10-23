@@ -430,7 +430,7 @@ footer p { margin: .3rem 0; max-width: 60rem; }
       <div>
         <div class="ag-brand reveal">
           <img src="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png" alt="" width="40" height="40" loading="lazy" decoding="async">
-          Agamemnon <span class="new-tag" data-i18n="ag.new">New: 3.1 for Mac</span>
+          Agamemnon <span class="new-tag" data-i18n="ag.new">New: 4.0 for Windows · 3.1 for Mac</span>
         </div>
         <h2 class="reveal drip" data-i18n="ag.title">Antivirus that fights back.</h2>
         <p class="ag-lead reveal" data-i18n="ag.sub">Free, open-source protection for macOS and Windows. Agamemnon sees every program the moment it starts, checks every file as it's saved, and stops stealers before they get your passwords, wallets or browser data. No account, no subscription.</p>
@@ -439,10 +439,11 @@ footer p { margin: .3rem 0; max-width: 60rem; }
           <li data-i18n="ag.c2">Stops stealers in the act</li>
           <li data-i18n="ag.c3">Self-protection</li>
           <li data-i18n="ag.c4">USB and BadUSB defence</li>
-          <li data-i18n="ag.c5">Apple XProtect engine</li>
+          <li data-i18n="ag.c5">Apple XProtect and Microsoft Defender engines</li>
           <li data-i18n="ag.c6">Paste-command guard</li>
           <li data-i18n="ag.c7">Ransomware shield</li>
           <li data-i18n="ag.c8">Encrypted DNS</li>
+          <li data-i18n="ag.c9">Security checkup</li>
         </ul>
         <ul class="ag-stats reveal">
           <li><b>47M+</b><span data-i18n="st.1">known threats checked on your device</span></li>
@@ -472,13 +473,13 @@ footer p { margin: .3rem 0; max-width: 60rem; }
         <div class="dl reveal" data-os="win">
           <div class="dl-top">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.4 4.5v7H3zM11.3 4.4 21 3v8.5h-9.7zM3 12.4h7.4v7.1L3 18.5zM11.3 12.4H21V21l-9.7-1.4z"/></svg>
-            <div><h3>Windows</h3><div class="meta">v3.0.0 · x64 · Windows 10 &amp; 11</div></div>
+            <div><h3>Windows</h3><div class="meta">v4.0.0 · x64 · Windows 10 &amp; 11</div></div>
             <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
-          <p class="note" data-i18n="dl.winNote">The installer sets up the protection service. Approve the one-time UAC prompt.</p>
+          <p class="note" data-i18n="dl.winNote">The installer sets up the protection service. Approve the one-time UAC prompt. From 4.0 on, Agamemnon updates itself.</p>
           <div class="dl-actions">
-            <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v3.0.0/Agamemnon-3.0.0-Setup.exe" data-i18n="dl.exe">Download .exe</a>
-            <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v3.0.0/Agamemnon-3.0.0-x64.msi">.msi</a>
+            <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v4.0.0/Agamemnon-4.0.0-Setup.exe" data-i18n="dl.exe">Download .exe</a>
+            <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v4.0.0/Agamemnon-4.0.0-x64.msi">.msi</a>
             <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows" target="_blank" rel="noopener" data-i18n="dl.source">Source</a>
           </div>
         </div>
@@ -644,17 +645,18 @@ var TR = {
   'what.3p': "macOS ve Windows'taki gerçek zararlı yazılımları inceliyor, okunabilir kurallara dönüştürüyoruz.",
   'what.4t': 'Her zaman açık kaynak',
   'what.4p': 'Yayınladığımız her şey özgür yazılımdır. Kodu okuyun, işimizi kendiniz kontrol edin.',
-  'ag.new': "Yeni: Mac için 3.1",
+  'ag.new': "Yeni: Windows için 4.0 · Mac için 3.1",
   'ag.title': 'Karşılık veren antivirüs.',
   'ag.sub': 'macOS ve Windows için ücretsiz, açık kaynaklı koruma. Agamemnon her programı başladığı anda görür, her dosyayı kaydedilirken denetler ve veri hırsızlarını parolalarınıza, cüzdanlarınıza ya da tarayıcı verilerinize ulaşmadan durdurur. Hesap yok, abonelik yok.',
   'ag.c1': 'Gerçek zamanlı dosya izleme',
   'ag.c2': 'Veri hırsızlarını iş üstünde durdurur',
   'ag.c3': 'Kendini koruma',
   'ag.c4': 'USB ve BadUSB savunması',
-  'ag.c5': 'Apple XProtect motoru',
+  'ag.c5': 'Apple XProtect ve Microsoft Defender motorları',
   'ag.c6': 'Komut yapıştırma koruması',
   'ag.c7': 'Fidye yazılımı kalkanı',
   'ag.c8': 'Şifreli DNS',
+  'ag.c9': 'Güvenlik kontrolü',
   'st.1': 'bilinen tehdit, cihazınızda denetlenir',
   'st.2': 'bir veri hırsızını durdurma süresi',
   'st.3': 'tespit motoru',
@@ -666,7 +668,7 @@ var TR = {
   'dl.dmg': '.dmg indir',
   'dl.exe': '.exe indir',
   'dl.source': 'Kaynak kod',
-  'dl.winNote': 'Yükleyici koruma hizmetini kurar. Tek seferlik UAC onayını verin.',
+  'dl.winNote': "Yükleyici koruma hizmetini kurar. Tek seferlik UAC onayını verin. 4.0'dan itibaren Agamemnon kendini günceller.",
   'syn.title': "Mac'inizde ve PC'nizde çalışan yapay zekâ.",
   'syn.sub': "Açık modelleri indirip gizlice çalıştırın ya da Google ve Groq'un ücretsiz bulut modellerini kullanın. Web araması, görsel üretimi, yapay zekânın kullanabildiği bir tarayıcı ve dosyalarınız tek bir uygulamada.",
   'syn.dl': 'Mac için indir',

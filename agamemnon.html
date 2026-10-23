@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Agamemnon · Athene Softworks</title>
-<meta name="description" content="Agamemnon is a free, open-source antivirus for macOS and Windows: real-time file monitoring, stealer protection, self-protection, USB and BadUSB defence, Apple's XProtect engine, a ransomware shield and tens of millions of known-malware fingerprints, checked on your device.">
+<meta name="description" content="Agamemnon is a free, open-source antivirus for macOS and Windows: real-time file monitoring, stealer protection, self-protection, USB and BadUSB defence, Apple's XProtect and Microsoft Defender engines, a ransomware shield, a Windows security checkup and tens of millions of known-malware fingerprints, checked on your device.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
@@ -84,6 +84,7 @@
         <div class="hero-actions reveal">
           <a class="pill solid" href="#download" data-i18n="hero.get">Download Agamemnon</a>
           <a class="pill" href="#new" data-i18n="hero.new">What's new in 3.1</a>
+          <a class="pill" href="#new-windows" data-i18n="hero.newWin">New: Windows 4.0</a>
           <a class="pill" href="#detection" data-i18n="hero.how">How it works</a>
         </div>
         <div class="badges reveal">
@@ -221,7 +222,7 @@
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
           <b data-i18n="sc.1t">Quick, full, custom and scheduled</b>
-          <span data-i18n="sc.1p">Drag files onto the window or the Dock icon, right-click in Finder and choose Scan with Agamemnon, or start a scan from the menu. A quick scan can run by itself every week or every day.</span>
+          <span data-i18n="sc.1p">Drag files onto the window or the Dock icon, right-click in Finder or File Explorer and choose Scan with Agamemnon, or start a scan from the menu. A quick scan can run by itself every week or every day.</span>
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg></span>
@@ -253,7 +254,8 @@
             <tr><td data-i18n="de.brT">Behaviour rules</td><td data-i18n="de.br">What a program does once it runs, and which files it opens: narrow rules for stealers, spyware, backdoors and miners, fed live by Apple's Endpoint Security.</td><td>macOS</td></tr>
             <tr><td>Apple XProtect</td><td data-i18n="de.xp">Apple's own malware rules (about 580 YARA rules), run over everything a scan finds, including inside archives and on USB drives.</td><td>macOS</td></tr>
             <tr><td data-i18n="de.anT">Program analysis</td><td data-i18n="de.an">What an unsigned program is built to do: record keys, take screenshots, read passwords, hide, phone home. Only combinations that add up to malware are reported.</td><td>macOS</td></tr>
-            <tr><td data-i18n="de.dcT">Script decoding</td><td data-i18n="de.dc">Base64, hex, escapes, character codes and split-up strings are decoded, up to three layers deep, before the rules look again.</td><td>macOS</td></tr>
+            <tr><td data-i18n="de.dcT">Script decoding</td><td data-i18n="de.dc">Base64, hex, escapes, character codes and split-up strings are decoded, up to three layers deep, before the rules look again.</td><td>macOS · Windows</td></tr>
+            <tr><td>Microsoft Defender (AMSI)</td><td data-i18n="de.am">Windows' own antivirus checks scripts, documents and programs through the Antimalware Scan Interface, as one more engine. Only the content is passed; Agamemnon's quarantine does the rest.</td><td>Windows</td></tr>
             <tr><td data-i18n="de.clT">Cloud check</td><td data-i18n="de.cl">Optional: unsigned programs are looked up in MalwareBazaar's live database by fingerprint only, never the file.</td><td>macOS</td></tr>
             <tr><td>URLhaus</td><td data-i18n="de.uh">Where a download came from, against abuse.ch's live list of about 36,000 malware links.</td><td>macOS · Windows</td></tr>
             <tr><td>ClamAV</td><td data-i18n="de.ca">Cisco's free engine as a second opinion. Agamemnon installs it and keeps its signatures up to date.</td><td>macOS · Windows</td></tr>
@@ -273,26 +275,30 @@
         <li class="reveal"><span class="threat-tag stop" data-i18n="th.stop">Stopped in the act</span><b data-i18n="th.sysT">SysJoker · crypto miners</b><span data-i18n="th.sysjoker">The fake macOS update backdoor and miners that eat your CPU.</span></li>
         <li class="reveal"><span class="threat-tag warn" data-i18n="th.flagged">Flagged for removal</span><b>Shlayer · Bundlore · Adload</b><span data-i18n="th.adware">Adware extensions and search hijacks, removed in one click.</span></li>
         <li class="reveal"><span class="threat-tag warn" data-i18n="th.caught">Detected</span><b>BeaverTail · KeySteal</b><span data-i18n="th.more">Fake job-interview malware payloads and keychain stealers, plus startup-item alerts.</span></li>
-        <li class="reveal"><span class="threat-tag warn" data-i18n="th.warned">Warned before it starts</span><b data-i18n="th.cfT">ClickFix · fake CAPTCHAs</b><span data-i18n="th.cf">Pages that tell you to paste a command into Terminal. You're warned as soon as you copy it.</span></li>
+        <li class="reveal"><span class="threat-tag warn" data-i18n="th.warned">Warned before it starts</span><b data-i18n="th.cfT">ClickFix · fake CAPTCHAs</b><span data-i18n="th.cf">Pages that tell you to paste a command into Terminal or the Windows Run box. You're warned as soon as you copy it.</span></li>
         <li class="reveal"><span class="threat-tag stop" data-i18n="th.stop">Stopped in the act</span><b data-i18n="th.usbT">Infected USB drives · BadUSB</b><span data-i18n="th.usb">Malware on drives is quarantined and the drive ejected; fake keyboards typing commands are caught.</span></li>
         <li class="reveal"><span class="threat-tag warn" data-i18n="th.caught">Detected</span><b data-i18n="th.hidT">Hidden droppers</b><span data-i18n="th.hid">Scripts that hide their download-and-run commands in base64, hex or split-up text.</span></li>
       </ul>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="new-windows">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2 data-i18n="nw.title">New in 3.0 for Windows.</h2>
-        <p data-i18n="nw.sub">Version 3.0 for Windows makes Agamemnon easy for anyone to use, with no computer knowledge needed.</p>
+        <p class="eyebrow" data-i18n="nw.eyebrow">Agamemnon 4.0 for Windows</p>
+        <h2 data-i18n="nw.title">The Mac's real-time protection, now on Windows.</h2>
+        <p data-i18n="nw.sub">The biggest Windows update yet. Every guard has its own switch on the new Real-time protection page, and Windows' own defences get a checkup.</p>
       </div>
       <ul class="cards">
-        <li class="reveal"><b data-i18n="nw.1t">Türkçe and English</b><span data-i18n="nw.1p">The whole app, notifications and tray menu included, in both languages. Switch at any time without restarting.</span></li>
-        <li class="reveal"><b data-i18n="nw.2t">Welcome guide</b><span data-i18n="nw.2p">Three short steps: choose a language, accept the recommended protection with one click, run the first quick scan.</span></li>
-        <li class="reveal"><b data-i18n="nw.3t">One-click fixes</b><span data-i18n="nw.3p">When something is wrong, the dashboard explains it in plain words with a button that fixes it, plus Fix all.</span></li>
-        <li class="reveal"><b data-i18n="nw.4t">Switches on the dashboard</b><span data-i18n="nw.4p">Download blocking, encrypted DNS and admin-rights alerts, and a large Scan now button, all on the home page.</span></li>
-        <li class="reveal"><b data-i18n="nw.5t">Simple mode</b><span data-i18n="nw.5p">Hides the technical pages from the sidebar; they stay one click away in Settings. On by default for new installs.</span></li>
-        <li class="reveal"><b data-i18n="nw.6t">Help page</b><span data-i18n="nw.6p">Short answers to the questions people ask most, and a “what should I do?” line on every finding.</span></li>
+        <li class="reveal"><b data-i18n="nw.1t">Files scanned as they're saved</b><span data-i18n="nw.1p">Programs, scripts, shortcuts, installers and archives saved anywhere in your user folder are checked within a couple of seconds. Known malware goes straight to quarantine.</span></li>
+        <li class="reveal"><b data-i18n="nw.2t">Ransomware shield</b><span data-i18n="nw.2p">Watches Documents, Desktop and Pictures. If files stop being real photos and documents, get a strange new extension or a ransom note appears, the unsigned program behind it is stopped and quarantined.</span></li>
+        <li class="reveal"><b data-i18n="nw.3t">Paste guard for Win+R tricks</b><span data-i18n="nw.3p">Fake “I'm not a robot” pages make people paste a command into the Run box. Agamemnon recognises it the moment it's copied, warns you and empties the clipboard.</span></li>
+        <li class="reveal"><b data-i18n="nw.4t">USB protection</b><span data-i18n="nw.4p">Drives and memory cards are scanned when connected. Files hidden behind shortcuts, programs named like photos and autorun tricks are caught, and infected drives are ejected.</span></li>
+        <li class="reveal"><b data-i18n="nw.5t">Security checkup</b><span data-i18n="nw.5p">Defender, firewall, BitLocker, Secure Boot, SmartScreen, UAC, Windows updates, Wi-Fi encryption and whether your Windows still gets security updates, each with a Fix button. Plus everything that starts with Windows and programs with updates waiting.</span></li>
+        <li class="reveal"><b data-i18n="nw.6t">Microsoft Defender as an engine</b><span data-i18n="nw.6p">Through Windows' scan interface, Defender's own detections join every scan, like Apple's XProtect on Mac. Hidden scripts are decoded first.</span></li>
+        <li class="reveal"><b data-i18n="nw.7t">Camera, microphone and startup alerts</b><span data-i18n="nw.7p">Windows says which app turned on your camera or microphone, and Agamemnon tells you. New programs set to start with Windows are scanned and reported.</span></li>
+        <li class="reveal"><b data-i18n="nw.8t">Self-protection</b><span data-i18n="nw.8p">Settings changed behind Agamemnon's back are put back, and you're warned when the hosts file blocks security sites or a Defender exclusion is added.</span></li>
+        <li class="reveal"><b data-i18n="nw.9t">Updates, scan logs and right-click scanning</b><span data-i18n="nw.9p">Agamemnon updates itself after checking the download's fingerprint and signature, keeps your last 50 scans, and adds Scan with Agamemnon to File Explorer.</span></li>
       </ul>
     </div>
   </section>
@@ -354,18 +360,18 @@
         <div class="dl reveal" data-os="win">
           <div class="dl-top">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.4 4.5v7H3zM11.3 4.4 21 3v8.5h-9.7zM3 12.4h7.4v7.1L3 18.5zM11.3 12.4H21V21l-9.7-1.4z"/></svg>
-            <div><h3>Windows</h3><div class="meta">v3.0.0 · x64 · Windows 10 &amp; 11</div></div>
+            <div><h3>Windows</h3><div class="meta">v4.0.0 · x64 · Windows 10 &amp; 11</div></div>
             <span class="yours-tag" data-i18n="dl.yours">Your system</span>
           </div>
           <ol class="steps">
-            <li data-i18n="dl.w1">Run Agamemnon-3.0.0-Setup.exe and approve the one-time UAC prompt.</li>
+            <li data-i18n="dl.w1">Run Agamemnon-4.0.0-Setup.exe and approve the one-time UAC prompt.</li>
             <li data-i18n="dl.w2">In the welcome guide, choose your language and click Use recommended settings.</li>
             <li data-i18n="dl.w3">That's it. A green shield next to the clock means you're protected.</li>
           </ol>
-          <p class="note" data-i18n="dl.winNote">Upgrading from 2.0? Install 3.0 over it; settings, quarantine and the threat database are kept.</p>
+          <p class="note" data-i18n="dl.winNote">Upgrading from 2.0 or 3.0? Install 4.0 over it; settings, quarantine and the threat database are kept. From now on Agamemnon updates itself.</p>
           <div class="dl-actions">
-            <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v3.0.0/Agamemnon-3.0.0-Setup.exe" data-i18n="dl.exe">Download .exe</a>
-            <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v3.0.0/Agamemnon-3.0.0-x64.msi">.msi</a>
+            <a class="pill solid" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v4.0.0/Agamemnon-4.0.0-Setup.exe" data-i18n="dl.exe">Download .exe</a>
+            <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows/releases/download/v4.0.0/Agamemnon-4.0.0-x64.msi">.msi</a>
             <a class="pill" href="https://github.com/Agamemnon-Intelligence/Agamemnon-windows" target="_blank" rel="noopener" data-i18n="dl.source">Source</a>
           </div>
         </div>
@@ -427,6 +433,7 @@ var TR = {
   'hero.get': "Agamemnon'u indirin",
   'hero.how': 'Nasıl çalışır',
   'hero.new': "3.1'deki yenilikler",
+  'hero.newWin': 'Yeni: Windows 4.0',
   'nm.eyebrow': 'Mac için Agamemnon 3.1',
   'nm.title': 'Artık her şeyi, olduğu anda izliyor.',
   'nm.sub': "Bugüne kadarki en büyük güncelleme. Agamemnon artık Mac'inizi ticari antivirüsler gibi koruyor; üstelik hâlâ ücretsiz, açık kaynaklı ve gizliliğinize saygılı.",
@@ -456,12 +463,13 @@ var TR = {
   'de.anT': 'Program analizi',
   'de.an': 'İmzasız bir programın ne yapmak üzere yapıldığı: tuşları kaydetmek, ekran görüntüsü almak, parola okumak, saklanmak, dışarıya bağlanmak. Yalnızca zararlıya işaret eden birleşimler bildirilir.',
   'de.dcT': 'Betik çözme',
+  'de.am': "Windows'un kendi antivirüsü betikleri, belgeleri ve programları Kötü Amaçlı Yazılımdan Koruma Tarama Arabirimi (AMSI) üzerinden, ek bir motor olarak denetler. Yalnızca içerik iletilir; gerisini Agamemnon'un karantinası yapar.",
   'de.dc': 'Base64, hex, kaçış dizileri, karakter kodları ve parçalanmış metinler üç katmana kadar çözülür, ardından kurallar yeniden bakar.',
   'de.clT': 'Bulut denetimi',
   'de.cl': "İsteğe bağlı: imzasız programlar MalwareBazaar'ın canlı veritabanında yalnızca parmak iziyle aranır, dosyanın kendisi asla gönderilmez.",
   'th.warned': 'Başlamadan uyarılır',
   'th.cfT': 'ClickFix · sahte CAPTCHA',
-  'th.cf': "Terminal'e bir komut yapıştırmanızı isteyen sayfalar. Komutu kopyaladığınız anda uyarılırsınız.",
+  'th.cf': "Terminal'e ya da Windows Çalıştır kutusuna bir komut yapıştırmanızı isteyen sayfalar. Komutu kopyaladığınız anda uyarılırsınız.",
   'th.usbT': 'Zararlı USB sürücüler · BadUSB',
   'th.usb': 'Sürücülerdeki zararlılar karantinaya alınır ve sürücü çıkarılır; komut yazan sahte klavyeler yakalanır.',
   'th.hidT': 'Gizli indiriciler',
@@ -490,7 +498,7 @@ var TR = {
   'sc.title': 'Tarama ve karantina.',
   'sc.sub': "Bir şeyi kendiniz denetlemek ya da Agamemnon'un düzenli olarak denetlemesini istediğinizde.",
   'sc.1t': 'Hızlı, tam, özel ve zamanlanmış',
-  'sc.1p': "Dosyaları pencereye ya da Dock simgesine sürükleyin, Finder'da sağ tıklayıp Agamemnon ile Tara'yı seçin ya da menüden tarama başlatın. Hızlı tarama her hafta veya her gün kendiliğinden çalışabilir.",
+  'sc.1p': "Dosyaları pencereye ya da Dock simgesine sürükleyin, Finder'da ya da Dosya Gezgini'nde sağ tıklayıp Agamemnon ile Tara'yı seçin ya da menüden tarama başlatın. Hızlı tarama her hafta veya her gün kendiliğinden çalışabilir.",
   'sc.2t': 'Arşivlerde saklanma yok',
   'sc.2p': "ZIP, RAR, 7Z, TAR, ISO, DMG, PKG, MSI, CAB ve fazlasının içine 3 seviye derinliğe kadar bakar. Zip bombaları hiçbir şey açılmadan reddedilir, fatura.pdf.exe gibi gizlenmiş adlar işaretlenir.",
   'sc.3t': 'Karantina kasası',
@@ -523,20 +531,27 @@ var TR = {
   'th.sysjoker': 'Sahte macOS güncellemesi arka kapısı ve işlemcinizi sömüren madenciler.',
   'th.adware': 'Reklam uzantıları ve arama motoru ele geçirmeleri; tek tıkla kaldırılır.',
   'th.more': 'Sahte iş görüşmesi zararlılarının yükleri ve anahtar zinciri hırsızları; ayrıca başlangıç öğesi uyarıları.',
-  'nw.title': "Windows için 3.0'daki yenilikler.",
-  'nw.sub': "Windows için 3.0 sürümü Agamemnon'u bilgisayar bilgisi gerektirmeden herkesin kolayca kullanabileceği hâle getiriyor.",
-  'nw.1t': 'Türkçe ve English',
-  'nw.1p': 'Bildirimler ve tepsi menüsü dahil tüm uygulama iki dilde. Yeniden başlatmadan istediğiniz zaman değiştirin.',
-  'nw.2t': 'Karşılama rehberi',
-  'nw.2p': 'Üç kısa adım: dili seçin, önerilen korumayı tek tıkla kabul edin, ilk hızlı taramayı çalıştırın.',
-  'nw.3t': 'Tek tıkla düzeltme',
-  'nw.3p': 'Bir sorun olduğunda ana sayfa bunu sade bir dille anlatır ve yanında onu düzelten bir düğme gösterir; ayrıca Tümünü düzelt.',
-  'nw.4t': 'Ana sayfada anahtarlar',
-  'nw.4p': 'İndirme engelleme, şifreli DNS ve yönetici hakkı uyarıları ile büyük bir Şimdi tara düğmesi; hepsi ana sayfada.',
-  'nw.5t': 'Basit mod',
-  'nw.5p': 'Teknik sayfaları kenar çubuğundan gizler; Ayarlar’da bir tık uzakta kalırlar. Yeni kurulumlarda varsayılan olarak açık.',
-  'nw.6t': 'Yardım sayfası',
-  'nw.6p': 'En sık sorulan sorulara kısa yanıtlar ve her bulgunun yanında “ne yapmalıyım?” satırı.',
+  'nw.eyebrow': 'Windows için Agamemnon 4.0',
+  'nw.title': "Mac'in gerçek zamanlı koruması artık Windows'ta.",
+  'nw.sub': "Şimdiye kadarki en büyük Windows güncellemesi. Yeni Gerçek zamanlı koruma sayfasında her korumanın kendi anahtarı var ve Windows'un kendi savunmaları da kontrolden geçiyor.",
+  'nw.1t': 'Dosyalar kaydedildikleri anda taranır',
+  'nw.1p': 'Kullanıcı klasörünüzün herhangi bir yerine kaydedilen programlar, betikler, kısayollar, kurulum dosyaları ve arşivler birkaç saniye içinde denetlenir. Bilinen zararlılar doğrudan karantinaya gider.',
+  'nw.2t': 'Fidye yazılımı kalkanı',
+  'nw.2p': 'Belgeler, Masaüstü ve Resimler klasörlerini izler. Dosyalar gerçek fotoğraf ve belge olmaktan çıkarsa, garip yeni bir uzantı alırsa ya da bir fidye notu belirirse arkasındaki imzasız program durdurulur ve karantinaya alınır.',
+  'nw.3t': 'Win+R hilelerine karşı yapıştırma koruması',
+  'nw.3p': "Sahte “Ben robot değilim” sayfaları insanlara Çalıştır kutusuna bir komut yapıştırtır. Agamemnon komutu kopyalandığı anda tanır, sizi uyarır ve panoyu boşaltır.",
+  'nw.4t': 'USB koruması',
+  'nw.4p': 'Sürücüler ve hafıza kartları takıldıklarında taranır. Kısayolların arkasına gizlenmiş dosyalar, fotoğraf gibi adlandırılmış programlar ve otomatik çalıştırma hileleri yakalanır; virüslü sürücüler çıkarılır.',
+  'nw.5t': 'Güvenlik kontrolü',
+  'nw.5p': "Defender, güvenlik duvarı, BitLocker, Güvenli Önyükleme, SmartScreen, UAC, Windows güncellemeleri, Wi-Fi şifrelemesi ve Windows'unuzun hâlâ güvenlik güncellemesi alıp almadığı; her biri bir Düzelt düğmesiyle. Ayrıca Windows ile başlayan her şey ve güncellemesi bekleyen programlar.",
+  'nw.6t': 'Motor olarak Microsoft Defender',
+  'nw.6p': "Windows'un tarama arayüzü üzerinden Defender'ın kendi tespitleri her taramaya katılır; Mac'teki Apple XProtect gibi. Gizlenmiş betikler önce çözülür.",
+  'nw.7t': 'Kamera, mikrofon ve başlangıç uyarıları',
+  'nw.7p': 'Windows kameranızı ya da mikrofonunuzu hangi uygulamanın açtığını söyler, Agamemnon da size haber verir. Windows ile başlamaya ayarlanan yeni programlar taranır ve bildirilir.',
+  'nw.8t': 'Kendini koruma',
+  'nw.8p': "Agamemnon'un haberi olmadan değiştirilen ayarlar geri alınır; hosts dosyası güvenlik sitelerini engellediğinde ya da bir Defender dışlaması eklendiğinde uyarılırsınız.",
+  'nw.9t': 'Güncellemeler, tarama günlükleri ve sağ tıkla tarama',
+  'nw.9p': "Agamemnon indirilen dosyanın parmak izini ve imzasını denetledikten sonra kendini günceller, son 50 taramanızı saklar ve Dosya Gezgini'ne Agamemnon ile tara seçeneğini ekler.",
   'pv.title': 'Gizlilik.',
   'pv.sub': 'Dosyalarınız bilgisayarınızdan hiç çıkmaz.',
   'pv.1': '<b>Hesap yok, telemetri yok, yükleme yok.</b> Yalnızca parmak izleri, cihazınızda saklanan listelerle karşılaştırılır.',
@@ -559,10 +574,10 @@ var TR = {
   'dl.dmg': '.dmg indir',
   'dl.exe': '.exe indir',
   'dl.source': 'Kaynak kod',
-  'dl.w1': 'Agamemnon-3.0.0-Setup.exe dosyasını çalıştırın ve tek seferlik UAC onayını verin.',
+  'dl.w1': 'Agamemnon-4.0.0-Setup.exe dosyasını çalıştırın ve tek seferlik UAC onayını verin.',
   'dl.w2': 'Karşılama rehberinde dilinizi seçin ve Önerilen ayarları kullan düğmesine basın.',
   'dl.w3': 'Hepsi bu. Saatin yanındaki kalkan yeşilse korunuyorsunuz.',
-  'dl.winNote': "2.0'dan mı yükseltiyorsunuz? 3.0'ı üzerine kurun; ayarlar, karantina ve tehdit veritabanı korunur.",
+  'dl.winNote': "2.0 ya da 3.0'dan mı yükseltiyorsunuz? 4.0'ı üzerine kurun; ayarlar, karantina ve tehdit veritabanı korunur. Bundan sonra Agamemnon kendini günceller.",
   'li.title': 'Sınırları konusunda dürüst.',
   'li.sub': "Hiçbir antivirüs her şeyi yakalayamaz. Agamemnon'un yapamadıkları şunlar.",
   'li.1': "<b>Bir iki saniye içinde tepki verir; önceden engellemez.</b> Mac'teki gerçek zamanlı izlemeyle bile bir program durdurulmadan önce o kısa anı bulur. Önceden engellemek Apple'dan özel bir izin gerektirir. Yedek alın.",
