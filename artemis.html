@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Artemis AI · Athene Softworks</title>
-<meta name="description" content="Artemis is the Athene Softworks general knowledge assistant. Artemis 1.1 builds on Artemis 1.0 and runs entirely in your browser.">
+<meta name="description" content="Artemis is the Athene Softworks general knowledge assistant. Artemis 2.0 Plasma, 1.1 and 1.0 run entirely in your browser.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
@@ -73,6 +73,7 @@
 .composer button { flex: none; border: 0; border-radius: 14px; padding: 0 1.1rem; font: 700 .9rem var(--display); cursor: pointer; background: #fff; color: var(--bg); }
 .composer button:disabled { opacity: .45; cursor: not-allowed; }
 .chat-note { margin: .8rem 0 0; color: var(--muted); font-size: .82rem; }
+.chat-note a { color: var(--accent); text-decoration: none; font-weight: 600; }
 @media (max-width: 560px) {
   .ai-head .wrap { grid-template-columns: auto 1fr; }
   .ai-head .pill { grid-column: 1 / -1; justify-self: start; }
@@ -139,9 +140,9 @@
   <section class="chat-sec">
     <div class="wrap">
       <div class="models" role="group" aria-label="Model">
+        <button class="model" type="button" data-model="2.0" aria-pressed="false" disabled><span class="dot"></span>Plasma 2.0 <span class="soon" data-i18n="soon">Coming soon</span></button>
         <button class="model" type="button" data-model="1.1" aria-pressed="true"><span class="dot"></span>Artemis 1.1</button>
         <button class="model" type="button" data-model="1.0" aria-pressed="false"><span class="dot"></span>Artemis 1.0</button>
-        <button class="model" type="button" disabled>Plasma 2.0 <span class="soon" data-i18n="soon">Coming soon</span></button>
       </div>
       <div class="chat">
         <div class="bar"><i id="bar"></i></div>
@@ -163,7 +164,8 @@
           <button type="submit" id="send" disabled data-i18n="send">Send</button>
         </form>
       </div>
-      <p class="chat-note" data-i18n="ai.note">Artemis 1.1 loads Artemis 1.0 (20M parameters) and adds its own 4.6M trained parameters on top, so the two model files run together. Both are small models that often make mistakes, so don't rely on their answers.</p>
+      <p class="chat-note" data-i18n="ai.note">Artemis 2.0 Plasma is a new 54M parameter model trained from scratch. Artemis 1.1 loads Artemis 1.0 (20M parameters) and adds its own 4.6M trained parameters on top. All three are small models that often make mistakes, so don't rely on their answers.</p>
+      <p class="chat-note"><a href="artemis/plasma/" data-i18n="ai.train">Train Plasma 2.0 yourself in the browser →</a></p>
     </div>
   </section>
 </main>
@@ -197,12 +199,13 @@ var TR = {
   'e.sub': 'Athene Softworks tarafından geliştirilmiş küçük bir genel kültür modeliyim. Tamamen cihazınızda çalışırım; yazdıklarınız tarayıcınızdan çıkmaz.',
   'ph': "Artemis'e bir şey sorun…",
   'send': 'Gönder',
-  'ai.note': "Artemis 1.1, Artemis 1.0'ı (20 milyon parametre) yükler ve üzerine kendi eğitilmiş 4,6 milyon parametresini ekler; iki model dosyası birlikte çalışır. İkisi de sık sık hata yapan küçük modellerdir; yanıtlarına güvenmeyin.",
+  'ai.note': "Artemis 2.0 Plasma, sıfırdan eğitilmiş yeni, 54 milyon parametreli bir modeldir. Artemis 1.1, Artemis 1.0'ı (20 milyon parametre) yükler ve üzerine kendi eğitilmiş 4,6 milyon parametresini ekler. Üçü de sık sık hata yapan küçük modellerdir; yanıtlarına güvenmeyin.",
+  'ai.train': "Plasma 2.0'ı tarayıcıda kendiniz eğitin →",
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
   'foot.legal': 'Artemis AI hata yapabilir; önemli yanıtları kontrol edin. Sohbette parola ya da başka hassas kişisel bilgiler paylaşmayın.'
 };
 </script>
 <script src="product.js"></script>
-<script src="artemis/artemis-chat.js?v=1.1"></script>
+<script src="artemis/artemis-chat.js?v=2.0"></script>
 </body>
 </html>

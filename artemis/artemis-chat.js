@@ -1,14 +1,17 @@
 /* Artemis sohbet arayüzü: seçilen modeli Web Worker'da yükler ve yanıtları akış hâlinde gösterir.
-   Artemis 1.1 = Artemis 1.0 tabanı + 1.1 dosyası (iki dosya birlikte yüklenir). */
+   Artemis 1.1 = Artemis 1.0 tabanı + 1.1 dosyası (iki dosya birlikte yüklenir).
+   Artemis 2.0 Plasma tek dosyadır; artemis-2.0.bin yayımlandığında düğmesi kendiliğinden açılır. */
 (function () {
   var root = document.documentElement;
   var T = {
     en: { ph: 'Ask Artemis something…', loading: 'Downloading {m}… ', preparing: 'Preparing the model…', ready: '{m} is ready. It runs on your device.', thinking: 'Artemis is writing…', stop: 'Stop', send: 'Send', fail: 'The model could not be loaded: ', retry: 'Reload the page to try again.' },
     tr: { ph: "Artemis'e bir şey sorun…", loading: '{m} indiriliyor… ', preparing: 'Model hazırlanıyor…', ready: '{m} hazır. Cihazınızda çalışıyor.', thinking: 'Artemis yazıyor…', stop: 'Durdur', send: 'Gönder', fail: 'Model yüklenemedi: ', retry: 'Tekrar denemek için sayfayı yenileyin.' }
   };
+  var GEN = { temperature: 0.6, topK: 40, topP: 0.9, repetitionPenalty: 1.2, maxTokens: 220 };
   var MODELS = {
-    '1.1': { name: 'Artemis 1.1', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: 'artemis/artemis-1.1.bin?v=1.1' },
-    '1.0': { name: 'Artemis 1.0', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: null }
+    '2.0': { name: 'Artemis 2.0 Plasma', base: 'artemis/artemis-2.0.bin?v=2.0', adapter: null, gen: { temperature: 0.6, topK: 40, topP: 0.9, repetitionPenalty: 1.1, maxTokens: 300 } },
+    '1.1': { name: 'Artemis 1.1', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: 'artemis/artemis-1.1.bin?v=1.1', gen: GEN },
+    '1.0': { name: 'Artemis 1.0', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: null, gen: GEN }
   };
   var sel = '1.1';
   function t(k) { return (T[root.lang === 'tr' ? 'tr' : 'en'])[k].replace('{m}', MODELS[sel].name); }
@@ -27,7 +30,7 @@
   }
   new MutationObserver(relabel).observe(root, { attributes: true, attributeFilter: ['lang'] });
 
-  var worker = new Worker('artemis/artemis-worker.js?v=1.1'); // ?v: önbellekte eski worker/motor kalmasın
+  var worker = new Worker('artemis/artemis-worker.js?v=2.0'); // ?v: önbellekte eski worker/motor kalmasın
   worker.onmessage = function (e) {
     var m = e.data;
     if (m.type === 'progress') {
@@ -62,7 +65,14 @@
     worker.postMessage({ type: 'load', base: abs(MODELS[k].base), adapter: abs(MODELS[k].adapter) });
   }
   chips.forEach(function (c) { c.addEventListener('click', function () { if (c.dataset.model !== sel || !ready) load(c.dataset.model); }); });
-  load(sel);
+  // Plasma 2.0 dosyası sitede varsa düğmesini aç ve varsayılan yap; yoksa 1.1 ile başla
+  var plasma = chipOf('2.0');
+  fetch(MODELS['2.0'].base, { method: 'HEAD', cache: 'no-cache' }).then(function (r) {
+    if (!r.ok) throw 0;
+    plasma.disabled = false;
+    var soon = plasma.querySelector('.soon'); if (soon) soon.remove();
+    load('2.0');
+  }).catch(function () { load(sel); });
 
   function scroll() { log.scrollTop = log.scrollHeight; }
   function bubble(role, text) {
@@ -94,7 +104,7 @@
     if (history.length > 12) history = history.slice(-12);
     current = { el: bubble('bot typing', ''), text: '' };
     busy = true; input.value = ''; autosize(); update(); setStatus('thinking');
-    worker.postMessage({ type: 'generate', history: history, options: { temperature: 0.6, topK: 40, topP: 0.9, repetitionPenalty: 1.2, maxTokens: 220 } });
+    worker.postMessage({ type: 'generate', history: history, options: MODELS[sel].gen });
   }
 
   form.addEventListener('submit', function (e) {
