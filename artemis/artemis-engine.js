@@ -1,6 +1,7 @@
 /* Artemis çıkarım motoru — saf JavaScript, sunucu gerektirmez.
-   Tarayıcıda (Web Worker) ve Node'da çalışır. Model dosyaları: artemis-1.0.bin (taban)
-   ve artemis-1.1.bin (1.0'ın üzerine eklenen LoRA farkları + ek katmanlar). */
+   Tarayıcıda (Web Worker) ve Node'da çalışır. Model dosyaları: artemis-1.0.bin (taban),
+   artemis-1.1.bin (1.0'ın üzerine eklenen LoRA farkları + ek katmanlar) ve
+   artemis-2.0.bin (Artemis 2.0 Plasma, ayrı mimari, tek başına çalışır). */
 (function (root) {
   'use strict';
 
@@ -240,7 +241,138 @@
     return s;
   };
 
-  var api = { Model: Model, Tokenizer: Tokenizer, sample: sample, SPECIAL: { END: END, USER: USER, BOT: BOT } };
+  // ---------------------------------------------------------------- Artemis 2.0 Plasma
+  // ART2 dosyası (plasma/train.py ya da plasma/index.html yazar): RoPE, QK-norm, ReLU² MLP,
+  // parametresiz RMSNorm, ayrı çıktı katmanı, logit softcap. Ağırlıklar int8 olarak bellekte kalır
+  // (satır ölçeğiyle çarpılarak), böylece 54M parametre ~55 MB yer tutar.
+  function readArt2(buffer) {
+    var dv = new DataView(buffer);
+    if (String.fromCharCode(dv.getUint8(0), dv.getUint8(1), dv.getUint8(2), dv.getUint8(3)) !== 'ART2') throw new Error('Geçersiz model dosyası');
+    var hlen = dv.getUint32(4, true);
+    var header = JSON.parse(new TextDecoder().decode(new Uint8Array(buffer, 8, hlen)));
+    var base = 8 + hlen + ((4 - ((8 + hlen) % 4)) % 4), T = {};
+    header.tensors.forEach(function (t) {
+      var n = t.shape.reduce(function (a, b) { return a * b; }, 1);
+      T[t.name] = t.kind === 'q8' ? new Int8Array(buffer, base + t.offset, n) : new Float32Array(buffer, base + t.offset, n);
+    });
+    return { header: header, T: T };
+  }
+
+  function Plasma(buffer) {
+    var f = readArt2(buffer), c = f.header.cfg, i;
+    this.name = f.header.model;
+    this.info = f.header.train || {};
+    this.cfg = c;
+    this.T = f.T;
+    this.tok = new Tokenizer(f.header.merges);
+    var d = c.d, hd = d / c.heads, half = hd / 2;
+    this.x = new Float32Array(d); this.h = new Float32Array(d);
+    this.qkv = new Float32Array(3 * d); this.att = new Float32Array(d);
+    this.ff = new Float32Array(c.mlp); this.tmp = new Float32Array(d);
+    this.scores = new Float32Array(c.ctx); this.logits = new Float32Array(c.vocab);
+    this.K = []; this.V = [];
+    for (i = 0; i < c.layers; i++) { this.K.push(new Float32Array(c.ctx * d)); this.V.push(new Float32Array(c.ctx * d)); }
+    this.cos = new Float32Array(c.ctx * half); this.sin = new Float32Array(c.ctx * half);
+    for (var p = 0; p < c.ctx; p++) for (i = 0; i < half; i++) {
+      var a = p * Math.pow(c.rope, -2 * i / hd);
+      this.cos[p * half + i] = Math.cos(a); this.sin[p * half + i] = Math.sin(a);
+    }
+    this.pos = 0;
+    this.cached = []; // KV önbelleğindeki token'lar: yeni mesajda yalnızca eklenen kısım işlenir
+  }
+
+  // out[r] = (Q[r,:]·x) · S[r]   (Q int8, S satır ölçeği)
+  function matvecQ(out, Q, S, x, rows, cols) {
+    for (var r = 0; r < rows; r++) {
+      var s0 = 0, s1 = 0, s2 = 0, s3 = 0, o = r * cols;
+      for (var j = 0; j < cols; j += 4) {
+        s0 += Q[o + j] * x[j]; s1 += Q[o + j + 1] * x[j + 1]; s2 += Q[o + j + 2] * x[j + 2]; s3 += Q[o + j + 3] * x[j + 3];
+      }
+      out[r] = (s0 + s1 + s2 + s3) * S[r];
+    }
+  }
+  function rmsNorm(out, x, off, n, eps) {
+    var v = 0, i;
+    for (i = 0; i < n; i++) v += x[off + i] * x[off + i];
+    var inv = 1 / Math.sqrt(v / n + eps);
+    for (i = 0; i < n; i++) out[off + i] = x[off + i] * inv;
+  }
+
+  Plasma.prototype.reset = function () { this.pos = 0; this.cached = []; };
+
+  // Bir token işler; wantLogits false ise (istem işlenirken) çıktı katmanı atlanır
+  Plasma.prototype.step = function (token, wantLogits) {
+    var c = this.cfg, d = c.d, H = c.heads, hd = d / H, half = hd / 2, T = this.T, eps = c.eps;
+    var x = this.x, h = this.h, qkv = this.qkv, p = this.pos, pe = p * d, i, j, t;
+    var row = this.T.wte, sc = this.T['wte.s'][token], o = token * d;
+    for (i = 0; i < d; i++) x[i] = row[o + i] * sc;
+    var scale = 1 / Math.sqrt(hd), cs = this.cos, sn = this.sin, ro = p * half;
+    for (var l = 0; l < c.layers; l++) {
+      var pre = 'h' + l + '.';
+      rmsNorm(h, x, 0, d, eps);
+      matvecQ(qkv, T[pre + 'qkv'], T[pre + 'qkv.s'], h, 3 * d, d);
+      for (var hh = 0; hh < 2 * H; hh++) { // q ve k: başa göre RMSNorm + RoPE
+        var b = hh * hd;
+        rmsNorm(qkv, qkv, b, hd, eps);
+        for (i = 0; i < half; i++) {
+          var x1 = qkv[b + i], x2 = qkv[b + half + i], co = cs[ro + i], si = sn[ro + i];
+          qkv[b + i] = x1 * co + x2 * si; qkv[b + half + i] = x2 * co - x1 * si;
+        }
+      }
+      var K = this.K[l], V = this.V[l];
+      for (i = 0; i < d; i++) { K[pe + i] = qkv[d + i]; V[pe + i] = qkv[2 * d + i]; }
+      for (hh = 0; hh < H; hh++) {
+        var qo = hh * hd, mx = -Infinity;
+        for (t = 0; t <= p; t++) {
+          var s = 0, ko = t * d + qo;
+          for (j = 0; j < hd; j++) s += qkv[qo + j] * K[ko + j];
+          s *= scale; this.scores[t] = s; if (s > mx) mx = s;
+        }
+        var sum = 0;
+        for (t = 0; t <= p; t++) { this.scores[t] = Math.exp(this.scores[t] - mx); sum += this.scores[t]; }
+        for (j = 0; j < hd; j++) this.att[qo + j] = 0;
+        for (t = 0; t <= p; t++) {
+          var a = this.scores[t] / sum, vo = t * d + qo;
+          for (j = 0; j < hd; j++) this.att[qo + j] += a * V[vo + j];
+        }
+      }
+      matvecQ(this.tmp, T[pre + 'o'], T[pre + 'o.s'], this.att, d, d);
+      for (i = 0; i < d; i++) x[i] += this.tmp[i];
+      rmsNorm(h, x, 0, d, eps);
+      matvecQ(this.ff, T[pre + 'fc'], T[pre + 'fc.s'], h, c.mlp, d);
+      for (i = 0; i < c.mlp; i++) { var z = this.ff[i]; this.ff[i] = z > 0 ? z * z : 0; }
+      matvecQ(this.tmp, T[pre + 'out'], T[pre + 'out.s'], this.ff, d, c.mlp);
+      for (i = 0; i < d; i++) x[i] += this.tmp[i];
+    }
+    this.pos++; this.cached.push(token);
+    if (wantLogits === false) return null;
+    rmsNorm(h, x, 0, d, eps);
+    var lg = this.logits, cap = c.softcap;
+    matvecQ(lg, T.lm, T['lm.s'], h, c.vocab, d);
+    for (i = 0; i < c.vocab; i++) lg[i] = cap * Math.tanh(lg[i] / cap);
+    return lg;
+  };
+
+  // Önbellekteki ortak öneki atlar, kalanını işler, son token'ın logits'ini döndürür
+  Plasma.prototype.prefill = function (ids) {
+    var k = 0, n = Math.min(this.cached.length, ids.length - 1);
+    while (k < n && this.cached[k] === ids[k]) k++;
+    this.pos = k; this.cached.length = k;
+    var lg = null;
+    for (var i = k; i < ids.length; i++) lg = this.step(ids[i], i === ids.length - 1);
+    return lg;
+  };
+  Plasma.prototype.buildPrompt = Model.prototype.buildPrompt;
+  Plasma.prototype.stream = Model.prototype.stream;
+  Plasma.prototype.generate = Model.prototype.generate;
+
+  // Dosyanın türüne göre doğru modeli kurar (ART1: Artemis 1.x, ART2: Artemis 2.0 Plasma)
+  function load(buffer, adapter) {
+    var m = new Uint8Array(buffer, 0, 4);
+    return m[3] === 0x32 ? new Plasma(buffer) : new Model(buffer, adapter);
+  }
+
+  var api = { Model: Model, Plasma: Plasma, load: load, Tokenizer: Tokenizer, sample: sample, SPECIAL: { END: END, USER: USER, BOT: BOT } };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Artemis = api;
 })(typeof self !== 'undefined' ? self : this);

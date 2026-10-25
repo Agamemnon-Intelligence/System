@@ -1,6 +1,7 @@
 /* Artemis — modeli arayüzü dondurmadan arka planda çalıştırır.
-   Artemis 1.1 tek başına çalışmaz: önce 1.0 tabanı, sonra 1.1 dosyası yüklenip birleştirilir. */
-importScripts('artemis-engine.js?v=1.1');
+   Artemis 1.1 tek başına çalışmaz: önce 1.0 tabanı, sonra 1.1 dosyası yüklenip birleştirilir.
+   Artemis 2.0 Plasma tek dosyadır (blob: adresinden de yüklenebilir; Plasma eğitici sayfası böyle dener). */
+importScripts('artemis-engine.js?v=2.0');
 
 var model = null, run = 0, loads = 0, files = {};
 
@@ -8,7 +9,7 @@ var model = null, run = 0, loads = 0, files = {};
 async function fetchAll(urls) {
   var todo = urls.filter(function (u) { return !files[u]; }), total = 0, got = 0;
   // no-cache: önbellekteki kopya sunucuyla doğrulanır (değişmediyse yeniden indirilmez)
-  var res = await Promise.all(todo.map(function (u) { return fetch(u, { cache: 'no-cache' }); }));
+  var res = await Promise.all(todo.map(function (u) { return fetch(u, /^blob:/.test(u) ? {} : { cache: 'no-cache' }); }));
   res.forEach(function (r, i) {
     if (!r.ok) throw new Error('HTTP ' + r.status + ' (' + todo[i].split('/').pop() + ')');
     total += Number(r.headers.get('content-length')) || 0;
@@ -31,7 +32,7 @@ async function load(base, adapter) {
   var id = ++loads; run++; model = null;
   await fetchAll(adapter ? [base, adapter] : [base]);
   if (id !== loads) return; // bu sırada başka bir model seçildi
-  model = new Artemis.Model(files[base], adapter ? files[adapter] : null);
+  model = Artemis.load(files[base], adapter ? files[adapter] : null);
   postMessage({ type: 'ready', name: model.name });
 }
 
