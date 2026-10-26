@@ -2,3 +2,4 @@ data/
 data11/
 __pycache__/
 *.pt
+*.log
