@@ -1,7 +1,7 @@
-"""Artemis 2.0 Plasma — eğitim (PyTorch).
+"""Artemis Plasma Pro — eğitim (PyTorch).
 
 Tek komut: veriyi hazırlar (yoksa), modeli süre bütçesiyle eğitir ve tarayıcının çalıştırdığı
-artemis/artemis-2.0.bin dosyasını yazar.
+artemis/artemis-2.0-pro.bin dosyasını yazar.
 
   python train.py                      # 20 dakika, ~54M parametre
   python train.py --minutes 60         # daha uzun eğitim = daha iyi model
@@ -186,7 +186,7 @@ def export(model, path, info):
             b = arr.tobytes(); b += b'\0' * ((4 - len(b) % 4) % 4)
             blobs.append(b); off += len(b)
     _, merges = prepare.load_tokenizer()
-    header = dict(model='Artemis 2.0 Plasma', arch='plasma',
+    header = dict(model='Artemis Plasma Pro', arch='plasma',
                   cfg=dict(c, rope=ROPE, softcap=SOFTCAP, eps=EPS), merges=merges, train=info, tensors=tensors)
     h = json.dumps(header, separators=(',', ':'), ensure_ascii=False).encode()
     with open(path, 'wb') as f:
@@ -234,7 +234,7 @@ def sample(model, tok, prompt, dev, n=80, temp=0.6):
 
 
 def main():
-    ap = argparse.ArgumentParser(description='Artemis 2.0 Plasma eğitimi')
+    ap = argparse.ArgumentParser(description='Artemis Plasma Pro eğitimi')
     ap.add_argument('--minutes', type=float, default=20, help='eğitim süresi (veri hazırlama ve derleme hariç)')
     ap.add_argument('--config', default='plasma', choices=list(CONFIGS))
     ap.add_argument('--batch', type=int, default=256, help='adım başına dizi sayısı (×512 token)')
@@ -246,7 +246,7 @@ def main():
     ap.add_argument('--no-compile', action='store_true')
     ap.add_argument('--resume', action='store_true', help='plasma.pt\'den ağırlıkları yükle')
     ap.add_argument('--export-only', action='store_true')
-    ap.add_argument('--out', default=os.path.join(HERE, '..', 'artemis-2.0.bin'))
+    ap.add_argument('--out', default=os.path.join(HERE, '..', 'artemis-2.0-pro.bin'))
     a = ap.parse_args()
 
     dev = 'cuda' if torch.cuda.is_available() else 'mps' if torch.backends.mps.is_available() else 'cpu'
@@ -259,7 +259,7 @@ def main():
         model.load_state_dict(st['model'])
         if a.export_only: export(model, a.out, st.get('info', {})); return
     for b in model.blocks: b.qkv.weight.muon_split = 3
-    print('Artemis 2.0 Plasma: %.1fM parametre, %s' % (n_params(model) / 1e6, dev))
+    print('Artemis Plasma Pro: %.1fM parametre, %s' % (n_params(model) / 1e6, dev))
 
     if not os.path.exists(os.path.join(prepare.DATA, 'meta.json')):
         prepare.main(['--scale', str(a.scale)])

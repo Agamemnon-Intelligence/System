@@ -1,5 +1,5 @@
 /* Plasma eğitici sayfası: veriyi Hugging Face'ten indirir, token'lara çevirir, WebGPU'da eğitir
-   ve artemis-2.0.bin üretir. Model, karışım ve öğrenme hızı planı train.py ile aynıdır. */
+   ve artemis-2.0-pro.bin üretir. Model, karışım ve öğrenme hızı planı train.py ile aynıdır. */
 import { asyncBufferFromUrl, parquetMetadataAsync, parquetReadObjects, compressors } from './vendor/parquet.js';
 
 const root = document.documentElement;
@@ -50,15 +50,15 @@ function t(k, v) { let s = T[root.lang === 'tr' ? 'tr' : 'en'][k]; for (const x 
 const $ = id => document.getElementById(id);
 
 const IDENTITY = [
-  ['Sen kimsin?', 'Ben Artemis 2.0 Plasma. Athene Softworks tarafından geliştirilmiş bir yapay zekâ asistanıyım ve tamamen tarayıcınızda çalışıyorum.'],
-  ['Adın ne?', 'Adım Artemis. Sürümüm 2.0 Plasma; Athene Softworks tarafından geliştirildim.'],
-  ['Seni kim yaptı?', 'Beni Athene Softworks geliştirdi. Artemis 2.0 Plasma, yaklaşık 50 milyon parametreli bir dil modeli.'],
+  ['Sen kimsin?', 'Ben Artemis Plasma Pro. Athene Softworks tarafından geliştirilmiş bir yapay zekâ asistanıyım ve tamamen tarayıcınızda çalışıyorum.'],
+  ['Adın ne?', 'Adım Artemis. Sürümüm Plasma Pro; Athene Softworks tarafından geliştirildim.'],
+  ['Seni kim yaptı?', 'Beni Athene Softworks geliştirdi. Artemis Plasma Pro, yaklaşık 50 milyon parametreli bir dil modeli.'],
   ['Merhaba', 'Merhaba! Ben Artemis. Size nasıl yardımcı olabilirim?'],
   ['İnternete bağlı mısın?', 'Hayır. Tamamen cihazınızda çalışıyorum; yazdıklarınız tarayıcınızdan çıkmıyor ve internette arama yapamıyorum.'],
   ['Hata yapar mısın?', 'Evet, küçük bir model olduğum için sık sık hata yapabilirim. Önemli bilgileri mutlaka başka kaynaklardan kontrol edin.'],
-  ['ChatGPT misin?', 'Hayır, ben Artemis 2.0 Plasma\'yım. Athene Softworks tarafından geliştirildim.'],
-  ['Who are you?', 'I am Artemis 2.0 Plasma, an AI assistant made by Athene Softworks. I run entirely in your browser.'],
-  ['Who made you?', 'I was made by Athene Softworks. Artemis 2.0 Plasma is a language model with about 50 million parameters.'],
+  ['ChatGPT misin?', 'Hayır, ben Artemis Plasma Pro\'yum. Athene Softworks tarafından geliştirildim.'],
+  ['Who are you?', 'I am Artemis Plasma Pro, an AI assistant made by Athene Softworks. I run entirely in your browser.'],
+  ['Who made you?', 'I was made by Athene Softworks. Artemis Plasma Pro is a language model with about 50 million parameters.'],
   ['Hello', 'Hello! I am Artemis. How can I help you?']
 ];
 
@@ -212,7 +212,7 @@ $('files').addEventListener('change', async e => {
   refresh();
 });
 
-// Bir artemis-2.0.bin'den devam: int8 ağırlıklar float'a çevrilir
+// Bir artemis-2.0-pro.bin'den devam: int8 ağırlıklar float'a çevrilir
 $('resume').addEventListener('change', async e => {
   const f = e.target.files[0]; if (!f) return;
   const buf = await f.arrayBuffer(), dv = new DataView(buf);
@@ -287,7 +287,7 @@ async function run() {
   tr.dev.lost.then(i => { if (busy) phase(t('lost') + i.message); });
   if (resume && resume.cfg.d === cfg.d && resume.cfg.layers === cfg.layers) tr.setWeights(resume.w); else tr.init(Date.now());
   const np = Object.values(tr.shapes).reduce((a, s) => a + s[0] * s[1], 0);
-  log('Artemis 2.0 Plasma · ' + (np / 1e6).toFixed(1) + 'M · micro ' + tr.B + ' × ' + cfg.ctx + ' · batch ' + BATCH + ' × ' + cfg.ctx);
+  log('Artemis Plasma Pro · ' + (np / 1e6).toFixed(1) + 'M · micro ' + tr.B + ' × ' + cfg.ctx + ' · batch ' + BATCH + ' × ' + cfg.ctx);
   while (!ready() && !stopFlag) await new Promise(r => setTimeout(r, 300));
   for (const k of Object.keys(data)) data[k].flush();
 
@@ -340,7 +340,7 @@ async function run() {
   $('dl').href = url; $('done').classList.add('on');
   lastModel = url;
   phase(prog >= 1 ? t('fin', { m: info.minutes, t: (tokens / 1e6).toFixed(1) }) : t('stopped'));
-  log('artemis-2.0.bin: ' + (blob.size / 1e6).toFixed(1) + ' MB');
+  log('artemis-2.0-pro.bin: ' + (blob.size / 1e6).toFixed(1) + ' MB');
   finish();
 }
 

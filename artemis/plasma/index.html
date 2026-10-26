@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Plasma Trainer · Athene Softworks</title>
-<meta name="description" content="Train Artemis 2.0 Plasma, a 54M parameter language model, in your browser with WebGPU. No Python, no server.">
+<meta name="description" content="Train Artemis Plasma Pro, a 54M parameter language model, in your browser with WebGPU. No Python, no server.">
 <meta name="theme-color" content="#0b1020">
 <link rel="icon" href="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png">
 <script>
@@ -120,7 +120,7 @@ canvas { width: 100%; height: 220px; display: block; border-radius: 12px; backgr
   <header class="pl-head">
     <div class="wrap">
       <p class="crumb"><a href="../../artemis.html">Artemis AI</a> › Plasma</p>
-      <h1 data-i18n="h.title">Train Artemis 2.0 Plasma</h1>
+      <h1 data-i18n="h.title">Train Artemis Plasma Pro</h1>
       <p data-i18n="h.lead">A 54M parameter model trained from scratch on your own GPU, in this tab. No Python, no server: WebGPU runs the training, and the finished model file goes straight into Artemis AI.</p>
     </div>
   </header>
@@ -169,7 +169,7 @@ canvas { width: 100%; height: 220px; display: block; border-radius: 12px; backgr
           <p class="note" id="filesNote"></p>
         </div>
         <div class="field">
-          <label class="file-btn"><input type="file" id="resume" accept=".bin"><span data-i18n="s.resume">Continue from an artemis-2.0.bin</span></label>
+          <label class="file-btn"><input type="file" id="resume" accept=".bin"><span data-i18n="s.resume">Continue from an artemis-2.0-pro.bin</span></label>
           <p class="note" id="resumeNote"></p>
         </div>
         <div class="go">
@@ -192,7 +192,7 @@ canvas { width: 100%; height: 220px; display: block; border-radius: 12px; backgr
         <canvas id="chart" width="900" height="220" aria-label="Loss chart"></canvas>
         <div class="logbox" id="log"></div>
         <div class="done" id="done">
-          <a class="btn" id="dl" download="artemis-2.0.bin" data-i18n="b.dl">Download artemis-2.0.bin</a>
+          <a class="btn" id="dl" download="artemis-2.0-pro.bin" data-i18n="b.dl">Download artemis-2.0-pro.bin</a>
           <button class="btn alt" id="tryBtn" type="button" data-i18n="b.try">Try it here</button>
         </div>
         <div class="try" id="try">
@@ -203,7 +203,7 @@ canvas { width: 100%; height: 220px; display: block; border-radius: 12px; backgr
 
       <div class="card how">
         <h2 data-i18n="how.title">Using the model on the site</h2>
-        <p data-i18n="how.p1">Put the downloaded file at <code>artemis/artemis-2.0.bin</code> in the site repository and publish it. Artemis AI then shows Plasma 2.0 in its model list.</p>
+        <p data-i18n="how.p1">Put the downloaded file at <code>artemis/artemis-2.0-pro.bin</code> in the site repository and publish it. Artemis AI then shows Plasma Pro in its model list.</p>
         <p data-i18n="how.p2">Have an NVIDIA GPU and Python? The same model trains several times faster with PyTorch:</p>
 <pre>pip install torch numpy tokenizers pyarrow huggingface_hub
 python artemis/plasma/train.py --minutes 20</pre>
@@ -223,7 +223,7 @@ var TR = {
   'doc.title': 'Plasma Eğitici · Athene Softworks',
   'lang.code': 'TR',
   'nav.home': 'Ana sayfa',
-  'h.title': 'Artemis 2.0 Plasma\'yı eğitin',
+  'h.title': 'Artemis Plasma Pro\'yu eğitin',
   'h.lead': 'Kendi GPU\'nuzda, bu sekmede sıfırdan eğitilen 54 milyon parametreli bir model. Python ya da sunucu yok: eğitimi WebGPU yapar, hazır model dosyası doğrudan Artemis AI\'da çalışır.',
   's.title': 'Ayarlar',
   's.time': 'Eğitim süresi',
@@ -232,13 +232,13 @@ var TR = {
   's.data': 'Eğitim verisi (Hugging Face\'ten indirilir)',
   'a.s': 'Az', 'a.m': 'Normal', 'a.l': 'Çok',
   's.files': '+ Kendi .txt / .jsonl dosyalarınızı ekleyin',
-  's.resume': 'Bir artemis-2.0.bin\'den devam et',
+  's.resume': 'Bir artemis-2.0-pro.bin\'den devam et',
   'b.start': 'Eğitimi başlat', 'b.stop': 'Durdur',
   'p.idle': 'Hazır olduğunuzda başlayın.',
   'st.loss': 'Kayıp', 'st.tokens': 'Görülen token', 'st.speed': 'Token / sn', 'st.left': 'Kalan süre',
-  'b.dl': 'artemis-2.0.bin\'i indir', 'b.try': 'Burada dene', 'b.ask': 'Sor',
+  'b.dl': 'artemis-2.0-pro.bin\'i indir', 'b.try': 'Burada dene', 'b.ask': 'Sor',
   'how.title': 'Modeli sitede kullanmak',
-  'how.p1': 'İndirilen dosyayı site deposunda <code>artemis/artemis-2.0.bin</code> konumuna koyup yayımlayın. Artemis AI model listesinde Plasma 2.0\'ı gösterir.',
+  'how.p1': 'İndirilen dosyayı site deposunda <code>artemis/artemis-2.0-pro.bin</code> konumuna koyup yayımlayın. Artemis AI model listesinde Plasma Pro\'yu gösterir.',
   'how.p2': 'NVIDIA GPU\'nuz ve Python\'unuz var mı? Aynı model PyTorch ile birkaç kat daha hızlı eğitilir:',
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.'
 };

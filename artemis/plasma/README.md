@@ -1,8 +1,13 @@
-# Artemis 2.0 Plasma
+# Artemis Plasma Pro
 
 Sıfırdan eğitilen, ~54 milyon parametreli Türkçe + İngilizce sohbet modeli. Eğitim bittiğinde
-`artemis/artemis-2.0.bin` dosyası oluşur. Bu dosya yayımlandığında `artemis.html`, Plasma 2.0'ı
+`artemis/artemis-2.0-pro.bin` dosyası oluşur. Bu dosya yayımlandığında `artemis.html`, Plasma Pro'yu
 model listesinde kendiliğinden açar ve varsayılan model yapar. Model tamamen tarayıcıda çalışır.
+
+Sitede şu an yayında olan **Artemis 2.0 Plasma** (`artemis/artemis-2.0.bin`) ise ayrı bir modeldir:
+Artemis 1.0 ile 1.1'in tek bir 27 katmanlı, 23,5M parametreli modelde birleştirilip Türkçe/İngilizce
+sohbet ve Vikipedi ile eğitilmeye devam edilmiş hâli. `train_from_11.py` ile üretilir
+(`python artemis/plasma/train_from_11.py --minutes 120`; GPU gerekmez).
 
 | | |
 |---|---|
@@ -15,13 +20,13 @@ model listesinde kendiliğinden açar ve varsayılan model yapar. Model tamamen 
 
 `artemis/plasma/index.html` sayfasını açın (siteden: `/artemis/plasma/`). Süreyi seçin,
 **Eğitimi başlat**'a basın. Sayfa veriyi Hugging Face'ten indirir, GPU'da eğitir, sonunda
-`artemis-2.0.bin`'i indirmenizi ve aynı sayfada denemenizi sağlar.
+`artemis-2.0-pro.bin`'i indirmenizi ve aynı sayfada denemenizi sağlar.
 
 - Güncel Chrome / Edge (ya da WebGPU destekli Safari) ve ayrı bir GPU gerekir.
 - "GPU belleği" ayarı mikro-yığın boyutudur: ~1 GB / ~2 GB / ~3,5 GB.
 - Kendi `.txt` ya da `.jsonl` dosyalarınızı ekleyebilirsiniz. `.jsonl` satırları
   `{"text": …}`, `{"messages": [{"role": "user", …}, …]}` ya da `{"prompt": …, "response": …}` olabilir.
-- Var olan bir `artemis-2.0.bin`'den devam edebilirsiniz (ince ayar).
+- Var olan bir `artemis-2.0-pro.bin`'den devam edebilirsiniz (ince ayar).
 
 Tarayıcı fp32 ile çalışır, yani PyTorch'tan yavaştır. Aynı 20 dakikada daha az token görür.
 En iyi model için Python yolunu kullanın.
@@ -34,7 +39,7 @@ python artemis/plasma/train.py --minutes 20
 ```
 
 Tek komut veriyi indirir (`data/`, bir kez), modeli **tam 20 dakika** eğitir (veri hazırlama
-ve ilk derleme hariç), doğrulama kaybını ve örnek yanıtları yazdırır, `artemis/artemis-2.0.bin`'i
+ve ilk derleme hariç), doğrulama kaybını ve örnek yanıtları yazdırır, `artemis/artemis-2.0-pro.bin`'i
 üretir. Ardından dosyayı commit edip yayımlayın.
 
 | GPU | Yaklaşık hız | 20 dakikada |
@@ -77,6 +82,7 @@ modded-nanogpt hız denemelerinde kendini kanıtlamış teknikler:
 
 - `prepare.py`: tokenizer ve veri hazırlama
 - `train.py`: PyTorch eğitimi ve `.bin` dışa aktarma
+- `train_from_11.py`: Artemis 2.0 Plasma'yı (1.1'in üzerine kurulu, ART1 biçiminde) eğitir
 - `index.html`, `plasma.js`, `trainer.js`: WebGPU eğitici. `trainer.js`, `train.py` ile aynı ileri/geri
   yayılımı ve optimizer'ı WGSL'de uygular; gradyanları ve Muon/Adam adımları PyTorch ile ~1e-6
   farkla doğrulandı.

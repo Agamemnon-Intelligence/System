@@ -75,11 +75,13 @@
 .chat-note { margin: .8rem 0 0; color: var(--muted); font-size: .82rem; }
 .chat-note a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .plasma { background: radial-gradient(60% 80% at 100% 0%, rgba(255,79,216,.10), transparent 60%), radial-gradient(50% 70% at 0% 100%, rgba(124,92,255,.12), transparent 60%); border-top: 1px solid var(--line); }
-.plasma .section-head h2, #business .section-head h2 { color: var(--text); }
+.plasma .section-head h2, #pro .section-head h2, #business .section-head h2 { color: var(--text); }
 .plasma { --accent: #ff4fd8; --accent-soft: rgba(255,79,216,.13); }
 #business { --accent: #00c2ff; --accent-soft: rgba(0,194,255,.13); }
 .eyebrow { display: flex; align-items: center; gap: .6rem; margin: 0 0 .7rem; font: 700 .8rem var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
 .soon-tag { padding: .2rem .6rem; border-radius: 999px; background: rgba(232,176,75,.16); color: var(--gold-2); font-size: .7rem; letter-spacing: .06em; }
+.new-tag { padding: .2rem .6rem; border-radius: 999px; background: rgba(34,197,94,.16); color: var(--green); font-size: .7rem; letter-spacing: .06em; }
+#pro { --accent: #7c5cff; --accent-soft: rgba(124,92,255,.14); border-top: 1px solid var(--line); }
 .hero-actions { display: flex; gap: .7rem; flex-wrap: wrap; }
 @media (max-width: 560px) {
   .ai-head .wrap { grid-template-columns: auto 1fr; }
@@ -144,10 +146,11 @@
     </div>
   </header>
 
-  <section class="chat-sec">
+  <section class="chat-sec" id="chat">
     <div class="wrap">
       <div class="models" role="group" aria-label="Model">
-        <button class="model" type="button" data-model="2.0" aria-pressed="false" disabled><span class="dot"></span>Plasma 2.0 <span class="soon" data-i18n="soon">Coming soon</span></button>
+        <button class="model" type="button" data-model="pro" aria-pressed="false" disabled><span class="dot"></span>Plasma Pro <span class="soon" data-i18n="soon">Coming soon</span></button>
+        <button class="model" type="button" data-model="2.0" aria-pressed="false" disabled><span class="dot"></span>Plasma 2.0</button>
         <button class="model" type="button" data-model="1.1" aria-pressed="true"><span class="dot"></span>Artemis 1.1</button>
         <button class="model" type="button" data-model="1.0" aria-pressed="false"><span class="dot"></span>Artemis 1.0</button>
       </div>
@@ -171,20 +174,69 @@
           <button type="submit" id="send" disabled data-i18n="send">Send</button>
         </form>
       </div>
-      <p class="chat-note" data-i18n="ai.note">Artemis 1.1 loads Artemis 1.0 (20M parameters) and adds its own 4.6M trained parameters on top, so the two model files run together. Both are small models that often make mistakes, so don't rely on their answers. Artemis 2.0 Plasma is coming soon.</p>
+      <p class="chat-note" data-i18n="ai.note">Artemis 2.0 Plasma is Artemis 1.0 and 1.1 merged into one 23.5M parameter model and trained further on Turkish and English conversations. Artemis 1.1 loads Artemis 1.0 (20M parameters) and adds its own 4.6M trained parameters on top. All three are small models that often make mistakes, so don't rely on their answers. Plasma Pro is coming soon.</p>
     </div>
   </section>
 
   <section class="section plasma" id="plasma">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow"><span class="soon-tag" data-i18n="soon">Coming soon</span> Artemis 2.0 Plasma</p>
-        <h2 data-i18n="pl.title">A new Artemis, built from scratch.</h2>
-        <p data-i18n="pl.sub">Plasma 2.0 is not an update on top of 1.x. It's a new, larger model with its own Turkish and English vocabulary, and it still runs entirely in your browser.</p>
+        <p class="eyebrow"><span class="new-tag" data-i18n="new">New</span> Artemis 2.0 Plasma</p>
+        <h2 data-i18n="nw.title">Artemis 2.0 Plasma is here.</h2>
+        <p data-i18n="nw.sub">Plasma 2.0 brings Artemis 1.0 and 1.1 together in a single model and trains it further on Turkish and English conversations. It's the default model above, and it runs entirely in your browser.</p>
       </div>
       <ul class="stats reveal">
-        <li><b>54M</b><span data-i18n="pl.s1">parameters, 2.7× Artemis 1.0</span></li>
-        <li><b>512</b><span data-i18n="pl.s2">tokens of context, twice as much as 1.x</span></li>
+        <li><b>23.5M</b><span data-i18n="nw.s1">parameters in a single model</span></li>
+        <li><b>27</b><span data-i18n="nw.s2">layers: 1.0's 23 plus 1.1's 4</span></li>
+        <li><b>24 MB</b><span data-i18n="nw.s3">one file instead of two</span></li>
+        <li><b>0</b><span data-i18n="nw.s4">servers. Every answer is computed on your device</span></li>
+      </ul>
+      <ul class="cards">
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></svg></span>
+          <b data-i18n="nw.1t">Built on Artemis 1.1</b>
+          <span data-i18n="nw.1p">Artemis 1.1's additions are folded into the 1.0 base, so everything 1.1 learned is part of one model rather than a layer loaded on top.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span>
+          <b data-i18n="nw.2t">More conversations</b>
+          <span data-i18n="nw.2p">Plasma 2.0 was trained on another 7.6 million tokens of Turkish and English conversations and Turkish Wikipedia.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg></span>
+          <b data-i18n="nw.3t">One download</b>
+          <span data-i18n="nw.3p">The whole model is a single 24 MB file. It downloads once, and your browser keeps it for next time.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+          <b data-i18n="nw.4t">Private by design</b>
+          <span data-i18n="nw.4p">Like Artemis 1.x, nothing you type leaves your browser. There's no account, no log and no server to send it to.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+          <b data-i18n="nw.5t">Still a small model</b>
+          <span data-i18n="nw.5p">Plasma 2.0 often gets facts wrong and can drift off topic. Use it for fun and quick questions, and check anything important.</span>
+        </li>
+        <li class="reveal">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></span>
+          <b data-i18n="nw.6t">Free</b>
+          <span data-i18n="nw.6p">Plasma 2.0 is free to use on this page today, like every Artemis model before it.</span>
+        </li>
+      </ul>
+      <div class="hero-actions reveal" style="margin-top:2.4rem"><a class="pill solid" href="#chat" data-i18n="nw.btn">Try Plasma 2.0</a></div>
+    </div>
+  </section>
+
+  <section class="section" id="pro">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow"><span class="soon-tag" data-i18n="soon">Coming soon</span> Artemis Plasma Pro</p>
+        <h2 data-i18n="pl.title">A new Artemis, built from scratch.</h2>
+        <p data-i18n="pl.sub">Plasma Pro is not an update on top of 1.x or Plasma 2.0. It's a new, larger model trained from scratch with its own Turkish and English vocabulary, and it still runs entirely in your browser.</p>
+      </div>
+      <ul class="stats reveal">
+        <li><b>54M</b><span data-i18n="pl.s1">parameters, 2.3× Plasma 2.0</span></li>
+        <li><b>512</b><span data-i18n="pl.s2">tokens of context, twice as much as Plasma 2.0</span></li>
         <li><b>16K</b><span data-i18n="pl.s3">token vocabulary built for Turkish and English</span></li>
         <li><b>0</b><span data-i18n="pl.s4">servers. Every answer is computed on your device</span></li>
       </ul>
@@ -197,17 +249,17 @@
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h10M4 19h7"/><path d="m15 16 3 3 4-5"/></svg></span>
           <b data-i18n="pl.2t">Turkish first</b>
-          <span data-i18n="pl.2p">A new vocabulary splits Turkish words into fewer, more meaningful pieces, so Plasma reads and writes Turkish more naturally than 1.x.</span>
+          <span data-i18n="pl.2p">A new vocabulary splits Turkish words into fewer, more meaningful pieces, so Plasma Pro reads and writes Turkish more naturally than 1.x and Plasma 2.0.</span>
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span>
           <b data-i18n="pl.3t">Remembers the conversation</b>
-          <span data-i18n="pl.3p">Plasma keeps what it has already read in memory, so a follow-up question starts answering right away instead of re-reading the whole chat.</span>
+          <span data-i18n="pl.3p">Plasma Pro keeps what it has already read in memory, so a follow-up question starts answering right away instead of re-reading the whole chat.</span>
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
           <b data-i18n="pl.4t">Private by design</b>
-          <span data-i18n="pl.4p">Like Artemis 1.x, nothing you type leaves your browser. There's no account, no log and no server to send it to.</span>
+          <span data-i18n="pl.4p">Like every Artemis model, nothing you type leaves your browser. There's no account, no log and no server to send it to.</span>
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg></span>
@@ -217,7 +269,7 @@
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></span>
           <b data-i18n="pl.6t">Free</b>
-          <span data-i18n="pl.6p">Plasma 2.0 will be free to use on this page, like every Artemis model before it.</span>
+          <span data-i18n="pl.6p">Plasma Pro will be free to use on this page, like every Artemis model before it.</span>
         </li>
       </ul>
     </div>
@@ -228,7 +280,7 @@
       <div class="section-head reveal">
         <p class="eyebrow" data-i18n="biz.eyebrow">Plasma for organisations</p>
         <h2 data-i18n="biz.title">Your own AI assistant. Your data stays with you.</h2>
-        <p data-i18n="biz.sub">Plasma for organisations is a Plasma 2.0 model trained on your own documents and running on your own systems. Nothing goes to an outside AI service.</p>
+        <p data-i18n="biz.sub">Plasma for organisations is a Plasma Pro model trained on your own documents and running on your own systems. Nothing goes to an outside AI service.</p>
       </div>
       <ul class="cards">
         <li class="reveal">
@@ -264,7 +316,7 @@
       </ul>
       <div class="cta reveal" style="margin-top:3rem">
         <h2 data-i18n="biz.cta">Interested in Plasma for your organisation?</h2>
-        <p data-i18n="biz.ctap">Plasma for organisations launches together with Plasma 2.0. Write to us now to be among the first.</p>
+        <p data-i18n="biz.ctap">Plasma for organisations launches together with Plasma Pro. Write to us now to be among the first.</p>
         <div class="hero-actions"><a class="pill solid" href="index.html#contact" data-i18n="biz.btn">Get in touch</a></div>
       </div>
     </div>
@@ -296,32 +348,52 @@ var TR = {
   'nav.contact': 'İletişim',
   'hero.lead': 'Bir genel kültür sorusu sorun. Model tamamen tarayıcınızda çalışır.',
   'soon': 'Yakında',
+  'new': 'Yeni',
   'e.title': 'Merhaba, ben Artemis.',
   'e.sub': 'Athene Softworks tarafından geliştirilmiş küçük bir genel kültür modeliyim. Tamamen cihazınızda çalışırım; yazdıklarınız tarayıcınızdan çıkmaz.',
   'ph': "Artemis'e bir şey sorun…",
   'send': 'Gönder',
-  'ai.note': "Artemis 1.1, Artemis 1.0'ı (20 milyon parametre) yükler ve üzerine kendi eğitilmiş 4,6 milyon parametresini ekler; iki model dosyası birlikte çalışır. İkisi de sık sık hata yapan küçük modellerdir; yanıtlarına güvenmeyin. Artemis 2.0 Plasma yakında geliyor.",
+  'ai.note': "Artemis 2.0 Plasma, Artemis 1.0 ile 1.1'in tek bir 23,5 milyon parametreli modelde birleştirilip Türkçe ve İngilizce sohbetlerle eğitilmeye devam edilmiş hâlidir. Artemis 1.1, Artemis 1.0'ı (20 milyon parametre) yükler ve üzerine kendi eğitilmiş 4,6 milyon parametresini ekler. Üçü de sık sık hata yapan küçük modellerdir; yanıtlarına güvenmeyin. Plasma Pro yakında geliyor.",
+  'nw.title': 'Artemis 2.0 Plasma çıktı.',
+  'nw.sub': "Plasma 2.0, Artemis 1.0 ile 1.1'i tek bir modelde birleştirir ve Türkçe ve İngilizce sohbetlerle eğitmeye devam eder. Yukarıdaki varsayılan model odur ve tamamen tarayıcınızda çalışır.",
+  'nw.s1': 'parametre, tek bir modelde',
+  'nw.s2': "katman: 1.0'ın 23'ü ve 1.1'in 4'ü",
+  'nw.s3': 'iki dosya yerine tek dosya',
+  'nw.s4': 'sunucu. Her yanıt cihazınızda hesaplanır',
+  'nw.1t': "Artemis 1.1'in üzerine kurulu",
+  'nw.1p': "Artemis 1.1'in eklemeleri 1.0 tabanına katıldı; 1.1'in öğrendiği her şey üstüne yüklenen bir katman değil, tek bir modelin parçası.",
+  'nw.2t': 'Daha çok sohbet',
+  'nw.2p': "Plasma 2.0, 7,6 milyon token daha Türkçe ve İngilizce sohbet ve Türkçe Vikipedi ile eğitildi.",
+  'nw.3t': 'Tek indirme',
+  'nw.3p': "Modelin tamamı 24 MB'lık tek bir dosya. Bir kez iner, tarayıcınız bir sonraki sefer için saklar.",
+  'nw.4t': 'Gizlilik temelden',
+  'nw.4p': "Artemis 1.x'te olduğu gibi yazdıklarınız tarayıcınızdan çıkmaz. Hesap yok, kayıt yok, gönderilecek bir sunucu yok.",
+  'nw.5t': 'Hâlâ küçük bir model',
+  'nw.5p': 'Plasma 2.0 bilgileri sık sık yanlış verir ve konudan sapabilir. Eğlence ve kısa sorular için kullanın, önemli her şeyi kontrol edin.',
+  'nw.6t': 'Ücretsiz',
+  'nw.6p': 'Plasma 2.0, önceki tüm Artemis modelleri gibi bugünden itibaren bu sayfada ücretsiz.',
+  'nw.btn': "Plasma 2.0'ı deneyin",
   'pl.title': 'Sıfırdan yeni bir Artemis.',
-  'pl.sub': "Plasma 2.0, 1.x'in üzerine bir güncelleme değil. Kendi Türkçe ve İngilizce kelime dağarcığı olan, daha büyük, yepyeni bir model ve yine tamamen tarayıcınızda çalışıyor.",
-  'pl.s1': "parametre, Artemis 1.0'ın 2,7 katı",
-  'pl.s2': "token bağlam, 1.x'in iki katı",
+  'pl.sub': "Plasma Pro, 1.x'in ya da Plasma 2.0'ın üzerine bir güncelleme değil. Kendi Türkçe ve İngilizce kelime dağarcığıyla sıfırdan eğitilen, daha büyük, yepyeni bir model ve yine tamamen tarayıcınızda çalışıyor.",
+  'pl.s1': "parametre, Plasma 2.0'ın 2,3 katı",
+  'pl.s2': "token bağlam, Plasma 2.0'ın iki katı",
   'pl.s3': 'Türkçe ve İngilizce için kurulmuş kelime dağarcığı',
   'pl.s4': 'sunucu. Her yanıt cihazınızda hesaplanır',
   'pl.1t': 'Modern mimari',
   'pl.1p': 'Dönen konum kodlaması, normalize dikkat ve daha hızlı ileri besleme katmanı. Bugünün büyük modellerindeki fikirler, bir tarayıcı sekmesine sığacak boyutta.',
   'pl.2t': 'Önce Türkçe',
-  'pl.2p': "Yeni kelime dağarcığı Türkçe kelimeleri daha az ve daha anlamlı parçalara böler; Plasma Türkçeyi 1.x'ten çok daha doğal okur ve yazar.",
+  'pl.2p': "Yeni kelime dağarcığı Türkçe kelimeleri daha az ve daha anlamlı parçalara böler; Plasma Pro Türkçeyi 1.x'ten ve Plasma 2.0'dan çok daha doğal okur ve yazar.",
   'pl.3t': 'Sohbeti hatırlar',
-  'pl.3p': 'Plasma okuduklarını bellekte tutar; ek bir soru sorduğunuzda tüm sohbeti baştan okumadan hemen yanıtlamaya başlar.',
+  'pl.3p': 'Plasma Pro okuduklarını bellekte tutar; ek bir soru sorduğunuzda tüm sohbeti baştan okumadan hemen yanıtlamaya başlar.',
   'pl.4t': 'Gizlilik temelden',
-  'pl.4p': "Artemis 1.x'te olduğu gibi yazdıklarınız tarayıcınızdan çıkmaz. Hesap yok, kayıt yok, gönderilecek bir sunucu yok.",
+  'pl.4p': "Her Artemis modelinde olduğu gibi yazdıklarınız tarayıcınızdan çıkmaz. Hesap yok, kayıt yok, gönderilecek bir sunucu yok.",
   'pl.5t': 'Tek dosya',
   'pl.5p': 'Modelin tamamı yaklaşık 55 MB\'lık tek bir dosya. Bir kez iner, tarayıcınız bir sonraki sefer için saklar.',
   'pl.6t': 'Ücretsiz',
-  'pl.6p': 'Plasma 2.0, önceki tüm Artemis modelleri gibi bu sayfada ücretsiz kullanılabilecek.',
+  'pl.6p': 'Plasma Pro, önceki tüm Artemis modelleri gibi bu sayfada ücretsiz kullanılabilecek.',
   'biz.eyebrow': 'Kurumlar için Plasma',
   'biz.title': 'Kendi yapay zekâ asistanınız. Verileriniz sizde kalır.',
-  'biz.sub': 'Kurumlar için Plasma, kendi belgelerinizle eğitilen ve kendi sistemlerinizde çalışan bir Plasma 2.0 modelidir. Hiçbir şey dışarıdaki bir yapay zekâ hizmetine gitmez.',
+  'biz.sub': 'Kurumlar için Plasma, kendi belgelerinizle eğitilen ve kendi sistemlerinizde çalışan bir Plasma Pro modelidir. Hiçbir şey dışarıdaki bir yapay zekâ hizmetine gitmez.',
   'biz.1t': 'Belgelerinizle eğitilir',
   'biz.1p': 'Kılavuzlar, SSS\'ler, politikalar ve ürün bilgileri; sizin terimlerinizle yanıt veren ve kendini sizin adınızla tanıtan bir modele dönüşür.',
   'biz.2t': 'Veri kurum içinde kalır',
@@ -335,13 +407,13 @@ var TR = {
   'biz.6t': 'Athene Softworks ile kurulum',
   'biz.6p': 'Veriyi hazırlıyor, modeli eğitiyor ve yerine koymanıza yardım ediyoruz; ekibiniz bir proje değil, çalışan bir asistan alır.',
   'biz.cta': 'Plasma kurumunuz için ilginizi çekti mi?',
-  'biz.ctap': "Kurumlar için Plasma, Plasma 2.0 ile birlikte çıkıyor. İlk kullananlardan olmak için şimdiden bize yazın.",
+  'biz.ctap': "Kurumlar için Plasma, Plasma Pro ile birlikte çıkıyor. İlk kullananlardan olmak için şimdiden bize yazın.",
   'biz.btn': 'Bize ulaşın',
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
   'foot.legal': 'Artemis AI hata yapabilir; önemli yanıtları kontrol edin. Sohbette parola ya da başka hassas kişisel bilgiler paylaşmayın.'
 };
 </script>
 <script src="product.js"></script>
-<script src="artemis/artemis-chat.js?v=2.0"></script>
+<script src="artemis/artemis-chat.js?v=2.1"></script>
 </body>
 </html>

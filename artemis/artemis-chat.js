@@ -1,6 +1,7 @@
 /* Artemis sohbet arayüzü: seçilen modeli Web Worker'da yükler ve yanıtları akış hâlinde gösterir.
    Artemis 1.1 = Artemis 1.0 tabanı + 1.1 dosyası (iki dosya birlikte yüklenir).
-   Artemis 2.0 Plasma tek dosyadır; artemis-2.0.bin yayımlandığında düğmesi kendiliğinden açılır. */
+   Artemis 2.0 Plasma (1.0 + 1.1 birleşik, üzerine eğitilmiş) tek dosyadır.
+   Plasma Pro (sıfırdan eğitilen 54M model) da tek dosyadır; artemis-2.0-pro.bin yayımlandığında düğmesi kendiliğinden açılır. */
 (function () {
   var root = document.documentElement;
   var T = {
@@ -9,7 +10,8 @@
   };
   var GEN = { temperature: 0.6, topK: 40, topP: 0.9, repetitionPenalty: 1.2, maxTokens: 220 };
   var MODELS = {
-    '2.0': { name: 'Artemis 2.0 Plasma', base: 'artemis/artemis-2.0.bin?v=2.0', adapter: null, gen: { temperature: 0.6, topK: 40, topP: 0.9, repetitionPenalty: 1.1, maxTokens: 300 } },
+    'pro': { name: 'Artemis Plasma Pro', base: 'artemis/artemis-2.0-pro.bin?v=1', adapter: null, gen: { temperature: 0.6, topK: 40, topP: 0.9, repetitionPenalty: 1.1, maxTokens: 300 } },
+    '2.0': { name: 'Artemis 2.0 Plasma', base: 'artemis/artemis-2.0.bin?v=2.0', adapter: null, gen: GEN },
     '1.1': { name: 'Artemis 1.1', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: 'artemis/artemis-1.1.bin?v=1.1', gen: GEN },
     '1.0': { name: 'Artemis 1.0', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: null, gen: GEN }
   };
@@ -65,14 +67,17 @@
     worker.postMessage({ type: 'load', base: abs(MODELS[k].base), adapter: abs(MODELS[k].adapter) });
   }
   chips.forEach(function (c) { c.addEventListener('click', function () { if (c.dataset.model !== sel || !ready) load(c.dataset.model); }); });
-  // Plasma 2.0 dosyası sitede varsa düğmesini aç ve varsayılan yap; yoksa 1.1 ile başla
-  var plasma = chipOf('2.0');
-  fetch(MODELS['2.0'].base, { method: 'HEAD', cache: 'no-cache' }).then(function (r) {
-    if (!r.ok) throw 0;
-    plasma.disabled = false;
-    var soon = plasma.querySelector('.soon'); if (soon) soon.remove();
-    load('2.0');
-  }).catch(function () { load(sel); });
+  // Sitede bulunan en yeni modelin düğmesini aç ve onunla başla: Plasma Pro, yoksa Plasma 2.0, yoksa 1.1
+  function probe(k) {
+    return fetch(MODELS[k].base, { method: 'HEAD', cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw 0;
+      var c = chipOf(k); c.disabled = false;
+      var soon = c.querySelector('.soon'); if (soon) soon.remove();
+      return k;
+    });
+  }
+  var found = ['pro', '2.0'].map(function (k) { return probe(k).catch(function () { return null; }); });
+  Promise.all(found).then(function (ks) { load(ks.filter(Boolean)[0] || sel); });
 
   function scroll() { log.scrollTop = log.scrollHeight; }
   function bubble(role, text) {
