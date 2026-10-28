@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Athene Softworks Blog</title>
+  <link>https://athenesoftworks.com/blog/</link>
+  <description>Notes on security and AI from the team behind Agamemnon and Synapse.</description>
+  <language>en</language>
+  <item>
+    <title>Infostealers: the malware that wants your logins, not your files</title>
+    <link>https://athenesoftworks.com/blog/what-infostealers-want/</link>
+    <guid>https://athenesoftworks.com/blog/what-infostealers-want/</guid>
+    <pubDate>Tue, 27 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>The most common malware today doesn&#x27;t lock or wreck your computer. It quietly copies your passwords, cookies and wallets, then disappears. Here&#x27;s how it works and how to stop it.</description>
+  </item>
+  <item>
+    <title>How to host your own AI model, for free or close to it</title>
+    <link>https://athenesoftworks.com/blog/host-your-own-ai-model/</link>
+    <guid>https://athenesoftworks.com/blog/host-your-own-ai-model/</guid>
+    <pubDate>Mon, 26 Oct 2026 09:00:00 +0000</pubDate>
+    <category>AI</category>
+    <description>From a model on your laptop to a private API your phone and friends can use. Four practical ways to host an open model, what each costs, and the security mistake almost everyone makes.</description>
+  </item>
+  <item>
+    <title>Running AI on your own computer vs. in the cloud</title>
+    <link>https://athenesoftworks.com/blog/local-vs-cloud-ai/</link>
+    <guid>https://athenesoftworks.com/blog/local-vs-cloud-ai/</guid>
+    <pubDate>Sun, 25 Oct 2026 09:00:00 +0000</pubDate>
+    <category>AI</category>
+    <description>Local models keep everything private and work offline. Cloud models are smarter and faster. What your hardware can actually run, and how to pick for each job.</description>
+  </item>
+  <item>
+    <title>ClickFix: when a web page asks you to paste a command</title>
+    <link>https://athenesoftworks.com/blog/clickfix-paste-attacks/</link>
+    <guid>https://athenesoftworks.com/blog/clickfix-paste-attacks/</guid>
+    <pubDate>Sat, 24 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>A fake CAPTCHA tells you to press a few keys to prove you&#x27;re human. Those keys run malware. Here&#x27;s how the trick works on Windows and Mac, and the one rule that beats it.</description>
+  </item>
+  <item>
+    <title>How antivirus actually finds malware: fingerprints, rules and behaviour</title>
+    <link>https://athenesoftworks.com/blog/how-antivirus-finds-malware/</link>
+    <guid>https://athenesoftworks.com/blog/how-antivirus-finds-malware/</guid>
+    <pubDate>Thu, 22 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>A look inside a modern antivirus engine: why a single hash catches millions of copies, what YARA rules are, and why watching behaviour is what stops brand-new threats.</description>
+  </item>
+  <item>
+    <title>Viruses, worms, trojans and ransomware: a plain-language guide</title>
+    <link>https://athenesoftworks.com/blog/viruses-worms-trojans-ransomware/</link>
+    <guid>https://athenesoftworks.com/blog/viruses-worms-trojans-ransomware/</guid>
+    <pubDate>Tue, 20 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>&quot;Virus&quot; has become the word for every kind of malware, but the differences matter: they decide how something spreads and how you protect yourself. A short field guide.</description>
+  </item>
+</channel>
+</rss>

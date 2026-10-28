@@ -1,0 +1,135 @@
+<!--
+{"title": "How to host your own AI model, for free or close to it",
+ "title_tr": "Kendi yapay zekâ modelinizi nasıl barındırırsınız: ücretsiz ya da neredeyse ücretsiz",
+ "summary": "From a model on your laptop to a private API your phone and friends can use. Four practical ways to host an open model, what each costs, and the security mistake almost everyone makes.",
+ "summary_tr": "Dizüstünüzdeki bir modelden telefonunuzun ve arkadaşlarınızın kullanabileceği özel bir API'ye. Açık bir modeli barındırmanın dört pratik yolu, her birinin maliyeti ve neredeyse herkesin yaptığı güvenlik hatası.",
+ "date": "2026-10-26", "cat": "ai"}
+-->
+<section lang="en">
+<p>Running an AI model in a chat app on your own computer is the first step. The next question people ask us is: <em>how do I make it available somewhere else?</em> To your phone, to a website you're building, to a small team. That's what "hosting" a model means: running it as a <strong>server</strong> that other programs can talk to over the network.</p>
+<p>Good news: the open-source tools make this much easier than it sounds, and you can do a lot without spending money.</p>
+
+<h2>The building block: an OpenAI-compatible server</h2>
+<p>Most AI apps and libraries speak the same simple HTTP format, originally designed by OpenAI: you send a list of messages to <code>/v1/chat/completions</code> and get a reply back. Open-source engines copy this format, so once your model speaks it, almost any client can use it.</p>
+<p>The two easiest ways to get one running:</p>
+<pre><code># llama.cpp: one command, any GGUF model
+llama-server -m qwen-4b-q4_k_m.gguf --port 8080 --api-key "pick-a-long-secret"
+
+# Ollama: downloads and serves models for you
+ollama pull llama3.2
+ollama serve   # API on http://127.0.0.1:11434</code></pre>
+<p>Test it from the same computer:</p>
+<pre><code>curl http://127.0.0.1:8080/v1/chat/completions \
+  -H "Authorization: Bearer pick-a-long-secret" \
+  -H "Content-Type: application/json" \
+  -d '{"messages":[{"role":"user","content":"Hello!"}]}'</code></pre>
+
+<h2>Option 1: your own computer, plus a tunnel</h2>
+<p><strong>Cost: free.</strong> Keep the model on your desktop or an old laptop and expose it safely with a tunnel such as <strong>Cloudflare Tunnel</strong> or <strong>Tailscale</strong>. A tunnel creates an outgoing connection, so you don't open ports on your router, and your home IP address stays hidden.</p>
+<ul>
+<li>Tailscale is best when only <em>your</em> devices need access: your phone joins your private network and reaches the model as if you were at home.</li>
+<li>Cloudflare Tunnel gives you a public HTTPS address, useful for a website or friends, ideally protected with Cloudflare Access on top of the API key.</li>
+</ul>
+<p>The downside: the computer has to stay on, and speed depends on your hardware.</p>
+
+<h2>Option 2: free cloud tiers</h2>
+<p><strong>Cost: free, with limits.</strong> Several platforms offer free compute that can run small models on CPU:</p>
+<ul>
+<li><strong>Hugging Face Spaces</strong> has a free CPU tier (at the time of writing, 2 vCPUs and 16 GB of RAM). Enough for a 1–4B model at modest speed. Free Spaces go to sleep when unused and take a while to wake up.</li>
+<li><strong>Oracle Cloud's Always Free</strong> tier includes Arm virtual machines with up to 4 cores and 24 GB of RAM in total, which can serve a quantized 7–8B model slowly but steadily. Sign-up requires a card and capacity is sometimes limited.</li>
+</ul>
+<p>Free tiers change often, so check current terms before you build on them.</p>
+
+<h2>Option 3: rent a GPU by the hour</h2>
+<p><strong>Cost: pay as you go.</strong> Services like RunPod, Vast.ai and Lambda rent graphics cards by the hour or second. This is the way to serve larger models fast, or to fine-tune a model, without buying hardware. Use <code>vLLM</code> or <code>llama.cpp</code> on the rented machine and <strong>shut it down when you're done</strong>: a forgotten GPU is the classic surprise bill.</p>
+
+<h2>Option 4: managed APIs for open models</h2>
+<p><strong>Cost: per token, often with a free allowance.</strong> If you don't need the model on your own hardware, providers like Groq, OpenRouter and Hugging Face Inference host popular open models for you behind the same OpenAI-style API. You lose some privacy and control, but you get speed with zero maintenance.</p>
+
+<h2>The security mistake almost everyone makes</h2>
+<div class="note warn"><b>Never expose a model server to the internet without authentication.</b>Researchers regularly find thousands of open Ollama and llama.cpp servers online that anyone can use. That means strangers spending your electricity or cloud credit, reading prompts in progress, and in some cases reaching other services on the same machine.</div>
+<ul>
+<li>Keep the server bound to <code>127.0.0.1</code> (Ollama's default) and reach it through a tunnel or VPN.</li>
+<li>If it must be public, require an API key (<code>--api-key</code> in llama.cpp) <em>and</em> put it behind HTTPS.</li>
+<li>Don't run the server as an administrator or root user.</li>
+<li>Download models only from trusted publishers. Prefer GGUF and safetensors files over older "pickle" formats, which can contain code.</li>
+<li>Keep the engine updated; these projects ship security fixes often.</li>
+</ul>
+
+<h2>Which should you pick?</h2>
+<table>
+<thead><tr><th>You want…</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td>Your own model on your phone, totally private</td><td>Your computer + Tailscale</td></tr>
+<tr><td>A demo website for a small model</td><td>Hugging Face Spaces</td></tr>
+<tr><td>A 24/7 small server for nothing</td><td>Oracle Always Free + llama.cpp</td></tr>
+<tr><td>A big model, fast, for a few hours</td><td>Rented GPU + vLLM</td></tr>
+<tr><td>Speed with no maintenance</td><td>A managed API</td></tr>
+</tbody>
+</table>
+<p>If you just want to chat with local or free cloud models without setting up any of this, <a href="../../synapse/">Synapse</a> does it in one app. And if you're new to the topic, start with <a href="../local-vs-cloud-ai/">our guide to local vs. cloud AI</a>.</p>
+</section>
+<section lang="tr">
+<p>Bir yapay zekâ modelini kendi bilgisayarınızda bir sohbet uygulamasında çalıştırmak ilk adımdır. İnsanların bize sorduğu bir sonraki soru şu: <em>Bunu başka bir yerden nasıl kullanılabilir hâle getiririm?</em> Telefonunuzdan, geliştirdiğiniz bir web sitesinden, küçük bir ekipten. Bir modeli "barındırmak" tam olarak budur: onu, diğer programların ağ üzerinden konuşabildiği bir <strong>sunucu</strong> olarak çalıştırmak.</p>
+<p>İyi haber: açık kaynaklı araçlar bunu göründüğünden çok daha kolay hâle getiriyor ve para harcamadan çok şey yapabilirsiniz.</p>
+
+<h2>Temel yapı taşı: OpenAI uyumlu bir sunucu</h2>
+<p>Çoğu yapay zekâ uygulaması ve kütüphanesi, ilk olarak OpenAI'ın tasarladığı aynı basit HTTP biçimini konuşur: <code>/v1/chat/completions</code> adresine bir mesaj listesi gönderirsiniz ve bir yanıt alırsınız. Açık kaynaklı motorlar bu biçimi taklit eder; böylece modeliniz bu dili konuştuğunda neredeyse her istemci onu kullanabilir.</p>
+<p>Bir tane çalıştırmanın en kolay iki yolu:</p>
+<pre><code># llama.cpp: tek komut, herhangi bir GGUF modeli
+llama-server -m qwen-4b-q4_k_m.gguf --port 8080 --api-key "uzun-bir-gizli-anahtar"
+
+# Ollama: modelleri sizin için indirir ve sunar
+ollama pull llama3.2
+ollama serve   # API: http://127.0.0.1:11434</code></pre>
+<p>Aynı bilgisayardan deneyin:</p>
+<pre><code>curl http://127.0.0.1:8080/v1/chat/completions \
+  -H "Authorization: Bearer uzun-bir-gizli-anahtar" \
+  -H "Content-Type: application/json" \
+  -d '{"messages":[{"role":"user","content":"Merhaba!"}]}'</code></pre>
+
+<h2>Seçenek 1: kendi bilgisayarınız ve bir tünel</h2>
+<p><strong>Maliyet: ücretsiz.</strong> Modeli masaüstünüzde ya da eski bir dizüstünde tutun ve <strong>Cloudflare Tunnel</strong> ya da <strong>Tailscale</strong> gibi bir tünelle güvenli şekilde dışarı açın. Tünel dışarıya giden bir bağlantı kurar; böylece modeminizde port açmazsınız ve ev IP adresiniz gizli kalır.</p>
+<ul>
+<li>Erişmesi gereken yalnızca <em>sizin</em> cihazlarınızsa en iyisi Tailscale'dir: telefonunuz özel ağınıza katılır ve modele evdeymişsiniz gibi ulaşır.</li>
+<li>Cloudflare Tunnel size herkese açık bir HTTPS adresi verir; bir web sitesi ya da arkadaşlar için kullanışlıdır. API anahtarının üstüne ideal olarak Cloudflare Access ile korunmalıdır.</li>
+</ul>
+<p>Dezavantajı: bilgisayarın açık kalması gerekir ve hız donanımınıza bağlıdır.</p>
+
+<h2>Seçenek 2: ücretsiz bulut katmanları</h2>
+<p><strong>Maliyet: ücretsiz, sınırlı.</strong> Birçok platform, küçük modelleri işlemcide çalıştırabilecek ücretsiz işlem gücü sunar:</p>
+<ul>
+<li><strong>Hugging Face Spaces</strong>'in ücretsiz bir CPU katmanı var (bu yazı yazılırken 2 vCPU ve 16 GB RAM). 1–4B bir model için makul bir hızda yeterlidir. Ücretsiz Space'ler kullanılmadığında uykuya geçer ve uyanmaları biraz zaman alır.</li>
+<li><strong>Oracle Cloud'un Always Free</strong> katmanı, toplamda 4 çekirdeğe ve 24 GB RAM'e kadar Arm sanal makineler içerir; nicemlenmiş 7–8B bir modeli yavaş ama istikrarlı şekilde sunabilir. Kayıt için kart gerekir ve kapasite zaman zaman sınırlıdır.</li>
+</ul>
+<p>Ücretsiz katmanlar sık değişir; üzerine bir şey kurmadan önce güncel koşulları kontrol edin.</p>
+
+<h2>Seçenek 3: saatlik GPU kiralamak</h2>
+<p><strong>Maliyet: kullandıkça öde.</strong> RunPod, Vast.ai ve Lambda gibi servisler ekran kartlarını saatlik ya da saniyelik kiralar. Donanım satın almadan büyük modelleri hızlı sunmanın ya da bir modeli ince ayarlamanın yolu budur. Kiraladığınız makinede <code>vLLM</code> ya da <code>llama.cpp</code> kullanın ve <strong>işiniz bitince kapatın</strong>: unutulmuş bir GPU, klasik sürpriz faturadır.</p>
+
+<h2>Seçenek 4: açık modeller için yönetilen API'ler</h2>
+<p><strong>Maliyet: token başına, çoğu zaman ücretsiz bir kotayla.</strong> Modelin kendi donanımınızda olmasına gerek yoksa Groq, OpenRouter ve Hugging Face Inference gibi sağlayıcılar popüler açık modelleri aynı OpenAI tarzı API'nin arkasında sizin için barındırır. Biraz gizlilik ve kontrol kaybedersiniz, ama sıfır bakım ile hız kazanırsınız.</p>
+
+<h2>Neredeyse herkesin yaptığı güvenlik hatası</h2>
+<div class="note warn"><b>Bir model sunucusunu kimlik doğrulaması olmadan asla internete açmayın.</b>Araştırmacılar, internette herkesin kullanabildiği binlerce açık Ollama ve llama.cpp sunucusunu düzenli olarak buluyor. Bu, yabancıların elektriğinizi ya da bulut kredinizi harcaması, süren istekleri okuması ve bazı durumlarda aynı makinedeki diğer servislere ulaşması demektir.</div>
+<ul>
+<li>Sunucuyu <code>127.0.0.1</code> adresine bağlı tutun (Ollama'nın varsayılanı) ve ona bir tünel ya da VPN üzerinden ulaşın.</li>
+<li>Herkese açık olması gerekiyorsa bir API anahtarı zorunlu kılın (llama.cpp'de <code>--api-key</code>) <em>ve</em> HTTPS arkasına koyun.</li>
+<li>Sunucuyu yönetici ya da root kullanıcısı olarak çalıştırmayın.</li>
+<li>Modelleri yalnızca güvenilir yayıncılardan indirin. İçinde kod barındırabilen eski "pickle" biçimleri yerine GGUF ve safetensors dosyalarını tercih edin.</li>
+<li>Motoru güncel tutun; bu projeler sık sık güvenlik düzeltmesi yayımlar.</li>
+</ul>
+
+<h2>Hangisini seçmelisiniz?</h2>
+<table>
+<thead><tr><th>İstediğiniz…</th><th>Kullanın</th></tr></thead>
+<tbody>
+<tr><td>Telefonunuzda tamamen gizli, kendi modeliniz</td><td>Bilgisayarınız + Tailscale</td></tr>
+<tr><td>Küçük bir model için demo web sitesi</td><td>Hugging Face Spaces</td></tr>
+<tr><td>Hiç para ödemeden 7/24 küçük bir sunucu</td><td>Oracle Always Free + llama.cpp</td></tr>
+<tr><td>Birkaç saatliğine büyük ve hızlı bir model</td><td>Kiralık GPU + vLLM</td></tr>
+<tr><td>Bakımsız hız</td><td>Yönetilen bir API</td></tr>
+</tbody>
+</table>
+<p>Bunların hiçbirini kurmadan yerel ya da ücretsiz bulut modelleriyle sohbet etmek istiyorsanız <a href="../../synapse/">Synapse</a> bunu tek bir uygulamada yapıyor. Konuya yeniyseniz <a href="../local-vs-cloud-ai/">yerel ve bulut yapay zekâ rehberimizle</a> başlayın.</p>
+</section>

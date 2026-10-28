@@ -1,0 +1,73 @@
+<!--
+{"title": "ClickFix: when a web page asks you to paste a command",
+ "title_tr": "ClickFix: bir web sayfası sizden komut yapıştırmanızı istediğinde",
+ "summary": "A fake CAPTCHA tells you to press a few keys to prove you're human. Those keys run malware. Here's how the trick works on Windows and Mac, and the one rule that beats it.",
+ "summary_tr": "Sahte bir CAPTCHA, insan olduğunuzu kanıtlamak için birkaç tuşa basmanızı söylüyor. O tuşlar zararlı yazılım çalıştırıyor. Hilenin Windows ve Mac'te nasıl işlediğini ve onu yenen tek kuralı anlatıyoruz.",
+ "date": "2026-10-24", "cat": "security"}
+-->
+<section lang="en">
+<p>Imagine you open a website and see a familiar box: "Verify you are human." But instead of ticking a checkbox, it gives you instructions. Press <kbd>Win</kbd> + <kbd>R</kbd>. Press <kbd>Ctrl</kbd> + <kbd>V</kbd>. Press <kbd>Enter</kbd>. Done.</p>
+<p>It looks like a slightly odd security check. In reality you have just run a command that downloads and starts malware, with your own hands. Security researchers call this trick <strong>ClickFix</strong>, and it has become one of the most common ways stealers reach people's computers.</p>
+
+<h2>How the trick works</h2>
+<p>The key is that the page has <strong>already copied something to your clipboard</strong>. Any website can put text on your clipboard when you click a button. You never see what it copied.</p>
+<ol>
+<li>You click "I'm not a robot". The page quietly copies a long command to your clipboard.</li>
+<li>It tells you to open the Windows Run box (<kbd>Win</kbd> + <kbd>R</kbd>), or on a Mac, to open Terminal.</li>
+<li>You paste (<kbd>Ctrl</kbd> + <kbd>V</kbd> or <kbd>⌘</kbd> + <kbd>V</kbd>) and press Enter.</li>
+<li>The command downloads a script from the attacker's server and runs it. Because <em>you</em> ran it, many of the normal warnings never appear.</li>
+</ol>
+<p>The command is usually disguised. It may end with a comment like <code># I am not a robot - Verification ID 4821</code> so that the visible part of the Run box looks harmless, while the real command scrolls off to the left.</p>
+
+<h2>Common disguises</h2>
+<ul>
+<li><strong>Fake CAPTCHA</strong> or "Cloudflare verification" pages, often on hacked but otherwise normal websites.</li>
+<li><strong>Fake error messages</strong>: "Your browser can't display this document. Click Fix to repair it."</li>
+<li><strong>Fake video-call problems</strong>: "Your microphone isn't working. Run this to fix your audio driver."</li>
+<li><strong>Fake install guides for Mac</strong>: "To install this app, open Terminal and paste this command." Real apps almost never install this way for ordinary users.</li>
+</ul>
+
+<h2>Why it works so well</h2>
+<p>ClickFix gets around a lot of built-in protection. There is no suspicious file to download, so the browser shows no warning. On macOS, a command pasted into Terminal isn't checked by Gatekeeper the way a downloaded app is. And people are used to CAPTCHAs getting stranger, so one more strange step doesn't feel alarming.</p>
+<blockquote>No real website will ever ask you to verify yourself by pasting something into Run, PowerShell or Terminal.</blockquote>
+
+<h2>The one rule</h2>
+<p>If a web page, email or chat message asks you to <strong>copy a command and run it</strong>, close the page. That's it. CAPTCHAs are clicked in the browser. Real fixes come from the app's own settings or official support pages, and a support agent who asks you to paste commands should be treated with suspicion until proven otherwise.</p>
+<p>If you already pasted and pressed Enter, treat it as a stealer infection: from another device, change your important passwords, sign out of all sessions and scan the computer. Our <a href="../what-infostealers-want/">post on infostealers</a> has a step-by-step list.</p>
+
+<h2>What Agamemnon does about it</h2>
+<p>Agamemnon has a <strong>paste-command guard</strong>. When something on your clipboard looks like a download-and-run command (for example <code>curl … | bash</code> on a Mac, or an encoded PowerShell command on Windows), Agamemnon warns you before you run it, explaining in plain words what the command would do. If the command still gets through, real-time protection checks whatever it downloads the moment it starts.</p>
+</section>
+<section lang="tr">
+<p>Bir web sitesini açtığınızı ve tanıdık bir kutu gördüğünüzü düşünün: "İnsan olduğunuzu doğrulayın." Ama bir kutucuğu işaretlemek yerine size talimat veriyor. <kbd>Win</kbd> + <kbd>R</kbd>'ye basın. <kbd>Ctrl</kbd> + <kbd>V</kbd>'ye basın. <kbd>Enter</kbd>'a basın. Bitti.</p>
+<p>Biraz tuhaf bir güvenlik kontrolü gibi görünüyor. Oysa az önce kendi ellerinizle zararlı yazılım indirip başlatan bir komut çalıştırdınız. Güvenlik araştırmacıları bu hileye <strong>ClickFix</strong> diyor ve bu yöntem, veri hırsızlarının insanların bilgisayarlarına ulaşmasının en yaygın yollarından biri hâline geldi.</p>
+
+<h2>Hile nasıl işliyor?</h2>
+<p>İşin püf noktası, sayfanın panonuza <strong>önceden bir şey kopyalamış olmasıdır</strong>. Herhangi bir web sitesi, bir düğmeye tıkladığınızda panonuza metin koyabilir. Neyi kopyaladığını hiç görmezsiniz.</p>
+<ol>
+<li>"Ben robot değilim"e tıklarsınız. Sayfa sessizce panonuza uzun bir komut kopyalar.</li>
+<li>Sizden Windows Çalıştır kutusunu (<kbd>Win</kbd> + <kbd>R</kbd>) ya da Mac'te Terminal'i açmanızı ister.</li>
+<li>Yapıştırırsınız (<kbd>Ctrl</kbd> + <kbd>V</kbd> ya da <kbd>⌘</kbd> + <kbd>V</kbd>) ve Enter'a basarsınız.</li>
+<li>Komut, saldırganın sunucusundan bir betik indirip çalıştırır. Komutu <em>siz</em> çalıştırdığınız için normal uyarıların çoğu hiç görünmez.</li>
+</ol>
+<p>Komut genellikle gizlenir. Sonunda <code># I am not a robot - Verification ID 4821</code> gibi bir açıklama bulunabilir; böylece Çalıştır kutusunun görünen kısmı zararsız görünürken asıl komut sola kayarak gözden kaybolur.</p>
+
+<h2>Sık kullanılan kılıklar</h2>
+<ul>
+<li>Çoğu zaman hacklenmiş ama normal görünen sitelerde çıkan <strong>sahte CAPTCHA</strong> ya da "Cloudflare doğrulaması" sayfaları.</li>
+<li><strong>Sahte hata mesajları</strong>: "Tarayıcınız bu belgeyi gösteremiyor. Onarmak için Düzelt'e tıklayın."</li>
+<li><strong>Sahte görüntülü görüşme sorunları</strong>: "Mikrofonunuz çalışmıyor. Ses sürücünüzü düzeltmek için bunu çalıştırın."</li>
+<li><strong>Mac için sahte kurulum rehberleri</strong>: "Bu uygulamayı kurmak için Terminal'i açın ve bu komutu yapıştırın." Gerçek uygulamalar sıradan kullanıcılar için neredeyse hiçbir zaman bu şekilde kurulmaz.</li>
+</ul>
+
+<h2>Neden bu kadar işe yarıyor?</h2>
+<p>ClickFix, yerleşik korumaların birçoğunu atlatır. İndirilen şüpheli bir dosya olmadığı için tarayıcı uyarı göstermez. macOS'ta Terminal'e yapıştırılan bir komut, indirilmiş bir uygulama gibi Gatekeeper tarafından denetlenmez. Ayrıca insanlar CAPTCHA'ların giderek tuhaflaşmasına alıştığı için bir tuhaf adım daha endişe verici gelmez.</p>
+<blockquote>Hiçbir gerçek web sitesi, kimliğinizi Çalıştır'a, PowerShell'e ya da Terminal'e bir şey yapıştırarak doğrulamanızı istemez.</blockquote>
+
+<h2>Tek kural</h2>
+<p>Bir web sayfası, e-posta ya da sohbet mesajı sizden <strong>bir komutu kopyalayıp çalıştırmanızı</strong> istiyorsa sayfayı kapatın. Bu kadar. CAPTCHA'lar tarayıcının içinde tıklanır. Gerçek çözümler uygulamanın kendi ayarlarından ya da resmî destek sayfalarından gelir; sizden komut yapıştırmanızı isteyen bir destek görevlisine de aksi kanıtlanana kadar şüpheyle yaklaşın.</p>
+<p>Zaten yapıştırıp Enter'a bastıysanız bunu bir veri hırsızı bulaşması olarak ele alın: başka bir cihazdan önemli parolalarınızı değiştirin, tüm oturumlardan çıkış yapın ve bilgisayarı tarayın. <a href="../what-infostealers-want/">Veri hırsızları yazımızda</a> adım adım bir liste var.</p>
+
+<h2>Agamemnon bu konuda ne yapıyor?</h2>
+<p>Agamemnon'un bir <strong>komut yapıştırma koruması</strong> var. Panonuzdaki bir şey indir-ve-çalıştır komutuna benzediğinde (örneğin Mac'te <code>curl … | bash</code> ya da Windows'ta kodlanmış bir PowerShell komutu), Agamemnon siz çalıştırmadan önce sizi uyarır ve komutun ne yapacağını sade bir dille açıklar. Komut yine de geçerse gerçek zamanlı koruma, indirdiği her şeyi başladığı anda denetler.</p>
+</section>

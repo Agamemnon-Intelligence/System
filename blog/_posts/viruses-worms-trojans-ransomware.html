@@ -1,0 +1,99 @@
+<!--
+{"title": "Viruses, worms, trojans and ransomware: a plain-language guide",
+ "title_tr": "Virüs, solucan, truva atı ve fidye yazılımı: sade bir rehber",
+ "summary": "\"Virus\" has become the word for every kind of malware, but the differences matter: they decide how something spreads and how you protect yourself. A short field guide.",
+ "summary_tr": "\"Virüs\" kelimesi her tür zararlı yazılımın adı oldu, ama aradaki farklar önemli: bir şeyin nasıl yayıldığını ve kendinizi nasıl koruyacağınızı belirliyorlar. Kısa bir saha rehberi.",
+ "date": "2026-10-20", "cat": "security"}
+-->
+<section lang="en">
+<p>People say "virus" for everything bad that can happen to a computer, and that's fine in everyday speech. But security people use more precise words, and knowing them helps you understand news stories, warnings from your antivirus and, most importantly, how to protect yourself. The umbrella term is <strong>malware</strong>: any software made to harm you or act against your interests.</p>
+<p>Malware types are mostly defined by two questions: <em>how does it spread?</em> and <em>what does it do once it's in?</em></p>
+
+<h2>Viruses</h2>
+<p>A true virus attaches itself to other files or programs and spreads when those files are run or shared, a bit like a biological virus needing a host cell. Classic viruses infected programs, boot sectors or Office documents with macros.</p>
+<p>Pure viruses are rarer today than they were in the 1990s and 2000s, because operating systems now check that programs haven't been modified (code signing) and Office blocks macros from the internet by default. The word survived; the technique mostly didn't.</p>
+
+<h2>Worms</h2>
+<p>A worm spreads <strong>on its own</strong>, without anyone opening a file. It scans networks for computers with a specific weakness, breaks in and copies itself onward. Because no human is needed, worms can spread extremely fast. WannaCry in 2017 reached hundreds of thousands of computers in about a day by abusing a Windows flaw that had already been patched, just not installed.</p>
+<div class="note"><b>Lesson from worms</b>Install system updates. Most worm outbreaks hit machines that had a fix available and simply hadn't applied it.</div>
+
+<h2>Trojans</h2>
+<p>A trojan pretends to be something you want: a game, a cracked app, a PDF reader, a "verification" tool. You install it yourself, and it does something else in the background. Most malware today arrives as a trojan, because tricking a person is easier than breaking into a modern operating system.</p>
+<p>"Trojan" describes how it gets in. What it does next can be anything from the list below.</p>
+
+<h2>What malware does once it's in</h2>
+<table>
+<thead><tr><th>Type</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><strong>Infostealer</strong></td><td>Copies passwords, cookies, wallets and files, sends them out and often deletes itself. Currently the most common type. See <a href="../what-infostealers-want/">our post on stealers</a>.</td></tr>
+<tr><td><strong>Ransomware</strong></td><td>Encrypts your files and demands payment for the key. Modern gangs also steal data first and threaten to publish it.</td></tr>
+<tr><td><strong>Backdoor / RAT</strong></td><td>Gives an attacker remote control: they can see your screen, run commands and install more malware.</td></tr>
+<tr><td><strong>Spyware</strong></td><td>Watches you over time: keystrokes, screenshots, location, messages.</td></tr>
+<tr><td><strong>Adware</strong></td><td>Injects ads, changes your search engine, redirects your browser. Annoying more than dangerous, but often a sign something else got in too.</td></tr>
+<tr><td><strong>Cryptominer</strong></td><td>Uses your processor or graphics card to mine cryptocurrency for someone else. You notice fans, heat and a slow computer.</td></tr>
+<tr><td><strong>Botnet client</strong></td><td>Turns your computer into one soldier in a network used for spam or attacks on websites.</td></tr>
+</tbody>
+</table>
+
+<h2>A closer look at ransomware</h2>
+<p>Ransomware deserves its own section because it's the most destructive. Against home users it is less common than it used to be, since gangs now prefer companies, hospitals and schools that can pay large sums. The best protection is boring: <strong>backups that the infected computer can't reach</strong>. An external drive you unplug after backing up, or a cloud backup with version history, turns a ransomware attack from a disaster into an inconvenience.</p>
+
+<h2>Can Macs get malware?</h2>
+<p>Yes. macOS has strong built-in defences (Gatekeeper, XProtect, code signing and app sandboxing), but none of them help much when a person is persuaded to run something and type their password. Mac malware today is mostly stealers and adware, and it's growing because Mac users tend to have valuable accounts and wallets.</p>
+
+<h2>What actually protects you</h2>
+<ul>
+<li>Keep your operating system, browser and apps updated.</li>
+<li>Get software only from the developer's real site or an official app store. Skip cracks.</li>
+<li>Never run commands a web page or stranger gives you.</li>
+<li>Use a password manager and 2FA, ideally passkeys.</li>
+<li>Keep an offline or versioned backup.</li>
+<li>Run real-time protection, such as <a href="../../agamemnon.html">Agamemnon</a>, which is free and open source.</li>
+</ul>
+</section>
+<section lang="tr">
+<p>İnsanlar bir bilgisayarın başına gelebilecek her kötü şeye "virüs" der; gündelik konuşmada bunda sorun yok. Ama güvenlikle uğraşanlar daha kesin kelimeler kullanır ve bunları bilmek; haberleri, antivirüsünüzün uyarılarını ve en önemlisi kendinizi nasıl koruyacağınızı anlamanıza yardımcı olur. Hepsini kapsayan genel terim <strong>zararlı yazılımdır</strong> (malware): size zarar vermek ya da çıkarlarınıza karşı çalışmak için yapılmış her yazılım.</p>
+<p>Zararlı yazılım türleri çoğunlukla iki soruyla tanımlanır: <em>nasıl yayılıyor?</em> ve <em>içeri girdikten sonra ne yapıyor?</em></p>
+
+<h2>Virüsler</h2>
+<p>Gerçek bir virüs kendini başka dosyalara ya da programlara ekler ve bu dosyalar çalıştırıldığında ya da paylaşıldığında yayılır; tıpkı biyolojik bir virüsün konak hücreye ihtiyaç duyması gibi. Klasik virüsler programlara, önyükleme bölgelerine ya da makrolu Office belgelerine bulaşırdı.</p>
+<p>Saf virüsler bugün 1990'lar ve 2000'lerdekinden daha nadirdir; çünkü işletim sistemleri artık programların değiştirilmediğini denetliyor (kod imzalama) ve Office, internetten gelen makroları varsayılan olarak engelliyor. Kelime yaşamaya devam etti, teknik ise büyük ölçüde etmedi.</p>
+
+<h2>Solucanlar</h2>
+<p>Bir solucan, kimse bir dosya açmadan <strong>kendi kendine</strong> yayılır. Ağları belirli bir zayıflığa sahip bilgisayarlar için tarar, içeri girer ve kendini bir sonrakine kopyalar. İnsan gerekmediği için solucanlar son derece hızlı yayılabilir. 2017'deki WannaCry, yaması çoktan yayımlanmış ama kurulmamış bir Windows açığını kullanarak yaklaşık bir günde yüz binlerce bilgisayara ulaştı.</p>
+<div class="note"><b>Solucanlardan çıkan ders</b>Sistem güncellemelerini kurun. Solucan salgınlarının çoğu, düzeltmesi hazır olduğu hâlde onu uygulamamış makineleri vurur.</div>
+
+<h2>Truva atları</h2>
+<p>Bir truva atı (trojan) istediğiniz bir şeymiş gibi davranır: bir oyun, kırık bir uygulama, bir PDF okuyucu, bir "doğrulama" aracı. Onu kendiniz kurarsınız ve arka planda başka bir şey yapar. Bugün zararlı yazılımların çoğu truva atı olarak gelir, çünkü bir insanı kandırmak modern bir işletim sistemine sızmaktan daha kolaydır.</p>
+<p>"Truva atı" içeri nasıl girdiğini anlatır. Sonrasında ne yaptığı aşağıdaki listeden herhangi bir şey olabilir.</p>
+
+<h2>Zararlı yazılım içeri girdikten sonra ne yapar?</h2>
+<table>
+<thead><tr><th>Tür</th><th>Ne yapar?</th></tr></thead>
+<tbody>
+<tr><td><strong>Veri hırsızı</strong></td><td>Parolaları, çerezleri, cüzdanları ve dosyaları kopyalar, dışarı gönderir ve çoğu zaman kendini siler. Şu anda en yaygın tür. <a href="../what-infostealers-want/">Veri hırsızları yazımıza</a> bakın.</td></tr>
+<tr><td><strong>Fidye yazılımı</strong></td><td>Dosyalarınızı şifreler ve anahtar için ödeme ister. Günümüzdeki çeteler önce verileri de çalar ve yayımlamakla tehdit eder.</td></tr>
+<tr><td><strong>Arka kapı / RAT</strong></td><td>Saldırgana uzaktan kontrol verir: ekranınızı görebilir, komut çalıştırabilir ve başka zararlı yazılımlar kurabilir.</td></tr>
+<tr><td><strong>Casus yazılım</strong></td><td>Sizi zaman içinde izler: tuş vuruşları, ekran görüntüleri, konum, mesajlar.</td></tr>
+<tr><td><strong>Reklam yazılımı</strong></td><td>Reklam ekler, arama motorunuzu değiştirir, tarayıcınızı yönlendirir. Tehlikeli olmaktan çok can sıkıcıdır ama çoğu zaman başka bir şeyin de içeri girdiğinin işaretidir.</td></tr>
+<tr><td><strong>Kripto madencisi</strong></td><td>İşlemcinizi ya da ekran kartınızı başkası için kripto para kazmakta kullanır. Fanlardan, ısıdan ve yavaşlayan bilgisayardan fark edersiniz.</td></tr>
+<tr><td><strong>Botnet istemcisi</strong></td><td>Bilgisayarınızı spam ya da web sitelerine saldırı için kullanılan bir ağın askerlerinden birine dönüştürür.</td></tr>
+</tbody>
+</table>
+
+<h2>Fidye yazılımına daha yakından bakış</h2>
+<p>Fidye yazılımı en yıkıcı tür olduğu için ayrı bir bölümü hak ediyor. Ev kullanıcılarına karşı eskisi kadar yaygın değil; çünkü çeteler artık büyük paralar ödeyebilecek şirketleri, hastaneleri ve okulları tercih ediyor. En iyi koruma sıkıcıdır: <strong>bulaşmış bilgisayarın ulaşamayacağı yedekler</strong>. Yedekledikten sonra çıkardığınız harici bir disk ya da sürüm geçmişi tutan bir bulut yedeği, bir fidye saldırısını felaketten basit bir zahmete dönüştürür.</p>
+
+<h2>Mac'lere zararlı yazılım bulaşır mı?</h2>
+<p>Evet. macOS'un güçlü yerleşik savunmaları vardır (Gatekeeper, XProtect, kod imzalama ve uygulama korumalı alanı), ama bir kişi bir şeyi çalıştırıp parolasını yazmaya ikna edildiğinde bunların hiçbiri pek işe yaramaz. Bugün Mac zararlı yazılımları çoğunlukla veri hırsızları ve reklam yazılımlarıdır ve Mac kullanıcılarının değerli hesapları ve cüzdanları olduğu için sayıları artıyor.</p>
+
+<h2>Sizi gerçekten ne korur?</h2>
+<ul>
+<li>İşletim sisteminizi, tarayıcınızı ve uygulamalarınızı güncel tutun.</li>
+<li>Yazılımı yalnızca geliştiricinin gerçek sitesinden ya da resmî bir uygulama mağazasından edinin. Kırık yazılımlardan uzak durun.</li>
+<li>Bir web sayfasının ya da tanımadığınız birinin verdiği komutları asla çalıştırmayın.</li>
+<li>Bir parola yöneticisi ve iki adımlı doğrulama kullanın, mümkünse geçiş anahtarları.</li>
+<li>Çevrimdışı ya da sürüm geçmişli bir yedek tutun.</li>
+<li>Ücretsiz ve açık kaynaklı <a href="../../agamemnon.html">Agamemnon</a> gibi gerçek zamanlı bir koruma kullanın.</li>
+</ul>
+</section>

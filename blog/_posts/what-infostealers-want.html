@@ -1,0 +1,91 @@
+<!--
+{"title": "Infostealers: the malware that wants your logins, not your files",
+ "title_tr": "Veri hırsızları: dosyalarınızı değil, oturumlarınızı isteyen zararlı yazılım",
+ "summary": "The most common malware today doesn't lock or wreck your computer. It quietly copies your passwords, cookies and wallets, then disappears. Here's how it works and how to stop it.",
+ "summary_tr": "Bugün en yaygın zararlı yazılım bilgisayarınızı kilitlemiyor ya da bozmuyor. Parolalarınızı, çerezlerinizi ve cüzdanlarınızı sessizce kopyalayıp ortadan kayboluyor. Nasıl çalıştığını ve nasıl durdurulacağını anlatıyoruz.",
+ "date": "2026-10-27", "cat": "security"}
+-->
+<section lang="en">
+<p>When most people picture a computer virus, they imagine something loud: a frozen screen, a ransom note, files that won't open. The malware we see most often in our research does the opposite. It runs for a few seconds, copies everything valuable it can reach, sends it to a server and exits. Often the victim never notices anything at all.</p>
+<p>This kind of malware is called an <strong>infostealer</strong>, or just a stealer. Families like Lumma, RedLine and Vidar on Windows, and Atomic (AMOS) and its many offshoots on macOS, are rented out as subscriptions to people who need no technical skill to use them.</p>
+
+<h2>What a stealer goes after</h2>
+<p>A stealer is built to grab anything that can be turned into money or access, as quickly as possible:</p>
+<ul>
+<li><strong>Saved browser passwords</strong> from Chrome, Edge, Brave, Firefox and others.</li>
+<li><strong>Session cookies</strong>, the small tokens that keep you logged in to email, social media, Discord, Steam and work tools.</li>
+<li><strong>Crypto wallets</strong>, both desktop apps and browser extensions such as MetaMask.</li>
+<li><strong>Messaging sessions</strong> like Telegram, plus files on the Desktop and in Documents that look interesting (anything named "password", "wallet", "seed" or "backup").</li>
+<li>On macOS, the <strong>login Keychain</strong>, often unlocked by tricking you into typing your Mac password into a fake system dialog.</li>
+</ul>
+
+<h2>Why cookies matter more than passwords</h2>
+<p>Two-factor authentication protects the moment you log in. A session cookie is what a website hands you <em>after</em> that moment. If someone copies the cookie into their own browser, the site often treats them as you, already logged in, with no password and no code needed.</p>
+<p>That's why a stealer infection is so damaging even for careful people with strong passwords and 2FA. It's also why stolen accounts get taken over within hours: the stolen data is sold or shared in bulk, and buyers sort it for the most valuable sessions.</p>
+
+<h2>How people get infected</h2>
+<p>Stealers rarely exploit software bugs. They rely on people running them. The most common routes we see:</p>
+<ul>
+<li><strong>Cracked software and game cheats.</strong> A "free" copy of a paid app or a cheat for a popular game is the classic lure.</li>
+<li><strong>Fake updates and fake installers</strong> promoted through search ads that look like the real download page.</li>
+<li><strong>Paste-a-command tricks</strong>, where a web page asks you to copy something into Terminal or the Windows Run box. We cover this in <a href="../clickfix-paste-attacks/">our post on ClickFix</a>.</li>
+<li><strong>Direct messages</strong> on Discord, Telegram or LinkedIn offering a "game to test", a job task or a document to review.</li>
+</ul>
+<div class="note warn"><b>A Mac warning sign</b>If an app you just opened asks for your Mac password in a plain-looking window, and it isn't an installer you started yourself, stop. Real macOS prompts come from System Settings or the installer, not from a random app on its first launch.</div>
+
+<h2>What to do if you think you ran one</h2>
+<p>Speed matters, because the data usually leaves your computer within seconds.</p>
+<ol>
+<li><strong>From a different, clean device</strong>, change the password of your main email first, then banking, then everything else.</li>
+<li><strong>Log out of all sessions.</strong> Most big services (Google, Microsoft, Apple, Discord, Steam) have a "sign out everywhere" option. This kills the stolen cookies.</li>
+<li><strong>Move crypto</strong> to a brand-new wallet with a new recovery phrase created on a clean device. Assume the old one is burned.</li>
+<li><strong>Scan and clean the computer</strong>, and check for anything set to start at login.</li>
+<li>Turn on 2FA everywhere it isn't already on, preferably with an authenticator app or a passkey rather than SMS.</li>
+</ol>
+
+<h2>How Agamemnon stops stealers</h2>
+<p>Because stealers finish so quickly, a scan after the fact is too late. Agamemnon watches which programs open the files where browsers, wallets and the Keychain keep their secrets. When an unknown or unsigned program starts reading those files, Agamemnon stops it, usually within about a second, before it has time to send anything out. It also checks every new program against tens of millions of known malware fingerprints the moment it starts.</p>
+<p>No tool catches everything, so the habits above still matter most: get software from its real source, never paste commands a web page gives you, and treat "free" paid software as the trap it usually is.</p>
+</section>
+<section lang="tr">
+<p>Çoğu kişi bilgisayar virüsü denince gürültülü bir şey hayal eder: donan ekran, fidye notu, açılmayan dosyalar. Araştırmalarımızda en sık gördüğümüz zararlı yazılım bunun tam tersini yapıyor. Birkaç saniye çalışıyor, ulaşabildiği değerli her şeyi kopyalıyor, bir sunucuya gönderiyor ve kapanıyor. Çoğu zaman kurban hiçbir şey fark etmiyor.</p>
+<p>Bu tür zararlı yazılıma <strong>veri hırsızı</strong> (infostealer ya da kısaca stealer) deniyor. Windows'ta Lumma, RedLine ve Vidar, macOS'ta ise Atomic (AMOS) ve sayısız türevi, hiçbir teknik bilgiye ihtiyaç duymayan kişilere abonelikle kiralanıyor.</p>
+
+<h2>Bir veri hırsızı neyin peşindedir?</h2>
+<p>Bir stealer, paraya ya da erişime dönüştürülebilecek her şeyi olabildiğince hızlı toplamak için tasarlanır:</p>
+<ul>
+<li>Chrome, Edge, Brave, Firefox gibi tarayıcılarda <strong>kayıtlı parolalar</strong>.</li>
+<li>E-posta, sosyal medya, Discord, Steam ve iş araçlarında oturumunuzu açık tutan küçük anahtarlar, yani <strong>oturum çerezleri</strong>.</li>
+<li>Masaüstü uygulamaları ve MetaMask gibi tarayıcı eklentileri dahil <strong>kripto cüzdanlar</strong>.</li>
+<li>Telegram gibi <strong>mesajlaşma oturumları</strong> ve Masaüstü ile Belgeler klasöründe ilginç görünen dosyalar (adında "şifre", "wallet", "seed" ya da "yedek" geçen her şey).</li>
+<li>macOS'ta, çoğu zaman sizi sahte bir sistem penceresine Mac parolanızı yazdırarak açılan <strong>giriş Anahtar Zinciri</strong>.</li>
+</ul>
+
+<h2>Çerezler neden parolalardan daha önemli?</h2>
+<p>İki adımlı doğrulama, giriş yaptığınız anı korur. Oturum çerezi ise bir sitenin size o andan <em>sonra</em> verdiği şeydir. Biri bu çerezi kendi tarayıcısına kopyalarsa site onu çoğu zaman siz olarak görür: oturumu zaten açıktır, ne parola ne de kod gerekir.</p>
+<p>Bu yüzden güçlü parola ve iki adımlı doğrulama kullanan dikkatli kişiler için bile bir stealer bulaşması bu kadar yıkıcıdır. Çalınan hesapların saatler içinde ele geçirilmesinin nedeni de budur: çalınan veriler toplu olarak satılır ya da paylaşılır, alıcılar en değerli oturumları ayıklar.</p>
+
+<h2>İnsanlara nasıl bulaşıyor?</h2>
+<p>Veri hırsızları nadiren yazılım açıklarını kullanır. Asıl dayanakları, insanların onları kendi elleriyle çalıştırmasıdır. En sık gördüğümüz yollar:</p>
+<ul>
+<li><strong>Kırık (crack) yazılımlar ve oyun hileleri.</strong> Ücretli bir uygulamanın "bedava" kopyası ya da popüler bir oyun için hile, klasik bir yemdir.</li>
+<li>Arama reklamlarıyla öne çıkarılan, gerçek indirme sayfasına benzeyen <strong>sahte güncellemeler ve sahte yükleyiciler</strong>.</li>
+<li>Bir web sayfasının sizden Terminal'e ya da Windows Çalıştır kutusuna bir şey yapıştırmanızı istediği <strong>komut yapıştırma tuzakları</strong>. Bunu <a href="../clickfix-paste-attacks/">ClickFix yazımızda</a> anlatıyoruz.</li>
+<li>Discord, Telegram ya da LinkedIn'de "test etmeniz için bir oyun", bir iş görevi ya da incelemeniz gereken bir belge sunan <strong>özel mesajlar</strong>.</li>
+</ul>
+<div class="note warn"><b>Mac için bir uyarı işareti</b>Yeni açtığınız bir uygulama sade görünen bir pencerede Mac parolanızı istiyorsa ve bu sizin başlattığınız bir yükleyici değilse durun. Gerçek macOS istekleri Sistem Ayarları'ndan ya da yükleyiciden gelir, rastgele bir uygulamanın ilk açılışından değil.</div>
+
+<h2>Birini çalıştırdığınızı düşünüyorsanız ne yapmalısınız?</h2>
+<p>Hız önemlidir, çünkü veriler genellikle saniyeler içinde bilgisayarınızdan çıkar.</p>
+<ol>
+<li><strong>Farklı ve temiz bir cihazdan</strong> önce ana e-posta parolanızı, sonra bankanızı, sonra geri kalan her şeyi değiştirin.</li>
+<li><strong>Tüm oturumlardan çıkış yapın.</strong> Büyük servislerin çoğunda (Google, Microsoft, Apple, Discord, Steam) "her yerden çıkış yap" seçeneği vardır. Bu, çalınan çerezleri geçersiz kılar.</li>
+<li><strong>Kripto varlıklarınızı</strong> temiz bir cihazda oluşturulmuş, yeni kurtarma kelimelerine sahip yepyeni bir cüzdana taşıyın. Eskisini yanmış sayın.</li>
+<li>Bilgisayarı <strong>tarayıp temizleyin</strong> ve oturum açılışında başlayacak şekilde ayarlanmış bir şey olup olmadığına bakın.</li>
+<li>Henüz açık olmayan her yerde iki adımlı doğrulamayı açın; mümkünse SMS yerine bir doğrulama uygulaması ya da geçiş anahtarı (passkey) kullanın.</li>
+</ol>
+
+<h2>Agamemnon veri hırsızlarını nasıl durdurur?</h2>
+<p>Veri hırsızları işini çok çabuk bitirdiği için sonradan yapılan bir tarama geç kalır. Agamemnon, tarayıcıların, cüzdanların ve Anahtar Zinciri'nin sırlarını tuttuğu dosyaları hangi programların açtığını izler. Bilinmeyen ya da imzasız bir program bu dosyaları okumaya başladığında Agamemnon onu, genellikle yaklaşık bir saniye içinde, dışarıya bir şey gönderemeden durdurur. Ayrıca her yeni programı başladığı anda on milyonlarca bilinen zararlı yazılım parmak iziyle karşılaştırır.</p>
+<p>Hiçbir araç her şeyi yakalayamaz; bu yüzden yukarıdaki alışkanlıklar hâlâ en önemlisidir: yazılımı gerçek kaynağından edinin, bir web sayfasının verdiği komutları asla yapıştırmayın ve "bedava" ücretli yazılımı genellikle olduğu gibi bir tuzak olarak görün.</p>
+</section>
