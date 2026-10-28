@@ -11,8 +11,8 @@ Each source file starts with a JSON header in an HTML comment, followed by
     <section lang="en"> ... </section>
     <section lang="tr"> ... </section>
 
-Writes blog/<slug>/index.html, blog/index.html, blog/feed.xml, sitemap.xml and
-the "Latest from the blog" block in index.html. Run: python3 tools/build_blog.py
+Writes blog/<slug>/index.html, blog/index.html, blog/feed.xml and sitemap.xml.
+Run: python3 tools/build_blog.py
 """
 import datetime as dt
 import hashlib
@@ -394,37 +394,6 @@ def build_sitemap(posts):
         encoding="utf-8")
 
 
-def build_home_block(posts):
-    """Replace the block between the blog:latest markers in index.html."""
-    home = ROOT / "index.html"
-    text = home.read_text(encoding="utf-8")
-    cards = []
-    for p in posts[:3]:
-        en, tr = CATS[p["cat"]]
-        cards.append(f"""        <a class="post reveal" href="blog/{p["slug"]}/">
-          <div class="post-cover">{cover(p["slug"], p["cat"])}</div>
-          <span class="post-tag" data-cat="{p["cat"]}"><span data-l="en">{en}</span><span data-l="tr">{tr}</span></span>
-          <h3><span data-l="en">{esc(p["title"])}</span><span data-l="tr">{esc(p["title_tr"])}</span></h3>
-          <p><span data-l="en">{esc(p["summary"])}</span><span data-l="tr">{esc(p["summary_tr"])}</span></p>
-          <time datetime="{p["date"].isoformat()}"><span data-l="en">{fmt_date(p["date"], "en")}</span><span data-l="tr">{fmt_date(p["date"], "tr")}</span></time>
-        </a>""")
-    p = posts[0]
-    tile = f"""<a class="tile blog-tile reveal" href="blog/{p["slug"]}/">
-          <span class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h11l5 5v9H4zM15 5v5h5M8 13h8M8 16h5"/></svg></span>
-          <div><em><span data-l="en">New on the blog</span><span data-l="tr">Blogda yeni</span></em><b><span data-l="en">{esc(p["title"])}</span><span data-l="tr">{esc(p["title_tr"])}</span></b></div>
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-        </a>"""
-    blocks = {
-        "latest": "\n".join(cards),
-        "hero": tile,
-    }
-    for name, inner in blocks.items():
-        block = f"<!-- blog:{name}:start -->\n{inner}\n        <!-- blog:{name}:end -->"
-        text, n = re.subn(rf"<!-- blog:{name}:start -->.*?<!-- blog:{name}:end -->", lambda _: block, text, flags=re.S)
-        if n != 1:
-            raise SystemExit(f"index.html: blog:{name} markers not found")
-    home.write_text(text, encoding="utf-8")
-
 
 def main():
     posts = load_posts()
@@ -433,7 +402,6 @@ def main():
     build_index(posts)
     build_feed(posts)
     build_sitemap(posts)
-    build_home_block(posts)
     print(f"Built {len(posts)} posts.")
 
 
