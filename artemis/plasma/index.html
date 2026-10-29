@@ -203,7 +203,7 @@ canvas { width: 100%; height: 220px; display: block; border-radius: 12px; backgr
 
       <div class="card how">
         <h2 data-i18n="how.title">Using the model on the site</h2>
-        <p data-i18n="how.p1">Put the downloaded file at <code>artemis/artemis-2.0-pro.bin</code> in the site repository and publish it. Artemis AI then shows Plasma Pro in its model list.</p>
+        <p data-i18n="how.p1">The downloaded <code>artemis-2.0-pro.bin</code> is the 54M from-scratch model; try it on this page. The Plasma Pro on Artemis AI is a separate, Qwen-based model and does not use this file.</p>
         <p data-i18n="how.p2">Have an NVIDIA GPU and Python? The same model trains several times faster with PyTorch:</p>
 <pre>pip install torch numpy tokenizers pyarrow huggingface_hub
 python artemis/plasma/train.py --minutes 20</pre>
@@ -238,7 +238,7 @@ var TR = {
   'st.loss': 'Kayıp', 'st.tokens': 'Görülen token', 'st.speed': 'Token / sn', 'st.left': 'Kalan süre',
   'b.dl': 'artemis-2.0-pro.bin\'i indir', 'b.try': 'Burada dene', 'b.ask': 'Sor',
   'how.title': 'Modeli sitede kullanmak',
-  'how.p1': 'İndirilen dosyayı site deposunda <code>artemis/artemis-2.0-pro.bin</code> konumuna koyup yayımlayın. Artemis AI model listesinde Plasma Pro\'yu gösterir.',
+  'how.p1': 'İndirilen <code>artemis-2.0-pro.bin</code>, sıfırdan eğitilen 54M\'lik modeldir; bu sayfada deneyebilirsiniz. Artemis AI\'daki Plasma Pro ise Qwen tabanlı ayrı bir modeldir ve bu dosyayı kullanmaz.',
   'how.p2': 'NVIDIA GPU\'nuz ve Python\'unuz var mı? Aynı model PyTorch ile birkaç kat daha hızlı eğitilir:',
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.'
 };

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Artemis AI · Athene Softworks</title>
-<meta name="description" content="Artemis is the Athene Softworks general knowledge assistant. Artemis 2.0 Plasma, 1.1 and 1.0 run entirely in your browser.">
+<meta name="description" content="Artemis is the Athene Softworks general knowledge assistant. Artemis Plasma Pro, 2.0 Plasma, 1.1 and 1.0 run entirely in your browser.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Athene Softworks">
@@ -150,7 +150,7 @@
   <section class="chat-sec" id="chat">
     <div class="wrap">
       <div class="models" role="group" aria-label="Model">
-        <button class="model" type="button" data-model="pro" aria-pressed="false" disabled><span class="dot"></span>Plasma Pro <span class="soon" data-i18n="soon">Coming soon</span></button>
+        <button class="model" type="button" data-model="pro" aria-pressed="false"><span class="dot"></span>Plasma Pro <span class="soon">~500 MB</span></button>
         <button class="model" type="button" data-model="2.0" aria-pressed="false" disabled><span class="dot"></span>Plasma 2.0</button>
         <button class="model" type="button" data-model="1.1" aria-pressed="true"><span class="dot"></span>Artemis 1.1</button>
         <button class="model" type="button" data-model="1.0" aria-pressed="false"><span class="dot"></span>Artemis 1.0</button>
@@ -175,7 +175,7 @@
           <button type="submit" id="send" disabled data-i18n="send">Send</button>
         </form>
       </div>
-      <p class="chat-note" data-i18n="ai.note">Artemis 2.0 Plasma is Artemis 1.0 and 1.1 merged into one 23.5M parameter model and trained further on Turkish and English conversations. Artemis 1.1 loads Artemis 1.0 (20M parameters) and adds its own 4.6M trained parameters on top. All three are small models that often make mistakes, so don't rely on their answers. Plasma Pro is coming soon.</p>
+      <p class="chat-note" data-i18n="ai.note">Artemis 2.0 Plasma is Artemis 1.0 and 1.1 merged into one 23.5M parameter model and trained further on Turkish and English conversations. Artemis 1.1 loads Artemis 1.0 (20M parameters) and adds its own 4.6M trained parameters on top. All three are small models that often make mistakes, so don't rely on their answers. Plasma Pro is built on Qwen3.5-0.8B, an open model from the Qwen team (Apache 2.0), with Artemis's identity added. It is a one-time download of about 500 MB and needs a browser with WebGPU. It is much stronger than the others but can still be wrong, especially in Turkish.</p>
     </div>
   </section>
 
@@ -231,31 +231,31 @@
   <section class="section" id="pro">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow"><span class="soon-tag" data-i18n="soon">Coming soon</span> Artemis Plasma Pro</p>
-        <h2 data-i18n="pl.title">A new Artemis, built from scratch.</h2>
-        <p data-i18n="pl.sub">Plasma Pro is not an update on top of 1.x or Plasma 2.0. It's a new, larger model trained from scratch with its own Turkish and English vocabulary, and it still runs entirely in your browser.</p>
+        <p class="eyebrow"><span class="soon-tag" data-i18n="new">New</span> Artemis Plasma Pro</p>
+        <h2 data-i18n="pl.title">Artemis, with a much bigger brain.</h2>
+        <p data-i18n="pl.sub">Plasma Pro is built on Qwen3.5-0.8B, an open model from the Qwen team. We gave it Artemis's identity and its Turkish and English rules, and it still runs entirely in your browser. <a href="#chat">Try it above</a>.</p>
       </div>
       <ul class="stats reveal">
-        <li><b>54M</b><span data-i18n="pl.s1">parameters, 2.3× Plasma 2.0</span></li>
-        <li><b>512</b><span data-i18n="pl.s2">tokens of context, twice as much as Plasma 2.0</span></li>
-        <li><b>16K</b><span data-i18n="pl.s3">token vocabulary built for Turkish and English</span></li>
+        <li><b>0.8B</b><span data-i18n="pl.s1">parameters, about 34× Plasma 2.0</span></li>
+        <li><b>GPU</b><span data-i18n="pl.s2">accelerated on your graphics card through WebGPU</span></li>
+        <li><b>~500 MB</b><span data-i18n="pl.s3">one-time download, kept by your browser</span></li>
         <li><b>0</b><span data-i18n="pl.s4">servers. Every answer is computed on your device</span></li>
       </ul>
       <ul class="cards">
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></svg></span>
-          <b data-i18n="pl.1t">A modern architecture</b>
-          <span data-i18n="pl.1p">Rotary positions, normalised attention and a faster feed-forward layer, the same ideas used in today's large models, shrunk to fit a browser tab.</span>
+          <b data-i18n="pl.1t">Built on Qwen</b>
+          <span data-i18n="pl.1p">Plasma Pro starts from Qwen3.5-0.8B, an open-weight model (Apache 2.0) trained on far more text than any earlier Artemis. That gives it much broader knowledge and far more fluent answers.</span>
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h10M4 19h7"/><path d="m15 16 3 3 4-5"/></svg></span>
-          <b data-i18n="pl.2t">Turkish first</b>
-          <span data-i18n="pl.2p">A new vocabulary splits Turkish words into fewer, more meaningful pieces, so Plasma Pro reads and writes Turkish more naturally than 1.x and Plasma 2.0.</span>
+          <b data-i18n="pl.2t">Artemis inside</b>
+          <span data-i18n="pl.2p">On top of Qwen we added Artemis's identity and rules: it introduces itself as Artemis by Athene Softworks, answers in the language you write in, and says so when it doesn't know.</span>
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span>
           <b data-i18n="pl.3t">Remembers the conversation</b>
-          <span data-i18n="pl.3p">Plasma Pro keeps what it has already read in memory, so a follow-up question starts answering right away instead of re-reading the whole chat.</span>
+          <span data-i18n="pl.3p">Plasma Pro reads the recent turns of the chat with every question, so you can ask follow-ups without repeating yourself.</span>
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
@@ -264,13 +264,13 @@
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg></span>
-          <b data-i18n="pl.5t">One file</b>
-          <span data-i18n="pl.5p">The whole model is a single file of about 55 MB. It downloads once, and your browser keeps it for next time.</span>
+          <b data-i18n="pl.5t">Fast on your GPU</b>
+          <span data-i18n="pl.5p">Plasma Pro runs on your graphics card through WebGPU, which recent Chrome, Edge and Safari support. The model downloads once and your browser keeps it for next time. On a browser without WebGPU, Plasma 2.0 still works.</span>
         </li>
         <li class="reveal">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></span>
           <b data-i18n="pl.6t">Free</b>
-          <span data-i18n="pl.6p">Plasma Pro will be free to use on this page, like every Artemis model before it.</span>
+          <span data-i18n="pl.6p">Plasma Pro is free to use on this page, like every Artemis model before it.</span>
         </li>
       </ul>
     </div>
@@ -317,7 +317,7 @@
       </ul>
       <div class="cta reveal" style="margin-top:3rem">
         <h2 data-i18n="biz.cta">Interested in Plasma for your organisation?</h2>
-        <p data-i18n="biz.ctap">Plasma for organisations launches together with Plasma Pro. Write to us now to be among the first.</p>
+        <p data-i18n="biz.ctap">Plasma Pro is live; Plasma for organisations is next. Write to us now to be among the first.</p>
         <div class="hero-actions"><a class="pill solid" href="index.html#contact" data-i18n="biz.btn">Get in touch</a></div>
       </div>
     </div>
@@ -355,7 +355,7 @@ var TR = {
   'e.sub': 'Athene Softworks tarafından geliştirilmiş küçük bir genel kültür modeliyim. Tamamen cihazınızda çalışırım; yazdıklarınız tarayıcınızdan çıkmaz.',
   'ph': "Artemis'e bir şey sorun…",
   'send': 'Gönder',
-  'ai.note': "Artemis 2.0 Plasma, Artemis 1.0 ile 1.1'in tek bir 23,5 milyon parametreli modelde birleştirilip Türkçe ve İngilizce sohbetlerle eğitilmeye devam edilmiş hâlidir. Artemis 1.1, Artemis 1.0'ı (20 milyon parametre) yükler ve üzerine kendi eğitilmiş 4,6 milyon parametresini ekler. Üçü de sık sık hata yapan küçük modellerdir; yanıtlarına güvenmeyin. Plasma Pro yakında geliyor.",
+  'ai.note': "Artemis 2.0 Plasma, Artemis 1.0 ile 1.1'in tek bir 23,5 milyon parametreli modelde birleştirilip Türkçe ve İngilizce sohbetlerle eğitilmeye devam edilmiş hâlidir. Artemis 1.1, Artemis 1.0'ı (20 milyon parametre) yükler ve üzerine kendi eğitilmiş 4,6 milyon parametresini ekler. Üçü de sık sık hata yapan küçük modellerdir; yanıtlarına güvenmeyin. Plasma Pro, Qwen ekibinin açık modeli Qwen3.5-0.8B (Apache 2.0) üzerine Artemis kimliği eklenerek kuruldu. Bir kez yaklaşık 500 MB iner ve WebGPU destekli bir tarayıcı gerektirir. Diğerlerinden çok daha güçlüdür ama özellikle Türkçede yine de yanılabilir.",
   'nw.title': 'Artemis 2.0 Plasma çıktı.',
   'nw.sub': "Plasma 2.0, Artemis 1.0 ile 1.1'i tek bir modelde birleştirir ve Türkçe ve İngilizce sohbetlerle eğitmeye devam eder. Yukarıdaki varsayılan model odur ve tamamen tarayıcınızda çalışır.",
   'nw.s1': 'parametre, tek bir modelde',
@@ -375,24 +375,24 @@ var TR = {
   'nw.6t': 'Ücretsiz',
   'nw.6p': 'Plasma 2.0, önceki tüm Artemis modelleri gibi bugünden itibaren bu sayfada ücretsiz.',
   'nw.btn': "Plasma 2.0'ı deneyin",
-  'pl.title': 'Sıfırdan yeni bir Artemis.',
-  'pl.sub': "Plasma Pro, 1.x'in ya da Plasma 2.0'ın üzerine bir güncelleme değil. Kendi Türkçe ve İngilizce kelime dağarcığıyla sıfırdan eğitilen, daha büyük, yepyeni bir model ve yine tamamen tarayıcınızda çalışıyor.",
-  'pl.s1': "parametre, Plasma 2.0'ın 2,3 katı",
-  'pl.s2': "token bağlam, Plasma 2.0'ın iki katı",
-  'pl.s3': 'Türkçe ve İngilizce için kurulmuş kelime dağarcığı',
+  'pl.title': "Çok daha büyük bir beyinle Artemis.",
+  'pl.sub': "Plasma Pro, Qwen ekibinin açık modeli Qwen3.5-0.8B üzerine kuruldu. Ona Artemis kimliğini ve Türkçe/İngilizce kurallarını ekledik; yine tamamen tarayıcınızda çalışıyor. <a href=\"#chat\">Yukarıda deneyin</a>.",
+  'pl.s1': "parametre, Plasma 2.0'ın yaklaşık 34 katı",
+  'pl.s2': "hızlandırma: WebGPU ile ekran kartınızda çalışır",
+  'pl.s3': "tek seferlik indirme, tarayıcınız saklar",
   'pl.s4': 'sunucu. Her yanıt cihazınızda hesaplanır',
-  'pl.1t': 'Modern mimari',
-  'pl.1p': 'Dönen konum kodlaması, normalize dikkat ve daha hızlı ileri besleme katmanı. Bugünün büyük modellerindeki fikirler, bir tarayıcı sekmesine sığacak boyutta.',
-  'pl.2t': 'Önce Türkçe',
-  'pl.2p': "Yeni kelime dağarcığı Türkçe kelimeleri daha az ve daha anlamlı parçalara böler; Plasma Pro Türkçeyi 1.x'ten ve Plasma 2.0'dan çok daha doğal okur ve yazar.",
+  'pl.1t': "Qwen tabanlı",
+  'pl.1p': "Plasma Pro, önceki tüm Artemis modellerinden çok daha fazla metinle eğitilmiş açık ağırlıklı Qwen3.5-0.8B (Apache 2.0) modelinden başlar. Bu ona çok daha geniş bilgi ve çok daha akıcı yanıtlar kazandırır.",
+  'pl.2t': "İçinde Artemis var",
+  'pl.2p': "Qwen'in üzerine Artemis kimliğini ve kurallarını ekledik: kendini Athene Softworks'ün Artemis'i olarak tanıtır, hangi dilde yazarsanız o dilde yanıt verir, bilmediğinde bilmediğini söyler.",
   'pl.3t': 'Sohbeti hatırlar',
-  'pl.3p': 'Plasma Pro okuduklarını bellekte tutar; ek bir soru sorduğunuzda tüm sohbeti baştan okumadan hemen yanıtlamaya başlar.',
+  'pl.3p': "Plasma Pro her soruda sohbetin son mesajlarını da okur; kendinizi tekrarlamadan ek sorular sorabilirsiniz.",
   'pl.4t': 'Gizlilik temelden',
   'pl.4p': "Her Artemis modelinde olduğu gibi yazdıklarınız tarayıcınızdan çıkmaz. Hesap yok, kayıt yok, gönderilecek bir sunucu yok.",
-  'pl.5t': 'Tek dosya',
-  'pl.5p': 'Modelin tamamı yaklaşık 55 MB\'lık tek bir dosya. Bir kez iner, tarayıcınız bir sonraki sefer için saklar.',
+  'pl.5t': "Ekran kartınızda hızlı",
+  'pl.5p': "Plasma Pro, güncel Chrome, Edge ve Safari'nin desteklediği WebGPU ile ekran kartınızda çalışır. Model bir kez iner, tarayıcınız bir sonraki sefer için saklar. WebGPU olmayan tarayıcılarda Plasma 2.0 çalışmaya devam eder.",
   'pl.6t': 'Ücretsiz',
-  'pl.6p': 'Plasma Pro, önceki tüm Artemis modelleri gibi bu sayfada ücretsiz kullanılabilecek.',
+  'pl.6p': "Plasma Pro, önceki tüm Artemis modelleri gibi bu sayfada ücretsiz.",
   'biz.eyebrow': 'Kurumlar için Plasma',
   'biz.title': 'Kendi yapay zekâ asistanınız. Verileriniz sizde kalır.',
   'biz.sub': 'Kurumlar için Plasma, kendi belgelerinizle eğitilen ve kendi sistemlerinizde çalışan bir Plasma Pro modelidir. Hiçbir şey dışarıdaki bir yapay zekâ hizmetine gitmez.',
@@ -409,13 +409,13 @@ var TR = {
   'biz.6t': 'Athene Softworks ile kurulum',
   'biz.6p': 'Veriyi hazırlıyor, modeli eğitiyor ve yerine koymanıza yardım ediyoruz; ekibiniz bir proje değil, çalışan bir asistan alır.',
   'biz.cta': 'Plasma kurumunuz için ilginizi çekti mi?',
-  'biz.ctap': "Kurumlar için Plasma, Plasma Pro ile birlikte çıkıyor. İlk kullananlardan olmak için şimdiden bize yazın.",
+  'biz.ctap': "Plasma Pro yayında; sıradaki adım Kurumlar için Plasma. İlk kullananlardan olmak için şimdiden bize yazın.",
   'biz.btn': 'Bize ulaşın',
   'foot.copy': 'Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.',
   'foot.legal': 'Artemis AI hata yapabilir; önemli yanıtları kontrol edin. Sohbette parola ya da başka hassas kişisel bilgiler paylaşmayın.'
 };
 </script>
 <script src="product.js"></script>
-<script src="artemis/artemis-chat.js?v=2.1"></script>
+<script src="artemis/artemis-chat.js?v=3.0"></script>
 </body>
 </html>

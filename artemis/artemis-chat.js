@@ -1,16 +1,17 @@
 /* Artemis sohbet arayüzü: seçilen modeli Web Worker'da yükler ve yanıtları akış hâlinde gösterir.
    Artemis 1.1 = Artemis 1.0 tabanı + 1.1 dosyası (iki dosya birlikte yüklenir).
    Artemis 2.0 Plasma (1.0 + 1.1 birleşik, üzerine eğitilmiş) tek dosyadır.
-   Plasma Pro (sıfırdan eğitilen 54M model) da tek dosyadır; artemis-2.0-pro.bin yayımlandığında düğmesi kendiliğinden açılır. */
+   Plasma Pro, Qwen3.5-0.8B tabanlı, Artemis kimliği eklenmiş modeldir; transformers.js ile ayrı bir worker'da
+   (pro-worker.js) çalışır ve büyük olduğu için (~500 MB) yalnızca düğmesine basılınca indirilir. */
 (function () {
   var root = document.documentElement;
   var T = {
-    en: { ph: 'Ask Artemis something…', loading: 'Downloading {m}… ', preparing: 'Preparing the model…', ready: '{m} is ready. It runs on your device.', thinking: 'Artemis is writing…', stop: 'Stop', send: 'Send', fail: 'The model could not be loaded: ', retry: 'Reload the page to try again.' },
-    tr: { ph: "Artemis'e bir şey sorun…", loading: '{m} indiriliyor… ', preparing: 'Model hazırlanıyor…', ready: '{m} hazır. Cihazınızda çalışıyor.', thinking: 'Artemis yazıyor…', stop: 'Durdur', send: 'Gönder', fail: 'Model yüklenemedi: ', retry: 'Tekrar denemek için sayfayı yenileyin.' }
+    en: { ph: 'Ask Artemis something…', loading: 'Downloading {m}… ', preparing: 'Preparing the model…', ready: '{m} is ready. It runs on your device.', thinking: 'Artemis is writing…', stop: 'Stop', send: 'Send', fail: 'The model could not be loaded: ', retry: 'Reload the page to try again.', nogpu: 'Plasma Pro needs WebGPU, which this browser does not offer. Try a recent Chrome, Edge or Safari, or use Plasma 2.0.' },
+    tr: { ph: "Artemis'e bir şey sorun…", loading: '{m} indiriliyor… ', preparing: 'Model hazırlanıyor…', ready: '{m} hazır. Cihazınızda çalışıyor.', thinking: 'Artemis yazıyor…', stop: 'Durdur', send: 'Gönder', fail: 'Model yüklenemedi: ', retry: 'Tekrar denemek için sayfayı yenileyin.', nogpu: "Plasma Pro, bu tarayıcıda bulunmayan WebGPU'ya ihtiyaç duyuyor. Güncel bir Chrome, Edge ya da Safari deneyin veya Plasma 2.0'ı kullanın." }
   };
   var GEN = { temperature: 0.6, topK: 40, topP: 0.9, repetitionPenalty: 1.2, maxTokens: 220 };
   var MODELS = {
-    'pro': { name: 'Artemis Plasma Pro', base: 'artemis/artemis-2.0-pro.bin?v=1', adapter: null, gen: { temperature: 0.6, topK: 40, topP: 0.9, repetitionPenalty: 1.1, maxTokens: 300 } },
+    'pro': { name: 'Artemis Plasma Pro', worker: 'pro', gen: { temperature: 0.6, topK: 20, topP: 0.9, repetitionPenalty: 1.05, maxTokens: 400 } },
     '2.0': { name: 'Artemis 2.0 Plasma', base: 'artemis/artemis-2.0.bin?v=2.0', adapter: null, gen: GEN },
     '1.1': { name: 'Artemis 1.1', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: 'artemis/artemis-1.1.bin?v=1.1', gen: GEN },
     '1.0': { name: 'Artemis 1.0', base: 'artemis/artemis-1.0.bin?v=1.1', adapter: null, gen: GEN }
@@ -32,8 +33,17 @@
   }
   new MutationObserver(relabel).observe(root, { attributes: true, attributeFilter: ['lang'] });
 
-  var worker = new Worker('artemis/artemis-worker.js?v=2.0'); // ?v: önbellekte eski worker/motor kalmasın
-  worker.onmessage = function (e) {
+  // ?v: önbellekte eski worker/motor kalmasın. Plasma Pro kendi worker'ını kullanır, ilk seçildiğinde açılır.
+  var workers = { art: new Worker('artemis/artemis-worker.js?v=2.0') }, worker = workers.art;
+  function workerOf(k) {
+    var w = MODELS[k].worker || 'art';
+    if (!workers[w]) workers[w] = new Worker('artemis/pro-worker.js?v=1', { type: 'module' });
+    workers[w].onmessage = onmessage;
+    return workers[w];
+  }
+  workers.art.onmessage = onmessage;
+  function onmessage(e) {
+    if (e.target !== worker) return; // önceki modelin worker'ından gelen geç mesaj
     var m = e.data;
     if (m.type === 'progress') {
       if (m.total) {
@@ -53,21 +63,24 @@
       finish();
     } else if (m.type === 'error') {
       if (current) finish();
-      setStatus('fail', m.message + '. ' + t('retry'));
+      if (m.code === 'nogpu') { bar.parentNode.style.visibility = 'hidden'; setStatus('nogpu'); }
+      else setStatus('fail', m.message + '. ' + t('retry'));
     }
-  };
+  }
   function chipOf(k) { return document.querySelector('.model[data-model="' + k + '"]'); }
   function load(k) {
     if (busy) { worker.postMessage({ type: 'stop' }); finish(); }
-    sel = k; ready = false; update();
+    sel = k; ready = false; worker = workerOf(k); update();
     chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.model === k)); c.classList.remove('ready'); });
     ver.textContent = MODELS[k].name;
     bar.style.width = '0'; bar.parentNode.style.visibility = 'visible'; setStatus('loading');
     var abs = function (u) { return u && new URL(u, location.href).href; };
     worker.postMessage({ type: 'load', base: abs(MODELS[k].base), adapter: abs(MODELS[k].adapter) });
+    try { localStorage.setItem('artemis-model', k); } catch (e) {}
   }
   chips.forEach(function (c) { c.addEventListener('click', function () { if (c.dataset.model !== sel || !ready) load(c.dataset.model); }); });
-  // Sitede bulunan en yeni modelin düğmesini aç ve onunla başla: Plasma Pro, yoksa Plasma 2.0, yoksa 1.1
+  // Sitede bulunan en yeni küçük modelin düğmesini aç ve onunla başla: Plasma 2.0, yoksa 1.1.
+  // Plasma Pro büyük olduğu için kendiliğinden inmez; daha önce seçildiyse (dosyalar önbellekte) onunla başlanır.
   function probe(k) {
     return fetch(MODELS[k].base, { method: 'HEAD', cache: 'no-cache' }).then(function (r) {
       if (!r.ok) throw 0;
@@ -76,8 +89,9 @@
       return k;
     });
   }
-  var found = ['pro', '2.0'].map(function (k) { return probe(k).catch(function () { return null; }); });
-  Promise.all(found).then(function (ks) { load(ks.filter(Boolean)[0] || sel); });
+  var last = null;
+  try { last = localStorage.getItem('artemis-model'); } catch (e) {}
+  probe('2.0').catch(function () { return null; }).then(function (k) { load(last === 'pro' ? 'pro' : k || sel); });
 
   function scroll() { log.scrollTop = log.scrollHeight; }
   function bubble(role, text) {

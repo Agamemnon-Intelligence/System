@@ -1,8 +1,11 @@
 # Artemis Plasma Pro
 
+> Sitede yayında olan **Artemis Plasma Pro**, Qwen3.5-0.8B (Apache 2.0) üzerine Artemis kimliği
+> eklenmiş modeldir ve `artemis/pro-worker.js` ile WebGPU'da çalışır; bu klasördeki dosyalara ihtiyaç duymaz.
+> Buradaki eğiticiler, Plasma Pro'nun ilk planı olan sıfırdan eğitilen 54M'lik modeli üretir.
+
 Sıfırdan eğitilen, ~54 milyon parametreli Türkçe + İngilizce sohbet modeli. Eğitim bittiğinde
-`artemis/artemis-2.0-pro.bin` dosyası oluşur. Bu dosya yayımlandığında `artemis.html`, Plasma Pro'yu
-model listesinde kendiliğinden açar ve varsayılan model yapar. Model tamamen tarayıcıda çalışır.
+`artemis/artemis-2.0-pro.bin` dosyası oluşur. Model tamamen tarayıcıda çalışır ve eğitim sayfasında denenebilir.
 
 Sitede şu an yayında olan **Artemis 2.0 Plasma** (`artemis/artemis-2.0.bin`) ise ayrı bir modeldir:
 Artemis 1.0 ile 1.1'in tek bir 27 katmanlı, 23,5M parametreli modelde birleştirilip Türkçe/İngilizce
