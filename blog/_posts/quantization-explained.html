@@ -1,0 +1,95 @@
+<!--
+{"title": "Q4_K_M, Q8_0, FP16: model quantization in plain words",
+ "title_tr": "Q4_K_M, Q8_0, FP16: model nicemlemesi sade bir dille",
+ "summary": "Download a local AI model and you're faced with a list of cryptic file names. What quantization is, how much quality each level really costs, and which file to pick for your computer.",
+ "summary_tr": "Yerel bir yapay zekâ modeli indirmek istediğinizde karşınıza anlaşılmaz dosya adlarından oluşan bir liste çıkar. Nicemlemenin ne olduğunu, her seviyenin gerçekte ne kadar kalite kaybettirdiğini ve bilgisayarınız için hangi dosyayı seçeceğinizi anlatıyoruz.",
+ "date": "2026-10-10", "cat": "ai"}
+-->
+<section lang="en">
+<p>Open a model page on Hugging Face and you'll often see a dozen versions of the same model: <code>Q2_K</code>, <code>Q4_K_M</code>, <code>Q5_K_S</code>, <code>Q8_0</code>, <code>F16</code>. They're all the same model, compressed by different amounts. That compression is called <strong>quantization</strong>, and it's the reason a model trained on a data-centre GPU can run on your laptop at all.</p>
+
+<h2>What's being compressed</h2>
+<p>A language model is mostly a huge list of numbers called <strong>weights</strong>. An 8-billion-parameter model has about 8 billion of them. In training, each weight is usually stored as a 16-bit number, which takes 2 bytes:</p>
+<p><strong>8 billion × 2 bytes ≈ 16 GB</strong></p>
+<p>That's too big for most laptops. Quantization stores each weight with fewer bits, rounding it to the nearest of a smaller set of values. At 4 bits per weight, the same model shrinks to roughly a quarter of the size.</p>
+
+<h2>Reading the names</h2>
+<p>The names come from <strong>llama.cpp</strong>'s GGUF format, now the standard for local models:</p>
+<ul>
+<li>The <strong>number</strong> is the approximate bits per weight: Q4 ≈ 4 bits, Q8 ≈ 8 bits.</li>
+<li><strong>K</strong> means the newer "k-quant" method, which groups weights into blocks and keeps more precision where it matters most. Prefer K versions.</li>
+<li><strong>S, M, L</strong> are small, medium and large variants: how many of the most sensitive layers get extra bits.</li>
+<li><strong>F16 / BF16</strong> is the uncompressed original. <strong>IQ</strong> quants (like <code>IQ3_XXS</code>) use a newer technique that squeezes very low bit counts a bit better.</li>
+</ul>
+
+<h2>How much quality do you lose?</h2>
+<table>
+<thead><tr><th>Level</th><th>Size of an 8B model</th><th>Quality vs original</th></tr></thead>
+<tbody>
+<tr><td>F16</td><td>~16 GB</td><td>Reference</td></tr>
+<tr><td>Q8_0</td><td>~8.5 GB</td><td>Practically identical</td></tr>
+<tr><td>Q6_K</td><td>~6.6 GB</td><td>Very hard to tell apart</td></tr>
+<tr><td>Q5_K_M</td><td>~5.7 GB</td><td>Tiny loss</td></tr>
+<tr><td><strong>Q4_K_M</strong></td><td><strong>~4.9 GB</strong></td><td><strong>Small loss; the usual sweet spot</strong></td></tr>
+<tr><td>Q3_K_M</td><td>~4.0 GB</td><td>Noticeable on maths, code and facts</td></tr>
+<tr><td>Q2_K</td><td>~3.2 GB</td><td>Clearly worse; last resort</td></tr>
+</tbody>
+</table>
+<p>Sizes are approximate and vary by model. The pattern holds everywhere, though: quality drops very slowly down to about 4 bits, then falls off quickly.</p>
+
+<h2>Bigger model, smaller quant?</h2>
+<blockquote>A larger model at Q4 usually beats a smaller model at Q8 of the same file size.</blockquote>
+<p>If your computer can hold about 8 GB, a 14B model at Q4 will typically be smarter than a 7B model at Q8. The exception is very aggressive quants: a 30B model squeezed to Q2 may ramble more than a well-quantized 14B. Stay at Q3 or above when you can.</p>
+
+<h2>Don't forget the context</h2>
+<p>The file size isn't the whole memory bill. While it runs, the model also keeps a <strong>KV cache</strong> of the conversation so far, which grows with the context length. A long chat or a big document can add one or several gigabytes. Leave some headroom, or lower the context size in your app's settings.</p>
+
+<div class="note"><b>What about MLX on a Mac?</b>MLX models use their own naming, usually <code>4bit</code>, <code>6bit</code> or <code>8bit</code>. The same rules apply: 4-bit is the common choice, 8-bit if you have memory to spare.</div>
+
+<h2>Let the app pick</h2>
+<p>Synapse reads your chip, memory and graphics card (including VRAM on Windows) and suggests the model and quantization that will actually run well, so you can skip the guesswork. You can still search Hugging Face for any GGUF or MLX file and choose a different level yourself. For more on how much memory you need, see <a href="../how-much-memory-for-local-ai/">our memory guide</a>.</p>
+</section>
+<section lang="tr">
+<p>Hugging Face'te bir model sayfası açtığınızda çoğu zaman aynı modelin bir düzine sürümünü görürsünüz: <code>Q2_K</code>, <code>Q4_K_M</code>, <code>Q5_K_S</code>, <code>Q8_0</code>, <code>F16</code>. Hepsi aynı model, farklı oranlarda sıkıştırılmış. Bu sıkıştırmaya <strong>nicemleme (quantization)</strong> denir ve veri merkezi GPU'sunda eğitilmiş bir modelin dizüstünüzde çalışabilmesinin sebebi budur.</p>
+
+<h2>Sıkıştırılan ne?</h2>
+<p>Bir dil modeli büyük ölçüde <strong>ağırlık</strong> denen devasa bir sayı listesinden oluşur. 8 milyar parametreli bir modelde bunlardan yaklaşık 8 milyar tane vardır. Eğitimde her ağırlık genellikle 2 bayt yer kaplayan 16 bitlik bir sayı olarak saklanır:</p>
+<p><strong>8 milyar × 2 bayt ≈ 16 GB</strong></p>
+<p>Bu, çoğu dizüstü için fazla büyük. Nicemleme her ağırlığı daha az bitle saklar ve onu daha küçük bir değer kümesindeki en yakın değere yuvarlar. Ağırlık başına 4 bitte aynı model kabaca dörtte bir boyutuna iner.</p>
+
+<h2>Adları okumak</h2>
+<p>Adlar, artık yerel modeller için standart olan <strong>llama.cpp</strong>'nin GGUF biçiminden gelir:</p>
+<ul>
+<li><strong>Sayı</strong>, ağırlık başına yaklaşık bit sayısıdır: Q4 ≈ 4 bit, Q8 ≈ 8 bit.</li>
+<li><strong>K</strong>, ağırlıkları bloklara ayırıp en önemli yerlerde daha fazla hassasiyet tutan yeni "k-quant" yöntemini ifade eder. K sürümlerini tercih edin.</li>
+<li><strong>S, M, L</strong> küçük, orta ve büyük varyantlardır: en hassas katmanların ne kadarının fazladan bit aldığını gösterir.</li>
+<li><strong>F16 / BF16</strong> sıkıştırılmamış asıl modeldir. <strong>IQ</strong> nicemlemeleri (<code>IQ3_XXS</code> gibi) çok düşük bit sayılarını biraz daha iyi sıkıştıran yeni bir teknik kullanır.</li>
+</ul>
+
+<h2>Ne kadar kalite kaybedersiniz?</h2>
+<table>
+<thead><tr><th>Seviye</th><th>8B bir modelin boyutu</th><th>Asıl modele göre kalite</th></tr></thead>
+<tbody>
+<tr><td>F16</td><td>~16 GB</td><td>Referans</td></tr>
+<tr><td>Q8_0</td><td>~8,5 GB</td><td>Pratikte aynı</td></tr>
+<tr><td>Q6_K</td><td>~6,6 GB</td><td>Ayırt etmesi çok zor</td></tr>
+<tr><td>Q5_K_M</td><td>~5,7 GB</td><td>Çok küçük kayıp</td></tr>
+<tr><td><strong>Q4_K_M</strong></td><td><strong>~4,9 GB</strong></td><td><strong>Küçük kayıp; genellikle en iyi denge</strong></td></tr>
+<tr><td>Q3_K_M</td><td>~4,0 GB</td><td>Matematik, kod ve bilgide fark edilir</td></tr>
+<tr><td>Q2_K</td><td>~3,2 GB</td><td>Belirgin şekilde kötü; son çare</td></tr>
+</tbody>
+</table>
+<p>Boyutlar yaklaşıktır ve modele göre değişir. Ama örüntü her yerde geçerlidir: kalite 4 bit civarına kadar çok yavaş düşer, sonra hızla bozulur.</p>
+
+<h2>Daha büyük model mi, daha küçük nicemleme mi?</h2>
+<blockquote>Aynı dosya boyutunda, Q4'teki büyük bir model genellikle Q8'deki küçük bir modeli yener.</blockquote>
+<p>Bilgisayarınız yaklaşık 8 GB taşıyabiliyorsa Q4'teki 14B bir model, Q8'deki 7B bir modelden genellikle daha akıllıdır. İstisna çok agresif nicemlemelerdir: Q2'ye sıkıştırılmış 30B bir model, iyi nicemlenmiş 14B bir modelden daha çok saçmalayabilir. Mümkünse Q3 ve üstünde kalın.</p>
+
+<h2>Bağlamı unutmayın</h2>
+<p>Dosya boyutu, bellek faturasının tamamı değildir. Model çalışırken o ana kadarki konuşmanın <strong>KV önbelleğini</strong> de tutar ve bu, bağlam uzunluğuyla büyür. Uzun bir sohbet ya da büyük bir belge bir ya da birkaç gigabayt ekleyebilir. Biraz pay bırakın ya da uygulamanızın ayarlarından bağlam boyutunu düşürün.</p>
+
+<div class="note"><b>Mac'te MLX ne olacak?</b>MLX modelleri kendi adlandırmasını kullanır, genellikle <code>4bit</code>, <code>6bit</code> ya da <code>8bit</code>. Aynı kurallar geçerlidir: 4 bit yaygın tercihtir, belleğiniz bolsa 8 bit.</div>
+
+<h2>Seçimi uygulamaya bırakın</h2>
+<p>Synapse çipinizi, belleğinizi ve ekran kartınızı (Windows'ta VRAM dahil) okur ve gerçekten iyi çalışacak modeli ve nicemlemeyi önerir; böylece tahmin yürütmenize gerek kalmaz. Yine de Hugging Face'te herhangi bir GGUF ya da MLX dosyasını arayıp farklı bir seviyeyi kendiniz seçebilirsiniz. Ne kadar belleğe ihtiyacınız olduğu için <a href="../how-much-memory-for-local-ai/">bellek rehberimize</a> göz atın.</p>
+</section>

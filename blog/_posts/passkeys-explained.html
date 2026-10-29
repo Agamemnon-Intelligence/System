@@ -1,0 +1,81 @@
+<!--
+{"title": "Passkeys explained: the login that can't be phished",
+ "title_tr": "Geçiş anahtarları: oltalanamayan giriş yöntemi",
+ "summary": "Passkeys replace passwords with a key that lives on your phone or computer. What they are, why a fake site can't steal them, and how to switch your most important accounts in ten minutes.",
+ "summary_tr": "Geçiş anahtarları, parolaların yerine telefonunuzda ya da bilgisayarınızda duran bir anahtar koyar. Ne olduklarını, sahte bir sitenin onları neden çalamadığını ve en önemli hesaplarınızı on dakikada nasıl geçireceğinizi anlatıyoruz.",
+ "date": "2026-10-12", "cat": "security"}
+-->
+<section lang="en">
+<p>Passwords have two big problems. People reuse them, so one leak opens many doors. And people can be tricked into typing them on a fake site. Two-factor codes help, but a good phishing page can ask for the code too and use it within seconds.</p>
+<p><strong>Passkeys</strong> fix both problems. They are now supported by Apple, Google, Microsoft and most large websites, and they are easier to use than the passwords they replace.</p>
+
+<h2>What a passkey actually is</h2>
+<p>A passkey is a pair of cryptographic keys. When you create one for a website:</p>
+<ul>
+<li>The <strong>private key</strong> stays on your device, in your iCloud Keychain, Google Password Manager, Windows Hello or a password manager like 1Password or Bitwarden.</li>
+<li>The <strong>public key</strong> goes to the website. It's useless on its own, so a leak of the site's database gives attackers nothing to log in with.</li>
+</ul>
+<p>When you sign in, the site sends a random challenge, your device signs it with the private key after you unlock it with your face, fingerprint or PIN, and the site checks the signature. No secret ever travels over the network.</p>
+
+<h2>Why phishing doesn't work</h2>
+<p>Each passkey is bound to the exact website that created it. Your device checks the real domain before it signs anything. On <code>paypa1-login.com</code>, your PayPal passkey simply doesn't appear, and there's nothing for you to type, so there's nothing to steal.</p>
+<blockquote>With a password, you have to notice the fake. With a passkey, your device notices it for you.</blockquote>
+
+<h2>Common questions</h2>
+<p><strong>What if I lose my phone?</strong> Passkeys made with Apple, Google or a password manager sync to your other devices through your account, end-to-end encrypted. Get a new phone, sign in to that account, and they come back. Keep your account's recovery options up to date.</p>
+<p><strong>Can I sign in on someone else's computer?</strong> Yes. Choose "use a phone or tablet", scan the QR code with your phone, and approve. The phone must be physically nearby (it checks over Bluetooth), which stops remote attackers.</p>
+<p><strong>Is my fingerprint sent to the website?</strong> No. Face and fingerprint only unlock the key on your device. They never leave it.</p>
+<p><strong>Do I still have a password?</strong> Often yes, as a fallback. That fallback can still be phished, so give it a long, unique password from a password manager.</p>
+
+<h2>Switch your important accounts first</h2>
+<p>You don't need to convert everything at once. Start with the accounts that unlock everything else:</p>
+<ol>
+<li><strong>Your main email</strong> (Google, Microsoft, Apple iCloud). Whoever controls your email can reset every other password.</li>
+<li><strong>Your password manager</strong>, if it supports passkey sign-in.</li>
+<li><strong>Banking and payment</strong> apps that offer it.</li>
+<li><strong>Social media and shopping</strong>: accounts that are often taken over and used to scam your friends.</li>
+</ol>
+<p>Look in each account's <em>Security</em> or <em>Sign-in</em> settings for "Passkeys" and follow the steps. It takes about a minute per account.</p>
+
+<div class="note"><b>Passkeys don't stop stealers</b>A passkey protects the login. But once you're signed in, the site gives your browser a session cookie, and an infostealer on your computer can copy that cookie. Keeping malware off the device still matters. See <a href="../what-infostealers-want/">what infostealers want</a>.</div>
+
+<h2>The short version</h2>
+<p>Passkeys are faster than passwords, can't be reused, can't be leaked from a website and can't be typed into a fake page. If a site offers one, take it.</p>
+</section>
+<section lang="tr">
+<p>Parolaların iki büyük sorunu var. İnsanlar onları tekrar kullanır, bu yüzden tek bir sızıntı birçok kapıyı açar. Ve insanlar kandırılıp parolalarını sahte bir siteye yazabilir. İki adımlı doğrulama kodları yardımcı olur ama iyi bir oltalama sayfası kodu da isteyip birkaç saniye içinde kullanabilir.</p>
+<p><strong>Geçiş anahtarları (passkey)</strong> iki sorunu da çözer. Artık Apple, Google, Microsoft ve büyük web sitelerinin çoğu tarafından destekleniyorlar ve yerini aldıkları parolalardan daha kolay kullanılıyorlar.</p>
+
+<h2>Geçiş anahtarı aslında nedir?</h2>
+<p>Geçiş anahtarı bir çift kriptografik anahtardır. Bir web sitesi için oluşturduğunuzda:</p>
+<ul>
+<li><strong>Özel anahtar</strong> cihazınızda kalır: iCloud Anahtar Zinciri'nde, Google Şifre Yöneticisi'nde, Windows Hello'da ya da 1Password veya Bitwarden gibi bir parola yöneticisinde.</li>
+<li><strong>Açık anahtar</strong> web sitesine gider. Tek başına işe yaramaz; bu yüzden sitenin veritabanı sızsa bile saldırganların giriş yapabileceği bir şey olmaz.</li>
+</ul>
+<p>Giriş yaptığınızda site rastgele bir sınama gönderir, cihazınız onu yüzünüz, parmak iziniz ya da PIN'inizle kilidi açıldıktan sonra özel anahtarla imzalar ve site imzayı doğrular. Ağ üzerinden hiçbir sır gitmez.</p>
+
+<h2>Oltalama neden işe yaramaz?</h2>
+<p>Her geçiş anahtarı, onu oluşturan web sitesine birebir bağlıdır. Cihazınız bir şey imzalamadan önce gerçek alan adını kontrol eder. <code>paypa1-login.com</code> adresinde PayPal geçiş anahtarınız hiç görünmez; yazacağınız bir şey de olmadığı için çalınacak bir şey de yoktur.</p>
+<blockquote>Parolada sahteyi sizin fark etmeniz gerekir. Geçiş anahtarında cihazınız sizin yerinize fark eder.</blockquote>
+
+<h2>Sık sorulan sorular</h2>
+<p><strong>Telefonumu kaybedersem ne olur?</strong> Apple, Google ya da bir parola yöneticisiyle oluşturulan geçiş anahtarları, hesabınız üzerinden uçtan uca şifreli olarak diğer cihazlarınıza eşitlenir. Yeni bir telefon alın, o hesaba giriş yapın, geri gelirler. Hesabınızın kurtarma seçeneklerini güncel tutun.</p>
+<p><strong>Başkasının bilgisayarında giriş yapabilir miyim?</strong> Evet. "Telefon ya da tablet kullan"ı seçin, QR kodu telefonunuzla okutun ve onaylayın. Telefonun fiziksel olarak yakında olması gerekir (Bluetooth ile kontrol edilir); bu da uzaktaki saldırganları durdurur.</p>
+<p><strong>Parmak izim web sitesine gönderiliyor mu?</strong> Hayır. Yüz ve parmak izi yalnızca cihazınızdaki anahtarın kilidini açar. Cihazdan asla çıkmazlar.</p>
+<p><strong>Hâlâ bir parolam olacak mı?</strong> Çoğu zaman evet, yedek olarak. O yedek hâlâ oltalanabilir; bu yüzden ona bir parola yöneticisinden uzun ve benzersiz bir parola verin.</p>
+
+<h2>Önce önemli hesaplarınızı geçirin</h2>
+<p>Her şeyi bir anda dönüştürmeniz gerekmez. Diğer her şeyin kilidini açan hesaplarla başlayın:</p>
+<ol>
+<li><strong>Ana e-postanız</strong> (Google, Microsoft, Apple iCloud). E-postanızı kontrol eden kişi diğer tüm parolaları sıfırlayabilir.</li>
+<li>Destekliyorsa <strong>parola yöneticiniz</strong>.</li>
+<li>Bu seçeneği sunan <strong>banka ve ödeme</strong> uygulamaları.</li>
+<li><strong>Sosyal medya ve alışveriş</strong>: sık sık ele geçirilip arkadaşlarınızı dolandırmak için kullanılan hesaplar.</li>
+</ol>
+<p>Her hesabın <em>Güvenlik</em> ya da <em>Oturum açma</em> ayarlarında "Geçiş anahtarları"nı bulun ve adımları izleyin. Hesap başına yaklaşık bir dakika sürer.</p>
+
+<div class="note"><b>Geçiş anahtarları veri hırsızlarını durdurmaz</b>Geçiş anahtarı girişi korur. Ama giriş yaptıktan sonra site tarayıcınıza bir oturum çerezi verir ve bilgisayarınızdaki bir veri hırsızı bu çerezi kopyalayabilir. Zararlı yazılımı cihazdan uzak tutmak hâlâ önemli. <a href="../what-infostealers-want/">Veri hırsızlarının ne istediğine</a> göz atın.</div>
+
+<h2>Kısacası</h2>
+<p>Geçiş anahtarları parolalardan hızlıdır, tekrar kullanılamaz, bir web sitesinden sızdırılamaz ve sahte bir sayfaya yazılamaz. Bir site size bunu sunuyorsa kabul edin.</p>
+</section>

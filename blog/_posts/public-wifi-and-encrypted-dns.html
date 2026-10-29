@@ -1,0 +1,69 @@
+<!--
+{"title": "Public Wi-Fi in 2026: what's actually risky, and what isn't",
+ "title_tr": "2026'da halka açık Wi-Fi: gerçekte ne riskli, ne değil?",
+ "summary": "HTTPS has made café Wi-Fi far safer than the old warnings suggest. But a few real risks remain: fake hotspots, captive portals and the DNS lookups that still reveal where you go. Here's what to do about each.",
+ "summary_tr": "HTTPS, kafe Wi-Fi'ını eski uyarıların söylediğinden çok daha güvenli hâle getirdi. Ama birkaç gerçek risk hâlâ duruyor: sahte erişim noktaları, giriş portalları ve nereye gittiğinizi hâlâ ele veren DNS sorguları. Her biri için ne yapacağınızı anlatıyoruz.",
+ "date": "2026-10-28", "cat": "security"}
+-->
+<section lang="en">
+<p>"Never use public Wi-Fi" was good advice in 2012, when many sites still sent passwords in plain text. Today almost every website and app uses <strong>HTTPS</strong>, which encrypts the content of what you send. Someone else on the café network can't read your messages or steal your bank password just by listening.</p>
+<p>So is public Wi-Fi safe now? Mostly, with a few real exceptions worth knowing.</p>
+
+<h2>What HTTPS protects, and what it doesn't</h2>
+<ul>
+<li><strong>Protected:</strong> passwords, messages, card numbers, the pages you read on a site.</li>
+<li><strong>Not fully protected:</strong> <em>which</em> sites you visit. Your device asks a DNS server to look up names like <code>mybank.com</code>, and by default those lookups are sent unencrypted. Anyone running the network can see them, log them, or answer with a fake address.</li>
+</ul>
+
+<h2>The risks that remain</h2>
+<p><strong>1. Evil twins.</strong> An attacker sets up a hotspot called "Airport_Free_WiFi" or the same name as the café's. Your device may even join automatically if it has seen that name before. HTTPS still protects the content, but the attacker controls DNS and can send you to phishing pages for sites that you type without HTTPS.</p>
+<p><strong>2. Captive portals.</strong> The "accept terms to continue" page is shown over plain HTTP. A fake portal can ask you to "log in with Google" or install a "security certificate" or "connection app". Real portals never need you to install anything.</p>
+<p><strong>3. Open networks with no password.</strong> On a network without a password (or with a password printed on the wall), other devices can see yours. Keep file sharing and similar services switched off.</p>
+<div class="note warn"><b>Never install a profile or certificate to get online</b>A configuration profile or root certificate lets whoever made it read your encrypted traffic. No legitimate café, hotel or airport needs one for guest Wi-Fi.</div>
+
+<h2>Easy steps that cover almost everything</h2>
+<ol>
+<li><strong>Turn on encrypted DNS.</strong> DNS-over-HTTPS (DoH) or DNS-over-TLS hides your lookups from the network and stops it from faking answers. Browsers have a "Secure DNS" setting; doing it system-wide covers every app.</li>
+<li><strong>Forget networks you don't need</strong> so your device won't auto-join a look-alike later.</li>
+<li><strong>Set the network as Public</strong> on Windows, which turns off discovery and sharing.</li>
+<li><strong>Use your phone's hotspot</strong> for anything sensitive if you're unsure. Mobile data is much harder to fake.</li>
+<li><strong>A VPN is optional</strong>, not magic. It hides your traffic from the local network and moves the trust to the VPN company. Useful on networks you don't trust; choose a reputable paid one or one run by a company you already trust.</li>
+</ol>
+
+<h2>At home, too</h2>
+<p>Encrypted DNS isn't only for travel. Your internet provider sees your DNS lookups at home as well, and in some countries uses them to log or block sites. Filtering DNS services such as Quad9 or Cloudflare's 1.1.1.2 also <strong>block known malware and phishing domains</strong> before your browser even connects.</p>
+
+<h2>What Agamemnon does</h2>
+<p>Agamemnon can switch the whole computer to encrypted DNS (DNS-over-HTTPS or TLS) with providers like Cloudflare, Quad9, Mullvad and AdGuard, including their malware-blocking options. On Windows it fails closed: if the encrypted connection drops, lookups stop rather than quietly leaking in plain text. On a Mac, it also warns you about open or weakly protected Wi-Fi networks as you join them.</p>
+</section>
+<section lang="tr">
+<p>"Asla halka açık Wi-Fi kullanmayın" tavsiyesi, birçok sitenin parolaları hâlâ düz metin olarak gönderdiği 2012'de iyi bir tavsiyeydi. Bugün neredeyse her web sitesi ve uygulama, gönderdiklerinizin içeriğini şifreleyen <strong>HTTPS</strong> kullanıyor. Kafe ağındaki başka biri yalnızca dinleyerek mesajlarınızı okuyamaz ya da banka parolanızı çalamaz.</p>
+<p>Peki halka açık Wi-Fi artık güvenli mi? Çoğunlukla evet, bilinmeye değer birkaç gerçek istisnayla.</p>
+
+<h2>HTTPS neyi korur, neyi korumaz?</h2>
+<ul>
+<li><strong>Korunanlar:</strong> parolalar, mesajlar, kart numaraları, bir sitede okuduğunuz sayfalar.</li>
+<li><strong>Tam korunmayanlar:</strong> <em>hangi</em> siteleri ziyaret ettiğiniz. Cihazınız <code>bankam.com</code> gibi adları bir DNS sunucusuna sorar ve varsayılan olarak bu sorgular şifresiz gönderilir. Ağı işleten herkes onları görebilir, kaydedebilir ya da sahte bir adresle cevap verebilir.</li>
+</ul>
+
+<h2>Geriye kalan riskler</h2>
+<p><strong>1. Kötü ikizler.</strong> Bir saldırgan "Havalimani_Ucretsiz_WiFi" adında ya da kafeninkiyle aynı adda bir erişim noktası kurar. Cihazınız o adı daha önce gördüyse otomatik olarak bile bağlanabilir. HTTPS içeriği yine korur ama DNS'i saldırgan kontrol eder ve HTTPS olmadan yazdığınız siteler için sizi oltalama sayfalarına yönlendirebilir.</p>
+<p><strong>2. Giriş portalları.</strong> "Devam etmek için koşulları kabul edin" sayfası düz HTTP üzerinden gösterilir. Sahte bir portal sizden "Google ile giriş yapmanızı" ya da bir "güvenlik sertifikası" veya "bağlantı uygulaması" kurmanızı isteyebilir. Gerçek portallar hiçbir şey kurmanızı gerektirmez.</p>
+<p><strong>3. Parolasız açık ağlar.</strong> Parolası olmayan (ya da parolası duvarda yazan) bir ağda diğer cihazlar sizinkini görebilir. Dosya paylaşımını ve benzeri hizmetleri kapalı tutun.</p>
+<div class="note warn"><b>İnternete bağlanmak için asla profil ya da sertifika kurmayın</b>Bir yapılandırma profili ya da kök sertifika, onu yapan kişinin şifreli trafiğinizi okumasına izin verir. Hiçbir gerçek kafe, otel ya da havalimanı misafir Wi-Fi'ı için buna ihtiyaç duymaz.</div>
+
+<h2>Neredeyse her şeyi kapsayan kolay adımlar</h2>
+<ol>
+<li><strong>Şifreli DNS'i açın.</strong> DNS-over-HTTPS (DoH) ya da DNS-over-TLS sorgularınızı ağdan gizler ve ağın sahte cevap vermesini engeller. Tarayıcılarda "Güvenli DNS" ayarı var; bunu sistem genelinde yapmak her uygulamayı kapsar.</li>
+<li>Cihazınızın ileride bir benzerine otomatik bağlanmaması için <strong>ihtiyacınız olmayan ağları unutun</strong>.</li>
+<li>Windows'ta <strong>ağı Ortak olarak ayarlayın</strong>; bu, bulunabilirliği ve paylaşımı kapatır.</li>
+<li>Emin değilseniz hassas işler için <strong>telefonunuzun hotspot'unu kullanın</strong>. Mobil veriyi taklit etmek çok daha zordur.</li>
+<li><strong>VPN isteğe bağlıdır</strong>, sihirli değildir. Trafiğinizi yerel ağdan gizler ve güveni VPN şirketine taşır. Güvenmediğiniz ağlarda faydalıdır; saygın, ücretli bir tane ya da zaten güvendiğiniz bir şirketin hizmetini seçin.</li>
+</ol>
+
+<h2>Evde de geçerli</h2>
+<p>Şifreli DNS yalnızca seyahat için değil. İnternet sağlayıcınız evdeki DNS sorgularınızı da görür ve bazı ülkelerde bunları siteleri kaydetmek ya da engellemek için kullanır. Quad9 ya da Cloudflare'in 1.1.1.2'si gibi filtreleyen DNS hizmetleri de <strong>bilinen zararlı yazılım ve oltalama alan adlarını</strong> tarayıcınız bağlanmadan önce engeller.</p>
+
+<h2>Agamemnon ne yapıyor?</h2>
+<p>Agamemnon tüm bilgisayarı Cloudflare, Quad9, Mullvad ve AdGuard gibi sağlayıcılarla, zararlı engelleme seçenekleri de dahil olmak üzere şifreli DNS'e (DNS-over-HTTPS ya da TLS) geçirebilir. Windows'ta güvenli tarafta kalır: şifreli bağlantı koparsa sorgular düz metin olarak sessizce sızmak yerine durur. Mac'te ayrıca bağlandığınız anda açık ya da zayıf korumalı Wi-Fi ağları konusunda sizi uyarır.</p>
+</section>

@@ -6,6 +6,14 @@
   <description>Notes on security and AI from the team behind Agamemnon and Synapse.</description>
   <language>en</language>
   <item>
+    <title>Public Wi-Fi in 2026: what&#x27;s actually risky, and what isn&#x27;t</title>
+    <link>https://athenesoftworks.com/blog/public-wifi-and-encrypted-dns/</link>
+    <guid>https://athenesoftworks.com/blog/public-wifi-and-encrypted-dns/</guid>
+    <pubDate>Wed, 28 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>HTTPS has made café Wi-Fi far safer than the old warnings suggest. But a few real risks remain: fake hotspots, captive portals and the DNS lookups that still reveal where you go. Here&#x27;s what to do about each.</description>
+  </item>
+  <item>
     <title>Infostealers: the malware that wants your logins, not your files</title>
     <link>https://athenesoftworks.com/blog/what-infostealers-want/</link>
     <guid>https://athenesoftworks.com/blog/what-infostealers-want/</guid>
@@ -38,6 +46,14 @@
     <description>A fake CAPTCHA tells you to press a few keys to prove you&#x27;re human. Those keys run malware. Here&#x27;s how the trick works on Windows and Mac, and the one rule that beats it.</description>
   </item>
   <item>
+    <title>Free cloud AI: getting API keys from Google, Groq and OpenRouter</title>
+    <link>https://athenesoftworks.com/blog/free-ai-api-keys/</link>
+    <guid>https://athenesoftworks.com/blog/free-ai-api-keys/</guid>
+    <pubDate>Fri, 23 Oct 2026 09:00:00 +0000</pubDate>
+    <category>AI</category>
+    <description>You don&#x27;t need a subscription to use powerful cloud models. Where to get free API keys, what the limits look like, what happens to your data, and how to keep a key from leaking.</description>
+  </item>
+  <item>
     <title>How antivirus actually finds malware: fingerprints, rules and behaviour</title>
     <link>https://athenesoftworks.com/blog/how-antivirus-finds-malware/</link>
     <guid>https://athenesoftworks.com/blog/how-antivirus-finds-malware/</guid>
@@ -46,12 +62,76 @@
     <description>A look inside a modern antivirus engine: why a single hash catches millions of copies, what YARA rules are, and why watching behaviour is what stops brand-new threats.</description>
   </item>
   <item>
+    <title>BadUSB: when a USB stick pretends to be a keyboard</title>
+    <link>https://athenesoftworks.com/blog/badusb-keyboard-attacks/</link>
+    <guid>https://athenesoftworks.com/blog/badusb-keyboard-attacks/</guid>
+    <pubDate>Wed, 21 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>Some USB devices aren&#x27;t drives at all. Plugged in, they announce themselves as a keyboard and type commands faster than you can blink. How these attacks work and how to protect yourself.</description>
+  </item>
+  <item>
     <title>Viruses, worms, trojans and ransomware: a plain-language guide</title>
     <link>https://athenesoftworks.com/blog/viruses-worms-trojans-ransomware/</link>
     <guid>https://athenesoftworks.com/blog/viruses-worms-trojans-ransomware/</guid>
     <pubDate>Tue, 20 Oct 2026 09:00:00 +0000</pubDate>
     <category>Security</category>
     <description>&quot;Virus&quot; has become the word for every kind of malware, but the differences matter: they decide how something spreads and how you protect yourself. A short field guide.</description>
+  </item>
+  <item>
+    <title>Backups that survive ransomware: the 3-2-1 rule, made simple</title>
+    <link>https://athenesoftworks.com/blog/backups-that-survive-ransomware/</link>
+    <guid>https://athenesoftworks.com/blog/backups-that-survive-ransomware/</guid>
+    <pubDate>Mon, 19 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>A backup that&#x27;s always plugged in can be encrypted along with everything else. How to set up backups on a Mac or PC that ransomware, a stolen laptop or a spilled coffee can&#x27;t take away.</description>
+  </item>
+  <item>
+    <title>Prompt injection: how a web page can hijack your AI assistant</title>
+    <link>https://athenesoftworks.com/blog/prompt-injection-ai-agents/</link>
+    <guid>https://athenesoftworks.com/blog/prompt-injection-ai-agents/</guid>
+    <pubDate>Sun, 18 Oct 2026 09:00:00 +0000</pubDate>
+    <category>AI</category>
+    <description>When an AI can browse, read your files or run commands, any text it reads becomes a possible instruction. What prompt injection is, why nobody has fully solved it, and how to use AI agents safely anyway.</description>
+  </item>
+  <item>
+    <title>Cracked software is the stealers&#x27; favourite delivery van</title>
+    <link>https://athenesoftworks.com/blog/cracked-software-risks/</link>
+    <guid>https://athenesoftworks.com/blog/cracked-software-risks/</guid>
+    <pubDate>Fri, 16 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>Free Photoshop, a game cheat, a &#x27;portable&#x27; Office: the most common way infostealers reach home computers is a download people chose themselves. How the trap is set and how to get software safely.</description>
+  </item>
+  <item>
+    <title>How much memory do you need to run AI locally?</title>
+    <link>https://athenesoftworks.com/blog/how-much-memory-for-local-ai/</link>
+    <guid>https://athenesoftworks.com/blog/how-much-memory-for-local-ai/</guid>
+    <pubDate>Wed, 14 Oct 2026 09:00:00 +0000</pubDate>
+    <category>AI</category>
+    <description>8 GB, 16 GB, 32 GB or more: what each amount of RAM or VRAM actually lets you run, why Apple Silicon Macs punch above their weight, and a quick formula to check any model before you download it.</description>
+  </item>
+  <item>
+    <title>Passkeys explained: the login that can&#x27;t be phished</title>
+    <link>https://athenesoftworks.com/blog/passkeys-explained/</link>
+    <guid>https://athenesoftworks.com/blog/passkeys-explained/</guid>
+    <pubDate>Mon, 12 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>Passkeys replace passwords with a key that lives on your phone or computer. What they are, why a fake site can&#x27;t steal them, and how to switch your most important accounts in ten minutes.</description>
+  </item>
+  <item>
+    <title>Q4_K_M, Q8_0, FP16: model quantization in plain words</title>
+    <link>https://athenesoftworks.com/blog/quantization-explained/</link>
+    <guid>https://athenesoftworks.com/blog/quantization-explained/</guid>
+    <pubDate>Sat, 10 Oct 2026 09:00:00 +0000</pubDate>
+    <category>AI</category>
+    <description>Download a local AI model and you&#x27;re faced with a list of cryptic file names. What quantization is, how much quality each level really costs, and which file to pick for your computer.</description>
+  </item>
+  <item>
+    <title>How to spot a phishing message before you click</title>
+    <link>https://athenesoftworks.com/blog/spot-a-phishing-message/</link>
+    <guid>https://athenesoftworks.com/blog/spot-a-phishing-message/</guid>
+    <pubDate>Thu, 08 Oct 2026 09:00:00 +0000</pubDate>
+    <category>Security</category>
+    <description>Phishing emails and texts no longer have spelling mistakes. Here are the signs that still give them away, and a simple habit that protects you even when a fake looks perfect.</description>
   </item>
 </channel>
 </rss>

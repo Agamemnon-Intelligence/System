@@ -1,0 +1,77 @@
+<!--
+{"title": "BadUSB: when a USB stick pretends to be a keyboard",
+ "title_tr": "BadUSB: bir USB bellek klavye gibi davrandığında",
+ "summary": "Some USB devices aren't drives at all. Plugged in, they announce themselves as a keyboard and type commands faster than you can blink. How these attacks work and how to protect yourself.",
+ "summary_tr": "Bazı USB aygıtlar aslında bellek değildir. Takıldıklarında kendilerini klavye olarak tanıtır ve göz açıp kapayıncaya kadar komut yazarlar. Bu saldırıların nasıl çalıştığını ve kendinizi nasıl koruyacağınızı anlatıyoruz.",
+ "date": "2026-10-21", "cat": "security"}
+-->
+<section lang="en">
+<p>Most people know not to open strange files from a USB stick they found in the car park. Fewer know that the stick may not need you to open anything. Some devices that look like a USB drive, a charging cable or even a mouse dongle are really tiny computers that tell your machine: <em>"I'm a keyboard."</em></p>
+<p>Computers trust keyboards completely. So the moment it's plugged in, the device can open a terminal and type a command at hundreds of characters per second. This is called a <strong>BadUSB</strong> or <strong>keystroke injection</strong> attack.</p>
+
+<h2>What one looks like in practice</h2>
+<ol>
+<li>The device is plugged in. Your computer sees a new keyboard and accepts it.</li>
+<li>After a short pause, it presses <kbd>Win</kbd> + <kbd>R</kbd> on Windows, or opens Spotlight and Terminal on a Mac.</li>
+<li>It types a one-line command that downloads and runs malware, then presses Enter.</li>
+<li>The window closes. The whole thing takes two or three seconds. If you looked away, you saw nothing.</li>
+</ol>
+<p>Tools that do this are sold openly for security testing, and cheap clones cost a few euros. Malicious "charging cables" with a hidden chip inside also exist, though they're rarer and pricier.</p>
+
+<h2>Who is at risk?</h2>
+<p>Realistically, BadUSB is a targeted attack: someone has to get a device into your hands or your port. Typical scenarios are:</p>
+<ul>
+<li>USB sticks left in offices, car parks or sent by post as a "free gift" or "conference materials".</li>
+<li>Someone with a moment alone at an unlocked computer.</li>
+<li>Second-hand or unbranded cables, chargers and accessories.</li>
+</ul>
+<p>The same everyday habits also protect you from plain old infected USB drives, which are far more common.</p>
+
+<h2>Simple habits that stop it</h2>
+<ul>
+<li><strong>Don't plug in USB devices you didn't buy or don't know.</strong> If you find one, hand it to IT or throw it away. Curiosity is exactly what the attacker counts on.</li>
+<li><strong>Lock your screen</strong> when you step away (<kbd>Win</kbd> + <kbd>L</kbd>, or <kbd>Ctrl</kbd> + <kbd>⌘</kbd> + <kbd>Q</kbd> on a Mac). A device can't type into a locked computer.</li>
+<li><strong>Use a power-only adapter</strong> (a "USB condom") when charging from public ports.</li>
+<li><strong>On a Mac, keep "Allow accessories to connect" on "Ask".</strong> Apple Silicon Macs ask before a new USB or Thunderbolt accessory can talk to a laptop. Say no to anything you don't recognise.</li>
+<li><strong>Watch for keyboard pop-ups.</strong> macOS's "Keyboard Setup Assistant" appearing when you plugged in a "drive" is a big red flag. Unplug it.</li>
+</ul>
+<div class="note"><b>Don't use a non-admin account as your only defence</b>Working as a standard user helps, but a typed command can still steal your files and browser data without admin rights. Stealers don't need to be administrators.</div>
+
+<h2>What Agamemnon does</h2>
+<p>On both Mac and Windows, Agamemnon scans every drive and memory card the moment it's plugged in and ejects it if it carries malware; programs disguised as documents (like <code>photos.jpg.exe</code>), files hidden behind shortcuts and autorun tricks are flagged. On a Mac it adds BadUSB defence: when a newly connected device <strong>behaves like a keyboard that starts typing commands</strong>, Agamemnon catches it. Combined with real-time protection, whatever such a device tries to download is checked as soon as it lands.</p>
+</section>
+<section lang="tr">
+<p>Çoğu insan otoparkta bulduğu bir USB bellekten tuhaf dosyalar açmaması gerektiğini bilir. Daha azı, o belleğin sizin bir şey açmanıza ihtiyaç duymayabileceğini bilir. USB bellek, şarj kablosu, hatta fare alıcısı gibi görünen bazı aygıtlar aslında bilgisayarınıza <em>"Ben bir klavyeyim"</em> diyen küçük bilgisayarlardır.</p>
+<p>Bilgisayarlar klavyelere tamamen güvenir. Bu yüzden aygıt takıldığı anda bir terminal açıp saniyede yüzlerce karakter hızla bir komut yazabilir. Buna <strong>BadUSB</strong> ya da <strong>tuş vuruşu enjeksiyonu</strong> saldırısı denir.</p>
+
+<h2>Uygulamada nasıl görünür?</h2>
+<ol>
+<li>Aygıt takılır. Bilgisayarınız yeni bir klavye görür ve kabul eder.</li>
+<li>Kısa bir beklemeden sonra Windows'ta <kbd>Win</kbd> + <kbd>R</kbd>'ye basar ya da Mac'te Spotlight'ı ve Terminal'i açar.</li>
+<li>Zararlı yazılım indirip çalıştıran tek satırlık bir komut yazar ve Enter'a basar.</li>
+<li>Pencere kapanır. Her şey iki üç saniye sürer. O an başka yere baktıysanız hiçbir şey görmezsiniz.</li>
+</ol>
+<p>Bunu yapan araçlar güvenlik testleri için açıkça satılıyor ve ucuz kopyaları birkaç avro tutuyor. İçinde gizli çip olan zararlı "şarj kabloları" da var, ama daha nadir ve daha pahalılar.</p>
+
+<h2>Kimler risk altında?</h2>
+<p>Gerçekçi olmak gerekirse BadUSB hedefli bir saldırıdır: birinin aygıtı elinize ya da bilgisayarınızın girişine ulaştırması gerekir. Tipik senaryolar:</p>
+<ul>
+<li>Ofislerde, otoparklarda bırakılan ya da "ücretsiz hediye" veya "konferans materyali" olarak postayla gönderilen USB bellekler.</li>
+<li>Kilidi açık bir bilgisayarın başında bir an yalnız kalan biri.</li>
+<li>İkinci el ya da markasız kablolar, şarj aletleri ve aksesuarlar.</li>
+</ul>
+<p>Aynı günlük alışkanlıklar sizi çok daha yaygın olan sıradan virüslü USB belleklerden de korur.</p>
+
+<h2>Bunu durduran basit alışkanlıklar</h2>
+<ul>
+<li><strong>Satın almadığınız ya da tanımadığınız USB aygıtları takmayın.</strong> Bir tane bulursanız BT ekibine verin ya da atın. Saldırganın güvendiği şey tam olarak meraktır.</li>
+<li>Başından kalktığınızda <strong>ekranınızı kilitleyin</strong> (<kbd>Win</kbd> + <kbd>L</kbd> ya da Mac'te <kbd>Ctrl</kbd> + <kbd>⌘</kbd> + <kbd>Q</kbd>). Bir aygıt kilitli bilgisayara yazı yazamaz.</li>
+<li>Halka açık girişlerden şarj ederken <strong>yalnızca güç ileten bir adaptör</strong> ("USB prezervatifi") kullanın.</li>
+<li><strong>Mac'te "Aksesuarların bağlanmasına izin ver" ayarını "Sor" olarak tutun.</strong> Apple Silicon dizüstü Mac'ler yeni bir USB ya da Thunderbolt aksesuarı bağlanmadan önce sorar. Tanımadığınız her şeye hayır deyin.</li>
+<li><strong>Klavye pencerelerine dikkat edin.</strong> Bir "bellek" taktığınızda macOS'un "Klavye Ayarlama Yardımcısı"nın açılması büyük bir tehlike işaretidir. Hemen çıkarın.</li>
+</ul>
+<div class="note"><b>Tek savunmanız standart hesap olmasın</b>Standart kullanıcı olarak çalışmak yardımcı olur, ama yazılan bir komut yönetici yetkisi olmadan da dosyalarınızı ve tarayıcı verilerinizi çalabilir. Veri hırsızlarının yönetici olmasına gerek yoktur.</div>
+
+<h2>Agamemnon ne yapıyor?</h2>
+<p>Agamemnon hem Mac'te hem Windows'ta her belleği ve hafıza kartını takıldığı anda tarar, zararlı yazılım taşıyorsa çıkarır; belge kılığına girmiş programlar (<code>fotograflar.jpg.exe</code> gibi), kısayolların arkasına gizlenmiş dosyalar ve autorun hileleri işaretlenir. Mac'te buna BadUSB savunması eklenir: yeni bağlanan bir aygıt <strong>komut yazmaya başlayan bir klavye gibi davranırsa</strong> Agamemnon bunu yakalar. Gerçek zamanlı korumayla birlikte, böyle bir aygıtın indirmeye çalıştığı her şey diske düştüğü anda denetlenir.</p>
+</section>

@@ -1,0 +1,87 @@
+<!--
+{"title": "How much memory do you need to run AI locally?",
+ "title_tr": "Yapay zekâyı yerelde çalıştırmak için ne kadar belleğe ihtiyacınız var?",
+ "summary": "8 GB, 16 GB, 32 GB or more: what each amount of RAM or VRAM actually lets you run, why Apple Silicon Macs punch above their weight, and a quick formula to check any model before you download it.",
+ "summary_tr": "8 GB, 16 GB, 32 GB ya da daha fazlası: her bellek miktarının gerçekte neyi çalıştırmanıza izin verdiğini, Apple Silicon Mac'lerin neden boyundan büyük işler yaptığını ve herhangi bir modeli indirmeden önce kontrol etmek için hızlı bir formülü anlatıyoruz.",
+ "date": "2026-10-14", "cat": "ai"}
+-->
+<section lang="en">
+<p>The single question that decides which AI models you can run on your own computer is: <strong>how much memory can the model use?</strong> Not the processor, not the brand. Memory sets the ceiling; the processor sets the speed.</p>
+
+<h2>The quick formula</h2>
+<p>For a model in the common Q4 format:</p>
+<blockquote>Memory needed ≈ parameters (in billions) × 0.6 GB, plus 1–2 GB for the conversation.</blockquote>
+<p>So a 4B model needs about 3–4 GB, an 8B model about 6–7 GB, a 14B model about 10 GB and a 32B model about 21 GB. At Q8, roughly double the first number. Our <a href="../quantization-explained/">quantization guide</a> explains where these numbers come from.</p>
+
+<h2>Which memory counts?</h2>
+<p><strong>On an Apple Silicon Mac</strong>, the CPU and GPU share one pool of <em>unified memory</em>. A Mac with 16 GB can give most of it to the model. macOS keeps some for itself, so plan on using roughly two-thirds to three-quarters of the total.</p>
+<p><strong>On a Windows PC with a graphics card</strong>, what matters most is the card's own <strong>VRAM</strong>. A model that fits entirely in VRAM is fast. If it doesn't fit, engines like llama.cpp can split it, keeping some layers in normal RAM on the CPU, but every layer that spills over slows it down noticeably.</p>
+<p><strong>On a PC without a dedicated GPU</strong>, the model runs from system RAM on the CPU. It works, just more slowly: fine for small models, patient for medium ones.</p>
+
+<h2>What each tier gets you</h2>
+<table>
+<thead><tr><th>Memory available</th><th>Comfortable models (Q4)</th><th>Good for</th></tr></thead>
+<tbody>
+<tr><td>8 GB</td><td>1–4B, an 8B at a squeeze</td><td>Quick questions, summaries, rewriting, simple code help</td></tr>
+<tr><td>16 GB</td><td>7–14B</td><td>Solid everyday assistant, decent coding, document Q&amp;A</td></tr>
+<tr><td>24–32 GB</td><td>14–32B, efficient mixture-of-experts models</td><td>Strong reasoning and coding, longer documents</td></tr>
+<tr><td>64 GB+</td><td>70B class and large MoE models</td><td>Close to mid-tier cloud models for many tasks</td></tr>
+</tbody>
+</table>
+<p><strong>Mixture-of-experts (MoE)</strong> models change the maths a little. They have many parameters in total but only use a fraction for each word, so they <em>run</em> like a smaller model while needing the memory of a bigger one. If you have plenty of memory but a modest GPU, they're often the best choice.</p>
+
+<h2>Speed: memory bandwidth</h2>
+<p>Once a model fits, its speed depends mostly on <strong>memory bandwidth</strong>: how fast the chip can read all those weights for every word it writes. That's why an M-series Max or Ultra chip, or a desktop graphics card, generates text several times faster than a thin laptop with the same amount of memory. As a rough guide, about 10 tokens per second feels like comfortable reading speed.</p>
+
+<div class="note"><b>Close the browser tabs</b>On 8 or 16 GB machines, a browser with dozens of tabs can easily use 3–4 GB. Closing heavy apps before loading a model can be the difference between smooth and swapping.</div>
+
+<h2>Upgrading? What to look for</h2>
+<ul>
+<li><strong>Mac:</strong> memory can't be upgraded later, so buy more than you think. 16 GB is the realistic minimum for local AI; 24–32 GB is comfortable.</li>
+<li><strong>PC:</strong> VRAM matters more than GPU speed. A card with 12–16 GB opens up most mid-size models.</li>
+<li><strong>Either:</strong> if a model is too big, try a smaller version from the same family before giving up.</li>
+</ul>
+
+<h2>Let Synapse check for you</h2>
+<p>Synapse reads your chip, memory and graphics card and marks every model as fitting comfortably, fitting tightly or too big before you download it. On Windows it also checks VRAM, and it uses NVIDIA cards through CUDA and AMD or Intel cards through Vulkan. And if a task needs more than your computer can handle, you can switch to a free cloud model in the same chat.</p>
+</section>
+<section lang="tr">
+<p>Kendi bilgisayarınızda hangi yapay zekâ modellerini çalıştırabileceğinizi belirleyen tek soru şudur: <strong>model ne kadar bellek kullanabilir?</strong> İşlemci değil, marka değil. Tavanı bellek belirler; hızı işlemci.</p>
+
+<h2>Hızlı formül</h2>
+<p>Yaygın Q4 biçimindeki bir model için:</p>
+<blockquote>Gereken bellek ≈ parametre sayısı (milyar) × 0,6 GB, artı konuşma için 1–2 GB.</blockquote>
+<p>Yani 4B bir model yaklaşık 3–4 GB, 8B bir model yaklaşık 6–7 GB, 14B bir model yaklaşık 10 GB ve 32B bir model yaklaşık 21 GB ister. Q8'de ilk sayıyı kabaca ikiye katlayın. Bu sayıların nereden geldiğini <a href="../quantization-explained/">nicemleme rehberimiz</a> anlatıyor.</p>
+
+<h2>Hangi bellek önemli?</h2>
+<p><strong>Apple Silicon bir Mac'te</strong> CPU ve GPU tek bir <em>birleşik bellek</em> havuzunu paylaşır. 16 GB'lık bir Mac bunun çoğunu modele verebilir. macOS bir kısmını kendine ayırır; toplamın kabaca üçte ikisi ile dörtte üçünü kullanmayı planlayın.</p>
+<p><strong>Ekran kartı olan bir Windows PC'de</strong> en önemli olan kartın kendi <strong>VRAM</strong>'idir. Tamamen VRAM'e sığan bir model hızlıdır. Sığmazsa llama.cpp gibi motorlar onu bölebilir ve bazı katmanları normal RAM'de CPU'da tutabilir, ama taşan her katman onu belirgin şekilde yavaşlatır.</p>
+<p><strong>Ayrı ekran kartı olmayan bir PC'de</strong> model, sistem RAM'inden CPU üzerinde çalışır. Çalışır, sadece daha yavaştır: küçük modeller için yeterli, orta boy modeller için sabır ister.</p>
+
+<h2>Her seviye size ne kazandırır?</h2>
+<table>
+<thead><tr><th>Kullanılabilir bellek</th><th>Rahat çalışan modeller (Q4)</th><th>Neye uygun</th></tr></thead>
+<tbody>
+<tr><td>8 GB</td><td>1–4B, zorlanarak bir 8B</td><td>Hızlı sorular, özetler, yeniden yazma, basit kod yardımı</td></tr>
+<tr><td>16 GB</td><td>7–14B</td><td>Sağlam bir günlük asistan, iyi kodlama, belgeler üzerinde soru-cevap</td></tr>
+<tr><td>24–32 GB</td><td>14–32B, verimli uzman karışımı modeller</td><td>Güçlü akıl yürütme ve kodlama, daha uzun belgeler</td></tr>
+<tr><td>64 GB+</td><td>70B sınıfı ve büyük MoE modeller</td><td>Birçok işte orta seviye bulut modellerine yakın</td></tr>
+</tbody>
+</table>
+<p><strong>Uzman karışımı (MoE)</strong> modeller hesabı biraz değiştirir. Toplamda çok sayıda parametreleri vardır ama her kelime için yalnızca bir kısmını kullanırlar; bu yüzden daha büyük bir modelin belleğine ihtiyaç duyarken daha küçük bir model gibi <em>çalışırlar</em>. Belleğiniz bol ama GPU'nuz mütevazıysa çoğu zaman en iyi seçimdir.</p>
+
+<h2>Hız: bellek bant genişliği</h2>
+<p>Bir model sığdıktan sonra hızı büyük ölçüde <strong>bellek bant genişliğine</strong> bağlıdır: çipin yazdığı her kelime için tüm o ağırlıkları ne kadar hızlı okuyabildiği. Bu yüzden M serisi bir Max ya da Ultra çip veya bir masaüstü ekran kartı, aynı belleğe sahip ince bir dizüstüden birkaç kat hızlı metin üretir. Kabaca, saniyede yaklaşık 10 token rahat bir okuma hızı gibi gelir.</p>
+
+<div class="note"><b>Tarayıcı sekmelerini kapatın</b>8 ya da 16 GB'lık makinelerde onlarca sekmesi açık bir tarayıcı kolayca 3–4 GB kullanabilir. Bir modeli yüklemeden önce ağır uygulamaları kapatmak, akıcı çalışma ile diske takas arasındaki fark olabilir.</div>
+
+<h2>Yükseltme mi düşünüyorsunuz? Nelere bakmalı?</h2>
+<ul>
+<li><strong>Mac:</strong> bellek sonradan yükseltilemez; düşündüğünüzden fazlasını alın. Yerel yapay zekâ için gerçekçi alt sınır 16 GB; 24–32 GB rahattır.</li>
+<li><strong>PC:</strong> VRAM, GPU hızından daha önemlidir. 12–16 GB'lık bir kart orta boy modellerin çoğunun önünü açar.</li>
+<li><strong>Her ikisi:</strong> bir model çok büyükse vazgeçmeden önce aynı ailenin daha küçük bir sürümünü deneyin.</li>
+</ul>
+
+<h2>Synapse sizin için kontrol etsin</h2>
+<p>Synapse çipinizi, belleğinizi ve ekran kartınızı okur ve her modeli siz indirmeden önce rahat sığıyor, sıkışık sığıyor ya da çok büyük olarak işaretler. Windows'ta VRAM'i de kontrol eder; NVIDIA kartları CUDA, AMD ve Intel kartları Vulkan üzerinden kullanır. Bir iş bilgisayarınızın kaldırabileceğinden fazlasını gerektirirse aynı sohbette ücretsiz bir bulut modeline geçebilirsiniz.</p>
+</section>

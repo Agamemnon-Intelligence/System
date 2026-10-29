@@ -1,0 +1,71 @@
+<!--
+{"title": "Free cloud AI: getting API keys from Google, Groq and OpenRouter",
+ "title_tr": "Ücretsiz bulut yapay zekâsı: Google, Groq ve OpenRouter'dan API anahtarı almak",
+ "summary": "You don't need a subscription to use powerful cloud models. Where to get free API keys, what the limits look like, what happens to your data, and how to keep a key from leaking.",
+ "summary_tr": "Güçlü bulut modellerini kullanmak için abonelik gerekmez. Ücretsiz API anahtarlarını nereden alacağınızı, sınırların nasıl olduğunu, verilerinize ne olduğunu ve bir anahtarın sızmasını nasıl önleyeceğinizi anlatıyoruz.",
+ "date": "2026-10-23", "cat": "ai"}
+-->
+<section lang="en">
+<p>Local models are private and free to run, but sometimes you want something bigger than your computer can hold: a long document, a hard coding problem, or just more speed. You don't need a monthly subscription for that. Several providers give developers <strong>free API access</strong>, and any app that speaks their API can use it.</p>
+
+<h2>What an API key is</h2>
+<p>An API key is a long secret string, like a password for programs. Your app sends it with every request so the provider knows which account to count the usage against. Anyone who has your key can use your quota, and on paid accounts, <strong>spend your money</strong>. Treat it like a password.</p>
+
+<h2>Where to get free keys</h2>
+<p><strong>Google AI Studio.</strong> Sign in with a Google account at <em>aistudio.google.com</em> and create a key. The free tier covers Gemini Flash models with generous daily limits and a very long context window, which is great for summarising big documents.</p>
+<p><strong>Groq.</strong> Sign up at <em>console.groq.com</em>. Groq runs open models such as Llama, Qwen and gpt-oss on its own chips, and it's known for speed: hundreds of tokens per second. Free limits are counted per minute and per day.</p>
+<p><strong>OpenRouter.</strong> One key for hundreds of models from many providers. A set of models marked <code>:free</code> can be used at no cost with a daily request limit; adding a small amount of credit raises it.</p>
+<div class="note"><b>Limits change</b>Free tiers are adjusted often. Check each provider's limits page before you rely on one, and expect "429: rate limit" errors when you go over. Waiting a minute usually fixes it.</div>
+
+<h2>What happens to your data</h2>
+<p>This is the trade-off. With a cloud model, your messages are sent to that provider. On <strong>free tiers, some providers may use your prompts to improve their models</strong>, and people may review samples. Read the terms, and as a rule:</p>
+<ul>
+<li>Don't send passwords, health records, client data or anything under an NDA to a free cloud tier.</li>
+<li>Use a local model for private documents. See <a href="../local-vs-cloud-ai/">local vs cloud AI</a> for when each makes sense.</li>
+</ul>
+
+<h2>Keeping your key safe</h2>
+<ol>
+<li><strong>Never put a key in code you share</strong>, in a public GitHub repo, or in a website's JavaScript. Bots scan GitHub for leaked keys within minutes.</li>
+<li><strong>Store it in your system's keychain</strong>, not in a text file on your desktop.</li>
+<li><strong>Use separate keys</strong> for separate apps, so you can revoke one without breaking the rest.</li>
+<li><strong>Set a spending limit</strong> on any account that has a card attached.</li>
+<li><strong>If a key leaks, revoke it</strong> in the provider's dashboard and make a new one. Deleting the file isn't enough: it may already be copied.</li>
+</ol>
+<div class="note warn"><b>Stealers want your keys too</b>Infostealers now look for API keys in config files, <code>.env</code> files and shell history, alongside browser passwords. Another good reason to keep them in the keychain. See <a href="../what-infostealers-want/">what infostealers want</a>.</div>
+
+<h2>Using them in Synapse</h2>
+<p>In Synapse, you sign in to Google AI Studio, Groq or OpenRouter, paste your free key, and their models appear next to your local ones. Keys are stored in the macOS Keychain or Windows Credential Manager, never in plain files. Synapse also shows live rate limits from Groq and request counts for every provider, so you can see how much free usage you have left, and you can switch to a local model in the same chat whenever the conversation turns private.</p>
+</section>
+<section lang="tr">
+<p>Yerel modeller özeldir ve çalıştırması ücretsizdir, ama bazen bilgisayarınızın taşıyabileceğinden daha büyük bir şey istersiniz: uzun bir belge, zor bir kodlama sorunu ya da sadece daha fazla hız. Bunun için aylık aboneliğe ihtiyacınız yok. Birkaç sağlayıcı geliştiricilere <strong>ücretsiz API erişimi</strong> veriyor ve onların API'sini konuşan her uygulama bunu kullanabilir.</p>
+
+<h2>API anahtarı nedir?</h2>
+<p>API anahtarı, programlar için bir parola gibi uzun ve gizli bir metindir. Uygulamanız onu her istekle gönderir; böylece sağlayıcı kullanımı hangi hesaba sayacağını bilir. Anahtarınıza sahip olan herkes kotanızı kullanabilir ve ücretli hesaplarda <strong>paranızı harcayabilir</strong>. Ona bir parola gibi davranın.</p>
+
+<h2>Ücretsiz anahtarları nereden alırsınız?</h2>
+<p><strong>Google AI Studio.</strong> <em>aistudio.google.com</em> adresinde bir Google hesabıyla giriş yapın ve bir anahtar oluşturun. Ücretsiz katman, cömert günlük sınırlar ve çok uzun bir bağlam penceresiyle Gemini Flash modellerini kapsar; bu, büyük belgeleri özetlemek için harikadır.</p>
+<p><strong>Groq.</strong> <em>console.groq.com</em> adresinden kaydolun. Groq; Llama, Qwen ve gpt-oss gibi açık modelleri kendi çiplerinde çalıştırır ve hızıyla bilinir: saniyede yüzlerce token. Ücretsiz sınırlar dakika ve gün başına sayılır.</p>
+<p><strong>OpenRouter.</strong> Birçok sağlayıcının yüzlerce modeli için tek bir anahtar. <code>:free</code> olarak işaretlenmiş bir grup model günlük istek sınırıyla ücretsiz kullanılabilir; az miktarda kredi eklemek bu sınırı yükseltir.</p>
+<div class="note"><b>Sınırlar değişir</b>Ücretsiz katmanlar sık sık ayarlanır. Birine güvenmeden önce her sağlayıcının sınırlar sayfasını kontrol edin ve sınırı aştığınızda "429: rate limit" hataları bekleyin. Bir dakika beklemek genellikle sorunu çözer.</div>
+
+<h2>Verilerinize ne oluyor?</h2>
+<p>Ödünleşim burada. Bir bulut modelinde mesajlarınız o sağlayıcıya gönderilir. <strong>Ücretsiz katmanlarda bazı sağlayıcılar istemlerinizi modellerini geliştirmek için kullanabilir</strong> ve örnekler insanlar tarafından incelenebilir. Koşulları okuyun ve genel bir kural olarak:</p>
+<ul>
+<li>Parolaları, sağlık kayıtlarını, müşteri verilerini ya da gizlilik sözleşmesi kapsamındaki hiçbir şeyi ücretsiz bir bulut katmanına göndermeyin.</li>
+<li>Özel belgeler için yerel bir model kullanın. Hangisinin ne zaman mantıklı olduğu için <a href="../local-vs-cloud-ai/">yerel ve bulut yapay zekâ</a> yazımıza bakın.</li>
+</ul>
+
+<h2>Anahtarınızı güvende tutmak</h2>
+<ol>
+<li><strong>Bir anahtarı asla paylaştığınız koda</strong>, herkese açık bir GitHub deposuna ya da bir web sitesinin JavaScript'ine koymayın. Botlar sızan anahtarlar için GitHub'ı dakikalar içinde tarar.</li>
+<li>Masaüstünüzdeki bir metin dosyasında değil, <strong>sisteminizin anahtar zincirinde saklayın</strong>.</li>
+<li>Farklı uygulamalar için <strong>ayrı anahtarlar kullanın</strong>; böylece diğerlerini bozmadan birini iptal edebilirsiniz.</li>
+<li>Kart bağlı her hesapta <strong>harcama sınırı belirleyin</strong>.</li>
+<li><strong>Bir anahtar sızarsa</strong> sağlayıcının panelinden iptal edin ve yenisini oluşturun. Dosyayı silmek yetmez: çoktan kopyalanmış olabilir.</li>
+</ol>
+<div class="note warn"><b>Veri hırsızları anahtarlarınızı da istiyor</b>Veri hırsızları artık tarayıcı parolalarının yanı sıra yapılandırma dosyalarında, <code>.env</code> dosyalarında ve kabuk geçmişinde API anahtarları da arıyor. Onları anahtar zincirinde tutmak için bir sebep daha. <a href="../what-infostealers-want/">Veri hırsızlarının ne istediğine</a> göz atın.</div>
+
+<h2>Synapse'te kullanmak</h2>
+<p>Synapse'te Google AI Studio, Groq ya da OpenRouter'a giriş yapar, ücretsiz anahtarınızı yapıştırırsınız ve modelleri yerel modellerinizin yanında görünür. Anahtarlar düz dosyalarda değil, macOS Anahtar Zinciri'nde ya da Windows Kimlik Bilgileri Yöneticisi'nde saklanır. Synapse ayrıca Groq'tan canlı hız sınırlarını ve her sağlayıcı için istek sayılarını gösterir; böylece ne kadar ücretsiz kullanımınız kaldığını görebilirsiniz. Konuşma özel bir hâl aldığında aynı sohbette yerel bir modele geçebilirsiniz.</p>
+</section>

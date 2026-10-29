@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en" data-title-tr="Yapay zekâyı yerelde çalıştırmak için ne kadar belleğe ihtiyacınız var? · Athene Softworks">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>How much memory do you need to run AI locally? · Athene Softworks</title>
+<meta name="description" content="8 GB, 16 GB, 32 GB or more: what each amount of RAM or VRAM actually lets you run, why Apple Silicon Macs punch above their weight, and a quick formula to check any model before you download it.">
+<meta name="theme-color" content="#0b1020">
+<link rel="canonical" href="https://athenesoftworks.com/blog/how-much-memory-for-local-ai/">
+<meta property="og:site_name" content="Athene Softworks">
+<meta property="og:title" content="How much memory do you need to run AI locally? · Athene Softworks">
+<meta property="og:description" content="8 GB, 16 GB, 32 GB or more: what each amount of RAM or VRAM actually lets you run, why Apple Silicon Macs punch above their weight, and a quick formula to check any model before you download it.">
+<meta property="og:url" content="https://athenesoftworks.com/blog/how-much-memory-for-local-ai/">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-10-14">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How much memory do you need to run AI locally?", "description": "8 GB, 16 GB, 32 GB or more: what each amount of RAM or VRAM actually lets you run, why Apple Silicon Macs punch above their weight, and a quick formula to check any model before you download it.", "datePublished": "2026-10-14", "url": "https://athenesoftworks.com/blog/how-much-memory-for-local-ai/", "inLanguage": ["en", "tr"], "author": {"@type": "Organization", "name": "Athene Softworks", "url": "https://athenesoftworks.com"}, "publisher": {"@type": "Organization", "name": "Athene Softworks", "url": "https://athenesoftworks.com"}}</script>
+<link rel="alternate" type="application/rss+xml" title="Athene Softworks Blog" href="https://athenesoftworks.com/blog/feed.xml">
+<link rel="icon" href="https://raw.githubusercontent.com/Agamemnon-Intelligence/Agamemnon-macOS/main/docs/icon.png">
+<script>
+(function () { var d = document.documentElement; d.classList.add('js'); try { if (localStorage.getItem('athene-lang') === 'tr') d.lang = 'tr'; } catch (e) {} })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&family=Red+Hat+Text:wght@300..700&display=swap">
+<link rel="stylesheet" href="../../blog/blog.css">
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<nav class="nav" id="nav" aria-label="Main">
+  <a class="wordmark" href="../../index.html">Athene Softworks</a>
+  <div class="nav-right">
+    <ul>
+      <li><a href="../../index.html"><span data-l="en">Home</span><span data-l="tr">Ana sayfa</span></a></li>
+      <li><a href="../../agamemnon.html">Agamemnon</a></li>
+      <li><a href="../../synapse/">Synapse</a></li>
+      <li><a href="../../blog/" aria-current="page">Blog</a></li>
+      <li><a href="../../index.html#contact"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></a></li>
+    </ul>
+    <button class="lang" id="lang" type="button" aria-label="Türkçe'ye geç">
+      <svg class="flag-gb" viewBox="0 0 60 40" aria-hidden="true">
+        <clipPath id="gb-c"><rect width="60" height="40"/></clipPath>
+        <clipPath id="gb-t"><path d="M30 20h30v20zv20H0zH0V0zV0h30z"/></clipPath>
+        <g clip-path="url(#gb-c)">
+          <rect width="60" height="40" fill="#012169"/>
+          <path d="M0 0l60 40m0-40L0 40" stroke="#fff" stroke-width="8"/>
+          <path d="M0 0l60 40m0-40L0 40" clip-path="url(#gb-t)" stroke="#C8102E" stroke-width="5"/>
+          <path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="12"/>
+          <path d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="7"/>
+        </g>
+      </svg>
+      <svg class="flag-tr" viewBox="0 0 1200 800" aria-hidden="true">
+        <rect width="1200" height="800" fill="#E30A17"/>
+        <circle cx="300" cy="400" r="200" fill="#fff"/>
+        <circle cx="350" cy="400" r="160" fill="#E30A17"/>
+        <polygon fill="#fff" points="400,400 469.1,377.5 469.1,304.9 511.8,363.7 580.9,341.2 538.2,400 580.9,458.8 511.8,436.3 469.1,495.1 469.1,422.5"/>
+      </svg>
+      <span>EN</span>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <header class="p-head">
+    <div class="wrap">
+      <a class="back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-l="en">All posts</span><span data-l="tr">Tüm yazılar</span></a>
+      <div class="meta"><span class="tag" data-cat="ai"><span data-l="en">AI</span><span data-l="tr">Yapay zekâ</span></span></div>
+      <h1><span data-l="en">How much memory do you need to run AI locally?</span><span data-l="tr">Yapay zekâyı yerelde çalıştırmak için ne kadar belleğe ihtiyacınız var?</span></h1>
+      <p class="dek"><span data-l="en">8 GB, 16 GB, 32 GB or more: what each amount of RAM or VRAM actually lets you run, why Apple Silicon Macs punch above their weight, and a quick formula to check any model before you download it.</span><span data-l="tr">8 GB, 16 GB, 32 GB ya da daha fazlası: her bellek miktarının gerçekte neyi çalıştırmanıza izin verdiğini, Apple Silicon Mac&#x27;lerin neden boyundan büyük işler yaptığını ve herhangi bir modeli indirmeden önce kontrol etmek için hızlı bir formülü anlatıyoruz.</span></p>
+      <div class="meta"><span data-l="en">By Athene Softworks</span><span data-l="tr">Athene Softworks</span><i></i><span data-l="en"><time datetime="2026-10-14">October 14, 2026</time><i></i>3 min read</span><span data-l="tr"><time datetime="2026-10-14">14 Ekim 2026</time><i></i>2 dk okuma</span></div>
+    </div>
+  </header>
+  <div class="p-cover"><div class="cover"><svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="ghowmuchmem" cx="0.30" cy="0.34" r=".8"><stop offset="0" stop-color="#0e5a8a" stop-opacity=".75"/><stop offset="1" stop-color="#0a1124" stop-opacity="0"/></radialGradient><pattern id="phowmuchmem" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#fff" fill-opacity=".09"/></pattern></defs><rect width="800" height="450" fill="#0a1124"/><rect width="800" height="450" fill="url(#ghowmuchmem)"/><rect width="800" height="450" fill="url(#phowmuchmem)"/><line x1="90" y1="172" x2="297" y2="225" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="90" y1="225" x2="297" y2="160" stroke="#38bdf8" stroke-opacity="0.09" stroke-width="1"/><line x1="90" y1="289" x2="297" y2="290" stroke="#38bdf8" stroke-opacity="0.11" stroke-width="1"/><line x1="297" y1="160" x2="503" y2="199" stroke="#38bdf8" stroke-opacity="0.23" stroke-width="1"/><line x1="297" y1="160" x2="503" y2="252" stroke="#38bdf8" stroke-opacity="0.08" stroke-width="1"/><line x1="297" y1="225" x2="503" y2="199" stroke="#38bdf8" stroke-opacity="0.16" stroke-width="1"/><line x1="297" y1="225" x2="503" y2="252" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="297" y1="290" x2="503" y2="133" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="297" y1="290" x2="503" y2="199" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="297" y1="290" x2="503" y2="252" stroke="#38bdf8" stroke-opacity="0.10" stroke-width="1"/><line x1="297" y1="290" x2="503" y2="311" stroke="#38bdf8" stroke-opacity="0.09" stroke-width="1"/><line x1="503" y1="133" x2="710" y2="198" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="503" y1="133" x2="710" y2="253" stroke="#38bdf8" stroke-opacity="0.13" stroke-width="1"/><line x1="503" y1="133" x2="710" y2="323" stroke="#38bdf8" stroke-opacity="0.17" stroke-width="1"/><line x1="503" y1="199" x2="710" y2="128" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="503" y1="199" x2="710" y2="198" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="503" y1="199" x2="710" y2="253" stroke="#38bdf8" stroke-opacity="0.13" stroke-width="1"/><line x1="503" y1="252" x2="710" y2="128" stroke="#38bdf8" stroke-opacity="0.13" stroke-width="1"/><line x1="503" y1="252" x2="710" y2="198" stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1"/><line x1="503" y1="252" x2="710" y2="253" stroke="#38bdf8" stroke-opacity="0.21" stroke-width="1"/><line x1="503" y1="311" x2="710" y2="128" stroke="#38bdf8" stroke-opacity="0.23" stroke-width="1"/><line x1="503" y1="311" x2="710" y2="253" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1"/><circle cx="90" cy="172" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="90" cy="225" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="90" cy="289" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="297" cy="160" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="297" cy="225" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="297" cy="290" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="503" cy="133" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="503" cy="199" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="503" cy="252" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="503" cy="311" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="128" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="198" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="253" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="323" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/></svg></div></div>
+
+  <div class="p-layout">
+    <div class="prose-wrap">
+      <article class="prose" data-l="en" lang="en">
+<p>The single question that decides which AI models you can run on your own computer is: <strong>how much memory can the model use?</strong> Not the processor, not the brand. Memory sets the ceiling; the processor sets the speed.</p>
+
+<h2>The quick formula</h2>
+<p>For a model in the common Q4 format:</p>
+<blockquote>Memory needed ≈ parameters (in billions) × 0.6 GB, plus 1–2 GB for the conversation.</blockquote>
+<p>So a 4B model needs about 3–4 GB, an 8B model about 6–7 GB, a 14B model about 10 GB and a 32B model about 21 GB. At Q8, roughly double the first number. Our <a href="../quantization-explained/">quantization guide</a> explains where these numbers come from.</p>
+
+<h2>Which memory counts?</h2>
+<p><strong>On an Apple Silicon Mac</strong>, the CPU and GPU share one pool of <em>unified memory</em>. A Mac with 16 GB can give most of it to the model. macOS keeps some for itself, so plan on using roughly two-thirds to three-quarters of the total.</p>
+<p><strong>On a Windows PC with a graphics card</strong>, what matters most is the card's own <strong>VRAM</strong>. A model that fits entirely in VRAM is fast. If it doesn't fit, engines like llama.cpp can split it, keeping some layers in normal RAM on the CPU, but every layer that spills over slows it down noticeably.</p>
+<p><strong>On a PC without a dedicated GPU</strong>, the model runs from system RAM on the CPU. It works, just more slowly: fine for small models, patient for medium ones.</p>
+
+<h2>What each tier gets you</h2>
+<table>
+<thead><tr><th>Memory available</th><th>Comfortable models (Q4)</th><th>Good for</th></tr></thead>
+<tbody>
+<tr><td>8 GB</td><td>1–4B, an 8B at a squeeze</td><td>Quick questions, summaries, rewriting, simple code help</td></tr>
+<tr><td>16 GB</td><td>7–14B</td><td>Solid everyday assistant, decent coding, document Q&amp;A</td></tr>
+<tr><td>24–32 GB</td><td>14–32B, efficient mixture-of-experts models</td><td>Strong reasoning and coding, longer documents</td></tr>
+<tr><td>64 GB+</td><td>70B class and large MoE models</td><td>Close to mid-tier cloud models for many tasks</td></tr>
+</tbody>
+</table>
+<p><strong>Mixture-of-experts (MoE)</strong> models change the maths a little. They have many parameters in total but only use a fraction for each word, so they <em>run</em> like a smaller model while needing the memory of a bigger one. If you have plenty of memory but a modest GPU, they're often the best choice.</p>
+
+<h2>Speed: memory bandwidth</h2>
+<p>Once a model fits, its speed depends mostly on <strong>memory bandwidth</strong>: how fast the chip can read all those weights for every word it writes. That's why an M-series Max or Ultra chip, or a desktop graphics card, generates text several times faster than a thin laptop with the same amount of memory. As a rough guide, about 10 tokens per second feels like comfortable reading speed.</p>
+
+<div class="note"><b>Close the browser tabs</b>On 8 or 16 GB machines, a browser with dozens of tabs can easily use 3–4 GB. Closing heavy apps before loading a model can be the difference between smooth and swapping.</div>
+
+<h2>Upgrading? What to look for</h2>
+<ul>
+<li><strong>Mac:</strong> memory can't be upgraded later, so buy more than you think. 16 GB is the realistic minimum for local AI; 24–32 GB is comfortable.</li>
+<li><strong>PC:</strong> VRAM matters more than GPU speed. A card with 12–16 GB opens up most mid-size models.</li>
+<li><strong>Either:</strong> if a model is too big, try a smaller version from the same family before giving up.</li>
+</ul>
+
+<h2>Let Synapse check for you</h2>
+<p>Synapse reads your chip, memory and graphics card and marks every model as fitting comfortably, fitting tightly or too big before you download it. On Windows it also checks VRAM, and it uses NVIDIA cards through CUDA and AMD or Intel cards through Vulkan. And if a task needs more than your computer can handle, you can switch to a free cloud model in the same chat.</p>
+      </article>
+      <article class="prose" data-l="tr" lang="tr">
+<p>Kendi bilgisayarınızda hangi yapay zekâ modellerini çalıştırabileceğinizi belirleyen tek soru şudur: <strong>model ne kadar bellek kullanabilir?</strong> İşlemci değil, marka değil. Tavanı bellek belirler; hızı işlemci.</p>
+
+<h2>Hızlı formül</h2>
+<p>Yaygın Q4 biçimindeki bir model için:</p>
+<blockquote>Gereken bellek ≈ parametre sayısı (milyar) × 0,6 GB, artı konuşma için 1–2 GB.</blockquote>
+<p>Yani 4B bir model yaklaşık 3–4 GB, 8B bir model yaklaşık 6–7 GB, 14B bir model yaklaşık 10 GB ve 32B bir model yaklaşık 21 GB ister. Q8'de ilk sayıyı kabaca ikiye katlayın. Bu sayıların nereden geldiğini <a href="../quantization-explained/">nicemleme rehberimiz</a> anlatıyor.</p>
+
+<h2>Hangi bellek önemli?</h2>
+<p><strong>Apple Silicon bir Mac'te</strong> CPU ve GPU tek bir <em>birleşik bellek</em> havuzunu paylaşır. 16 GB'lık bir Mac bunun çoğunu modele verebilir. macOS bir kısmını kendine ayırır; toplamın kabaca üçte ikisi ile dörtte üçünü kullanmayı planlayın.</p>
+<p><strong>Ekran kartı olan bir Windows PC'de</strong> en önemli olan kartın kendi <strong>VRAM</strong>'idir. Tamamen VRAM'e sığan bir model hızlıdır. Sığmazsa llama.cpp gibi motorlar onu bölebilir ve bazı katmanları normal RAM'de CPU'da tutabilir, ama taşan her katman onu belirgin şekilde yavaşlatır.</p>
+<p><strong>Ayrı ekran kartı olmayan bir PC'de</strong> model, sistem RAM'inden CPU üzerinde çalışır. Çalışır, sadece daha yavaştır: küçük modeller için yeterli, orta boy modeller için sabır ister.</p>
+
+<h2>Her seviye size ne kazandırır?</h2>
+<table>
+<thead><tr><th>Kullanılabilir bellek</th><th>Rahat çalışan modeller (Q4)</th><th>Neye uygun</th></tr></thead>
+<tbody>
+<tr><td>8 GB</td><td>1–4B, zorlanarak bir 8B</td><td>Hızlı sorular, özetler, yeniden yazma, basit kod yardımı</td></tr>
+<tr><td>16 GB</td><td>7–14B</td><td>Sağlam bir günlük asistan, iyi kodlama, belgeler üzerinde soru-cevap</td></tr>
+<tr><td>24–32 GB</td><td>14–32B, verimli uzman karışımı modeller</td><td>Güçlü akıl yürütme ve kodlama, daha uzun belgeler</td></tr>
+<tr><td>64 GB+</td><td>70B sınıfı ve büyük MoE modeller</td><td>Birçok işte orta seviye bulut modellerine yakın</td></tr>
+</tbody>
+</table>
+<p><strong>Uzman karışımı (MoE)</strong> modeller hesabı biraz değiştirir. Toplamda çok sayıda parametreleri vardır ama her kelime için yalnızca bir kısmını kullanırlar; bu yüzden daha büyük bir modelin belleğine ihtiyaç duyarken daha küçük bir model gibi <em>çalışırlar</em>. Belleğiniz bol ama GPU'nuz mütevazıysa çoğu zaman en iyi seçimdir.</p>
+
+<h2>Hız: bellek bant genişliği</h2>
+<p>Bir model sığdıktan sonra hızı büyük ölçüde <strong>bellek bant genişliğine</strong> bağlıdır: çipin yazdığı her kelime için tüm o ağırlıkları ne kadar hızlı okuyabildiği. Bu yüzden M serisi bir Max ya da Ultra çip veya bir masaüstü ekran kartı, aynı belleğe sahip ince bir dizüstüden birkaç kat hızlı metin üretir. Kabaca, saniyede yaklaşık 10 token rahat bir okuma hızı gibi gelir.</p>
+
+<div class="note"><b>Tarayıcı sekmelerini kapatın</b>8 ya da 16 GB'lık makinelerde onlarca sekmesi açık bir tarayıcı kolayca 3–4 GB kullanabilir. Bir modeli yüklemeden önce ağır uygulamaları kapatmak, akıcı çalışma ile diske takas arasındaki fark olabilir.</div>
+
+<h2>Yükseltme mi düşünüyorsunuz? Nelere bakmalı?</h2>
+<ul>
+<li><strong>Mac:</strong> bellek sonradan yükseltilemez; düşündüğünüzden fazlasını alın. Yerel yapay zekâ için gerçekçi alt sınır 16 GB; 24–32 GB rahattır.</li>
+<li><strong>PC:</strong> VRAM, GPU hızından daha önemlidir. 12–16 GB'lık bir kart orta boy modellerin çoğunun önünü açar.</li>
+<li><strong>Her ikisi:</strong> bir model çok büyükse vazgeçmeden önce aynı ailenin daha küçük bir sürümünü deneyin.</li>
+</ul>
+
+<h2>Synapse sizin için kontrol etsin</h2>
+<p>Synapse çipinizi, belleğinizi ve ekran kartınızı okur ve her modeli siz indirmeden önce rahat sığıyor, sıkışık sığıyor ya da çok büyük olarak işaretler. Windows'ta VRAM'i de kontrol eder; NVIDIA kartları CUDA, AMD ve Intel kartları Vulkan üzerinden kullanır. Bir iş bilgisayarınızın kaldırabileceğinden fazlasını gerektirirse aynı sohbette ücretsiz bir bulut modeline geçebilirsiniz.</p>
+      </article>
+    </div>
+    <nav class="toc" aria-label="On this page"><b><span data-l="en">On this page</span><span data-l="tr">Bu sayfada</span></b><ol></ol></nav>
+  </div>
+
+  <section class="p-end">
+    <div class="cta-box reveal"><img src="../../synapse/assets/icon-256.png" alt="" width="52" height="52"><div><b>Synapse</b><span><span data-l="en">Run open AI models privately on your Mac or PC, or use free cloud models. Free and open source.</span><span data-l="tr">Açık yapay zekâ modellerini Mac ya da PC’nizde gizlice çalıştırın veya ücretsiz bulut modellerini kullanın. Ücretsiz ve açık kaynaklı.</span></span></div><a class="pill solid" href="../../synapse/"><span data-l="en">Get Synapse</span><span data-l="tr">Synapse’i edinin</span></a></div>
+    <div class="more-head"><h2><span data-l="en">Keep reading</span><span data-l="tr">Okumaya devam edin</span></h2><a href="../"><span data-l="en">All posts →</span><span data-l="tr">Tüm yazılar →</span></a></div>
+    <div class="grid">
+      <a class="card reveal" href="../host-your-own-ai-model/" data-post-cat="ai">
+        <div class="cover"><svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="ghostyourow" cx="0.37" cy="0.38" r=".8"><stop offset="0" stop-color="#0e5a8a" stop-opacity=".75"/><stop offset="1" stop-color="#0a1124" stop-opacity="0"/></radialGradient><pattern id="phostyourow" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#fff" fill-opacity=".09"/></pattern></defs><rect width="800" height="450" fill="#0a1124"/><rect width="800" height="450" fill="url(#ghostyourow)"/><rect width="800" height="450" fill="url(#phostyourow)"/><line x1="90" y1="159" x2="214" y2="165" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="90" y1="159" x2="214" y2="225" stroke="#38bdf8" stroke-opacity="0.23" stroke-width="1"/><line x1="90" y1="159" x2="214" y2="278" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1"/><line x1="90" y1="159" x2="214" y2="338" stroke="#38bdf8" stroke-opacity="0.24" stroke-width="1"/><line x1="90" y1="225" x2="214" y2="114" stroke="#38bdf8" stroke-opacity="0.21" stroke-width="1"/><line x1="90" y1="225" x2="214" y2="278" stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1"/><line x1="90" y1="225" x2="214" y2="338" stroke="#38bdf8" stroke-opacity="0.16" stroke-width="1"/><line x1="90" y1="283" x2="214" y2="114" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1"/><line x1="90" y1="283" x2="214" y2="165" stroke="#38bdf8" stroke-opacity="0.17" stroke-width="1"/><line x1="90" y1="283" x2="214" y2="225" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="90" y1="283" x2="214" y2="338" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="214" y1="165" x2="338" y2="132" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1"/><line x1="214" y1="165" x2="338" y2="257" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1"/><line x1="214" y1="165" x2="338" y2="315" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="214" y1="225" x2="338" y2="257" stroke="#38bdf8" stroke-opacity="0.20" stroke-width="1"/><line x1="214" y1="278" x2="338" y2="132" stroke="#38bdf8" stroke-opacity="0.10" stroke-width="1"/><line x1="214" y1="278" x2="338" y2="257" stroke="#38bdf8" stroke-opacity="0.10" stroke-width="1"/><line x1="214" y1="338" x2="338" y2="132" stroke="#38bdf8" stroke-opacity="0.13" stroke-width="1"/><line x1="214" y1="338" x2="338" y2="192" stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1"/><line x1="214" y1="338" x2="338" y2="315" stroke="#38bdf8" stroke-opacity="0.16" stroke-width="1"/><line x1="338" y1="132" x2="462" y2="225" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1"/><line x1="338" y1="132" x2="462" y2="289" stroke="#38bdf8" stroke-opacity="0.09" stroke-width="1"/><line x1="338" y1="192" x2="462" y2="172" stroke="#38bdf8" stroke-opacity="0.08" stroke-width="1"/><line x1="338" y1="192" x2="462" y2="225" stroke="#38bdf8" stroke-opacity="0.11" stroke-width="1"/><line x1="338" y1="192" x2="462" y2="289" stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1"/><line x1="338" y1="257" x2="462" y2="172" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="338" y1="257" x2="462" y2="225" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="338" y1="257" x2="462" y2="289" stroke="#38bdf8" stroke-opacity="0.10" stroke-width="1"/><line x1="338" y1="315" x2="462" y2="172" stroke="#38bdf8" stroke-opacity="0.19" stroke-width="1"/><line x1="338" y1="315" x2="462" y2="225" stroke="#38bdf8" stroke-opacity="0.20" stroke-width="1"/><line x1="338" y1="315" x2="462" y2="289" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1"/><line x1="462" y1="172" x2="586" y2="111" stroke="#38bdf8" stroke-opacity="0.20" stroke-width="1"/><line x1="462" y1="172" x2="586" y2="225" stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1"/><line x1="462" y1="172" x2="586" y2="340" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1"/><line x1="462" y1="225" x2="586" y2="111" stroke="#38bdf8" stroke-opacity="0.08" stroke-width="1"/><line x1="462" y1="225" x2="586" y2="164" stroke="#38bdf8" stroke-opacity="0.21" stroke-width="1"/><line x1="462" y1="225" x2="586" y2="225" stroke="#38bdf8" stroke-opacity="0.13" stroke-width="1"/><line x1="462" y1="289" x2="586" y2="111" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="462" y1="289" x2="586" y2="164" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="462" y1="289" x2="586" y2="225" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="462" y1="289" x2="586" y2="282" stroke="#38bdf8" stroke-opacity="0.11" stroke-width="1"/><line x1="462" y1="289" x2="586" y2="340" stroke="#38bdf8" stroke-opacity="0.17" stroke-width="1"/><line x1="586" y1="111" x2="710" y2="161" stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1"/><line x1="586" y1="111" x2="710" y2="225" stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1"/><line x1="586" y1="111" x2="710" y2="277" stroke="#38bdf8" stroke-opacity="0.23" stroke-width="1"/><line x1="586" y1="164" x2="710" y2="161" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="586" y1="164" x2="710" y2="225" stroke="#38bdf8" stroke-opacity="0.11" stroke-width="1"/><line x1="586" y1="164" x2="710" y2="277" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1"/><line x1="586" y1="225" x2="710" y2="161" stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1"/><line x1="586" y1="225" x2="710" y2="225" stroke="#38bdf8" stroke-opacity="0.18" stroke-width="1"/><line x1="586" y1="225" x2="710" y2="277" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="586" y1="282" x2="710" y2="161" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="586" y1="282" x2="710" y2="225" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="586" y1="282" x2="710" y2="277" stroke="#38bdf8" stroke-opacity="0.19" stroke-width="1"/><line x1="586" y1="340" x2="710" y2="225" stroke="#38bdf8" stroke-opacity="0.11" stroke-width="1"/><circle cx="90" cy="159" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="90" cy="225" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="90" cy="283" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="214" cy="114" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="214" cy="165" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="214" cy="225" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="214" cy="278" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="214" cy="338" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="338" cy="132" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="338" cy="192" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="338" cy="257" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="338" cy="315" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="462" cy="172" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="462" cy="225" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="462" cy="289" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="111" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="164" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="225" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="282" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="340" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="161" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="225" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="277" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/></svg></div>
+        <div class="body">
+          <div class="meta"><span class="tag" data-cat="ai"><span data-l="en">AI</span><span data-l="tr">Yapay zekâ</span></span></div>
+          <h3><span data-l="en">How to host your own AI model, for free or close to it</span><span data-l="tr">Kendi yapay zekâ modelinizi nasıl barındırırsınız: ücretsiz ya da neredeyse ücretsiz</span></h3>
+          <p><span data-l="en">From a model on your laptop to a private API your phone and friends can use. Four practical ways to host an open model, what each costs, and the security mistake almost everyone makes.</span><span data-l="tr">Dizüstünüzdeki bir modelden telefonunuzun ve arkadaşlarınızın kullanabileceği özel bir API&#x27;ye. Açık bir modeli barındırmanın dört pratik yolu, her birinin maliyeti ve neredeyse herkesin yaptığı güvenlik hatası.</span></p>
+          <div class="meta"><span data-l="en"><time datetime="2026-10-26">October 26, 2026</time><i></i>4 min read</span><span data-l="tr"><time datetime="2026-10-26">26 Ekim 2026</time><i></i>3 dk okuma</span></div>
+        </div>
+      </a>
+      <a class="card reveal" href="../local-vs-cloud-ai/" data-post-cat="ai">
+        <div class="cover"><svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="glocalvsclo" cx="0.73" cy="0.57" r=".8"><stop offset="0" stop-color="#0e5a8a" stop-opacity=".75"/><stop offset="1" stop-color="#0a1124" stop-opacity="0"/></radialGradient><pattern id="plocalvsclo" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#fff" fill-opacity=".09"/></pattern></defs><rect width="800" height="450" fill="#0a1124"/><rect width="800" height="450" fill="url(#glocalvsclo)"/><rect width="800" height="450" fill="url(#plocalvsclo)"/><line x1="90" y1="60" x2="214" y2="163" stroke="#38bdf8" stroke-opacity="0.20" stroke-width="1"/><line x1="90" y1="60" x2="214" y2="283" stroke="#38bdf8" stroke-opacity="0.19" stroke-width="1"/><line x1="90" y1="137" x2="214" y2="225" stroke="#38bdf8" stroke-opacity="0.23" stroke-width="1"/><line x1="90" y1="137" x2="214" y2="283" stroke="#38bdf8" stroke-opacity="0.19" stroke-width="1"/><line x1="90" y1="196" x2="214" y2="163" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1"/><line x1="90" y1="196" x2="214" y2="283" stroke="#38bdf8" stroke-opacity="0.08" stroke-width="1"/><line x1="90" y1="312" x2="214" y2="283" stroke="#38bdf8" stroke-opacity="0.17" stroke-width="1"/><line x1="90" y1="381" x2="214" y2="225" stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1"/><line x1="90" y1="381" x2="214" y2="283" stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1"/><line x1="214" y1="163" x2="338" y2="130" stroke="#38bdf8" stroke-opacity="0.20" stroke-width="1"/><line x1="214" y1="163" x2="338" y2="314" stroke="#38bdf8" stroke-opacity="0.20" stroke-width="1"/><line x1="214" y1="225" x2="338" y2="130" stroke="#38bdf8" stroke-opacity="0.18" stroke-width="1"/><line x1="214" y1="225" x2="338" y2="193" stroke="#38bdf8" stroke-opacity="0.13" stroke-width="1"/><line x1="214" y1="225" x2="338" y2="254" stroke="#38bdf8" stroke-opacity="0.24" stroke-width="1"/><line x1="214" y1="225" x2="338" y2="314" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1"/><line x1="338" y1="130" x2="462" y2="129" stroke="#38bdf8" stroke-opacity="0.18" stroke-width="1"/><line x1="338" y1="130" x2="462" y2="257" stroke="#38bdf8" stroke-opacity="0.24" stroke-width="1"/><line x1="338" y1="130" x2="462" y2="322" stroke="#38bdf8" stroke-opacity="0.17" stroke-width="1"/><line x1="338" y1="193" x2="462" y2="129" stroke="#38bdf8" stroke-opacity="0.09" stroke-width="1"/><line x1="338" y1="193" x2="462" y2="198" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1"/><line x1="338" y1="193" x2="462" y2="257" stroke="#38bdf8" stroke-opacity="0.19" stroke-width="1"/><line x1="338" y1="254" x2="462" y2="198" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="338" y1="254" x2="462" y2="257" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="338" y1="314" x2="462" y2="129" stroke="#38bdf8" stroke-opacity="0.15" stroke-width="1"/><line x1="338" y1="314" x2="462" y2="198" stroke="#38bdf8" stroke-opacity="0.17" stroke-width="1"/><line x1="338" y1="314" x2="462" y2="257" stroke="#38bdf8" stroke-opacity="0.11" stroke-width="1"/><line x1="462" y1="129" x2="586" y2="102" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1"/><line x1="462" y1="129" x2="586" y2="173" stroke="#38bdf8" stroke-opacity="0.24" stroke-width="1"/><line x1="462" y1="129" x2="586" y2="225" stroke="#38bdf8" stroke-opacity="0.24" stroke-width="1"/><line x1="462" y1="129" x2="586" y2="287" stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1"/><line x1="462" y1="129" x2="586" y2="332" stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1"/><line x1="462" y1="198" x2="586" y2="102" stroke="#38bdf8" stroke-opacity="0.16" stroke-width="1"/><line x1="462" y1="198" x2="586" y2="173" stroke="#38bdf8" stroke-opacity="0.23" stroke-width="1"/><line x1="462" y1="198" x2="586" y2="225" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1"/><line x1="462" y1="198" x2="586" y2="287" stroke="#38bdf8" stroke-opacity="0.24" stroke-width="1"/><line x1="462" y1="198" x2="586" y2="332" stroke="#38bdf8" stroke-opacity="0.09" stroke-width="1"/><line x1="462" y1="257" x2="586" y2="173" stroke="#38bdf8" stroke-opacity="0.10" stroke-width="1"/><line x1="462" y1="257" x2="586" y2="225" stroke="#38bdf8" stroke-opacity="0.11" stroke-width="1"/><line x1="462" y1="257" x2="586" y2="287" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="462" y1="257" x2="586" y2="332" stroke="#38bdf8" stroke-opacity="0.11" stroke-width="1"/><line x1="462" y1="322" x2="586" y2="102" stroke="#38bdf8" stroke-opacity="0.16" stroke-width="1"/><line x1="462" y1="322" x2="586" y2="173" stroke="#38bdf8" stroke-opacity="0.09" stroke-width="1"/><line x1="462" y1="322" x2="586" y2="225" stroke="#38bdf8" stroke-opacity="0.16" stroke-width="1"/><line x1="586" y1="102" x2="710" y2="130" stroke="#38bdf8" stroke-opacity="0.09" stroke-width="1"/><line x1="586" y1="102" x2="710" y2="197" stroke="#38bdf8" stroke-opacity="0.23" stroke-width="1"/><line x1="586" y1="173" x2="710" y2="197" stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1"/><line x1="586" y1="173" x2="710" y2="321" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1"/><line x1="586" y1="225" x2="710" y2="321" stroke="#38bdf8" stroke-opacity="0.08" stroke-width="1"/><line x1="586" y1="287" x2="710" y2="130" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1"/><line x1="586" y1="287" x2="710" y2="256" stroke="#38bdf8" stroke-opacity="0.19" stroke-width="1"/><line x1="586" y1="287" x2="710" y2="321" stroke="#38bdf8" stroke-opacity="0.10" stroke-width="1"/><line x1="586" y1="332" x2="710" y2="130" stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1"/><line x1="586" y1="332" x2="710" y2="197" stroke="#f3c97a" stroke-opacity="0.70" stroke-width="1.6"/><line x1="586" y1="332" x2="710" y2="321" stroke="#38bdf8" stroke-opacity="0.18" stroke-width="1"/><circle cx="90" cy="60" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="90" cy="137" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="90" cy="196" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="90" cy="254" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="90" cy="312" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="90" cy="381" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="214" cy="163" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="214" cy="225" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="214" cy="283" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="338" cy="130" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="338" cy="193" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="338" cy="254" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="338" cy="314" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="462" cy="129" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="462" cy="198" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="462" cy="257" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="462" cy="322" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="102" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="173" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="225" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="287" r="9" fill="#38bdf8" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="586" cy="332" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="130" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="197" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="256" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/><circle cx="710" cy="321" r="6" fill="#0e1528" stroke="#7dd3fc" stroke-opacity=".8" stroke-width="1.5"/></svg></div>
+        <div class="body">
+          <div class="meta"><span class="tag" data-cat="ai"><span data-l="en">AI</span><span data-l="tr">Yapay zekâ</span></span></div>
+          <h3><span data-l="en">Running AI on your own computer vs. in the cloud</span><span data-l="tr">Yapay zekâyı kendi bilgisayarınızda mı, bulutta mı çalıştırmalı?</span></h3>
+          <p><span data-l="en">Local models keep everything private and work offline. Cloud models are smarter and faster. What your hardware can actually run, and how to pick for each job.</span><span data-l="tr">Yerel modeller her şeyi gizli tutar ve çevrimdışı çalışır. Bulut modelleri daha akıllı ve daha hızlıdır. Donanımınızın gerçekte neyi çalıştırabileceği ve her iş için nasıl seçim yapacağınız.</span></p>
+          <div class="meta"><span data-l="en"><time datetime="2026-10-25">October 25, 2026</time><i></i>3 min read</span><span data-l="tr"><time datetime="2026-10-25">25 Ekim 2026</time><i></i>3 dk okuma</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="wordmark" href="../../index.html">Athene Softworks</a>
+      <ul>
+        <li><a href="../../index.html"><span data-l="en">Home</span><span data-l="tr">Ana sayfa</span></a></li>
+        <li><a href="../../agamemnon.html">Agamemnon</a></li>
+        <li><a href="../../synapse/">Synapse</a></li>
+        <li><a href="../../blog/">Blog</a></li>
+        <li><a href="../../blog/feed.xml">RSS</a></li>
+      </ul>
+    </div>
+    <p><span data-l="en">Copyright © 2026 Athene Softworks. All rights reserved.</span><span data-l="tr">Telif hakkı © 2026 Athene Softworks. Tüm hakları saklıdır.</span></p>
+    <p><span data-l="en">Posts are for general information. They are not legal or professional advice, and details change fast in security and AI.</span><span data-l="tr">Yazılar genel bilgi amaçlıdır; hukuki ya da profesyonel tavsiye değildir. Güvenlik ve yapay zekâda ayrıntılar hızla değişir.</span></p>
+  </div>
+</footer>
+<script src="../../blog/blog.js"></script>
+</body>
+</html>

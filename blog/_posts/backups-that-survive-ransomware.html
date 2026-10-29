@@ -1,0 +1,95 @@
+<!--
+{"title": "Backups that survive ransomware: the 3-2-1 rule, made simple",
+ "title_tr": "Fidye yazılımından sağ çıkan yedekler: 3-2-1 kuralı, basitçe",
+ "summary": "A backup that's always plugged in can be encrypted along with everything else. How to set up backups on a Mac or PC that ransomware, a stolen laptop or a spilled coffee can't take away.",
+ "summary_tr": "Sürekli takılı duran bir yedek, diğer her şeyle birlikte şifrelenebilir. Fidye yazılımının, çalınan bir dizüstünün ya da dökülen bir kahvenin elinizden alamayacağı yedekleri Mac'te ya da PC'de nasıl kuracağınızı anlatıyoruz.",
+ "date": "2026-10-19", "cat": "security"}
+-->
+<section lang="en">
+<p>No antivirus catches everything, and no laptop lasts forever. The one thing that turns ransomware, theft or hardware failure from a disaster into an inconvenience is a <strong>good backup</strong>. Most people know this. Far fewer have a backup that would actually survive a ransomware attack.</p>
+
+<h2>Why a simple backup isn't always enough</h2>
+<p>Ransomware encrypts every file it can reach. That includes an external drive that's always plugged in, a network share that's always mounted, and sometimes a synced folder whose changes flow straight up to the cloud. If the backup can be written to by your account, it can be scrambled by malware running as your account.</p>
+<p>Sync isn't backup, either. If a file is deleted or encrypted on your laptop, services like Dropbox, OneDrive or iCloud Drive faithfully sync that change everywhere. Version history can save you, but only if you know where to find it and it reaches far enough back.</p>
+
+<h2>The 3-2-1 rule</h2>
+<ul>
+<li><strong>3 copies</strong> of your important data: the original plus two backups.</li>
+<li><strong>2 different kinds</strong> of storage, for example an external drive and the cloud.</li>
+<li><strong>1 copy off-site or offline</strong>, out of reach of whatever hits your computer.</li>
+</ul>
+<p>Security people often add a "+1": at least one copy that is <strong>immutable</strong> (can't be changed for a set time) or <strong>disconnected</strong> most of the time.</p>
+
+<h2>A practical setup for home users</h2>
+<table>
+<thead><tr><th></th><th>Mac</th><th>Windows</th></tr></thead>
+<tbody>
+<tr><td>Local backup</td><td>Time Machine to an external drive</td><td>File History to an external drive</td></tr>
+<tr><td>Off-site backup</td><td>A cloud backup service with version history (Backblaze, iDrive, Arq to cloud storage)</td><td>Same: a backup service, not only OneDrive sync</td></tr>
+<tr><td>Offline copy</td><td colspan="2">Plug the external drive in once a week, let the backup finish, then unplug it</td></tr>
+</tbody>
+</table>
+<p>The "unplug it" step is what makes the local copy ransomware-proof. A drive in a drawer can't be encrypted. If you use Time Machine with a network drive or NAS, turn on its snapshot feature, which keeps read-only copies that a client computer can't overwrite.</p>
+
+<h2>Test the restore</h2>
+<blockquote>A backup you've never restored from is a hope, not a backup.</blockquote>
+<p>Once every few months, pick a random file or folder and restore it to your desktop. Check it opens. For cloud backups, try downloading one old version. It takes five minutes and is the only way to know the backup works.</p>
+
+<h2>What to back up</h2>
+<ul>
+<li>Documents, photos and videos: the irreplaceable things.</li>
+<li>Password manager export or recovery kit, stored encrypted.</li>
+<li>Two-factor recovery codes, printed and kept somewhere safe.</li>
+<li>Crypto wallet recovery phrases: on paper, never in a cloud note or screenshot.</li>
+</ul>
+<p>Apps themselves don't need backing up; you can always reinstall them.</p>
+
+<div class="note warn"><b>Don't pay first</b>If ransomware does hit, don't rush to pay. Disconnect the computer, check whether your backup is intact, and look up the ransomware's name on <em>nomoreransom.org</em>, which has free decryptors for many families.</div>
+
+<h2>Agamemnon's ransomware shield</h2>
+<p>Agamemnon watches Documents, Desktop and Pictures, plus any folders you add. If files suddenly start getting scrambled, the unsigned program doing it is stopped and moved to quarantine. Like any real-time protection it reacts within a second or two rather than blocking in advance, so a few files may already be touched. That's exactly why it works best <strong>together with</strong> a backup, not instead of one.</p>
+</section>
+<section lang="tr">
+<p>Hiçbir antivirüs her şeyi yakalayamaz ve hiçbir dizüstü sonsuza kadar dayanmaz. Fidye yazılımını, hırsızlığı ya da donanım arızasını bir felaketten küçük bir aksiliğe dönüştüren tek şey <strong>iyi bir yedektir</strong>. Çoğu insan bunu bilir. Çok daha azının bir fidye yazılımı saldırısından gerçekten sağ çıkacak bir yedeği vardır.</p>
+
+<h2>Basit bir yedek neden her zaman yetmez?</h2>
+<p>Fidye yazılımı ulaşabildiği her dosyayı şifreler. Buna sürekli takılı duran harici disk, sürekli bağlı ağ paylaşımı ve bazen değişiklikleri doğrudan buluta akan eşitlenmiş bir klasör de dahildir. Yedeğe sizin hesabınız yazabiliyorsa, sizin hesabınızla çalışan zararlı yazılım da onu bozabilir.</p>
+<p>Eşitleme de yedek değildir. Dizüstünüzde bir dosya silinir ya da şifrelenirse Dropbox, OneDrive veya iCloud Drive gibi hizmetler bu değişikliği sadakatle her yere eşitler. Sürüm geçmişi sizi kurtarabilir, ama yalnızca nerede bulacağınızı biliyorsanız ve yeterince geriye gidiyorsa.</p>
+
+<h2>3-2-1 kuralı</h2>
+<ul>
+<li>Önemli verilerinizin <strong>3 kopyası</strong>: asıl dosya artı iki yedek.</li>
+<li><strong>2 farklı türde</strong> depolama, örneğin bir harici disk ve bulut.</li>
+<li>Bilgisayarınızı vuran şeyin ulaşamayacağı <strong>1 kopya başka bir yerde ya da bağlantısız</strong>.</li>
+</ul>
+<p>Güvenlikçiler çoğu zaman bir "+1" ekler: en az bir kopya ya <strong>değiştirilemez</strong> (belirli bir süre boyunca değiştirilemeyen) ya da çoğu zaman <strong>bağlantısız</strong> olmalı.</p>
+
+<h2>Ev kullanıcıları için pratik bir kurulum</h2>
+<table>
+<thead><tr><th></th><th>Mac</th><th>Windows</th></tr></thead>
+<tbody>
+<tr><td>Yerel yedek</td><td>Harici diske Time Machine</td><td>Harici diske Dosya Geçmişi</td></tr>
+<tr><td>Uzak yedek</td><td>Sürüm geçmişi olan bir bulut yedekleme hizmeti (Backblaze, iDrive, bulut depolamaya Arq)</td><td>Aynısı: yalnızca OneDrive eşitlemesi değil, bir yedekleme hizmeti</td></tr>
+<tr><td>Bağlantısız kopya</td><td colspan="2">Harici diski haftada bir takın, yedeğin bitmesini bekleyin, sonra çıkarın</td></tr>
+</tbody>
+</table>
+<p>Yerel kopyayı fidye yazılımına karşı dayanıklı yapan şey "çıkarın" adımıdır. Çekmecedeki bir disk şifrelenemez. Time Machine'i bir ağ diski ya da NAS ile kullanıyorsanız, istemci bilgisayarın üzerine yazamayacağı salt okunur kopyalar tutan anlık görüntü (snapshot) özelliğini açın.</p>
+
+<h2>Geri yüklemeyi deneyin</h2>
+<blockquote>Hiç geri yükleme yapmadığınız bir yedek, yedek değil bir umuttur.</blockquote>
+<p>Birkaç ayda bir rastgele bir dosya ya da klasör seçip masaüstünüze geri yükleyin. Açıldığını kontrol edin. Bulut yedeklerinde eski bir sürümü indirmeyi deneyin. Beş dakika sürer ve yedeğin çalıştığını bilmenin tek yoludur.</p>
+
+<h2>Neleri yedeklemeli?</h2>
+<ul>
+<li>Belgeler, fotoğraflar ve videolar: yeri doldurulamayan şeyler.</li>
+<li>Parola yöneticisinin dışa aktarımı ya da kurtarma kiti, şifreli olarak saklanmış.</li>
+<li>İki adımlı doğrulama kurtarma kodları, yazdırılıp güvenli bir yerde saklanmış.</li>
+<li>Kripto cüzdan kurtarma kelimeleri: kâğıt üzerinde; asla bulut notunda ya da ekran görüntüsünde değil.</li>
+</ul>
+<p>Uygulamaların kendisini yedeklemeye gerek yok; her zaman yeniden kurabilirsiniz.</p>
+
+<div class="note warn"><b>Önce ödemeyin</b>Fidye yazılımı bulaşırsa ödemek için acele etmeyin. Bilgisayarın bağlantısını kesin, yedeğinizin sağlam olup olmadığını kontrol edin ve fidye yazılımının adını birçok aile için ücretsiz şifre çözücüler sunan <em>nomoreransom.org</em>'da arayın.</div>
+
+<h2>Agamemnon'un fidye yazılımı kalkanı</h2>
+<p>Agamemnon Belgeler, Masaüstü ve Resimler klasörlerini ve eklediğiniz diğer klasörleri izler. Dosyalar birden bozulmaya başlarsa bunu yapan imzasız program durdurulur ve karantinaya alınır. Her gerçek zamanlı koruma gibi önceden engellemek yerine bir iki saniye içinde tepki verir; bu yüzden birkaç dosya etkilenmiş olabilir. İşte tam da bu nedenle yedeğin <strong>yerine değil, yanında</strong> en iyi şekilde çalışır.</p>
+</section>
